@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Términos y Condiciones — Smash & Fire</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+.terms-layout {
+  display: grid; grid-template-columns: 240px 1fr; gap: 4rem; align-items: start;
+  margin-top: 4rem;
+}
+@media(max-width:800px){ .terms-layout{ grid-template-columns:1fr; } }
+
+/* Sticky sidebar */
+.terms-nav {
+  position: sticky; top: calc(var(--nav-h) + 20px);
+  background: var(--coal); border: 1px solid var(--ash);
+  border-radius: 4px; padding: 1.5rem;
+}
+.terms-nav h4 {
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--fire); margin-bottom: 1.2rem;
+}
+.terms-nav a {
+  display: block; color: var(--light); font-size: 0.82rem; line-height: 1.9;
+  text-decoration: none; padding-left: 0;
+  transition: color 0.2s, padding-left 0.2s;
+  border-left: 2px solid transparent;
+  padding-left: 10px; margin-left: -10px;
+}
+.terms-nav a:hover { color: var(--fire); border-left-color: var(--fire); }
+.terms-nav a.toc-active { color: var(--fire); border-left-color: var(--fire); }
+
+/* Content */
+.terms-content { }
+.terms-date {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ash); border-radius: 3px;
+  padding: 0.5rem 1rem; margin-bottom: 3rem;
+  font-family: 'Rajdhani', sans-serif; font-weight: 600;
+  font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gray);
+}
+.terms-content h3 {
+  font-family: 'Anton', sans-serif; font-size: 1.2rem; letter-spacing: 2px;
+  color: var(--fire); margin: 3rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ash);
+  scroll-margin-top: calc(var(--nav-h) + 30px);
+}
+.terms-content p {
+  color: var(--bone); line-height: 1.85; margin-bottom: 0.75rem; font-size: 0.9rem;
+}
+.terms-content ul { list-style: none; margin-bottom: 1rem; }
+.terms-content ul li {
+  color: var(--light); font-size: 0.9rem; line-height: 1.85;
+  padding-left: 1.5rem; position: relative;
+}
+.terms-content ul li::before { content: '→'; position: absolute; left: 0; color: var(--fire); font-weight: 700; }
+.terms-content a { color: var(--fire); text-decoration: none; }
+.terms-content a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="../fotos/index.html">Fotos</a></li>
+    <li><a href="../historia/index.html">Historia</a></li>
+    <li><a href="../terminos/index.html">Términos</a></li>
+    <li><a href="../fundadores/index.html">Fundadores</a></li>
+    <li><a href="../empleo/index.html">Empleo</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
+  </ul>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label reveal">Legal</span>
+    <h1 class="section-title reveal delay-1" style="font-size:clamp(2.5rem,7vw,5.5rem)">TÉRMINOS Y<br>CONDICIONES</h1>
+    <p class="reveal delay-2">Por favor lee este documento antes de utilizar nuestros servicios.</p>
+  </div>
+</div>
+
+<section style="background:var(--char);padding:70px 0 100px;">
+  <div class="container">
+    <div class="terms-layout">
+      <aside class="terms-nav" id="termsNav">
+        <h4>Contenido</h4>
+        <a href="#t1">1. Aceptación</a>
+        <a href="#t2">2. Servicios</a>
+        <a href="#t3">3. Reservaciones</a>
+        <a href="#t4">4. Pagos</a>
+        <a href="#t5">5. Delivery</a>
+        <a href="#t6">6. Alergias</a>
+        <a href="#t7">7. Conducta</a>
+        <a href="#t8">8. Propiedad Intelectual</a>
+        <a href="#t9">9. Modificaciones</a>
+        <a href="#t10">10. Contacto</a>
+      </aside>
+      <div class="terms-content">
+        <div class="terms-date">📅 Última actualización: enero de 2025</div>
+
+        <h3 id="t1">1. Aceptación de los Términos</h3>
+        <p>Al visitar el local, realizar un pedido en línea o utilizar cualquier servicio de Smash & Fire, el cliente acepta los presentes términos y condiciones en su totalidad. Si no está de acuerdo con alguna de estas condiciones, le pedimos abstenerse de utilizar nuestros servicios.</p>
+
+        <h3 id="t2">2. Servicios Ofrecidos</h3>
+        <p>Smash & Fire ofrece los siguientes servicios a sus clientes:</p>
+        <ul>
+          <li>Consumo en local (servicio de mesa completo)</li>
+          <li>Pedidos para llevar (take out)</li>
+          <li>Delivery a domicilio dentro de las zonas habilitadas</li>
+          <li>Reservaciones para grupos con anticipación de 48 horas</li>
+        </ul>
+
+        <h3 id="t3">3. Reservaciones</h3>
+        <p>Las reservaciones se confirman únicamente mediante confirmación escrita por parte de nuestro equipo a través de WhatsApp o correo electrónico. Para grupos de más de 8 personas se requiere un depósito del 20% del consumo estimado.</p>
+        <p>Las cancelaciones deben realizarse con al menos 24 horas de anticipación para recuperar el depósito. Cancelaciones con menos de 24 horas no serán reembolsadas.</p>
+
+        <h3 id="t4">4. Pedidos y Pagos</h3>
+        <p>Aceptamos los siguientes métodos de pago en nuestro local y para pedidos de delivery:</p>
+        <ul>
+          <li>Efectivo en quetzales (GTQ)</li>
+          <li>Tarjeta de crédito: Visa, Mastercard y American Express</li>
+          <li>Tarjeta de débito de bancos guatemaltecos</li>
+          <li>Transferencia bancaria (previa coordinación)</li>
+        </ul>
+        <p>Los precios indicados en el menú incluyen IVA. No se realizan devoluciones en efectivo por cambios de opinión una vez preparado el pedido.</p>
+
+        <h3 id="t5">5. Política de Delivery</h3>
+        <p>El servicio de delivery cubre un radio de 5 km desde nuestro local en Zona 10. Los tiempos de entrega son estimados (30-45 minutos) y pueden variar por condiciones de tráfico, clima u otras circunstancias externas. No nos hacemos responsables por demoras ocasionadas por factores fuera de nuestro control.</p>
+
+        <h3 id="t6">6. Alergias e Intolerancias</h3>
+        <p>Si tienes alergias alimentarias, es tu responsabilidad informar al equipo antes de realizar el pedido. Aunque tomamos todas las precauciones posibles, nuestros productos se elaboran en cocinas donde se manejan los principales alérgenos, incluyendo gluten, lácteos, huevo y soya. No podemos garantizar la ausencia total de trazas cruzadas.</p>
+
+        <h3 id="t7">7. Conducta en el Local</h3>
+        <p>Smash & Fire es un espacio familiar y acogedor. Nos reservamos el derecho de pedir retirarse a cualquier persona que presente conducta inapropiada, que esté bajo los efectos del alcohol o que altere el ambiente del local. No se permite fumar dentro ni en la entrada del establecimiento.</p>
+
+        <h3 id="t8">8. Propiedad Intelectual</h3>
+        <p>Todas las imágenes, marca, nombre, logotipo, recetas y contenido de Smash & Fire son propiedad exclusiva de la empresa. Queda prohibida su reproducción total o parcial sin autorización escrita y expresa previa.</p>
+
+        <h3 id="t9">9. Modificaciones</h3>
+        <p>Smash & Fire se reserva el derecho de modificar estos términos en cualquier momento y sin previo aviso. Las modificaciones entran en vigor desde su publicación en este sitio web. Es responsabilidad del usuario revisar periódicamente este documento.</p>
+
+        <h3 id="t10">10. Contacto</h3>
+        <p>Para cualquier consulta, comentario o reclamo relacionado con estos términos, puedes contactarnos a través de los siguientes canales:</p>
+        <ul>
+          <li>Correo: <a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a></li>
+          <li>Teléfono: <a href="tel:+50212345678">+502 1234-5678</a></li>
+          <li>Dirección: 6a Calle 6-50 Zona 10, Ciudad de Guatemala</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales. Ciudad de Guatemala.</p></div>
+      <div class="footer-col"><h4>Navegación</h4><a href="../index.html">Inicio</a><a href="../menu/index.html">Menú</a><a href="../historia/index.html">Historia</a></div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50212345678">+502 1234-5678</a><a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Smash & Fire.</p>
+      <div><a href="#">Privacidad</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../nav.js"></script>
+<script>
+// TOC active link on scroll
+const sections = document.querySelectorAll('.terms-content h3[id]');
+const navLinks  = document.querySelectorAll('.terms-nav a');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('toc-active'));
+      const link = document.querySelector(`.terms-nav a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('toc-active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>

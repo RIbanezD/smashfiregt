@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menú — Smash & Fire</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+.filter-bar {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin: 3rem 0 2.5rem;
+  border-bottom: 1px solid var(--ash);
+  padding-bottom: 0;
+}
+.filt {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--light); padding: 0.7rem 1.2rem;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  margin-bottom: -1px;
+}
+.filt:hover { color: var(--bone); }
+.filt.active { color: var(--fire); border-bottom-color: var(--fire); }
+
+.menu-section-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem; letter-spacing: 3px;
+  text-transform: uppercase; margin: 4rem 0 2rem;
+  display: flex; align-items: center; gap: 1.5rem; color: var(--bone);
+}
+.menu-section-title::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, var(--ash), transparent);
+}
+
+.menu-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 1.5rem;
+}
+.menu-card {
+  background: var(--coal); border: 1px solid var(--ash);
+  border-radius: 4px; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.menu-card:hover {
+  border-color: rgba(232,50,10,0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+}
+.menu-thumb {
+  height: 150px;
+  background: linear-gradient(135deg, var(--ash), var(--coal));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem; position: relative; overflow: hidden;
+}
+.menu-thumb::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, rgba(14,11,7,0.7));
+}
+.menu-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 1;
+  background: var(--fire); color: var(--white);
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 2px;
+}
+.menu-badge.yellow { background: var(--yellow); color: var(--char); }
+.menu-card-body { padding: 1.3rem; flex: 1; display: flex; flex-direction: column; }
+.menu-card-body h3 {
+  font-family: 'Anton', sans-serif; font-size: 1.25rem; letter-spacing: 2px;
+  color: var(--bone); margin-bottom: 0.4rem;
+}
+.menu-card-body p { color: var(--light); font-size: 0.85rem; line-height: 1.6; flex: 1; }
+.menu-card-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--ash);
+}
+.menu-price {
+  font-family: 'Anton', sans-serif; font-size: 1.7rem; color: var(--fire); line-height: 1;
+}
+.add-btn {
+  width: 38px; height: 38px; border-radius: 3px;
+  border: 1px solid var(--fire); background: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fire); font-size: 1.3rem;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.add-btn:hover { background: var(--fire); color: var(--white); transform: scale(1.1); }
+
+/* Promo banner */
+.promo-banner {
+  background: var(--fire);
+  border-radius: 4px;
+  padding: 2.5rem 3rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+  margin: 4rem 0;
+  position: relative; overflow: hidden;
+}
+.promo-banner::before {
+  content: '🍔';
+  position: absolute; right: -20px; bottom: -20px;
+  font-size: 10rem; opacity: 0.1; pointer-events: none;
+}
+.promo-banner h3 {
+  font-family: 'Anton', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: var(--white);
+}
+.promo-banner p { color: rgba(255,255,255,0.8); max-width: 400px; margin-top: 0.4rem; }
+</style>
+</head>
+<body>
+<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="../fotos/index.html">Fotos</a></li>
+    <li><a href="../historia/index.html">Historia</a></li>
+    <li><a href="../terminos/index.html">Términos</a></li>
+    <li><a href="../fundadores/index.html">Fundadores</a></li>
+    <li><a href="../empleo/index.html">Empleo</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
+  </ul>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label reveal">Lo que servimos</span>
+    <h1 class="section-title reveal delay-1" style="font-size:clamp(3.5rem,9vw,7rem)">NUESTRO<br>MENÚ</h1>
+    <p class="reveal delay-2">Smash burgers, combos, acompañamientos y bebidas. Todo preparado al momento, sin atajos.</p>
+  </div>
+</div>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Smash Burger</span><span class="sep">◆</span><span>Fuego Real</span><span class="sep">◆</span><span>Frescos Cada Día</span><span class="sep">◆</span><span>Pan Brioche</span><span class="sep">◆</span><span>Hecho al Momento</span><span class="sep">◆</span><span>Smash Burger</span><span class="sep">◆</span><span>Fuego Real</span><span class="sep">◆</span><span>Frescos Cada Día</span><span class="sep">◆</span><span>Pan Brioche</span><span class="sep">◆</span><span>Hecho al Momento</span><span class="sep">◆</span>
+  </div>
+</div>
+
+<section style="background:var(--char);padding:60px 0 100px;">
+  <div class="container">
+    <div class="filter-bar">
+      <button class="filt active" data-filter="all">Todo</button>
+      <button class="filt" data-filter="burgers">Hamburguesas</button>
+      <button class="filt" data-filter="sides">Acompañamientos</button>
+      <button class="filt" data-filter="drinks">Bebidas</button>
+    </div>
+
+    <h2 class="menu-section-title reveal" data-cat="burgers">🔥 Hamburguesas Signature</h2>
+    <div class="menu-grid" data-cat="burgers">
+      <div class="menu-card reveal delay-1"><div class="menu-thumb">🍔<span class="menu-badge">⭐ Best Seller</span></div><div class="menu-card-body"><h3>THE CLASSIC SMASH</h3><p>Doble carne smash, queso americano fundido, cebolla caramelizada, pepinillos y salsa especial en pan brioche tostado.</p><div class="menu-card-footer"><span class="menu-price">Q 55</span><button class="add-btn">+</button></div></div></div>
+      <div class="menu-card reveal delay-2"><div class="menu-thumb">🥓<span class="menu-badge">🔥 Popular</span></div><div class="menu-card-body"><h3>BACON FIRE</h3><p>Carne smash, tocino ahumado crujiente, queso cheddar, jalapeños asados y mayonesa artesanal de chipotle.</p><div class="menu-card-footer"><span class="menu-price">Q 65</span><button class="add-btn">+</button></div></div></div>
+      <div class="menu-card reveal delay-3"><div class="menu-thumb">🧀</div><div class="menu-card-body"><h3>TRIPLE CHEESE</h3><p>Triple carne smash, tres tipos de queso (cheddar, americano, pepper jack), cebolla crujiente y mostaza artesanal de granos.</p><div class="menu-card-footer"><span class="menu-price">Q 75</span><button class="add-btn">+</button></div></div></div>
+      <div class="menu-card reveal delay-1"><div class="menu-thumb">🌶️<span class="menu-badge">💀 Picante</span></div><div class="menu-card-body"><h3>DIABLO SMASH</h3><p>Carne smash, salsa buffalo casera, jalapeños frescos, queso pepper jack y coleslaw de pimiento rojo ahumado.</p><div class="menu-card-footer"><span class="menu-price">Q 68</span><button class="add-btn">+</button></div></div></div>
+      <div class="menu-card reveal delay-2"><div class="menu-thumb">🥑<span class="menu-badge yellow">🌱 Nuevo</span></div><div class="menu-card-body"><h3>AVOCADO DREAM</h3><p>Carne smash, aguacate fresco aplastado, queso suizo, lechuga, tomate y aderezo de limón con cilantro fresco.</p><div class="menu-card-footer"><span class="menu-price">Q 70</span><button class="add-btn">+</button></div></div></div>
+      <div class="menu-card reveal delay-3"><div class="menu-thumb">🍄</div><div class="menu-card-body"><h3>MUSHROOM SWISS</h3><p>Carne smash, hongos salteados con mantequilla y tomillo, queso suizo fundido y salsa de trufa blanca artesanal.</p><div class="menu-card-footer"><span class="menu-price">Q 72</span><button class="add-btn">+</button></div></div></div>
+    </div>
+
+    <div class="promo-banner reveal" style="margin-top:5rem;">
+      <div>
+        <h3>COMBO SMASH</h3>
+        <p>Cualquier hamburguesa + papas clásicas + refresco. Ahorra Q15 en cada combo.</p>
+      </div>
+      <a href="#" class="btn btn-dark">Armar Combo →</a>
+    </div>
+
+    <h2 class="menu-section-title reveal" data-cat="sides">🍟 Acompañamientos</h2>
+    <div class="menu-grid" data-cat="sides">
+      <div class="menu-card reveal delay-1"><div class="menu-thumb">🍟</div><div class="menu-card-body"><h3>PAPAS CLÁSICAS</h3><p>Papas fritas doradas con sal de mar y tomillo seco. Crujientes por fuera, suaves por dentro.</p><div class="menu-card-footer"><span class="menu-price">Q 22</span><button class="add-btn">+</button></div></div></div>
+      <div class="menu-card reveal delay-2"><div class="menu-thumb">🧅</div><div class="menu-card-body"><h3>AROS DE CEBOLLA</h3><p>Aros de cebolla dulce en tempura crujiente, servidos con salsa ranch artesanal de la casa.</p><div class="menu-card-footer"><span class="menu-price">Q 28</span><button class="add-btn">+</button></div></div></div>
+      <div class="menu-card reveal delay-3"><div class="menu-thumb">🧇<span class="menu-badge">🔥 Popular</span></div><div class="menu-card-body"><h3>PAPAS LOADED</h3><p>Papas con queso cheddar derretido, tocino picado crujiente, crema ácida y cebollín fresco.</p><div class="menu-card-footer"><span class="menu-price">Q 38</span><button class="add-btn">+</button></div></div></div>
+    </div>
+
+    <h2 class="menu-section-title reveal" data-cat="drinks">🥤 Bebidas</h2>
+    <div class="menu-grid" data-cat="drinks">
+      <div class="menu-card reveal delay-1"><div class="menu-thumb">🥤</div><div class="menu-card-body"><h3>REFRESCOS</h3><p>Coca-Cola, Sprite, Fanta o agua mineral. Tamaño grande con hielo.</p><div class="menu-card-footer"><span class="menu-price">Q 15</span><button class="add-btn">+</button></div></div></div>
+      <div class="menu-card reveal delay-2"><div class="menu-thumb">🍺<span class="menu-badge yellow">Nuevo</span></div><div class="menu-card-body"><h3>CERVEZA ARTESANAL</h3><p>Selección rotativa de cervezas locales guatemaltecas. Pregunta por la variedad del día.</p><div class="menu-card-footer"><span class="menu-price">Q 35</span><button class="add-btn">+</button></div></div></div>
+      <div class="menu-card reveal delay-3"><div class="menu-thumb">🧃</div><div class="menu-card-body"><h3>MALTEADA ARTESANAL</h3><p>Vainilla, chocolate o fresa. Preparadas al momento con helado de alta calidad y leche entera.</p><div class="menu-card-footer"><span class="menu-price">Q 30</span><button class="add-btn">+</button></div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales. Ciudad de Guatemala.</p></div>
+      <div class="footer-col"><h4>Navegación</h4><a href="../index.html">Inicio</a><a href="../fotos/index.html">Fotos</a><a href="../historia/index.html">Historia</a><a href="../empleo/index.html">Empleo</a></div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50212345678">+502 1234-5678</a><a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="../terminos/index.html">Términos y Condiciones</a><a href="#">Privacidad</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Smash & Fire.</p></div>
+  </div>
+</footer>
+
+<script src="../nav.js"></script>
+<script>
+// Filter tabs
+const filters = document.querySelectorAll('.filt');
+filters.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filters.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('[data-cat]').forEach(el => {
+      el.style.display = (f === 'all' || el.dataset.cat === f) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

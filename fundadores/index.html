@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fundadores — Smash & Fire</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+.founders-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;
+  margin-top:3rem;
+}
+.founder-card {
+  background: var(--coal); border: 1px solid var(--ash);
+  border-radius: 4px; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.founder-card:hover { border-color: rgba(232,50,10,0.4); transform: translateY(-6px); }
+.founder-header {
+  height: 220px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.founder-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--ash) 0%, var(--char) 100%);
+}
+.founder-header::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(14,11,7,0.95));
+}
+.founder-emoji { font-size: 7rem; position: relative; z-index: 1; }
+.founder-name-overlay {
+  position: absolute; bottom: 16px; left: 20px; z-index: 2;
+}
+.founder-name-overlay h3 {
+  font-family: 'Anton', sans-serif; font-size: 1.6rem; letter-spacing: 2px; color: var(--white);
+}
+.founder-name-overlay .role {
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--fire);
+  margin-top: 2px;
+}
+.founder-body { padding: 1.8rem; }
+.founder-body p { color: var(--light); line-height: 1.7; font-size: 0.9rem; }
+
+/* Skill bars */
+.skills { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.skill-row {}
+.skill-label {
+  display: flex; justify-content: space-between;
+  font-family: 'Rajdhani', sans-serif; font-weight: 600;
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 6px;
+}
+.skill-bar {
+  height: 4px; background: var(--ash); border-radius: 2px; overflow: hidden;
+}
+.skill-fill {
+  height: 100%; background: var(--fire); border-radius: 2px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 1.2s var(--ease-out-expo);
+}
+.skill-fill.anim { transform: scaleX(1); }
+
+.founder-quote {
+  margin-top: 1.5rem; padding: 1.2rem 1.5rem;
+  border-left: 3px solid var(--fire);
+  background: var(--ash); border-radius: 0 3px 3px 0;
+}
+.founder-quote p { font-style: italic; color: var(--light); font-size: 0.9rem; line-height: 1.6; margin: 0; }
+.founder-quote cite {
+  display: block; margin-top: 0.5rem;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--fire); font-style: normal;
+}
+
+/* Team mosaic */
+.team-mosaic {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1px; background: var(--ash); border-radius: 4px; overflow: hidden;
+  margin-top: 3rem;
+}
+.team-tile {
+  background: var(--coal); padding: 2rem 1.5rem; text-align: center;
+  transition: background 0.3s;
+}
+.team-tile:hover { background: var(--ash); }
+.team-tile .t-emoji { font-size: 2.2rem; margin-bottom: 0.75rem; }
+.team-tile h4 {
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.85rem; letter-spacing: 2px; color: var(--bone);
+}
+.team-tile span { color: var(--light); font-size: 0.75rem; display: block; margin-top: 3px; }
+</style>
+</head>
+<body>
+<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="../fotos/index.html">Fotos</a></li>
+    <li><a href="../historia/index.html">Historia</a></li>
+    <li><a href="../terminos/index.html">Términos</a></li>
+    <li><a href="../fundadores/index.html">Fundadores</a></li>
+    <li><a href="../empleo/index.html">Empleo</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
+  </ul>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label reveal">El equipo</span>
+    <h1 class="section-title reveal delay-1" style="font-size:clamp(3rem,8vw,6rem)">LAS PERSONAS<br>DETRÁS DEL FUEGO</h1>
+    <p class="reveal delay-2">El talento, la visión y la pasión que convierten ingredientes simples en experiencias memorables.</p>
+  </div>
+</div>
+
+<section style="background:var(--char);padding:80px 0 100px;">
+  <div class="container">
+    <span class="section-label reveal">Co-fundadores</span>
+    <h2 class="section-title reveal delay-1">LOS TRES<br>CO-FUNDADORES</h2>
+    <div class="founders-grid">
+
+      <div class="founder-card reveal delay-1">
+        <div class="founder-header">
+          <div class="founder-emoji">👨‍🍳</div>
+          <div class="founder-name-overlay">
+            <h3>CARLOS MARTÍNEZ</h3>
+            <div class="role">Co-Fundador · Chef Ejecutivo</div>
+          </div>
+        </div>
+        <div class="founder-body">
+          <p>Con más de 10 años en cocina profesional, Carlos es el cerebro culinario de Smash & Fire. Estudió gastronomía en México y perfeccionó la técnica smash durante dos años antes de abrir el local.</p>
+          <div class="skills">
+            <div class="skill-row">
+              <div class="skill-label"><span>Técnica Smash</span><span>98%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="98"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label"><span>Desarrollo de Recetas</span><span>95%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label"><span>Gestión de Cocina</span><span>88%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+            </div>
+          </div>
+          <div class="founder-quote">
+            <p>"Una hamburguesa bien hecha no necesita disculpas. Habla sola."</p>
+            <cite>— Carlos Martínez</cite>
+          </div>
+        </div>
+      </div>
+
+      <div class="founder-card reveal delay-2">
+        <div class="founder-header">
+          <div class="founder-emoji">👩‍💼</div>
+          <div class="founder-name-overlay">
+            <h3>SOFÍA RAMOS</h3>
+            <div class="role">Co-Fundadora · Directora General</div>
+          </div>
+        </div>
+        <div class="founder-body">
+          <p>Administradora de empresas con visión y olfato para los negocios gastronómicos. Sofía construyó la marca, la estrategia de crecimiento y el modelo que llevó a Smash & Fire del garage al restaurante reconocido.</p>
+          <div class="skills">
+            <div class="skill-row">
+              <div class="skill-label"><span>Estrategia de Marca</span><span>97%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="97"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label"><span>Experiencia del Cliente</span><span>94%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="94"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label"><span>Finanzas &amp; Crecimiento</span><span>90%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            </div>
+          </div>
+          <div class="founder-quote">
+            <p>"El éxito se mide en clientes que regresan, no en visitas únicas."</p>
+            <cite>— Sofía Ramos</cite>
+          </div>
+        </div>
+      </div>
+
+      <div class="founder-card reveal delay-3">
+        <div class="founder-header">
+          <div class="founder-emoji">👨‍💻</div>
+          <div class="founder-name-overlay">
+            <h3>DIEGO LÓPEZ</h3>
+            <div class="role">Co-Fundador · Director Operaciones</div>
+          </div>
+        </div>
+        <div class="founder-body">
+          <p>Ingeniero industrial convertido en experto en operaciones gastronómicas. Diego diseñó el sistema de producción que garantiza que cada hamburguesa sea perfecta en hora pico o en servicio tranquilo.</p>
+          <div class="skills">
+            <div class="skill-row">
+              <div class="skill-label"><span>Operaciones</span><span>96%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="96"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label"><span>Control de Calidad</span><span>93%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="93"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-label"><span>Gestión de Equipo</span><span>89%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="89"></div></div>
+            </div>
+          </div>
+          <div class="founder-quote">
+            <p>"La consistencia es la forma más alta de creatividad en un restaurante."</p>
+            <cite>— Diego López</cite>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--coal);padding:80px 0 100px;">
+  <div class="container">
+    <span class="section-label reveal">Todo el equipo</span>
+    <h2 class="section-title reveal delay-1">LOS QUE HACEN<br>EL FUEGO POSIBLE</h2>
+    <div class="team-mosaic">
+      <div class="team-tile reveal"><div class="t-emoji">👨‍🍳</div><h4>Marco T.</h4><span>Chef de Línea</span></div>
+      <div class="team-tile reveal delay-1"><div class="t-emoji">👩‍🍳</div><h4>Valeria S.</h4><span>Chef de Línea</span></div>
+      <div class="team-tile reveal delay-2"><div class="t-emoji">🧑‍🍳</div><h4>Roberto C.</h4><span>Prep Cook</span></div>
+      <div class="team-tile reveal delay-1"><div class="t-emoji">👨‍💼</div><h4>Luis A.</h4><span>Supervisor de Turno</span></div>
+      <div class="team-tile reveal delay-2"><div class="t-emoji">👩‍💼</div><h4>Ana P.</h4><span>Atención al Cliente</span></div>
+      <div class="team-tile reveal delay-3"><div class="t-emoji">🧑</div><h4>José M.</h4><span>Caja</span></div>
+      <div class="team-tile reveal"><div class="t-emoji">👩</div><h4>Karen R.</h4><span>Mesera</span></div>
+      <div class="team-tile reveal delay-1"><div class="t-emoji">👨</div><h4>Fernando O.</h4><span>Repartidor</span></div>
+    </div>
+    <p style="text-align:center;margin-top:2.5rem;color:var(--gray);font-size:0.88rem;">
+      ¿Quieres ser parte? <a href="../empleo/index.html" style="color:var(--fire);text-decoration:none;font-weight:700;">Ver plazas disponibles →</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales. Ciudad de Guatemala.</p></div>
+      <div class="footer-col"><h4>Navegación</h4><a href="../index.html">Inicio</a><a href="../menu/index.html">Menú</a><a href="../historia/index.html">Historia</a></div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50212345678">+502 1234-5678</a><a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Smash & Fire.</p></div>
+  </div>
+</footer>
+
+<script src="../nav.js"></script>
+<script>
+// Skill bar animation on scroll
+const skillFills = document.querySelectorAll('.skill-fill');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const w = e.target.dataset.width;
+      e.target.style.transform = `scaleX(${w/100})`;
+      e.target.classList.add('anim');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+skillFills.forEach(f => io.observe(f));
+</script>
+</body>
+</html>

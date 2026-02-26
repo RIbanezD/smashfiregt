@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fotos — Smash & Fire</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+.gallery-tabs {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin: 2.5rem 0;
+}
+.gtab {
+  background: var(--ash); border: 1px solid var(--ash);
+  color: var(--light); padding: 0.5rem 1.2rem;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+  border-radius: 3px; cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.gtab:hover { color: var(--bone); }
+.gtab.active { background: var(--fire); border-color: var(--fire); color: var(--white); }
+
+/* Masonry-style grid */
+.gallery-grid {
+  columns: 3 280px; gap: 1rem;
+}
+.gallery-item {
+  break-inside: avoid; margin-bottom: 1rem;
+  border-radius: 4px; overflow: hidden; cursor: pointer;
+  position: relative;
+  background: var(--coal); border: 1px solid var(--ash);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-item:hover { transform: scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+.gallery-visual {
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem; position: relative;
+  background: linear-gradient(135deg, var(--ash), var(--coal));
+}
+.gallery-item.tall .gallery-visual { aspect-ratio: 3/4; font-size: 6rem; }
+.gallery-item.wide .gallery-visual { aspect-ratio: 16/7; font-size: 6rem; }
+.gallery-visual::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, rgba(14,11,7,0.85));
+}
+.gallery-caption {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
+  padding: 1rem 1.2rem;
+  transform: translateY(10px); opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.gallery-item:hover .gallery-caption { transform: translateY(0); opacity: 1; }
+.gallery-caption h4 {
+  font-family: 'Anton', sans-serif; font-size: 1rem; letter-spacing: 2px; color: var(--white);
+}
+.gallery-caption p { color: var(--light); font-size: 0.78rem; margin-top: 2px; }
+.gallery-overlay {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(14,11,7,0.6); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 0.9rem;
+  opacity: 0; transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+
+/* LIGHTBOX */
+.lightbox {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.92); backdrop-filter: blur(16px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.lightbox.open { opacity: 1; pointer-events: all; }
+.lb-inner {
+  position: relative; max-width: 700px; width: 90%;
+  background: var(--coal); border: 1px solid var(--ash);
+  border-radius: 6px; overflow: hidden;
+  transform: scale(0.9);
+  transition: transform 0.3s var(--ease-out-expo);
+}
+.lightbox.open .lb-inner { transform: scale(1); }
+.lb-visual {
+  height: 380px; display: flex; align-items: center; justify-content: center;
+  font-size: 9rem; background: var(--ash);
+}
+.lb-body { padding: 2rem; }
+.lb-title {
+  font-family: 'Anton', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: var(--bone);
+}
+.lb-desc { color: var(--light); margin-top: 0.5rem; line-height: 1.7; }
+.lb-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--ash); border: 1px solid var(--smoke);
+  color: var(--bone); font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.lb-close:hover { background: var(--fire); border-color: var(--fire); color: var(--white); }
+</style>
+</head>
+<body>
+<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="../fotos/index.html">Fotos</a></li>
+    <li><a href="../historia/index.html">Historia</a></li>
+    <li><a href="../terminos/index.html">Términos</a></li>
+    <li><a href="../fundadores/index.html">Fundadores</a></li>
+    <li><a href="../empleo/index.html">Empleo</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
+  </ul>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label reveal">Visual</span>
+    <h1 class="section-title reveal delay-1" style="font-size:clamp(3rem,8vw,6rem)">GALERÍA<br>DE FUEGO</h1>
+    <p class="reveal delay-2">Un vistazo a nuestras creaciones, nuestro local y el equipo que lo hace posible.</p>
+  </div>
+</div>
+
+<section style="background:var(--char);padding:60px 0 100px;">
+  <div class="container">
+    <div class="gallery-tabs">
+      <button class="gtab active" data-gtab="all">Todo</button>
+      <button class="gtab" data-gtab="food">Comida</button>
+      <button class="gtab" data-gtab="place">Local</button>
+      <button class="gtab" data-gtab="team">Equipo</button>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item wide reveal" data-gtab="food" data-emoji="🍔" data-title="The Classic Smash" data-desc="Nuestra estrella. Doble carne con la costra perfecta y queso americano derretido.">
+        <div class="gallery-visual">🍔</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>The Classic Smash</h4><p>Best Seller · Q55</p></div>
+      </div>
+      <div class="gallery-item reveal delay-1" data-gtab="food" data-emoji="🥓" data-title="Bacon Fire" data-desc="Tocino ahumado crujiente sobre carne smash con queso cheddar y chipotle artesanal.">
+        <div class="gallery-visual">🥓</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>Bacon Fire</h4><p>Popular · Q65</p></div>
+      </div>
+      <div class="gallery-item tall reveal delay-2" data-gtab="place" data-emoji="🏠" data-title="Nuestro Local" data-desc="Cocina abierta en Zona 10. Aquí puedes ver cada hamburguesa prepararse en vivo.">
+        <div class="gallery-visual">🏠</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>Nuestro Local</h4><p>Zona 10, Guatemala</p></div>
+      </div>
+      <div class="gallery-item reveal" data-gtab="food" data-emoji="🔥" data-title="La Plancha" data-desc="300°C de temperatura. La reacción de Maillard en acción. La magia sucede aquí.">
+        <div class="gallery-visual">🔥</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>La Plancha</h4><p>300°C de técnica</p></div>
+      </div>
+      <div class="gallery-item reveal delay-1" data-gtab="food" data-emoji="🍟" data-title="Papas Artesanales" data-desc="Doradas con sal de mar y tomillo. Crujientes por fuera, suaves por dentro.">
+        <div class="gallery-visual">🍟</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>Papas Artesanales</h4><p>Acompañamiento Q22</p></div>
+      </div>
+      <div class="gallery-item reveal delay-2" data-gtab="team" data-emoji="👨‍🍳" data-title="Carlos — Chef" data-desc="Co-fundador y chef ejecutivo. Más de 10 años de experiencia en cocina profesional.">
+        <div class="gallery-visual">👨‍🍳</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>Carlos Martínez</h4><p>Chef y Co-fundador</p></div>
+      </div>
+      <div class="gallery-item wide reveal" data-gtab="place" data-emoji="✨" data-title="Ambiente" data-desc="Diseño industrial con toques de calidez. El lugar perfecto para cualquier ocasión.">
+        <div class="gallery-visual">✨</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>El Ambiente</h4><p>Diseño industrial · Zona 10</p></div>
+      </div>
+      <div class="gallery-item reveal delay-1" data-gtab="food" data-emoji="🌶️" data-title="Diablo Smash" data-desc="Para los valientes. Jalapeños frescos, buffalo casero y queso pepper jack.">
+        <div class="gallery-visual">🌶️</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>Diablo Smash</h4><p>Nivel: Picante · Q68</p></div>
+      </div>
+      <div class="gallery-item tall reveal delay-2" data-gtab="team" data-emoji="👩‍💼" data-title="Sofía — Directora" data-desc="Co-fundadora y directora general. La visión detrás de la marca y la experiencia del cliente.">
+        <div class="gallery-visual">👩‍💼</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>Sofía Ramos</h4><p>Co-fundadora &amp; CEO</p></div>
+      </div>
+      <div class="gallery-item reveal" data-gtab="food" data-emoji="🥑" data-title="Avocado Dream" data-desc="Lo nuevo del menú. Aguacate fresco aplastado con queso suizo y aderezo de limón.">
+        <div class="gallery-visual">🥑</div>
+        <div class="gallery-overlay">🔍</div>
+        <div class="gallery-caption"><h4>Avocado Dream</h4><p>Nuevo · Q70</p></div>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;color:var(--smoke);margin-top:3rem;font-size:0.88rem;">
+      Síguenos en <strong style="color:var(--fire)">@smashandfire.gt</strong> para ver más contenido fresco cada semana.
+    </p>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <div class="lb-visual" id="lbVisual">🍔</div>
+    <div class="lb-body">
+      <div class="lb-title" id="lbTitle">Título</div>
+      <p class="lb-desc" id="lbDesc">Descripción</p>
+    </div>
+    <button class="lb-close" id="lbClose">✕</button>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales. Ciudad de Guatemala.</p></div>
+      <div class="footer-col"><h4>Navegación</h4><a href="../index.html">Inicio</a><a href="../menu/index.html">Menú</a><a href="../historia/index.html">Historia</a></div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50212345678">+502 1234-5678</a><a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Smash & Fire.</p></div>
+  </div>
+</footer>
+
+<script src="../nav.js"></script>
+<script>
+// Gallery tabs
+document.querySelectorAll('.gtab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.gtab;
+    document.querySelectorAll('.gallery-item').forEach(el => {
+      el.style.display = (f === 'all' || el.dataset.gtab === f) ? '' : 'none';
+    });
+  });
+});
+
+// Lightbox
+const lb = document.getElementById('lightbox');
+const lbV = document.getElementById('lbVisual');
+const lbT = document.getElementById('lbTitle');
+const lbD = document.getElementById('lbDesc');
+document.querySelectorAll('.gallery-item').forEach(item => {
+  item.addEventListener('click', () => {
+    lbV.textContent = item.dataset.emoji;
+    lbT.textContent = item.dataset.title;
+    lbD.textContent = item.dataset.desc;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('lbClose').addEventListener('click', closeLb);
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nuestra Historia — Smash & Fire</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+/* Parallax intro */
+.historia-intro {
+  position: relative; overflow: hidden;
+  background: var(--coal); min-height: 440px;
+  display: flex; align-items: center;
+}
+.hi-bg {
+  position: absolute; inset: -40%; pointer-events: none;
+  background: radial-gradient(ellipse at 60% 50%, rgba(232,50,10,0.12), transparent 60%),
+    repeating-conic-gradient(var(--ash) 0% 25%, transparent 0% 50%) at center;
+  background-size: 60px 60px;
+  opacity: 0.3;
+}
+.hi-content {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto; padding: 80px 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+}
+@media(max-width:768px){ .hi-content{ grid-template-columns:1fr; gap:2rem; } }
+.hi-text { }
+.hi-text .intro-body {
+  color: var(--gray); line-height: 1.9; font-size: 1.05rem; margin-top: 1.5rem;
+}
+.hi-num {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(8rem, 18vw, 14rem);
+  color: rgba(232,50,10,0.08);
+  line-height: 1; user-select: none;
+  text-align: right;
+}
+
+/* Horizontal scroll timeline */
+.timeline-section {
+  background: var(--char); overflow: hidden;
+  padding: 100px 0;
+}
+.timeline-scroll-wrap {
+  overflow-x: auto; overflow-y: hidden;
+  padding: 0 2rem 2rem;
+  scrollbar-width: thin; scrollbar-color: var(--fire) var(--coal);
+}
+.timeline-scroll-wrap::-webkit-scrollbar { height: 4px; }
+.timeline-scroll-wrap::-webkit-scrollbar-track { background: var(--coal); }
+.timeline-scroll-wrap::-webkit-scrollbar-thumb { background: var(--fire); border-radius: 2px; }
+.timeline-track {
+  display: flex; gap: 0; align-items: flex-start;
+  width: max-content; position: relative;
+  padding: 3rem 0;
+}
+.timeline-track::before {
+  content: '';
+  position: absolute; top: 50%; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--fire), var(--fire), transparent);
+  transform: translateY(-50%);
+}
+.t-item {
+  width: 280px; flex-shrink: 0; padding: 0 2rem;
+  position: relative;
+}
+.t-item:nth-child(odd) { padding-top: 0; padding-bottom: 280px; }
+.t-item:nth-child(even) { padding-top: 280px; padding-bottom: 0; }
+.t-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--fire); border: 3px solid var(--char);
+  box-shadow: 0 0 0 3px var(--fire);
+  position: absolute; left: 50%; transform: translateX(-50%);
+}
+.t-item:nth-child(odd) .t-dot { bottom: 258px; }
+.t-item:nth-child(even) .t-dot { top: 258px; }
+.t-content {
+  background: var(--coal); border: 1px solid var(--ash);
+  border-radius: 4px; padding: 1.5rem;
+}
+.t-year {
+  font-family: 'Anton', sans-serif; font-size: 2rem; letter-spacing: 3px;
+  color: var(--fire); line-height: 1; margin-bottom: 0.5rem;
+}
+.t-content h3 {
+  font-family: 'Anton', sans-serif; font-size: 1.1rem; letter-spacing: 2px;
+  color: var(--bone); margin-bottom: 0.5rem;
+}
+.t-content p { color: var(--light); font-size: 0.85rem; line-height: 1.7; }
+.t-emoji { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+
+/* Values bento */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1rem; margin-top: 3rem;
+}
+@media(max-width:900px){ .bento-grid{ grid-template-columns:1fr 1fr; } }
+@media(max-width:500px){ .bento-grid{ grid-template-columns:1fr; } }
+.bento-item {
+  background: var(--coal); border: 1px solid var(--ash);
+  border-radius: 4px; padding: 2rem;
+  transition: border-color 0.3s;
+}
+.bento-item:hover { border-color: rgba(232,50,10,0.4); }
+.bento-item.span2 { grid-column: span 2; }
+.bento-item.fire-bg {
+  background: var(--fire);
+}
+.bento-item .bento-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+.bento-item h3 {
+  font-family: 'Anton', sans-serif; font-size: 1.2rem; letter-spacing: 2px;
+  color: var(--bone); margin-bottom: 0.5rem;
+}
+.bento-item.fire-bg h3 { color: var(--white); }
+.bento-item p { color: var(--light); font-size: 0.85rem; line-height: 1.7; }
+.bento-item.fire-bg p { color: rgba(255,255,255,0.8); }
+.big-quote {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  letter-spacing: 2px; line-height: 1.2;
+  color: var(--white);
+}
+</style>
+</head>
+<body>
+<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="../fotos/index.html">Fotos</a></li>
+    <li><a href="../historia/index.html">Historia</a></li>
+    <li><a href="../terminos/index.html">Términos</a></li>
+    <li><a href="../fundadores/index.html">Fundadores</a></li>
+    <li><a href="../empleo/index.html">Empleo</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
+  </ul>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label reveal">Quiénes somos</span>
+    <h1 class="section-title reveal delay-1" style="font-size:clamp(3rem,8vw,6.5rem)">NUESTRA<br>HISTORIA</h1>
+    <p class="reveal delay-2">De una plancha caliente y un sueño, a la hamburguesa que defines como favorita.</p>
+  </div>
+</div>
+
+<!-- INTRO PARALLAX -->
+<section class="historia-intro">
+  <div class="hi-bg" data-parallax="0.12"></div>
+  <div class="hi-content">
+    <div class="hi-text reveal-left">
+      <span class="section-label">El comienzo</span>
+      <h2 class="section-title" style="font-size:clamp(2rem,5vw,3.5rem)">TODO EMPEZÓ<br>CON UNA PLANCHA</h2>
+      <p class="intro-body">Smash & Fire nació de una obsesión sencilla: hacer la hamburguesa perfecta. No la más elegante, no la más costosa, sino la que te hace cerrar los ojos al primer bocado.</p>
+      <p class="intro-body">Carlos y Sofía la descubrieron en un viaje a Nueva York. Regresaron a Guatemala con una misión: traer esa experiencia auténtica y hacerla accesible.</p>
+    </div>
+    <div class="reveal-right" style="text-align:center;">
+      <div class="hi-num">2019</div>
+      <p style="color:var(--smoke);font-size:0.85rem;letter-spacing:3px;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;">Año fundación</p>
+    </div>
+  </div>
+</section>
+
+<!-- HORIZONTAL TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <span class="section-label reveal">Línea del tiempo</span>
+    <h2 class="section-title reveal delay-1">EL CAMINO<br>HASTA HOY</h2>
+    <p class="reveal delay-2" style="color:var(--gray);margin-top:0.5rem;margin-bottom:0;">Desliza horizontalmente para ver nuestra historia →</p>
+  </div>
+  <div class="timeline-scroll-wrap" style="margin-top:2rem;">
+    <div class="timeline-track">
+      <div class="t-item">
+        <div class="t-content">
+          <span class="t-emoji">💡</span>
+          <div class="t-year">2019</div>
+          <h3>LA IDEA</h3>
+          <p>Carlos y Sofía descubren la técnica smash burger en Nueva York. Regresan a Guatemala con una misión.</p>
+        </div>
+        <div class="t-dot"></div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-content">
+          <span class="t-emoji">🔬</span>
+          <div class="t-year">2020</div>
+          <h3>LA PRUEBA</h3>
+          <p>200 hamburguesas de prueba desde la cocina de casa. Amigos y familia como críticos. La receta perfecta emerge.</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-content">
+          <span class="t-emoji">🏠</span>
+          <div class="t-year">2021</div>
+          <h3>PRIMER LOCAL</h3>
+          <p>Abren en Zona 10. 15 mesas, cocina abierta y una plancha que nunca se apaga. Las filas aparecen desde semana uno.</p>
+        </div>
+        <div class="t-dot"></div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-content">
+          <span class="t-emoji">🏆</span>
+          <div class="t-year">2022</div>
+          <h3>RECONOCIMIENTO</h3>
+          <p>Ganadores del concurso nacional "Mejor Burger Urbana de Guatemala". El equipo crece a 12 personas.</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-content">
+          <span class="t-emoji">📈</span>
+          <div class="t-year">2023</div>
+          <h3>50,000 BURGERS</h3>
+          <p>Se alcanza la meta de 50,000 hamburguesas vendidas. Hito celebrado con un menú especial de edición limitada.</p>
+        </div>
+        <div class="t-dot"></div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-content">
+          <span class="t-emoji">🚀</span>
+          <div class="t-year">HOY</div>
+          <h3>SEGUIMOS</h3>
+          <p>Misma pasión del primer día, más experiencia, más técnica. El próximo capítulo está por escribirse.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENTO VALUES -->
+<section style="background:var(--coal);padding:100px 0;">
+  <div class="container">
+    <span class="section-label reveal">Nuestra esencia</span>
+    <h2 class="section-title reveal delay-1">MISIÓN, VISIÓN<br>Y VALORES</h2>
+    <div class="bento-grid">
+      <div class="bento-item fire-bg span2 reveal">
+        <p class="big-quote">"UNA HAMBURGUESA BIEN HECHA NO NECESITA DISCULPAS. HABLA SOLA."</p>
+        <p style="margin-top:1rem;">— Carlos Martínez, Chef y Co-fundador</p>
+      </div>
+      <div class="bento-item reveal delay-1">
+        <span class="bento-icon">🎯</span>
+        <h3>MISIÓN</h3>
+        <p>Ofrecer la experiencia smash burger más auténtica de Guatemala con técnicas precisas e ingredientes frescos.</p>
+      </div>
+      <div class="bento-item reveal delay-2">
+        <span class="bento-icon">🌟</span>
+        <h3>VISIÓN</h3>
+        <p>Ser la referencia de hamburguesas artesanales en Centroamérica, reconocida por calidad constante.</p>
+      </div>
+      <div class="bento-item reveal delay-1">
+        <span class="bento-icon">💛</span>
+        <h3>HONESTIDAD</h3>
+        <p>Ingredientes reales, precios justos, sin trucos ni atajos. Lo que ves es lo que recibes.</p>
+      </div>
+      <div class="bento-item reveal delay-2">
+        <span class="bento-icon">🔥</span>
+        <h3>PASIÓN</h3>
+        <p>Cada hamburguesa se prepara con la misma intensidad, ya sea la primera del día o la última del turno.</p>
+      </div>
+      <div class="bento-item span2 reveal delay-3">
+        <span class="bento-icon">🤝</span>
+        <h3>RESPETO AL CLIENTE</h3>
+        <p>Tu tiempo, tu dinero y tu experiencia importan. Nos esforzamos para que cada visita supere la anterior. Siempre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales. Ciudad de Guatemala.</p></div>
+      <div class="footer-col"><h4>Navegación</h4><a href="../index.html">Inicio</a><a href="../menu/index.html">Menú</a><a href="../fundadores/index.html">Fundadores</a></div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50212345678">+502 1234-5678</a><a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Smash & Fire.</p></div>
+  </div>
+</footer>
+
+<script src="../nav.js"></script>
+</body>
+</html>
