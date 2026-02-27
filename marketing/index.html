@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marketing — Smash & Fire</title>
+  <meta name="description" content="Estrategia de marketing, calendario promocional, identidad visual y redes sociales de Smash & Fire Guatemala."/>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+/* ══════════════════════════════════════
+   MARKETING PAGE — SPECIFIC STYLES
+══════════════════════════════════════ */
+
+/* ── STRATEGY GRID ── */
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.strategy-card {
+  background: var(--coal);
+  border: 1px solid var(--ash);
+  border-radius: 6px;
+  padding: 2.2rem 1.8rem;
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.strategy-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--fire);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+.strategy-card:hover {
+  border-color: rgba(232,50,10,0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.strategy-card:hover::before { transform: scaleX(1); }
+.strategy-icon {
+  font-size: 2.6rem; margin-bottom: 1.2rem; display: block;
+  filter: drop-shadow(0 4px 14px rgba(232,50,10,0.35));
+}
+.strategy-card h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.2rem; letter-spacing: 2px;
+  color: var(--bone); margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+.strategy-card p { color: var(--light); font-size: 0.88rem; line-height: 1.75; }
+.strategy-tag {
+  display: inline-block; margin-top: 1rem;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--fire); background: rgba(232,50,10,0.1);
+  padding: 4px 12px; border-radius: 100px;
+  border: 1px solid rgba(232,50,10,0.25);
+}
+
+/* ── PROMO BANNER ── */
+.promo-hero {
+  background: var(--fire);
+  padding: 5rem 0;
+  position: relative; overflow: hidden;
+  text-align: center;
+}
+.promo-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent, transparent 22px,
+    rgba(255,255,255,0.04) 22px, rgba(255,255,255,0.04) 44px
+  );
+}
+.promo-hero .container { position: relative; z-index: 1; }
+.promo-2x1 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(5rem, 14vw, 11rem);
+  line-height: 0.85;
+  letter-spacing: -2px;
+  color: var(--yellow);
+  text-shadow: 0 4px 40px rgba(0,0,0,0.3);
+  display: block;
+}
+.promo-subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700; font-size: clamp(1rem, 2.5vw, 1.5rem);
+  letter-spacing: 5px; text-transform: uppercase;
+  color: var(--white); margin-top: 1rem; display: block;
+}
+.promo-pills {
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  justify-content: center; margin-top: 2rem;
+}
+.promo-pill {
+  background: rgba(0,0,0,0.25); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  padding: 8px 22px;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.82rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--white);
+}
+
+/* ── CALENDAR ── */
+.calendar-section { background: var(--coal); position: relative; overflow: hidden; }
+.calendar-section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px; background: linear-gradient(to right, transparent, var(--fire), transparent);
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; margin-top: 3.5rem;
+}
+.calendar-month {
+  background: var(--char);
+  border: 1px solid var(--ash);
+  border-radius: 6px; overflow: hidden;
+  transition: border-color 0.3s;
+}
+.calendar-month:hover { border-color: rgba(232,50,10,0.35); }
+.cal-header {
+  background: var(--ash);
+  padding: 1rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cal-month-name {
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem; letter-spacing: 3px;
+  color: var(--bone); text-transform: uppercase;
+}
+.cal-emoji { font-size: 1.4rem; }
+.cal-events { padding: 1rem 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.cal-event {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 0.85rem 1rem;
+  background: var(--coal); border-radius: 4px;
+  border-left: 3px solid var(--fire);
+  transition: background 0.2s;
+}
+.cal-event:hover { background: var(--ash); }
+.cal-event.promo { border-left-color: var(--yellow); }
+.cal-event.special { border-left-color: var(--ember); }
+.cal-date {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem; color: var(--fire);
+  line-height: 1; min-width: 36px; text-align: center;
+}
+.cal-event.promo .cal-date { color: var(--yellow); }
+.cal-event.special .cal-date { color: var(--ember); }
+.cal-event-info { flex: 1; }
+.cal-event-name {
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.88rem; letter-spacing: 1px;
+  color: var(--bone); text-transform: uppercase;
+}
+.cal-event-desc { color: var(--light); font-size: 0.78rem; margin-top: 2px; line-height: 1.4; }
+.cal-legend {
+  display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem;
+}
+.cal-legend-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'Rajdhani', sans-serif; font-weight: 600;
+  font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gray);
+}
+.cal-legend-dot {
+  width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0;
+}
+
+/* ── SIGNATURE BURGERS (diferenciadores de marketing) ── */
+.burgers-section { background: var(--char); }
+.burgers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px; margin-top: 3.5rem;
+  border: 1px solid var(--ash); border-radius: 6px; overflow: hidden;
+}
+.burger-item {
+  background: var(--coal);
+  padding: 2rem 1.6rem;
+  display: flex; flex-direction: column; gap: 0.8rem;
+  transition: background 0.3s;
+  position: relative; overflow: hidden;
+}
+.burger-item::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--fire), var(--ember));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s var(--ease-out-expo);
+}
+.burger-item:hover { background: var(--ash); }
+.burger-item:hover::after { transform: scaleX(1); }
+.burger-emoji { font-size: 2.8rem; filter: drop-shadow(0 4px 12px rgba(232,50,10,0.4)); }
+.burger-item h3 {
+  font-family: 'Anton', sans-serif; font-size: 1.1rem; letter-spacing: 2px;
+  color: var(--bone); text-transform: uppercase;
+}
+.burger-item p { color: var(--light); font-size: 0.82rem; line-height: 1.6; flex: 1; }
+.burger-badge {
+  display: inline-block; align-self: flex-start;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 100px;
+}
+.burger-badge.signature { color: var(--fire); background: rgba(232,50,10,0.12); border: 1px solid rgba(232,50,10,0.25); }
+.burger-badge.local { color: var(--yellow); background: rgba(245,197,24,0.1); border: 1px solid rgba(245,197,24,0.25); }
+.burger-badge.trad { color: var(--ember); background: rgba(255,107,26,0.1); border: 1px solid rgba(255,107,26,0.25); }
+
+/* ── UNIFORM / IDENTIDAD VISUAL ── */
+.identity-section { background: var(--coal); position: relative; overflow: hidden; }
+.identity-section::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px; background: linear-gradient(to right, transparent, var(--fire), transparent);
+}
+.identity-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem; margin-top: 3.5rem; align-items: center;
+}
+@media(max-width: 860px){ .identity-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+.identity-text .display-title {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  color: var(--white); line-height: 1;
+}
+.identity-text .display-title em {
+  font-style: normal; color: var(--fire);
+}
+.identity-text p {
+  color: var(--gray); line-height: 1.9; margin: 1.5rem 0;
+  font-size: 1rem;
+}
+.identity-checklist {
+  list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem;
+}
+.identity-checklist li {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  color: var(--light); font-size: 0.9rem; line-height: 1.5;
+}
+.identity-checklist li::before {
+  content: '◆';
+  color: var(--fire); font-size: 0.6rem; margin-top: 5px; flex-shrink: 0;
+}
+
+/* Uniform mockup cards */
+.uniform-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+@media(max-width: 480px){ .uniform-cards { grid-template-columns: 1fr; } }
+.uniform-card {
+  background: var(--char);
+  border: 1px solid var(--ash); border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.uniform-card:hover { border-color: rgba(232,50,10,0.4); transform: translateY(-4px); }
+.uniform-visual {
+  height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.uniform-visual.dark {
+  background: linear-gradient(135deg, #0a0806 0%, #1a120a 100%);
+}
+.uniform-visual.fire {
+  background: linear-gradient(135deg, #2a0c02 0%, #1a0805 100%);
+}
+.uniform-visual.bone-bg {
+  background: linear-gradient(135deg, #e8e0d5 0%, #f2ede4 100%);
+}
+.uniform-visual.yellow-bg {
+  background: linear-gradient(135deg, #2a2000 0%, #1a1400 100%);
+}
+/* Illustrated uniform mockup */
+.uni-figure {
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  gap: 0; z-index: 1;
+}
+.uni-head {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--bone); border: 2px solid var(--ash);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+.uni-body {
+  width: 72px; height: 80px;
+  border-radius: 4px 4px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; font-size: 0.5rem; letter-spacing: 0.5px;
+  font-family: 'Anton', sans-serif; text-align: center; line-height: 1.1;
+}
+.uni-body.negro { background: #0E0B07; color: var(--fire); border: 1px solid #2E2620; }
+.uni-body.rojo  { background: var(--fire); color: var(--white); }
+.uni-body.bone-body { background: var(--bone); color: var(--char); }
+.uni-body.yellow-body { background: var(--yellow); color: var(--char); }
+.uni-logo-badge {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  font-size: 0.42rem; letter-spacing: 0.3px;
+  padding: 2px 5px; border-radius: 2px;
+}
+.uni-body.negro .uni-logo-badge { background: var(--fire); color: var(--white); }
+.uni-body.rojo .uni-logo-badge  { background: var(--white); color: var(--fire); }
+.uni-body.bone-body .uni-logo-badge { background: var(--fire); color: var(--white); }
+.uni-body.yellow-body .uni-logo-badge { background: var(--char); color: var(--yellow); }
+.uni-pants {
+  width: 72px; height: 36px;
+  background: #1C1610; border-top: 1px solid #2E2620;
+  border-radius: 0 0 4px 4px;
+}
+.uniform-info { padding: 1.2rem; }
+.uniform-role {
+  font-family: 'Anton', sans-serif; font-size: 0.9rem; letter-spacing: 2px;
+  color: var(--bone); text-transform: uppercase;
+}
+.uniform-desc { color: var(--smoke); font-size: 0.78rem; margin-top: 4px; line-height: 1.4; }
+.uniform-colors {
+  display: flex; gap: 6px; margin-top: 0.75rem;
+}
+.color-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Full-width identity banner */
+.identity-banner {
+  background: var(--char);
+  border-top: 1px solid var(--ash);
+  padding: 3rem 0;
+  overflow: hidden;
+}
+.identity-banner-inner {
+  display: flex; gap: 0; white-space: nowrap;
+  animation: ticker 30s linear infinite;
+}
+.identity-banner-inner span {
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--ash); padding: 0 3rem;
+}
+.identity-banner-inner span.hi { color: var(--fire); }
+
+/* ── SOCIAL MEDIA ── */
+.social-section { background: var(--char); }
+.social-platforms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem; margin-top: 3.5rem;
+}
+.social-platform-card {
+  background: var(--coal);
+  border: 1px solid var(--ash);
+  border-radius: 6px; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.social-platform-card:hover {
+  border-color: rgba(232,50,10,0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.5);
+}
+.social-platform-header {
+  padding: 1.8rem;
+  display: flex; align-items: center; gap: 1rem;
+  border-bottom: 1px solid var(--ash);
+  position: relative; overflow: hidden;
+}
+.social-platform-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0.07;
+}
+.social-platform-header.insta::before { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-platform-header.fb::before   { background: #1877f2; }
+.social-platform-header.tt::before   { background: linear-gradient(135deg, #010101, #69c9d0, #ee1d52); }
+.social-platform-icon { font-size: 2rem; position: relative; z-index: 1; }
+.social-platform-name {
+  font-family: 'Anton', sans-serif; font-size: 1.2rem; letter-spacing: 2px;
+  color: var(--bone); text-transform: uppercase; position: relative; z-index: 1;
+}
+.social-platform-handle {
+  font-family: 'Rajdhani', sans-serif; font-weight: 600;
+  font-size: 0.78rem; letter-spacing: 2px; color: var(--fire);
+  position: relative; z-index: 1;
+}
+.social-platform-body { padding: 1.5rem 1.8rem; }
+.social-metric-row {
+  display: flex; gap: 1.5rem; margin-bottom: 1.2rem;
+}
+.social-metric { text-align: center; }
+.social-metric-num {
+  font-family: 'Anton', sans-serif; font-size: 1.5rem; color: var(--bone); line-height: 1;
+}
+.social-metric-label {
+  font-family: 'Rajdhani', sans-serif; font-weight: 600;
+  font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--light); margin-top: 2px;
+}
+.social-content-type {
+  color: var(--light); font-size: 0.84rem; line-height: 1.7;
+}
+.social-content-type strong {
+  display: block; color: var(--bone);
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--fire); margin-bottom: 0.4rem; margin-top: 0.9rem;
+}
+
+/* Mock posts grid */
+.mock-posts {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+  margin-top: 1.2rem; border-radius: 4px; overflow: hidden;
+}
+.mock-post {
+  aspect-ratio: 1;
+  background: var(--char);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  position: relative; overflow: hidden;
+  cursor: default;
+}
+.mock-post::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(232,50,10,0.4);
+  opacity: 0; transition: opacity 0.2s;
+}
+.mock-post:hover::after { opacity: 1; }
+.mock-post-bg-1 { background: linear-gradient(135deg, #1a0805, #2e1008); }
+.mock-post-bg-2 { background: linear-gradient(135deg, #0e0b07, #1c1610); }
+.mock-post-bg-3 { background: linear-gradient(135deg, #1c0a00, #0e0500); }
+
+/* Social CTA row */
+.social-cta-row {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.5rem;
+  margin-top: 3.5rem; padding-top: 3rem;
+  border-top: 1px solid var(--ash);
+}
+.social-handles {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+}
+.social-handle-link {
+  display: flex; align-items: center; gap: 0.6rem;
+  text-decoration: none;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 1rem; letter-spacing: 2px;
+  color: var(--bone); text-transform: uppercase;
+  transition: color 0.2s;
+}
+.social-handle-link:hover { color: var(--fire); }
+.social-handle-link .platform-icon { font-size: 1.3rem; }
+
+/* ── KPI / OBJETIVO ── */
+.kpi-strip {
+  background: var(--fire); padding: 60px 0;
+  position: relative; overflow: hidden;
+}
+.kpi-strip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg, transparent, transparent 20px,
+    rgba(255,255,255,0.04) 20px, rgba(255,255,255,0.04) 40px
+  );
+}
+.kpi-strip .container { position: relative; z-index: 1; }
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 2rem; text-align: center;
+}
+.kpi-num {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem); color: var(--white); line-height: 1;
+}
+.kpi-num sup { font-size: 0.45em; vertical-align: super; }
+.kpi-label {
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); margin-top: 6px;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width: 700px) {
+  .uniform-cards { grid-template-columns: 1fr 1fr; }
+  .social-metric-row { gap: 0.8rem; }
+}
+@media(max-width: 400px) {
+  .uniform-cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-flame">🔥</span>
+    <span class="logo-text">Smash <span>&amp;</span> Fire</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="../fotos/index.html">Fotos</a></li>
+    <li><a href="../historia/index.html">Historia</a></li>
+    <li><a href="../terminos/index.html">Términos</a></li>
+    <li><a href="../fundadores/index.html">Fundadores</a></li>
+    <li><a href="../empleo/index.html">Empleo</a></li>
+    <li><a href="../marketing/index.html">Marketing</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ═══ PAGE HERO ═══ -->
+<section class="page-hero">
+  <div class="container">
+    <span class="section-label">Estrategia comercial</span>
+    <h1 class="section-title" style="font-size:clamp(3.5rem,9vw,7rem);">MARKETING<br>&amp; PRESENCIA</h1>
+    <p>Cómo Smash &amp; Fire construye su marca, atrae clientes y genera fidelidad — desde la calle hasta el feed.</p>
+  </div>
+</section>
+
+<!-- ═══ PROMO HERO BANNER ═══ -->
+<div class="promo-hero">
+  <div class="container">
+    <span class="promo-2x1 reveal">2 × 1</span>
+    <span class="promo-subtitle reveal delay-1">Primera hora de apertura · Lunes a Viernes</span>
+    <div class="promo-pills reveal delay-2">
+      <span class="promo-pill">📅 Lun – Vie</span>
+      <span class="promo-pill">🕐 11:00 – 12:00</span>
+      <span class="promo-pill">🍔 Burgers seleccionadas</span>
+      <span class="promo-pill">🤝 No acumulable</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ESTRATEGIAS ═══ -->
+<section style="background:var(--char); padding:100px 0;">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Plan de acción</span>
+      <h2 class="section-title">ESTRATEGIAS<br>DE MARKETING</h2>
+      <p style="color:var(--gray);max-width:560px;margin-top:1rem;line-height:1.8;">
+        Cada táctica está diseñada para maximizar visibilidad, retención y conversión — sin perder la autenticidad de la marca.
+      </p>
+    </div>
+    <div class="strategy-grid">
+      <div class="strategy-card reveal delay-1">
+        <span class="strategy-icon">📣</span>
+        <h3>Carteles Llamativos</h3>
+        <p>Señalética de alto impacto visual en fachada, menús de pizarrón y material impreso coherente con la estética "Industrial Fire". El local habla antes de que el cliente entre.</p>
+        <span class="strategy-tag">Presencia física</span>
+      </div>
+      <div class="strategy-card reveal delay-2">
+        <span class="strategy-icon">📱</span>
+        <h3>Redes Sociales</h3>
+        <p>Presencia activa en Instagram, Facebook y TikTok con contenido de proceso (ASMR de smash), reels de cocina y stories de ingredientes frescos. La plancha es el show.</p>
+        <span class="strategy-tag">Digital</span>
+      </div>
+      <div class="strategy-card reveal delay-3">
+        <span class="strategy-icon">🎁</span>
+        <h3>Ofertas 2×1</h3>
+        <p>Combo de apertura — las primeras 60 minutos de cada día. Incentivo para clientes madrugadores y oficinas cercanas. Genera hábito de visita matutina.</p>
+        <span class="strategy-tag">Conversión</span>
+      </div>
+      <div class="strategy-card reveal delay-4">
+        <span class="strategy-icon">🍔</span>
+        <h3>Combo Especial</h3>
+        <p>Hamburguesa + bebida a precio de lanzamiento cada semana. Rotación de combos según temporada y disponibilidad de ingredientes. Comunicado el lunes en redes.</p>
+        <span class="strategy-tag">Fidelización</span>
+      </div>
+      <div class="strategy-card reveal delay-1">
+        <span class="strategy-icon">👕</span>
+        <h3>Identidad Visual Uniforme</h3>
+        <p>Delantal negro con logo bordado, gorra de cocina y camisa de equipo. Cada colaborador es un embajador de marca. El uniforme refuerza profesionalismo y reconocimiento.</p>
+        <span class="strategy-tag">Branding</span>
+      </div>
+      <div class="strategy-card reveal delay-2">
+        <span class="strategy-icon">⭐</span>
+        <h3>Reseñas &amp; Boca a Boca</h3>
+        <p>Incentivar reseñas en Google Maps y redes sociales al finalizar cada visita. Clientes con 5 estrellas reciben cortesía en su siguiente visita. El NPS es nuestro KPI más importante.</p>
+        <span class="strategy-tag">Retención</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CALENDARIO PROMOCIONAL ═══ -->
+<section class="calendar-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Fechas clave</span>
+      <h2 class="section-title">CALENDARIO<br>PROMOCIONAL</h2>
+      <p style="color:var(--gray);max-width:560px;margin-top:1rem;line-height:1.8;">
+        El año comercial de Smash &amp; Fire organizado por eventos, promociones y fechas especiales de Guatemala.
+      </p>
+    </div>
+
+    <div class="cal-legend reveal delay-1">
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--fire)"></div>Eventos de marca</div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--yellow)"></div>Promociones</div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--ember)"></div>Fechas especiales</div>
+    </div>
+
+    <div class="calendar-grid">
+
+      <!-- Q1 -->
+      <div class="calendar-month reveal delay-1">
+        <div class="cal-header">
+          <span class="cal-month-name">Enero</span>
+          <span class="cal-emoji">🎆</span>
+        </div>
+        <div class="cal-events">
+          <div class="cal-event promo">
+            <div class="cal-date">01</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Año Nuevo — Combo Celebración</div>
+              <div class="cal-event-desc">2×1 en todas las burgers durante el día de apertura del año</div>
+            </div>
+          </div>
+          <div class="cal-event">
+            <div class="cal-date">15</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Lanzamiento menú de temporada</div>
+              <div class="cal-event-desc">Reveal en Instagram + stories de ingredientes nuevos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-month reveal delay-2">
+        <div class="cal-header">
+          <span class="cal-month-name">Febrero</span>
+          <span class="cal-emoji">💝</span>
+        </div>
+        <div class="cal-events">
+          <div class="cal-event special">
+            <div class="cal-date">14</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">San Valentín — Combo Pareja</div>
+              <div class="cal-event-desc">Dos burgers + dos bebidas + postre a precio especial</div>
+            </div>
+          </div>
+          <div class="cal-event promo">
+            <div class="cal-date">28</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Promo fin de mes</div>
+              <div class="cal-event-desc">Descuento 15% en pedidos delivery del último día del mes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-month reveal delay-3">
+        <div class="cal-header">
+          <span class="cal-month-name">Marzo</span>
+          <span class="cal-emoji">🌱</span>
+        </div>
+        <div class="cal-events">
+          <div class="cal-event promo">
+            <div class="cal-date">8</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Día Internacional de la Mujer</div>
+              <div class="cal-event-desc">Cortesía de bebida para todas las clientas</div>
+            </div>
+          </div>
+          <div class="cal-event">
+            <div class="cal-date">20</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Inicio de temporada seca</div>
+              <div class="cal-event-desc">Lanzamiento de malteadas artesanales de verano</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="calendar-month reveal delay-1">
+        <div class="cal-header">
+          <span class="cal-month-name">Abril</span>
+          <span class="cal-emoji">🐣</span>
+        </div>
+        <div class="cal-events">
+          <div class="cal-event special">
+            <div class="cal-date">Semana</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Semana Santa — Menú especial</div>
+              <div class="cal-event-desc">Burger vegetal destacada + cierre Viernes Santo</div>
+            </div>
+          </div>
+          <div class="cal-event promo">
+            <div class="cal-date">30</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Día del Trabajador (anticipado)</div>
+              <div class="cal-event-desc">2×1 en combos para grupos de trabajo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-month reveal delay-2">
+        <div class="cal-header">
+          <span class="cal-month-name">Mayo</span>
+          <span class="cal-emoji">💐</span>
+        </div>
+        <div class="cal-events">
+          <div class="cal-event special">
+            <div class="cal-date">10</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Día de la Madre</div>
+              <div class="cal-event-desc">Postre cortesía + repost de dedicatorias en stories</div>
+            </div>
+          </div>
+          <div class="cal-event promo">
+            <div class="cal-date">15</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Promo universitaria</div>
+              <div class="cal-event-desc">10% descuento con carné vigente todos los miércoles</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-month reveal delay-3">
+        <div class="cal-header">
+          <span class="cal-month-name">Junio</span>
+          <span class="cal-emoji">⚽</span>
+        </div>
+        <div class="cal-events">
+          <div class="cal-event">
+            <div class="cal-date">17</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Día del Padre</div>
+              <div class="cal-event-desc">Triple Cheese gratis para padres acompañados de familia</div>
+            </div>
+          </div>
+          <div class="cal-event promo">
+            <div class="cal-date">Todo</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Mes del fútbol</div>
+              <div class="cal-event-desc">Pantalla para partidos + promo grupo de 4 personas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="calendar-month reveal delay-1">
+        <div class="cal-header">
+          <span class="cal-month-name">Julio – Agosto</span>
+          <span class="cal-emoji">🇬🇹</span>
+        </div>
+        <div class="cal-events">
+          <div class="cal-event special">
+            <div class="cal-date">15 Jul</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Día de la Revolución del 44</div>
+              <div class="cal-event-desc">Lanzamiento de "La Chapina" — burger guatemalteca de autor</div>
+            </div>
+          </div>
+          <div class="cal-event special">
+            <div class="cal-date">15 Sep</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Independencia de Guatemala</div>
+              <div class="cal-event-desc">Menú patriota azul y blanco + decoración especial en local</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-month reveal delay-2">
+        <div class="cal-header">
+          <span class="cal-month-name">Octubre</span>
+          <span class="cal-emoji">🎃</span>
+        </div>
+        <div class="cal-events">
+          <div class="cal-event promo">
+            <div class="cal-date">31</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Halloween</div>
+              <div class="cal-event-desc">Diablo Smash a precio especial + decoración atemorizante</div>
+            </div>
+          </div>
+          <div class="cal-event">
+            <div class="cal-date">15</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Encuesta anual de satisfacción</div>
+              <div class="cal-event-desc">NPS + review interna. Cortesía para participantes.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="calendar-month reveal delay-3">
+        <div class="cal-header">
+          <span class="cal-month-name">Nov – Dic</span>
+          <span class="cal-emoji">🎄</span>
+        </div>
+        <div class="cal-events">
+          <div class="cal-event special">
+            <div class="cal-date">Dic</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Menú navideño</div>
+              <div class="cal-event-desc">Burger edición limitada con ingredientes de temporada</div>
+            </div>
+          </div>
+          <div class="cal-event promo">
+            <div class="cal-date">31</div>
+            <div class="cal-event-info">
+              <div class="cal-event-name">Cierre de año — Gran remate</div>
+              <div class="cal-event-desc">2×1 todo el día + sorteo en redes sociales</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KPI STRIP ═══ -->
+<div class="kpi-strip">
+  <div class="container">
+    <div class="kpi-grid">
+      <div class="kpi-box reveal delay-1">
+        <div class="kpi-num"><span data-count="70">0</span><sup>+</sup></div>
+        <div class="kpi-label">NPS Objetivo</div>
+      </div>
+      <div class="kpi-box reveal delay-2">
+        <div class="kpi-num">Q<span data-count="80">0</span></div>
+        <div class="kpi-label">Ticket Promedio</div>
+      </div>
+      <div class="kpi-box reveal delay-3">
+        <div class="kpi-num"><span data-count="95">0</span><sup>%</sup></div>
+        <div class="kpi-label">Delivery a tiempo</div>
+      </div>
+      <div class="kpi-box reveal delay-4">
+        <div class="kpi-num"><span data-count="8">0</span><sup>%</sup></div>
+        <div class="kpi-label">Crecimiento mensual</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BURGERS SIGNATURE (diferenciadores de marketing) ═══ -->
+<section class="burgers-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">El menú como marketing</span>
+      <h2 class="section-title">HAMBURGUESAS<br>CON NOMBRE PROPIO</h2>
+      <p style="color:var(--gray);max-width:600px;margin-top:1rem;line-height:1.8;">
+        Cada burger de autor es una estrategia en sí misma. El cliente no pide "una número 3" — pide <em style="color:var(--bone);font-style:normal;">La Chapina</em>. Eso se recuerda, se comparte y se recomienda.
+      </p>
+    </div>
+    <div class="burgers-grid">
+      <div class="burger-item reveal delay-1">
+        <span class="burger-emoji">🇬🇹</span>
+        <h3>La Chapina</h3>
+        <p>Carne + guacamol + queso + tortilla frita crujiente. Sabor 100% guatemalteco en formato smash.</p>
+        <span class="burger-badge signature">Signature</span>
+      </div>
+      <div class="burger-item reveal delay-2">
+        <span class="burger-emoji">🫘</span>
+        <h3>Frijolito Smash</h3>
+        <p>Carne + frijol volteado + queso fresco + crema. La combinación que cualquier guatemalteco reconoce al instante.</p>
+        <span class="burger-badge local">Local</span>
+      </div>
+      <div class="burger-item reveal delay-3">
+        <span class="burger-emoji">⛪</span>
+        <h3>Antigua GT</h3>
+        <p>Carne + aguacate + chirmol + queso. Inspirada en los sabores coloniales del corazón de Guatemala.</p>
+        <span class="burger-badge trad">Tradicional</span>
+      </div>
+      <div class="burger-item reveal delay-4">
+        <span class="burger-emoji">🌭</span>
+        <h3>La Carretona</h3>
+        <p>Carne + longaniza + repollo + salsas especiales. La versión smash de la icónica mixta chapina.</p>
+        <span class="burger-badge local">Popular</span>
+      </div>
+      <div class="burger-item reveal delay-1">
+        <span class="burger-emoji">🥓</span>
+        <h3>Bacon Fire</h3>
+        <p>Carne smash, tocino ahumado, cheddar, jalapeños asados y mayonesa de chipotle artesanal.</p>
+        <span class="burger-badge signature">Best Seller</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TICKER DE IDENTIDAD ═══ -->
+<div class="identity-banner">
+  <div class="identity-banner-inner" id="idBanner">
+    <span class="hi">🔥 SMASH &amp; FIRE</span>
+    <span>◆</span><span>Uniforme Oficial</span>
+    <span>◆</span><span>Industrial Fire</span>
+    <span>◆</span><span class="hi">ZONA 10 GUATEMALA</span>
+    <span>◆</span><span>Identidad de Marca</span>
+    <span>◆</span><span>Logo Bordado</span>
+    <span>◆</span><span class="hi">DELANTAL NEGRO</span>
+    <span>◆</span><span>Equipo Comprometido</span>
+    <span>◆</span>
+  </div>
+</div>
+
+<!-- ═══ IDENTIDAD VISUAL / UNIFORMES ═══ -->
+<section class="identity-section">
+  <div class="container">
+    <div class="identity-grid">
+      <div class="identity-text reveal-left">
+        <span class="section-label">Identidad de marca</span>
+        <h2 class="display-title">UNIFORMES<br>&amp; <em>VISUAL</em></h2>
+        <p>La identidad de Smash &amp; Fire trasciende el local. Cada colaborador porta la marca con orgullo — el uniforme es nuestra primera impresión fuera del plato.</p>
+        <ul class="identity-checklist">
+          <li>Delantal negro con logo bordado en rojo fuego</li>
+          <li>Gorra de cocina negra con branding lateral</li>
+          <li>Camisa de equipo — colores oficiales: negro, rojo y hueso</li>
+          <li>Diseño coherente para cocina, servicio y delivery</li>
+          <li>Logo impreso en empaque, bolsas y servilletas</li>
+          <li>Tipografía Anton en toda la comunicación visual</li>
+        </ul>
+        <a href="../fundadores/index.html" class="btn btn-ghost">Conocer al equipo →</a>
+      </div>
+
+      <div class="uniform-cards reveal-right">
+
+        <!-- Chef de cocina -->
+        <div class="uniform-card">
+          <div class="uniform-visual fire">
+            <div class="uni-figure">
+              <div class="uni-head">👨‍🍳</div>
+              <div class="uni-body negro">
+                SMASH
+                <span class="uni-logo-badge">S&amp;F</span>
+              </div>
+              <div class="uni-pants"></div>
+            </div>
+          </div>
+          <div class="uniform-info">
+            <div class="uniform-role">Chef de Cocina</div>
+            <div class="uniform-desc">Delantal negro, logo rojo bordado, gorra blanca de cocina</div>
+            <div class="uniform-colors">
+              <div class="color-dot" style="background:#0E0B07;" title="Char"></div>
+              <div class="color-dot" style="background:#E8320A;" title="Fire"></div>
+              <div class="color-dot" style="background:#F2EDE4;" title="Bone"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal de servicio -->
+        <div class="uniform-card">
+          <div class="uniform-visual dark">
+            <div class="uni-figure">
+              <div class="uni-head">🧑‍💼</div>
+              <div class="uni-body rojo">
+                SERVICIO
+                <span class="uni-logo-badge">S&amp;F</span>
+              </div>
+              <div class="uni-pants"></div>
+            </div>
+          </div>
+          <div class="uniform-info">
+            <div class="uniform-role">Servicio &amp; Caja</div>
+            <div class="uniform-desc">Camisa roja con logo blanco, pantalón negro, gorra de la marca</div>
+            <div class="uniform-colors">
+              <div class="color-dot" style="background:#E8320A;" title="Fire"></div>
+              <div class="color-dot" style="background:#0E0B07;" title="Char"></div>
+              <div class="color-dot" style="background:#FFFFFF;" title="White"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delivery -->
+        <div class="uniform-card">
+          <div class="uniform-visual bone-bg">
+            <div class="uni-figure">
+              <div class="uni-head">🛵</div>
+              <div class="uni-body bone-body">
+                DELIVERY
+                <span class="uni-logo-badge">S&amp;F</span>
+              </div>
+              <div class="uni-pants"></div>
+            </div>
+          </div>
+          <div class="uniform-info">
+            <div class="uniform-role">Repartidor</div>
+            <div class="uniform-desc">Camisa hueso con logo rojo, chaleco identificativo, termo de marca</div>
+            <div class="uniform-colors">
+              <div class="color-dot" style="background:#F2EDE4;" title="Bone"></div>
+              <div class="color-dot" style="background:#E8320A;" title="Fire"></div>
+              <div class="color-dot" style="background:#0E0B07;" title="Char"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Supervisión / gerencia -->
+        <div class="uniform-card">
+          <div class="uniform-visual yellow-bg">
+            <div class="uni-figure">
+              <div class="uni-head">👔</div>
+              <div class="uni-body yellow-body">
+                MANAGER
+                <span class="uni-logo-badge">S&amp;F</span>
+              </div>
+              <div class="uni-pants"></div>
+            </div>
+          </div>
+          <div class="uniform-info">
+            <div class="uniform-role">Supervisor</div>
+            <div class="uniform-desc">Polo amarillo amarillo con logo oscuro, portabadge con nombre y cargo</div>
+            <div class="uniform-colors">
+              <div class="color-dot" style="background:#F5C518;" title="Yellow"></div>
+              <div class="color-dot" style="background:#0E0B07;" title="Char"></div>
+              <div class="color-dot" style="background:#E8320A;" title="Fire"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REDES SOCIALES ═══ -->
+<section class="social-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Presencia digital</span>
+      <h2 class="section-title">REDES<br>SOCIALES</h2>
+      <p style="color:var(--gray);max-width:580px;margin-top:1rem;line-height:1.8;">
+        Cada plataforma cumple un rol diferente dentro de la estrategia digital de Smash &amp; Fire. Contenido auténtico, frecuencia constante, comunidad activa.
+      </p>
+    </div>
+
+    <div class="social-platforms">
+
+      <!-- INSTAGRAM -->
+      <div class="social-platform-card reveal delay-1">
+        <div class="social-platform-header insta">
+          <span class="social-platform-icon">📸</span>
+          <div>
+            <div class="social-platform-name">Instagram</div>
+            <div class="social-platform-handle">@smashandfire.gt</div>
+          </div>
+        </div>
+        <div class="social-platform-body">
+          <div class="social-metric-row">
+            <div class="social-metric">
+              <div class="social-metric-num">3.2K</div>
+              <div class="social-metric-label">Seguidores</div>
+            </div>
+            <div class="social-metric">
+              <div class="social-metric-num">148</div>
+              <div class="social-metric-label">Posts</div>
+            </div>
+            <div class="social-metric">
+              <div class="social-metric-num">8.4%</div>
+              <div class="social-metric-label">Engagement</div>
+            </div>
+          </div>
+          <div class="social-content-type">
+            <strong>Contenido principal</strong>
+            Fotos y reels del proceso de smash en plancha, ingredientes del día, presentación de burgers y contenido behind the scenes de cocina.
+            <strong>Frecuencia</strong>
+            4–5 posts/semana + stories diarios con ingredientes frescos y promociones del día.
+          </div>
+          <div class="mock-posts">
+            <div class="mock-post mock-post-bg-1">🍔</div>
+            <div class="mock-post mock-post-bg-2">🔥</div>
+            <div class="mock-post mock-post-bg-3">🥩</div>
+            <div class="mock-post mock-post-bg-2">🧀</div>
+            <div class="mock-post mock-post-bg-1">🌶️</div>
+            <div class="mock-post mock-post-bg-3">🥓</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FACEBOOK -->
+      <div class="social-platform-card reveal delay-2">
+        <div class="social-platform-header fb">
+          <span class="social-platform-icon">👥</span>
+          <div>
+            <div class="social-platform-name">Facebook</div>
+            <div class="social-platform-handle">Smash &amp; Fire GT</div>
+          </div>
+        </div>
+        <div class="social-platform-body">
+          <div class="social-metric-row">
+            <div class="social-metric">
+              <div class="social-metric-num">5.8K</div>
+              <div class="social-metric-label">Seguidores</div>
+            </div>
+            <div class="social-metric">
+              <div class="social-metric-num">312</div>
+              <div class="social-metric-label">Reseñas</div>
+            </div>
+            <div class="social-metric">
+              <div class="social-metric-num">4.9★</div>
+              <div class="social-metric-label">Rating</div>
+            </div>
+          </div>
+          <div class="social-content-type">
+            <strong>Contenido principal</strong>
+            Promociones semanales, eventos especiales, menú del día y atención al cliente vía Messenger. Canal principal para clientes 30+.
+            <strong>Frecuencia</strong>
+            2–3 posts/semana + respuesta a mensajes en menos de 2 horas. Eventos y sorteos mensuales.
+          </div>
+          <div class="mock-posts">
+            <div class="mock-post mock-post-bg-3">📣</div>
+            <div class="mock-post mock-post-bg-1">🎁</div>
+            <div class="mock-post mock-post-bg-2">🍔</div>
+            <div class="mock-post mock-post-bg-1">⭐</div>
+            <div class="mock-post mock-post-bg-3">📅</div>
+            <div class="mock-post mock-post-bg-2">🔥</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIKTOK -->
+      <div class="social-platform-card reveal delay-3">
+        <div class="social-platform-header tt">
+          <span class="social-platform-icon">🎵</span>
+          <div>
+            <div class="social-platform-name">TikTok</div>
+            <div class="social-platform-handle">@smashandfire</div>
+          </div>
+        </div>
+        <div class="social-platform-body">
+          <div class="social-metric-row">
+            <div class="social-metric">
+              <div class="social-metric-num">12K</div>
+              <div class="social-metric-label">Seguidores</div>
+            </div>
+            <div class="social-metric">
+              <div class="social-metric-num">84K</div>
+              <div class="social-metric-label">Likes</div>
+            </div>
+            <div class="social-metric">
+              <div class="social-metric-num">22%</div>
+              <div class="social-metric-label">Engagement</div>
+            </div>
+          </div>
+          <div class="social-content-type">
+            <strong>Contenido principal</strong>
+            Videos ASMR del smash, duets con clientes, transiciones rápidas de montaje de burgers y trending sounds con contenido de cocina.
+            <strong>Frecuencia</strong>
+            1 video/día. Formato corto (15–30s). Canal de mayor crecimiento orgánico de la marca.
+          </div>
+          <div class="mock-posts">
+            <div class="mock-post mock-post-bg-2">🎬</div>
+            <div class="mock-post mock-post-bg-3">🔥</div>
+            <div class="mock-post mock-post-bg-1">🍔</div>
+            <div class="mock-post mock-post-bg-3">📱</div>
+            <div class="mock-post mock-post-bg-1">🎵</div>
+            <div class="mock-post mock-post-bg-2">⚡</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Social CTA -->
+    <div class="social-cta-row reveal">
+      <div>
+        <div class="section-label" style="margin-bottom:0.5rem;">Síguenos</div>
+        <div class="social-handles">
+          <a class="social-handle-link" href="#" title="Instagram">
+            <span class="platform-icon">📸</span> @smashandfire.gt
+          </a>
+          <a class="social-handle-link" href="#" title="Facebook">
+            <span class="platform-icon">👥</span> Smash &amp; Fire GT
+          </a>
+          <a class="social-handle-link" href="#" title="TikTok">
+            <span class="platform-icon">🎵</span> @smashandfire
+          </a>
+        </div>
+      </div>
+      <a href="../menu/index.html" class="btn">Ver Menú →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FIRE DIVIDER -->
+<div class="fire-divider"><span>🔥</span></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div>
+        <p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p>
+        <div class="social-row" style="margin-top:1.5rem;">
+          <a class="social-btn" href="#" title="Instagram">📸</a>
+          <a class="social-btn" href="#" title="Facebook">👥</a>
+          <a class="social-btn" href="#" title="TikTok">🎵</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="../index.html">Inicio</a>
+        <a href="../fotos/index.html">Fotos</a>
+        <a href="../menu/index.html">Menú</a>
+        <a href="../historia/index.html">Nuestra Historia</a>
+        <a href="../fundadores/index.html">Fundadores</a>
+        <a href="../empleo/index.html">Empleo</a>
+        <a href="../marketing/index.html">Marketing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="tel:+50212345678">+502 1234-5678</a>
+        <a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a>
+        <p>6a Calle 6-50 Zona 10</p>
+        <p>Guatemala City</p>
+      </div>
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Lun – Jue: 11:00 – 22:00</p>
+        <p>Viernes: 11:00 – 23:00</p>
+        <p>Sáb – Dom: 11:00 – 23:00</p>
+        <a href="terminos/index.html" style="margin-top:1rem;">Términos y Condiciones</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Smash & Fire. Todos los derechos reservados.</p>
+      <div><a href="terminos/index.html">Términos</a> &nbsp;·&nbsp; <a href="#">Privacidad</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../nav.js"></script>
+<script>
+// Ticker duplicate for the identity banner
+(function() {
+  const el = document.getElementById('idBanner');
+  if (!el) return;
+  el.innerHTML += el.innerHTML;
+})();
+</script>
+
+</body>
+</html>

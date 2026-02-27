@@ -60,7 +60,7 @@
 .skill-fill {
   height: 100%; background: var(--fire); border-radius: 2px;
   transform: scaleX(0); transform-origin: left;
-  transition: transform 1.2s var(--ease-out-expo);
+  transition: transform 1.5s var(--ease-out-expo);
 }
 .skill-fill.anim { transform: scaleX(1); }
 
@@ -80,8 +80,8 @@
 /* Team mosaic */
 .team-mosaic {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1px; background: var(--ash); border-radius: 4px; overflow: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 3px; background: var(--ash); border-radius: 4px; overflow: hidden;
   margin-top: 3rem;
 }
 .team-tile {
@@ -109,6 +109,7 @@
     <li><a href="../terminos/index.html">Términos</a></li>
     <li><a href="../fundadores/index.html">Fundadores</a></li>
     <li><a href="../empleo/index.html">Empleo</a></li>
+    <li><a href="../marketing/index.html">Marketing</a></li>
     <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
   </ul>
   <button class="nav-toggle"><span></span><span></span><span></span></button>
@@ -130,14 +131,14 @@
 
       <div class="founder-card reveal delay-1">
         <div class="founder-header">
-          <div class="founder-emoji">👨‍🍳</div>
+          <div class="founder-emoji">👩‍💼</div>
           <div class="founder-name-overlay">
-            <h3>CARLOS MARTÍNEZ</h3>
-            <div class="role">Co-Fundador · Chef Ejecutivo</div>
+            <h3>DANIA ESTRELLITAS TELLES</h3>
+            <div class="role">Co-Fundadora · Gerente General</div>
           </div>
         </div>
         <div class="founder-body">
-          <p>Con más de 10 años en cocina profesional, Carlos es el cerebro culinario de Smash & Fire. Estudió gastronomía en México y perfeccionó la técnica smash durante dos años antes de abrir el local.</p>
+          <p>Administradora de empresas con visión y olfato para los negocios gastronómicos. Dania construyó la marca, la estrategia de crecimiento y el modelo que llevó a Smash & Fire del garage al restaurante reconocido.</p>
           <div class="skills">
             <div class="skill-row">
               <div class="skill-label"><span>Técnica Smash</span><span>98%</span></div>
@@ -153,22 +154,22 @@
             </div>
           </div>
           <div class="founder-quote">
-            <p>"Una hamburguesa bien hecha no necesita disculpas. Habla sola."</p>
-            <cite>— Carlos Martínez</cite>
+            <p>"El éxito se mide en clientes que regresan, no en visitas únicas."</p>
+            <cite>— Dania Tellez</cite>
           </div>
         </div>
       </div>
 
       <div class="founder-card reveal delay-2">
         <div class="founder-header">
-          <div class="founder-emoji">👩‍💼</div>
+          <div class="founder-emoji">👨‍🍳</div>
           <div class="founder-name-overlay">
-            <h3>SOFÍA RAMOS</h3>
-            <div class="role">Co-Fundadora · Directora General</div>
+            <h3>VICTOR ALEXANDER LÓPEZ LÓPEZ</h3>
+            <div class="role">Co-Fundador · Chef Ejecutivo</div>
           </div>
         </div>
         <div class="founder-body">
-          <p>Administradora de empresas con visión y olfato para los negocios gastronómicos. Sofía construyó la marca, la estrategia de crecimiento y el modelo que llevó a Smash & Fire del garage al restaurante reconocido.</p>
+          <p>Con más de 10 años en cocina profesional, Victor es la cerebro culinario de Smash & Fire. Estudió gastronomía en México y perfeccionó la técnica smash durante dos años antes de abrir el local.</p>
           <div class="skills">
             <div class="skill-row">
               <div class="skill-label"><span>Estrategia de Marca</span><span>97%</span></div>
@@ -184,8 +185,8 @@
             </div>
           </div>
           <div class="founder-quote">
-            <p>"El éxito se mide en clientes que regresan, no en visitas únicas."</p>
-            <cite>— Sofía Ramos</cite>
+            <p>"Una hamburguesa bien hecha no necesita disculpas. Habla sola."</p>
+            <cite>— Victor López</cite>
           </div>
         </div>
       </div>
@@ -194,12 +195,12 @@
         <div class="founder-header">
           <div class="founder-emoji">👨‍💻</div>
           <div class="founder-name-overlay">
-            <h3>DIEGO LÓPEZ</h3>
+            <h3>JOSÉ ESTUARDO MILIAN GARCÍA</h3>
             <div class="role">Co-Fundador · Director Operaciones</div>
           </div>
         </div>
         <div class="founder-body">
-          <p>Ingeniero industrial convertido en experto en operaciones gastronómicas. Diego diseñó el sistema de producción que garantiza que cada hamburguesa sea perfecta en hora pico o en servicio tranquilo.</p>
+          <p>Administrador de Sistemas convertido en experto en operaciones gastronómicas. José diseñó el sistema de producción que garantiza que cada hamburguesa sea perfecta en hora pico o en servicio tranquilo.</p>
           <div class="skills">
             <div class="skill-row">
               <div class="skill-label"><span>Operaciones</span><span>96%</span></div>
@@ -216,7 +217,7 @@
           </div>
           <div class="founder-quote">
             <p>"La consistencia es la forma más alta de creatividad en un restaurante."</p>
-            <cite>— Diego López</cite>
+            <cite>— José Milian</cite>
           </div>
         </div>
       </div>
@@ -230,14 +231,9 @@
     <span class="section-label reveal">Todo el equipo</span>
     <h2 class="section-title reveal delay-1">LOS QUE HACEN<br>EL FUEGO POSIBLE</h2>
     <div class="team-mosaic">
-      <div class="team-tile reveal"><div class="t-emoji">👨‍🍳</div><h4>Marco T.</h4><span>Chef de Línea</span></div>
-      <div class="team-tile reveal delay-1"><div class="t-emoji">👩‍🍳</div><h4>Valeria S.</h4><span>Chef de Línea</span></div>
-      <div class="team-tile reveal delay-2"><div class="t-emoji">🧑‍🍳</div><h4>Roberto C.</h4><span>Prep Cook</span></div>
-      <div class="team-tile reveal delay-1"><div class="t-emoji">👨‍💼</div><h4>Luis A.</h4><span>Supervisor de Turno</span></div>
-      <div class="team-tile reveal delay-2"><div class="t-emoji">👩‍💼</div><h4>Ana P.</h4><span>Atención al Cliente</span></div>
-      <div class="team-tile reveal delay-3"><div class="t-emoji">🧑</div><h4>José M.</h4><span>Caja</span></div>
-      <div class="team-tile reveal"><div class="t-emoji">👩</div><h4>Karen R.</h4><span>Mesera</span></div>
-      <div class="team-tile reveal delay-1"><div class="t-emoji">👨</div><h4>Fernando O.</h4><span>Repartidor</span></div>
+      <div class="team-tile reveal"><div class="t-emoji">👨‍🍳</div><h4>Rubén I.</h4><span>Chef de Línea</span></div>
+      <div class="team-tile reveal delay-1"><div class="t-emoji">👨‍💼</div><h4>Darwin M.</h4><span>Encargado de Finanzas</span></div>
+      <div class="team-tile reveal delay-2"><div class="t-emoji">👩‍💼</div><h4>Daniela C.</h4><span>Marketing y Atención al Cliente</span></div>
     </div>
     <p style="text-align:center;margin-top:2.5rem;color:var(--gray);font-size:0.88rem;">
       ¿Quieres ser parte? <a href="../empleo/index.html" style="color:var(--fire);text-decoration:none;font-weight:700;">Ver plazas disponibles →</a>
@@ -245,32 +241,69 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales. Ciudad de Guatemala.</p></div>
-      <div class="footer-col"><h4>Navegación</h4><a href="../index.html">Inicio</a><a href="../menu/index.html">Menú</a><a href="../historia/index.html">Historia</a></div>
-      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50212345678">+502 1234-5678</a><a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a></div>
+      <div class="footer-brand">
+        <div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div>
+        <p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p>
+        <div class="social-row" style="margin-top:1.5rem;">
+          <a class="social-btn" href="#" title="Instagram">📸</a>
+          <a class="social-btn" href="#" title="Facebook">👥</a>
+          <a class="social-btn" href="#" title="TikTok">🎵</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="../index.html">Inicio</a>
+        <a href="../fotos/index.html">Fotos</a>
+        <a href="../menu/index.html">Menú</a>
+        <a href="../historia/index.html">Nuestra Historia</a>
+        <a href="../fundadores/index.html">Fundadores</a>
+        <a href="../empleo/index.html">Empleo</a>
+        <a href="../marketing/index.html">Marketing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="tel:+50212345678">+502 1234-5678</a>
+        <a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a>
+        <p>6a Calle 6-50 Zona 10</p>
+        <p>Guatemala City</p>
+      </div>
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Lun – Jue: 11:00 – 22:00</p>
+        <p>Viernes: 11:00 – 23:00</p>
+        <p>Sáb – Dom: 11:00 – 23:00</p>
+        <a href="terminos/index.html" style="margin-top:1rem;">Términos y Condiciones</a>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 Smash & Fire.</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 Smash & Fire. Todos los derechos reservados.</p>
+      <div><a href="terminos/index.html">Términos</a> &nbsp;·&nbsp; <a href="#">Privacidad</a></div>
+    </div>
   </div>
 </footer>
 
 <script src="../nav.js"></script>
 <script>
-// Skill bar animation on scroll
-const skillFills = document.querySelectorAll('.skill-fill');
-const io = new IntersectionObserver(entries => {
+const founderCards = document.querySelectorAll('.founder-card');
+const skillObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      const w = e.target.dataset.width;
-      e.target.style.transform = `scaleX(${w/100})`;
-      e.target.classList.add('anim');
-      io.unobserve(e.target);
-    }
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('.skill-fill').forEach(fill => {
+      const w = fill.dataset.width;
+      requestAnimationFrame(() => {
+        fill.style.transform = 'scaleX(' + (w / 100) + ')';
+        fill.classList.add('anim');
+      });
+    });
+    skillObserver.unobserve(e.target);
   });
-}, { threshold: 0.3 });
-skillFills.forEach(f => io.observe(f));
-</script>
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+founderCards.forEach(card => skillObserver.observe(card));
+</script>>
 </body>
 </html>
