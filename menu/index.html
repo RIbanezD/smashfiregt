@@ -23,6 +23,12 @@
 .menu-item:hover{border-color:rgba(200,16,46,0.35);box-shadow:0 4px 16px var(--shadow)}
 .menu-item-header{display:flex;align-items:center;gap:1rem;padding:0.9rem 1.1rem;cursor:pointer;user-select:none}
 .item-emoji{font-size:2.2rem;width:48px;text-align:center;flex-shrink:0}
+.item-thumb{width:68px;height:68px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--surface);border:2px solid var(--border);transition:border-color 0.25s,transform 0.25s}
+.item-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.menu-item:hover .item-thumb{border-color:var(--red);transform:scale(1.05)}
+.item-photo-wrap{margin-bottom:1rem;border-radius:10px;overflow:hidden}
+.item-photo-wrap img{width:100%;height:200px;object-fit:cover;object-position:center;display:block;transition:transform 0.5s}
+.menu-item.open .item-photo-wrap img{transform:scale(1.03)}
 .item-info{flex:1;min-width:0}
 .item-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .item-desc-short{font-size:0.8rem;color:var(--text-muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
@@ -31,7 +37,7 @@
 .expand-icon{color:var(--text-muted);transition:transform 0.3s;font-size:0.75rem}
 .menu-item.open .expand-icon{transform:rotate(180deg)}
 .menu-item-body{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.16,1,0.3,1);border-top:0 solid var(--border)}
-.menu-item.open .menu-item-body{max-height:450px;border-top-width:1px}
+.menu-item.open .menu-item-body{max-height:680px;border-top-width:1px}
 .menu-item-body-inner{padding:1.1rem}
 .item-desc-full{color:var(--text-muted);font-size:0.9rem;line-height:1.65;margin-bottom:1rem}
 .opt-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.3rem;display:block}
@@ -137,7 +143,7 @@
 </head>
 <body>
 <nav>
-  <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
+  <a href="../index.html" class="nav-logo"><img src="/assets/imgs/logo_smash.png" alt="Smash & Fire" style="height:12rem;width:auto;display:block"></a>
   <ul class="nav-links">
     <li><a href="../index.html" data-i18n="nav_home">Inicio</a></li>
     <li><a href="../fotos/index.html" data-i18n="nav_photos">Fotos</a></li>
@@ -173,8 +179,7 @@
     <button class="filt active" data-filter="all">Todo</button>
     <button class="filt" data-filter="burgers">Hamburguesas</button>
     <button class="filt" data-filter="sides">Acompañamientos</button>
-    <button class="filt" data-filter="drinks">Bebidas Frías</button>
-    <button class="filt" data-filter="hot-drinks">Bebidas Calientes</button>
+    <button class="filt" data-filter="drinks">Bebidas</button>
   </div>
 
   <div class="menu-wrapper">
@@ -183,7 +188,7 @@
       <div data-cat="burgers">
         <div class="menu-item reveal delay-1" data-id="classic" data-price="55" data-name="The Classic Smash" data-emoji="🍔">
           <div class="menu-item-header" onclick="toggleItem(this)">
-            <div class="item-emoji">🍔</div>
+            <div class="item-thumb"><img src="../assets/imgs/classic_smash.jpg" alt="The Classic Smash" loading="lazy"></div>
             <div class="item-info">
               <div class="item-name">The Classic Smash <span class="badge" style="font-size:0.58rem">⭐ Best Seller</span></div>
               <div class="item-desc-short">Doble carne smash, queso americano, cebolla caramelizada, pepinillos, salsa especial...</div>
@@ -191,6 +196,7 @@
             <div class="item-right"><div class="item-price">Q 55</div><div class="expand-icon">▼</div></div>
           </div>
           <div class="menu-item-body"><div class="menu-item-body-inner">
+            <div class="item-photo-wrap"><img src="../assets/imgs/classic_smash.jpg" alt="The Classic Smash" loading="lazy"></div>
             <p class="item-desc-full">Doble carne smash con la costra perfecta, queso americano fundido, cebolla caramelizada, pepinillos y nuestra salsa especial en pan brioche tostado.</p>
             <span class="opt-label">Punto de cocción:</span>
             <div class="item-options">
@@ -205,7 +211,7 @@
         </div>
         <div class="menu-item reveal delay-2" data-id="bacon" data-price="65" data-name="Bacon Fire" data-emoji="🥓">
           <div class="menu-item-header" onclick="toggleItem(this)">
-            <div class="item-emoji">🥓</div>
+            <div class="item-thumb"><img src="../assets/imgs/bacon.webp" alt="Bacon Fire" loading="lazy"></div>
             <div class="item-info">
               <div class="item-name">Bacon Fire <span class="badge" style="font-size:0.58rem;background:#8B1A1A">💀 Picante</span></div>
               <div class="item-desc-short">Tocino ahumado crujiente, queso cheddar, jalapeños, chipotle artesanal...</div>
@@ -213,6 +219,7 @@
             <div class="item-right"><div class="item-price">Q 65</div><div class="expand-icon">▼</div></div>
           </div>
           <div class="menu-item-body"><div class="menu-item-body-inner">
+            <div class="item-photo-wrap"><img src="../assets/imgs/bacon.webp" alt="Bacon Fire" loading="lazy"></div>
             <p class="item-desc-full">Carne smash, tocino ahumado crujiente, queso cheddar, jalapeños asados y mayonesa artesanal de chipotle.</p>
             <span class="opt-label">Nivel de picante:</span>
             <div class="item-options">
@@ -228,7 +235,7 @@
         </div>
         <div class="menu-item reveal delay-3" data-id="double" data-price="75" data-name="Double Smash" data-emoji="🧀">
           <div class="menu-item-header" onclick="toggleItem(this)">
-            <div class="item-emoji">🧀</div>
+            <div class="item-thumb"><img src="../assets/imgs/cheese.jpg" alt="Double Smash" loading="lazy"></div>
             <div class="item-info">
               <div class="item-name">Double Smash</div>
               <div class="item-desc-short">4 tortas de carne smash, tu queso favorito, cebolla crujiente, mostaza artesanal...</div>
@@ -236,6 +243,7 @@
             <div class="item-right"><div class="item-price">Q 75</div><div class="expand-icon">▼</div></div>
           </div>
           <div class="menu-item-body"><div class="menu-item-body-inner">
+            <div class="item-photo-wrap"><img src="../assets/imgs/cheese.jpg" alt="Double Smash" loading="lazy"></div>
             <p class="item-desc-full">Cuatro tortas de carne smash apiladas con tu queso favorito, cebolla crujiente y mostaza artesanal de granos enteros.</p>
             <span class="opt-label">Tipo de queso:</span>
             <div class="item-options">
@@ -254,74 +262,74 @@
       <h2 class="menu-section-title reveal" data-cat="burgers">🔥 Hamburguesas Signature</h2>
       <div data-cat="burgers">
         <div class="menu-item reveal" data-id="chapina" data-price="75" data-name="La Chapina" data-emoji="🇬🇹">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🇬🇹</div><div class="item-info"><div class="item-name">La Chapina</div><div class="item-desc-short">Doble smash, guacamol fresco, queso Chancol, tortilla frita crujiente...</div></div><div class="item-right"><div class="item-price">Q 75</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Doble carne smash, guacamol fresco, queso Chancol y lazcas de tortilla frita crujiente. Guatemala en cada bocado.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/chapina.jpg" alt="La Chapina" loading="lazy"></div><div class="item-info"><div class="item-name">La Chapina</div><div class="item-desc-short">Doble smash, guacamol fresco, queso Chancol, tortilla frita crujiente...</div></div><div class="item-right"><div class="item-price">Q 75</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/chapina.jpg" alt="La Chapina" loading="lazy"></div><p class="item-desc-full">Doble carne smash, guacamol fresco, queso Chancol y lazcas de tortilla frita crujiente. Guatemala en cada bocado.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-1" data-id="frijolito" data-price="68" data-name="Frijolito Smash" data-emoji="🫘">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🫘</div><div class="item-info"><div class="item-name">Frijolito Smash <span class="badge badge-green" style="font-size:0.58rem">🌱 Nuevo</span></div><div class="item-desc-short">Salsa de queso fresco, pimiento rojo ahumado, frijoles volteados, crema de Xela...</div></div><div class="item-right"><div class="item-price">Q 68</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Carne smash con salsa de queso fresco y pimiento rojo ahumado, acompañada de frijoles volteados y crema de Xela. Sabor chapín auténtico.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/beans.jpg" alt="Frijolito Smash" loading="lazy"></div><div class="item-info"><div class="item-name">Frijolito Smash <span class="badge badge-green" style="font-size:0.58rem">🌱 Nuevo</span></div><div class="item-desc-short">Salsa de queso fresco, pimiento rojo ahumado, frijoles volteados, crema de Xela...</div></div><div class="item-right"><div class="item-price">Q 68</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/beans.jpg" alt="Frijolito Smash" loading="lazy"></div><p class="item-desc-full">Carne smash con salsa de queso fresco y pimiento rojo ahumado, acompañada de frijoles volteados y crema de Xela. Sabor chapín auténtico.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-2" data-id="antigua" data-price="70" data-name="Antigua GT" data-emoji="⛪">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">⛪</div><div class="item-info"><div class="item-name">Antigua GT <span class="badge badge-green" style="font-size:0.58rem">🌱 Nuevo</span></div><div class="item-desc-short">Aguacate aplastado, chirmolito casero, queso de cabra...</div></div><div class="item-right"><div class="item-price">Q 70</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Carne smash con aguacate aplastado fresco, bañado en chirmolito casero y queso de cabra. Inspirada en los sabores coloniales.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/chapina.jpg" alt="Antigua GT" loading="lazy"></div><div class="item-info"><div class="item-name">Antigua GT <span class="badge badge-green" style="font-size:0.58rem">🌱 Nuevo</span></div><div class="item-desc-short">Aguacate aplastado, chirmolito casero, queso de cabra...</div></div><div class="item-right"><div class="item-price">Q 70</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/chapina.jpg" alt="Antigua GT" loading="lazy"></div><p class="item-desc-full">Carne smash con aguacate aplastado fresco, bañado en chirmolito casero y queso de cabra. Inspirada en los sabores coloniales.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-3" data-id="carretona" data-price="72" data-name="La Carretona" data-emoji="🌭">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🌭</div><div class="item-info"><div class="item-name">La Carretona</div><div class="item-desc-short">Longaniza huehueteca, repollo sazonado, salsas especiales...</div></div><div class="item-right"><div class="item-price">Q 72</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Carne smash con longaniza huehueteca, repollo sazonado y salsas especiales. Preguntar por disponibilidad.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/carretona.jpg" alt="La Carretona" loading="lazy"></div><div class="item-info"><div class="item-name">La Carretona</div><div class="item-desc-short">Longaniza huehueteca, repollo sazonado, salsas especiales...</div></div><div class="item-right"><div class="item-price">Q 72</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/carretona.jpg" alt="La Carretona" loading="lazy"></div><p class="item-desc-full">Carne smash con longaniza huehueteca, repollo sazonado y salsas especiales. Preguntar por disponibilidad.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
       </div>
       <div class="promo-banner reveal"><div><h3>COMBO SMASH</h3><p>Cualquier hamburguesa + papas + refresco. ¡Ahorra Q15!</p></div><button class="btn btn-yellow" onclick="showToast('¡Pronto disponible!','warn')">Armar Combo →</button></div>
       <h2 class="menu-section-title reveal" data-cat="sides">🍟 Acompañamientos</h2>
       <div data-cat="sides">
         <div class="menu-item reveal" data-id="papas-c" data-price="22" data-name="Papas Clásicas" data-emoji="🍟">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🍟</div><div class="item-info"><div class="item-name">Papas Clásicas</div><div class="item-desc-short">Doradas con sal de mar y tomillo, crujientes por fuera...</div></div><div class="item-right"><div class="item-price">Q 22</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Papas fritas doradas con sal de mar y tomillo seco. Crujientes por fuera, suaves por dentro.</p><span class="opt-label">Tamaño:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'size')">Regular</button><button class="opt-btn" onclick="selectOpt(this,'size')">Grande (+Q8)</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/fries.jpg" alt="Papas Clásicas" loading="lazy"></div><div class="item-info"><div class="item-name">Papas Clásicas</div><div class="item-desc-short">Doradas con sal de mar y tomillo, crujientes por fuera...</div></div><div class="item-right"><div class="item-price">Q 22</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/fries.jpg" alt="Papas Clásicas" loading="lazy"></div><p class="item-desc-full">Papas fritas doradas con sal de mar y tomillo seco. Crujientes por fuera, suaves por dentro.</p><span class="opt-label">Tamaño:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'size')">Regular</button><button class="opt-btn" onclick="selectOpt(this,'size')">Grande (+Q8)</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-1" data-id="aros" data-price="28" data-name="Aros de Cebolla" data-emoji="🧅">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🧅</div><div class="item-info"><div class="item-name">Aros de Cebolla</div><div class="item-desc-short">Tempura crujiente, salsa ranch artesanal de la casa...</div></div><div class="item-right"><div class="item-price">Q 28</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Aros de cebolla dulce en tempura crujiente con salsa ranch artesanal de la casa.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/onions.jpg" alt="Aros de Cebolla" loading="lazy"></div><div class="item-info"><div class="item-name">Aros de Cebolla</div><div class="item-desc-short">Tempura crujiente, salsa ranch artesanal de la casa...</div></div><div class="item-right"><div class="item-price">Q 28</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/onions.jpg" alt="Aros de Cebolla" loading="lazy"></div><p class="item-desc-full">Aros de cebolla dulce en tempura crujiente con salsa ranch artesanal de la casa.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-2" data-id="loaded" data-price="38" data-name="Papas Loaded" data-emoji="🧇">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🧇</div><div class="item-info"><div class="item-name">Papas Loaded <span class="badge" style="font-size:0.58rem">🔥 Popular</span></div><div class="item-desc-short">Cheddar fundido, tocino crujiente, crema ácida, cebollín fresco...</div></div><div class="item-right"><div class="item-price">Q 38</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Papas con queso cheddar derretido, tocino picado crujiente, crema ácida y cebollín fresco.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/loaded.jpg" alt="Papas Loaded" loading="lazy"></div><div class="item-info"><div class="item-name">Papas Loaded <span class="badge" style="font-size:0.58rem">🔥 Popular</span></div><div class="item-desc-short">Cheddar fundido, tocino crujiente, crema ácida, cebollín fresco...</div></div><div class="item-right"><div class="item-price">Q 38</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/loaded.jpg" alt="Papas Loaded" loading="lazy"></div><p class="item-desc-full">Papas con queso cheddar derretido, tocino picado crujiente, crema ácida y cebollín fresco.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-3" data-id="yuca" data-price="25" data-name="Yuca Frita" data-emoji="🥔">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🥔</div><div class="item-info"><div class="item-name">Yuca Frita <span class="badge badge-green" style="font-size:0.58rem">Nuevo</span></div><div class="item-desc-short">Yuca guatemalteca, ajo, cilantro, salsa de la casa...</div></div><div class="item-right"><div class="item-price">Q 25</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Yuca guatemalteca frita a la perfección, sazonada con ajo y cilantro, servida con nuestra salsa especial. Alternativa deliciosa a las papas.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/yuca.jpg" alt="Yuca Frita" loading="lazy"></div><div class="item-info"><div class="item-name">Yuca Frita <span class="badge badge-green" style="font-size:0.58rem">Nuevo</span></div><div class="item-desc-short">Yuca guatemalteca, ajo, cilantro, salsa de la casa...</div></div><div class="item-right"><div class="item-price">Q 25</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/yuca.jpg" alt="Yuca Frita" loading="lazy"></div><p class="item-desc-full">Yuca guatemalteca frita a la perfección, sazonada con ajo y cilantro, servida con nuestra salsa especial. Alternativa deliciosa a las papas.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal" data-id="elote" data-price="20" data-name="Elote Asado" data-emoji="🌽">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🌽</div><div class="item-info"><div class="item-name">Elote Asado</div><div class="item-desc-short">Elote tierno a las brasas, mantequilla, chile cobanero, limón...</div></div><div class="item-right"><div class="item-price">Q 20</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Elote tierno asado a las brasas, bañado con mantequilla artesanal, chile cobanero y limón. El sabor de Guatemala de la calle al plato.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/elote.jpg" alt="Elote Asado" loading="lazy"></div><div class="item-info"><div class="item-name">Elote Asado</div><div class="item-desc-short">Elote tierno a las brasas, mantequilla, chile cobanero, limón...</div></div><div class="item-right"><div class="item-price">Q 20</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/elote.jpg" alt="Elote Asado" loading="lazy"></div><p class="item-desc-full">Elote tierno asado a las brasas, bañado con mantequilla artesanal, chile cobanero y limón. El sabor de Guatemala de la calle al plato.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-1" data-id="ensalada" data-price="24" data-name="Ensalada Fresca" data-emoji="🥗">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🥗</div><div class="item-info"><div class="item-name">Ensalada Fresca</div><div class="item-desc-short">Mix de lechugas, tomate cherry, pepino, zanahoria, aderezo casero...</div></div><div class="item-right"><div class="item-price">Q 24</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Mix de lechugas frescas, tomate cherry, pepino, zanahoria rallada y aderezo casero.</p><span class="opt-label">Aderezo:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'dressing')">Limón y Hierbas</button><button class="opt-btn" onclick="selectOpt(this,'dressing')">Ranch</button><button class="opt-btn" onclick="selectOpt(this,'dressing')">Vinagreta</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/salad.jpg" alt="Ensalada Fresca" loading="lazy"></div><div class="item-info"><div class="item-name">Ensalada Fresca</div><div class="item-desc-short">Mix de lechugas, tomate cherry, pepino, zanahoria, aderezo casero...</div></div><div class="item-right"><div class="item-price">Q 24</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/salad.jpg" alt="Ensalada Fresca" loading="lazy"></div><p class="item-desc-full">Mix de lechugas frescas, tomate cherry, pepino, zanahoria rallada y aderezo casero.</p><span class="opt-label">Aderezo:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'dressing')">Limón y Hierbas</button><button class="opt-btn" onclick="selectOpt(this,'dressing')">Ranch</button><button class="opt-btn" onclick="selectOpt(this,'dressing')">Vinagreta</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-2" data-id="nuggets" data-price="30" data-name="Nuggets de Pollo" data-emoji="🍗">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🍗</div><div class="item-info"><div class="item-name">Nuggets de Pollo</div><div class="item-desc-short">6 piezas empanizadas al momento, salsa BBQ artesanal...</div></div><div class="item-right"><div class="item-price">Q 30</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">6 piezas de pollo empanizadas al momento, doradas y crujientes, servidas con salsa BBQ artesanal.</p><span class="opt-label">Salsa dip:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'dip')">BBQ Artesanal</button><button class="opt-btn" onclick="selectOpt(this,'dip')">Ranch</button><button class="opt-btn" onclick="selectOpt(this,'dip')">Chipotle</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/nuggets.jpg" alt="Nuggets de Pollo" loading="lazy"></div><div class="item-info"><div class="item-name">Nuggets de Pollo</div><div class="item-desc-short">6 piezas empanizadas al momento, salsa BBQ artesanal...</div></div><div class="item-right"><div class="item-price">Q 30</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/nuggets.jpg" alt="Nuggets de Pollo" loading="lazy"></div><p class="item-desc-full">6 piezas de pollo empanizadas al momento, doradas y crujientes, servidas con salsa BBQ artesanal.</p><span class="opt-label">Salsa dip:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'dip')">BBQ Artesanal</button><button class="opt-btn" onclick="selectOpt(this,'dip')">Ranch</button><button class="opt-btn" onclick="selectOpt(this,'dip')">Chipotle</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
       </div>
-      <h2 class="menu-section-title reveal" data-cat="drinks">🥤 Bebidas Frías</h2>
+      <h2 class="menu-section-title reveal" data-cat="drinks">Bebidas Frías</h2>
       <div data-cat="drinks">
         <div class="menu-item reveal" data-id="refresco" data-price="15" data-name="Refresco" data-emoji="🥤">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🥤</div><div class="item-info"><div class="item-name">Bebidas</div><div class="item-desc-short">Coca-Cola, Sprite, Fanta, agua mineral. Tamaño grande con hielo...</div></div><div class="item-right"><div class="item-price">Q 15</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Coca-Cola, Sprite, Fanta o agua mineral. Tamaño grande con hielo.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'soda')">Coca-Cola</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Sprite</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Fanta</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Agua Mineral</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/bebidas_frias.jpg" alt="Refrescos" loading="lazy"></div><div class="item-info"><div class="item-name">Bebidas</div><div class="item-desc-short">Coca-Cola, Sprite, Fanta, agua mineral. Tamaño grande con hielo...</div></div><div class="item-right"><div class="item-price">Q 15</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/bebidas_frias.jpg" alt="Refrescos" loading="lazy"></div><p class="item-desc-full">Coca-Cola, Sprite, Fanta o agua mineral. Tamaño grande con hielo.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'soda')">Coca-Cola</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Sprite</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Fanta</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Agua Mineral</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-1" data-id="malteada" data-price="30" data-name="Malteada Artesanal" data-emoji="🥛">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🥛</div><div class="item-info"><div class="item-name">Malteada Artesanal</div><div class="item-desc-short">Preparada al momento, helado premium, leche entera...</div></div><div class="item-right"><div class="item-price">Q 30</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Preparadas al momento con helado de alta calidad y leche entera. Cremosas y absolutamente deliciosas.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'shake')">Vainilla</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Chocolate</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Fresa</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Oreo</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/milkshake.jpg" alt="Malteada Artesanal" loading="lazy"></div><div class="item-info"><div class="item-name">Milkshake</div><div class="item-desc-short">Preparada al momento, helado premium, leche entera...</div></div><div class="item-right"><div class="item-price">Q 30</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/milkshake.jpg" alt="Malteada Artesanal" loading="lazy"></div><p class="item-desc-full">Preparadas al momento con helado de alta calidad y leche entera. Cremosas y absolutamente deliciosas.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'shake')">Vainilla</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Chocolate</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Fresa</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Oreo</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
       </div>
-      <h2 class="menu-section-title reveal" data-cat="hot-drinks">🥤 Bebidas Calientes</h2>
-      <div data-cat="hot-drinks">
-        <div class="menu-item reveal" data-id="Café Americano" data-price="15" data-name="Café Americano" data-emoji="☕">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">☕</div><div class="item-info"><div class="item-name">Café Americano</div><div class="item-desc-short">Café negro fuerte, servido caliente en una taza...</div></div><div class="item-right"><div class="item-price">Q 15</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Café negro fuerte, servido caliente en una taza.</p><span class="opt-label">Tamaño:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'size')">Pequeño</button><button class="opt-btn" onclick="selectOpt(this,'size')">Mediano</button><button class="opt-btn" onclick="selectOpt(this,'size')">Grande</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+      <h2 class="menu-section-title reveal" data-cat="drinks">Bebidas Calientes</h2>
+      <div data-cat="drinks">
+        <div class="menu-item reveal" data-id="cafe" data-price="15" data-name="Café" data-emoji="☕">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/cafe.jpg" alt="Café" loading="lazy"></div><div class="item-info"><div class="item-name">Café</div><div class="item-desc-short">Café recién hecho, con leche o sin leche. Tamaño grande...</div></div><div class="item-right"><div class="item-price">Q 15</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/cafe.jpg" alt="Café" loading="lazy"></div><p class="item-desc-full">Café recién hecho, con leche o sin leche. Tamaño grande.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'coffee')">Con Leche</button><button class="opt-btn" onclick="selectOpt(this,'coffee')">Sin Leche</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
-        <div class="menu-item reveal delay-1" data-id="Chocolate Caliente" data-price="22" data-name="Chocolate Caliente" data-emoji="🍫">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🍫</div><div class="item-info"><div class="item-name">Chocolate Caliente</div><div class="item-desc-short">Chocolate caliente cremoso, servido en una taza...</div></div><div class="item-right"><div class="item-price">Q 22</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Chocolate caliente cremoso, servido en una taza.</p><span class="opt-label">Tamaño:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'size')">Pequeño</button><button class="opt-btn" onclick="selectOpt(this,'size')">Mediano</button><button class="opt-btn" onclick="selectOpt(this,'size')">Grande</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        <div class="menu-item reveal delay-1" data-id="cocoa" data-price="18" data-name="Cocoa" data-emoji="🍫">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/cocoa.webp" alt="Cocoa" loading="lazy"></div><div class="item-info"><div class="item-name">Cocoa</div><div class="item-desc-short">Chocolate caliente, con leche o sin leche. Tamaño grande...</div></div><div class="item-right"><div class="item-price">Q 18</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/cocoa.webp" alt="Cocoa" loading="lazy"></div><p class="item-desc-full">Chocolate caliente, con leche o sin leche. Tamaño grande.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'cocoa')">Con Leche</button><button class="opt-btn" onclick="selectOpt(this,'cocoa')">Sin Leche</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
       </div>
     </div><!-- /items col -->
@@ -339,6 +347,7 @@
 </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-top">
@@ -359,6 +368,19 @@
   </div>
 </footer>
 
+<!-- AGE MODAL -->
+<div class="age-modal-overlay" id="ageModal">
+  <div class="age-modal">
+    <div class="age-modal-icon">🔞</div>
+    <h2>Verificación de Edad</h2>
+    <p>Esta bebida contiene alcohol. El consumo está <strong>prohibido para menores de 18 años</strong>.<br><br>El límite es <strong>2 bebidas alcohólicas por persona</strong> por visita.<br><br>¿Confirmas que eres mayor de 18 años?</p>
+    <div class="age-actions">
+      <button class="btn btn-dark btn-sm" onclick="closeAgeModal()">No, soy menor</button>
+      <button class="btn btn-sm" onclick="confirmAge()">Sí, soy mayor</button>
+    </div>
+  </div>
+</div>
+
 <!-- CHECKOUT MODAL -->
 <div class="checkout-modal" id="checkoutModal">
   <div class="checkout-box">
@@ -374,6 +396,7 @@
             <div class="d-opt" id="co-delivery" onclick="selectDelivery('delivery')"><div class="d-icon">🛵</div><h5>Delivery</h5><p>+Q 20 envío</p></div>
           </div>
           <div class="address-fields" id="addressFields">
+            <div class="form-field"><label>Dirección de entrega</label><input type="text" placeholder="Calle, número, zona..."/></div>
           </div>
         </div>
         <div class="checkout-section">
@@ -391,7 +414,6 @@
             <div class="form-field span-2"><label>Nombre completo <span class="field-required">*</span></label><input type="text" id="cNombre" placeholder="Tu nombre completo"/></div>
             <div class="form-field"><label>Teléfono <span class="field-required">*</span></label><input type="tel" id="cTelefono" placeholder="1234 5678"/></div>
             <div class="form-field"><label>Tel. de referencia</label><input type="tel" id="cTelRef" placeholder="Opcional"/></div>
-            <div class="form-field span-2"><label>Dirección de entrega</label><input type="text" placeholder="Calle, número, zona..."/></div>
             <div class="form-field span-2"><label>Correo electrónico <span class="field-required">*</span></label><input type="email" id="cCorreo" placeholder="tu@correo.com"/></div>
           </div>
         </div>
@@ -530,7 +552,7 @@ function downloadInvoicePDF(){
   doc.text('SMASH & FIRE',M,15);
   doc.setFontSize(9);doc.setFont('helvetica','normal');
   doc.text('6a Calle 6-50 Zona 10, Ciudad de Guatemala',M,22);
-  doc.text('+502 4947-3557',M,28);
+  doc.text('hola@smashandfire.gt  |  +502 1234-5678',M,28);
   y=44;
 
   // Title
@@ -594,15 +616,14 @@ function downloadInvoicePDF(){
   doc.setFontSize(8.5);doc.setFont('helvetica','normal');doc.setTextColor(100,60,20);
   const tipoLabel={'local':'Comer en local','takeout':'Para llevar','delivery':'Delivery a domicilio'}[d.tipo]||d.tipo;
   const pagLabel={'cash':'Efectivo','card':'Tarjeta','paypal':'PayPal','zelle':'Zelle / Transferencia'}[d.payMethod]||d.payMethod;
-  doc.text(`Tipo de entrega: ${tipoLabel}`,M,y);y+=6;
-  doc.text(`Método de pago: ${pagLabel}`,M,y);y+=6;
+  doc.text(`Tipo de entrega: ${tipoLabel}   |   Método de pago: ${pagLabel}`,M,y);y+=6;
   if(d.notas){doc.text(`Notas: ${d.notas}`,M,y);y+=6}
   y+=4;doc.setDrawColor(232,206,170);doc.line(M,y,W-M,y);y+=8;
 
   // Footer
   doc.setFontSize(8);doc.setTextColor(160,96,48);
   doc.text('Este documento es un comprobante de su pedido. No es una factura fiscal emitida por SAT.',W/2,y,{align:'center'});
-  doc.text('¡Gracias por preferir Smash & Fire!',W/2,y+6,{align:'center'});
+  doc.text('¡Gracias por preferir Smash & Fire! 🔥',W/2,y+6,{align:'center'});
 
   doc.save(`Smash-Fire-Orden-${d.id.replace('#','')}.pdf`);
   showToast('📄 Factura descargada');

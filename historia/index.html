@@ -1,139 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nuestra Historia — Smash & Fire</title>
-  <link rel="stylesheet" href="../style.css"/>
-  <style>
-/* Parallax intro */
-.historia-intro {
-  position: relative; overflow: hidden;
-  background: var(--coal); min-height: 440px;
-  display: flex; align-items: center;
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Nuestra Historia — Smash & Fire</title>
+<link rel="stylesheet" href="../style.css"/>
+<style>
+
+/* ══ MANIFESTO ══ */
+.manifesto{
+  min-height:100svh;background:var(--dark);
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding:calc(var(--nav-h)+3rem) 0 8rem;
 }
-.hi-bg {
-  position: absolute; inset: -40%; pointer-events: none;
-  background: radial-gradient(ellipse at 60% 50%, rgba(214,35,0,0.12), transparent 60%),
-    repeating-conic-gradient(var(--ash) 0% 25%, transparent 0% 50%) at center;
-  background-size: 60px 60px;
-  opacity: 0.3;
+.manifesto::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:100px;
+  background:var(--red);
+  clip-path:polygon(0 60%,100% 0,100% 100%,0 100%);z-index:1;
 }
-.hi-content {
-  position: relative; z-index: 2;
-  max-width: 1200px; margin: 0 auto; padding: 80px 2rem;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+.manifesto-bg-img{
+  position:absolute;inset:0;
+  background:url('../assets/imgs/plancha.jpg') center/cover no-repeat;
+  opacity:0.07;
 }
-@media(max-width:768px){ .hi-content{ grid-template-columns:1fr; gap:2rem; } }
-.hi-text { }
-.hi-text .intro-body {
-  color: var(--gray); line-height: 1.9; font-size: 1.05rem; margin-top: 1.5rem;
+.manifesto-content{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
 }
-.hi-num {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(8rem, 18vw, 14rem);
-  color: rgba(214,35,0,0.08);
-  line-height: 1; user-select: none;
-  text-align: right;
+@media(max-width:820px){.manifesto-content{grid-template-columns:1fr;gap:2.5rem}}
+.manifesto-sup{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.72rem;letter-spacing:5px;text-transform:uppercase;
+  color:var(--yellow);display:flex;align-items:center;gap:10px;margin-bottom:1.8rem;
+}
+.manifesto-sup::before{content:'';width:30px;height:2px;background:var(--yellow)}
+.manifesto-headline{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(3.5rem,9vw,7.5rem);
+  line-height:0.92;letter-spacing:-1px;text-transform:uppercase;
+  color:var(--white);margin-bottom:2rem;
+}
+.manifesto-headline em{
+  font-style:normal;color:transparent;
+  -webkit-text-stroke:2px var(--red);
+}
+.manifesto-body{color:rgba(255,247,238,0.6);font-size:1rem;line-height:1.85;max-width:440px}
+.manifesto-right{position:relative}
+.manifesto-big-year{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(9rem,22vw,18rem);
+  color:rgba(200,16,46,0.12);line-height:1;
+  letter-spacing:-6px;user-select:none;
+  position:absolute;right:-2rem;top:50%;transform:translateY(-50%);
+  white-space:nowrap;
+}
+.manifesto-circle{
+  width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;
+  border:3px solid rgba(200,16,46,0.4);
+  box-shadow:0 0 0 12px rgba(200,16,46,0.06),0 40px 80px rgba(0,0,0,0.5);
+  position:relative;z-index:1;
+}
+.manifesto-circle img{width:100%;height:100%;object-fit:cover}
+@media(max-width:820px){
+  .manifesto-big-year{display:none}
+  .manifesto-circle{max-width:280px;margin:0 auto}
 }
 
-/* Horizontal scroll timeline */
-.timeline-section {
-  background: var(--char); overflow: hidden;
-  padding: 100px 0;
+/* ══ RED STATS BAND ══ */
+.red-band{
+  background:var(--red);padding:3rem 0;
+  position:relative;z-index:2;overflow:hidden;
 }
-.timeline-scroll-wrap {
-  overflow-x: auto; overflow-y: hidden;
-  padding: 0 2rem 2rem;
-  scrollbar-width: thin; scrollbar-color: var(--fire) var(--coal);
+.red-band::before{
+  content:'SMASH & FIRE · DESDE 2021 · ZONA 10 GUATEMALA · SMASH & FIRE · DESDE 2021 · ';
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.4rem;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,255,255,0.10);position:absolute;white-space:nowrap;
+  top:50%;transform:translateY(-50%);
+  animation:band-slide 20s linear infinite;
 }
-.timeline-scroll-wrap::-webkit-scrollbar { height: 4px; }
-.timeline-scroll-wrap::-webkit-scrollbar-track { background: var(--coal); }
-.timeline-scroll-wrap::-webkit-scrollbar-thumb { background: var(--fire); border-radius: 2px; }
-.timeline-track {
-  display: flex; gap: 0; align-items: flex-start;
-  width: max-content; position: relative;
-  padding: 3rem 0;
+@keyframes band-slide{from{left:0}to{left:-100%}}
+.red-band-content{
+  position:relative;z-index:1;
+  display:flex;align-items:center;justify-content:center;gap:4rem;flex-wrap:wrap;
 }
-.timeline-track::before {
-  content: '';
-  position: absolute; top: 50%; left: 0; right: 0; height: 2px;
-  background: linear-gradient(to right, transparent, var(--fire), var(--fire), transparent);
-  transform: translateY(-50%);
+.rb-stat{text-align:center}
+.rb-num{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(2.5rem,6vw,4rem);color:var(--white);
+  letter-spacing:-1px;line-height:1;
 }
-.t-item {
-  width: 280px; flex-shrink: 0; padding: 0 2rem;
-  position: relative;
+.rb-label{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.68rem;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,255,255,0.65);margin-top:4px;
 }
-.t-item:nth-child(odd) { padding-top: 0; padding-bottom: 280px; }
-.t-item:nth-child(even) { padding-top: 280px; padding-bottom: 0; }
-.t-dot {
-  width: 16px; height: 16px; border-radius: 50%;
-  background: var(--fire); border: 3px solid var(--char);
-  box-shadow: 0 0 0 3px var(--fire);
-  position: absolute; left: 50%; transform: translateX(-50%);
-}
-.t-item:nth-child(odd) .t-dot { bottom: 258px; }
-.t-item:nth-child(even) .t-dot { top: 258px; }
-.t-content {
-  background: var(--coal); border: 1px solid var(--ash);
-  border-radius: 4px; padding: 1.5rem;
-}
-.t-year {
-  font-family: 'Poppins', sans-serif; font-size: 2rem; letter-spacing: 3px;
-  color: var(--fire); line-height: 1; margin-bottom: 0.5rem;
-}
-.t-content h3 {
-  font-family: 'Poppins', sans-serif; font-size: 1.1rem; letter-spacing: 2px;
-  color: var(--bone); margin-bottom: 0.5rem;
-}
-.t-content p { color: var(--light); font-size: 0.85rem; line-height: 1.7; }
-.t-emoji { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+.rb-div{width:1px;height:60px;background:rgba(255,255,255,0.2)}
+@media(max-width:600px){.rb-div{display:none}}
 
-/* Values bento */
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto auto;
-  gap: 1rem; margin-top: 3rem;
+/* ══ CHAPTERS ══ */
+.chapters{background:var(--cream);padding:0 0 60px}
+.chapter{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:500px;position:relative;overflow:hidden;
 }
-@media(max-width:900px){ .bento-grid{ grid-template-columns:1fr 1fr; } }
-@media(max-width:500px){ .bento-grid{ grid-template-columns:1fr; } }
-.bento-item {
-  background: var(--coal); border: 1px solid var(--ash);
-  border-radius: 4px; padding: 2rem;
-  transition: border-color 0.3s;
+@media(max-width:820px){.chapter{grid-template-columns:1fr;min-height:auto}}
+.chapter:nth-child(even){direction:rtl}
+.chapter:nth-child(even) *{direction:ltr}
+.chapter-img{position:relative;overflow:hidden}
+.chapter-img img{
+  width:100%;height:100%;object-fit:cover;min-height:320px;
+  transition:transform 8s ease;filter:brightness(0.85) saturate(1.1);
 }
-.bento-item:hover { border-color: rgba(214,35,0,0.4); }
-.bento-item.span2 { grid-column: span 2; }
-.bento-item.fire-bg {
-  background: var(--fire);
+.chapter:hover .chapter-img img{transform:scale(1.05)}
+.chapter-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,transparent 50%,var(--cream));
 }
-.bento-item .bento-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-.bento-item h3 {
-  font-family: 'Poppins', sans-serif; font-size: 1.2rem; letter-spacing: 2px;
-  color: var(--bone); margin-bottom: 0.5rem;
+.chapter:nth-child(even) .chapter-img-overlay{background:linear-gradient(to left,transparent 50%,var(--cream))}
+@media(max-width:820px){
+  .chapter-img-overlay{background:linear-gradient(to top,var(--cream) 10%,transparent)!important}
 }
-.bento-item.fire-bg h3 { color: var(--white); }
-.bento-item p { color: var(--light); font-size: 0.85rem; line-height: 1.7; }
-.bento-item.fire-bg p { color: rgba(255,255,255,0.8); }
-.big-quote {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  letter-spacing: 2px; line-height: 1.2;
-  color: var(--white);
+.chapter-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:4rem 3rem 4rem 4rem;position:relative;z-index:1;
 }
+.chapter:nth-child(even) .chapter-text{padding:4rem 4rem 4rem 3rem}
+@media(max-width:820px){.chapter-text{padding:2.5rem 1.5rem!important}}
+.chapter-year{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(5rem,12vw,8rem);color:rgba(0, 0, 0, 0.2);
+  line-height:1;letter-spacing:-3px;user-select:none;
+  position:absolute;right:2rem;bottom:1rem;
+}
+.chapter:nth-child(even) .chapter-year{right:auto;left:2rem}
+.chapter-num{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.68rem;letter-spacing:5px;text-transform:uppercase;
+  color:var(--red);margin-bottom:0.6rem;
+}
+.chapter-title{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(1.8rem,4vw,3rem);text-transform:uppercase;
+  letter-spacing:1px;line-height:1.05;color:var(--text);margin-bottom:1.2rem;
+}
+.chapter-title span{color:var(--red)}
+.chapter-body{color:var(--text-muted);font-size:0.95rem;line-height:1.85;max-width:400px}
+.chapter-tag{
+  display:inline-block;margin-top:1.2rem;
+  background:var(--red);color:var(--white);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;
+  padding:4px 14px;border-radius:20px;
+}
+
+/* ══ QUOTE INTERLUDE ══ */
+.quote-interlude{
+  background:var(--dark);padding:120px 0;
+  position:relative;overflow:hidden;
+  clip-path:polygon(0 6%,100% 0,100% 94%,0 100%);
+  margin:-3rem 0;z-index:3;
+}
+.quote-interlude::before{
+  content:'';position:absolute;inset:0;
+  background:url('../assets/imgs/classic_smash.jpg') center/cover no-repeat;
+  opacity:0.05;
+}
+.qi-inner{
+  position:relative;z-index:1;
+  max-width:860px;margin:0 auto;text-align:center;padding:2rem;
+}
+.qi-mark{
+  font-family:'Oswald',sans-serif;font-size:8rem;font-weight:700;
+  color:var(--red);line-height:0.5;margin-bottom:1.5rem;display:block;opacity:0.4;
+}
+.qi-quote{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(1.6rem,4vw,3rem);text-transform:uppercase;
+  letter-spacing:1px;line-height:1.2;color:var(--white);margin-bottom:1.5rem;
+}
+.qi-quote em{font-style:normal;color:var(--red)}
+.qi-author{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.72rem;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,247,238,0.4);
+}
+
+/* ══ VALUES ══ */
+.values-section{background:var(--surface);padding:120px 0 100px;position:relative}
+.values-section::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:80px;
+  background:var(--dark);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 0);
+}
+.values-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;margin-top:3rem;
+}
+@media(max-width:900px){.values-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.values-grid{grid-template-columns:1fr}}
+.val-card{
+  background:var(--white);border-radius:16px;padding:2.5rem 2rem;
+  border-left:4px solid var(--border);
+  box-shadow:0 4px 20px var(--shadow);
+  transition:all 0.35s var(--ease-expo);
+  position:relative;overflow:hidden;
+}
+.val-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:var(--red);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s var(--ease-expo);
+}
+.val-card:hover{border-left-color:var(--red);transform:translateY(-6px);box-shadow:0 20px 48px var(--shadow-lg)}
+.val-card:hover::after{transform:scaleX(1)}
+.val-card.featured{background:var(--red);border-left-color:var(--red-dark);grid-column:span 2}
+.val-card.featured::after{background:var(--yellow)}
+.val-card.featured:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(200,16,46,0.35)}
+@media(max-width:560px){.val-card.featured{grid-column:span 1}}
+.val-icon{font-size:2.2rem;margin-bottom:0.9rem;display:block}
+.val-card.featured .val-icon{font-size:3rem}
+.val-card h3{font-family:'Oswald',sans-serif;font-size:1.15rem;letter-spacing:3px;text-transform:uppercase;color:var(--text);margin-bottom:0.6rem}
+.val-card.featured h3{color:var(--white)}
+.val-card p{color:var(--text-muted);font-size:0.88rem;line-height:1.8}
+.val-card.featured p{color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.75}
+
+/* ══ TEAM STRIP ══ */
+.team-strip{background:var(--dark);padding:70px 0;text-align:center}
+.team-strip-inner{
+  display:flex;align-items:center;justify-content:center;
+  gap:1.5rem;flex-wrap:wrap;margin-top:2.5rem;
+}
+.ts-member{display:flex;flex-direction:column;align-items:center;gap:0.5rem}
+.ts-avatar{
+  width:72px;height:72px;border-radius:50%;
+  border:2px solid rgba(255,247,238,0.12);
+  background:var(--dark2);display:flex;align-items:center;justify-content:center;
+  font-size:2.2rem;transition:border-color 0.3s,transform 0.3s;
+}
+.ts-member:hover .ts-avatar{border-color:var(--red);transform:scale(1.1)}
+.ts-name{font-family:'Oswald',sans-serif;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.ts-role{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,247,238,0.35)}
+.ts-div{width:1px;height:80px;background:rgba(255,247,238,0.08);align-self:center}
+@media(max-width:600px){.ts-div{display:none}}
+
 </style>
 </head>
 <body>
-<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
-
 <nav>
-  <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
-  <ul class="nav-links" id="navLinks">
+  <a href="../index.html" class="nav-logo"><img src="/assets/imgs/logo_smash.png" alt="Smash & Fire" style="height:12rem;width:auto;display:block"></a>
+  <ul class="nav-links">
     <li><a href="../index.html">Inicio</a></li>
     <li><a href="../fotos/index.html">Fotos</a></li>
-    <li><a href="../historia/index.html">Historia</a></li>
+    <li><a href="../historia/index.html" class="active">Historia</a></li>
     <li><a href="../terminos/index.html">Términos</a></li>
     <li><a href="../fundadores/index.html">Fundadores</a></li>
     <li><a href="../empleo/index.html">Empleo</a></li>
@@ -143,146 +262,175 @@
   <button class="nav-toggle"><span></span><span></span><span></span></button>
 </nav>
 
-<div class="page-hero">
+<!-- ══ MANIFESTO ══ -->
+<section class="manifesto">
+  <div class="manifesto-bg-img"></div>
   <div class="container">
-    <span class="section-label reveal">Quiénes somos</span>
-    <h1 class="section-title reveal delay-1" style="font-size:clamp(3rem,8vw,6.5rem)">NUESTRA<br>HISTORIA</h1>
-    <p class="reveal delay-2">De una plancha caliente y un sueño, a la hamburguesa que defines como favorita.</p>
+    <div class="manifesto-content">
+      <div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 class="manifesto-headline reveal delay-1">
+          LA BURGER<br>QUE <em>NADIE</em><br>PIDIÓ<br>PERMISO.
+        </h1>
+        <p class="manifesto-body reveal delay-2">No fue un plan de negocios. No fue un MBA. Fue una plancha caliente, una obsesión auténtica y la certeza de que Guatemala merecía algo diferente.</p>
+      </div>
+      <div class="manifesto-right reveal-right">
+        <div class="manifesto-big-year">21</div>
+        <div class="manifesto-circle">
+          <img src="../assets/imgs/beans.jpg" alt="Smash & Fire burger">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="red-band">
+  <div class="container">
+    <div class="red-band-content">
+      <div class="rb-stat reveal">
+        <div class="rb-num" data-count="50000">0</div>
+        <div class="rb-label">Burgers servidas</div>
+      </div>
+      <div class="rb-div"></div>
+      <div class="rb-stat reveal delay-1">
+        <div class="rb-num" data-count="5">0</div>
+        <div class="rb-label">Años de fuego</div>
+      </div>
+      <div class="rb-div"></div>
+      <div class="rb-stat reveal delay-2">
+        <div class="rb-num" data-count="6">0</div>
+        <div class="rb-label">En el equipo</div>
+      </div>
+      <div class="rb-div"></div>
+      <div class="rb-stat reveal delay-3">
+        <div class="rb-num" data-count="1">0</div>
+        <div class="rb-label">Receta perfecta</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- INTRO PARALLAX -->
-<section class="historia-intro">
-  <div class="hi-bg" data-parallax="0.12"></div>
-  <div class="hi-content">
-    <div class="hi-text reveal-left">
-      <span class="section-label">El comienzo</span>
-      <h2 class="section-title" style="font-size:clamp(2rem,5vw,3.5rem)">TODO EMPEZÓ<br>CON UNA PLANCHA</h2>
-      <p class="intro-body">Smash & Fire nació de una obsesión sencilla: hacer la hamburguesa perfecta. No la más elegante, no la más costosa, sino la que te hace cerrar los ojos al primer bocado.</p>
-      <p class="intro-body">Carlos y Sofía la descubrieron en un viaje a Nueva York. Regresaron a Guatemala con una misión: traer esa experiencia auténtica y hacerla accesible.</p>
+<!-- ══ CHAPTERS ══ -->
+<div class="chapters">
+  <div class="chapter reveal">
+    <div class="chapter-img">
+      <img src="../assets/imgs/plancha.jpg" alt="La plancha">
+      <div class="chapter-img-overlay"></div>
     </div>
-    <div class="reveal-right" style="text-align:center;">
-      <div class="hi-num">2019</div>
-      <p style="color:var(--smoke);font-size:0.85rem;letter-spacing:3px;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;">Año fundación</p>
+    <div class="chapter-text">
+      <div class="chapter-num">Capítulo 01 · 2021</div>
+      <h2 class="chapter-title">EL DÍA QUE<br><span>ENCENDIMOS</span><br>LA PLANCHA</h2>
+      <p class="chapter-body">Estrellita Telles no abrió un restaurante. Encendió una plancha y no la apagó. La primera hamburguesa salió perfecta. La segunda también. A la décima, ya sabía que esto era algo real.</p>
+      <span class="chapter-tag">El origen</span>
+      <br><br><br><br><br><br><br><br>
+      <div class="chapter-year">2021</div>
     </div>
   </div>
-</section>
 
-<!-- HORIZONTAL TIMELINE -->
-<section class="timeline-section">
-  <div class="container">
-    <span class="section-label reveal">Línea del tiempo</span>
-    <h2 class="section-title reveal delay-1">EL CAMINO<br>HASTA HOY</h2>
-    <p class="reveal delay-2" style="color:var(--gray);margin-top:0.5rem;margin-bottom:0;">Desliza horizontalmente para ver nuestra historia →</p>
-  </div>
-  <div class="timeline-scroll-wrap" style="margin-top:2rem;">
-    <div class="timeline-track">
-      <div class="t-item">
-        <div class="t-content">
-          <span class="t-emoji">💡</span>
-          <div class="t-year">2019</div>
-          <h3>LA IDEA</h3>
-          <p>Carlos y Sofía descubren la técnica smash burger en Nueva York. Regresan a Guatemala con una misión.</p>
-        </div>
-        <div class="t-dot"></div>
-      </div>
-      <div class="t-item">
-        <div class="t-dot"></div>
-        <div class="t-content">
-          <span class="t-emoji">🔬</span>
-          <div class="t-year">2020</div>
-          <h3>LA PRUEBA</h3>
-          <p>200 hamburguesas de prueba desde la cocina de casa. Amigos y familia como críticos. La receta perfecta emerge.</p>
-        </div>
-      </div>
-      <div class="t-item">
-        <div class="t-content">
-          <span class="t-emoji">🏠</span>
-          <div class="t-year">2021</div>
-          <h3>PRIMER LOCAL</h3>
-          <p>Abren en Zona 10. 15 mesas, cocina abierta y una plancha que nunca se apaga. Las filas aparecen desde semana uno.</p>
-        </div>
-        <div class="t-dot"></div>
-      </div>
-      <div class="t-item">
-        <div class="t-dot"></div>
-        <div class="t-content">
-          <span class="t-emoji">🏆</span>
-          <div class="t-year">2022</div>
-          <h3>RECONOCIMIENTO</h3>
-          <p>Ganadores del concurso nacional "Mejor Burger Urbana de Guatemala". El equipo crece a 12 personas.</p>
-        </div>
-      </div>
-      <div class="t-item">
-        <div class="t-content">
-          <span class="t-emoji">📈</span>
-          <div class="t-year">2023</div>
-          <h3>50,000 BURGERS</h3>
-          <p>Se alcanza la meta de 50,000 hamburguesas vendidas. Hito celebrado con un menú especial de edición limitada.</p>
-        </div>
-        <div class="t-dot"></div>
-      </div>
-      <div class="t-item">
-        <div class="t-dot"></div>
-        <div class="t-content">
-          <span class="t-emoji">🚀</span>
-          <div class="t-year">HOY</div>
-          <h3>SEGUIMOS</h3>
-          <p>Misma pasión del primer día, más experiencia, más técnica. El próximo capítulo está por escribirse.</p>
-        </div>
-      </div>
+  <div class="chapter reveal">
+    <div class="chapter-img">
+      <img src="../assets/imgs/classic_smash.jpg" alt="Classic Smash">
+      <div class="chapter-img-overlay"></div>
+    </div>
+    <div class="chapter-text">
+      <div class="chapter-num">Capítulo 02 · 2021</div>
+      <h2 class="chapter-title">ZONA 10<br>SE <span>ENTERA</span></h2>
+      <p class="chapter-body">Sin publicidad. Solo boca a boca. Alguien comió, le encantó, llamó a tres amigos. Esos tres llamaron a diez más. Las primeras mesas se llenaron solas — y así siguen.</p>
+      <span class="chapter-tag">La apertura</span>
+      <div class="chapter-year">2021</div>
     </div>
   </div>
-</section>
 
-<!-- BENTO VALUES -->
-<section style="background:var(--coal);padding:100px 0;">
+  <div class="chapter reveal">
+    <div class="chapter-img">
+      <img src="../assets/imgs/bacon.webp" alt="Bacon Fire">
+      <div class="chapter-img-overlay"></div>
+    </div>
+    <div class="chapter-text">
+      <div class="chapter-num">Capítulo 03 · 2022</div>
+      <h2 class="chapter-title">EL <span>CHEF</span><br>TOMA LA<br>PLANCHA</h2>
+      <p class="chapter-body">José Milian llegó y convirtió recetas en experiencias. Nació la Bacon Fire. El estándar subió. La cocina dejó de ser solo cocina — se convirtió en escenario.</p>
+      <span class="chapter-tag">El equipo crece</span>
+      <div class="chapter-year">2022</div>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="chapter-img">
+      <img src="../assets/imgs/chapina.jpg" alt="La Chapina">
+      <div class="chapter-img-overlay"></div>
+    </div>
+    <div class="chapter-text">
+      <div class="chapter-num">Capítulo 04 · 2022–2025</div>
+      <h2 class="chapter-title">50,000<br><span>RAZONES</span><br>PARA SEGUIR</h2>
+      <p class="chapter-body">Ganamos "Mejor Burger Urbana de Guatemala". Nos constituimos S.A. Y en algún punto en el medio, llegamos a la hamburguesa número 50,000. Ese día, la casa invitó.</p>
+      <span class="chapter-tag">El reconocimiento</span>
+      <br><br><br><br><br><br><br><br>
+      <div class="chapter-year">2025</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ QUOTE ══ -->
+<div class="quote-interlude">
+  <div class="qi-inner">
+    <span class="qi-mark reveal">"</span>
+    <p class="qi-quote reveal delay-1">Una burger bien hecha<br>no necesita <em>disculpas.</em><br>Habla sola.</p>
+    <p class="qi-author reveal delay-2">— Estrellita Telles · CEO &amp; Fundadora</p>
+  </div>
+</div>
+
+<!-- ══ VALUES ══ -->
+<section class="values-section">
   <div class="container">
     <span class="section-label reveal">Nuestra esencia</span>
-    <h2 class="section-title reveal delay-1">MISIÓN, VISIÓN<br>Y VALORES</h2>
-    <div class="bento-grid">
-      <div class="bento-item fire-bg span2 reveal">
-        <p class="big-quote">"UNA HAMBURGUESA BIEN HECHA NO NECESITA DISCULPAS. HABLA SOLA."</p>
-        <p style="margin-top:1rem;">— Carlos Martínez, Chef y Co-fundador</p>
+    <h2 class="section-title reveal delay-1">LO QUE NOS MUEVE<br>CADA DÍA</h2>
+    <div class="values-grid">
+      <div class="val-card featured reveal">
+        <h3>Misión</h3>
+        <p>Hacer hamburguesas al momento con ingredientes frescos, técnica smash y un equipo que le pone alma a cada orden. No somos un fast food — somos fuego controlado.</p>
       </div>
-      <div class="bento-item reveal delay-1">
-        <span class="bento-icon">🎯</span>
-        <h3>MISIÓN</h3>
-        <p>Ofrecer hamburguesas preparadas al momento, con ingredientes frescos y altos estándares de higiene, brindando un servicio eficiente y una experiencia agradable al cliente.</p>
+      <div class="val-card reveal delay-1">
+        <h3>Visión</h3>
+        <p>Ser la referencia de smash burgers en Guatemala y crecer sin perder lo que nos hizo únicos desde el primer día.</p>
       </div>
-      <div class="bento-item reveal delay-2">
-        <span class="bento-icon">🌟</span>
-        <h3>VISIÓN</h3>
-        <p>Convertirnos en una empresa reconocida por la calidad, organización y excelente atención, con potencial de crecimiento hacia un negocio formal en el futuro.</p>
+      <div class="val-card reveal delay-1">
+        <h3>Pasión</h3>
+        <p>La plancha nunca se apaga porque la pasión tampoco. Igual de intensos en la primera que en la última del turno.</p>
       </div>
-      <div class="bento-item reveal delay-1">
-        <span class="bento-icon">💛</span>
-        <h3>HONESTIDAD</h3>
-        <p>Ingredientes reales, precios justos, sin trucos ni atajos. Lo que ves es lo que recibes.</p>
+      <div class="val-card reveal delay-2">
+        <h3>Honestidad</h3>
+        <p>Ingredientes reales, precios justos, sin trucos. Lo que ves en la foto es lo que llega a tu mesa.</p>
       </div>
-      <div class="bento-item reveal delay-2">
-        <span class="bento-icon">🔥</span>
-        <h3>PASIÓN</h3>
-        <p>Cada hamburguesa se prepara con la misma intensidad, ya sea la primera del día o la última del turno.</p>
+      <div class="val-card reveal delay-2">
+        <h3>Calidad</h3>
+        <p>Cada ingrediente pasa por el filtro del Chef. Si no está bien, no sale. Así de simple.</p>
       </div>
-      <div class="bento-item span2 reveal delay-3">
-        <span class="bento-icon">🤝</span>
-        <h3>RESPETO AL CLIENTE</h3>
-        <p>Tu tiempo, tu dinero y tu experiencia importan. Nos esforzamos para que cada visita supere la anterior. Siempre.</p>
-      </div>
-      <div class="bento-item reveal delay-2">
-        <span class="bento-icon">💎</span>
-        <h3>CALIDAD</h3>
-        <p>Siempre fresca con ingredientes seleccionados cuidadosamente y técnicas de preparación rigurosas.</p>
-      </div>
-      <div class="bento-item reveal delay-2">
-        <span class="bento-icon">🧼</span>
-        <h3>HIGIENE</h3>
-        <p>Procedimientos estrictos de limpieza y mantenimiento del ambiente de trabajo para garantizar la seguridad alimentaria.</p>
+      <div class="val-card reveal delay-3">
+        <h3>Respeto</h3>
+        <p>Tu tiempo, tu dinero y tu hambre importan. Cada visita tiene que superar la anterior. Siempre.</p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ══ TEAM STRIP ══ -->
+<section class="team-strip">
+  <div class="container">
+    <span class="section-label light reveal">Las personas</span>
+    <h2 class="section-title light reveal delay-1">EL FUEGO TIENE NOMBRE</h2>
+    <div style="text-align:center;margin-top:2.5rem" class="reveal delay-3">
+      <a href="../fundadores/index.html" class="btn btn-outline" style="color:rgba(255,247,238,0.7);border-color:rgba(255,247,238,0.2)">Conocer al equipo →</a>
+    </div>
+  </div>
+</section>
+
 
 <!-- FOOTER -->
 <footer>
@@ -305,7 +453,25 @@
   </div>
 </footer>
 
-<!-- Scripts -->
 <script src="../nav.js"></script>
+<script>
+// Animated counters
+function animCount(el){
+  const target=+el.dataset.count;
+  const isLarge=target>=1000;
+  const dur=isLarge?2200:1200;
+  let current=0;
+  const increment=target/60;
+  const timer=setInterval(()=>{
+    current=Math.min(current+increment,target);
+    el.textContent=isLarge?Math.round(current).toLocaleString('es-GT'):Math.round(current);
+    if(current>=target)clearInterval(timer);
+  },dur/60);
+}
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(!e.isIntersecting)return;animCount(e.target);obs.unobserve(e.target)});
+},{threshold:0.5});
+document.querySelectorAll('[data-count]').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>

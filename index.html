@@ -11,19 +11,21 @@
 .hero-bg .bg-dots{position:absolute;inset:0;opacity:0.04;background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:30px 30px}
 .hero-content{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 2rem;padding-top:calc(var(--nav-h)+40px);display:grid;grid-template-columns:55% 1fr;gap:4rem;align-items:center}
 @media(max-width:900px){.hero-content{grid-template-columns:1fr;padding-top:calc(var(--nav-h)+24px)}}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Work Sans',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:5px;text-transform:uppercase;color:var(--yellow);margin-bottom:1.2rem}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:5px;text-transform:uppercase;color:var(--yellow);margin-bottom:1.2rem}
 .hero-eyebrow::before{content:'';width:20px;height:2px;background:var(--yellow);border-radius:2px}
-.hero-title{font-family:'Poppins',sans-serif;font-size:clamp(4rem,11vw,9rem);line-height:0.92;letter-spacing:1px;text-transform:uppercase;color:var(--white)}
+.hero-title{font-family:'Oswald',sans-serif;font-size:clamp(4rem,11vw,9rem);line-height:0.92;letter-spacing:1px;text-transform:uppercase;color:var(--white)}
 .hero-title .line-accent{color:var(--red)}
 .hero-sub{color:rgba(255,247,238,0.7);font-size:1.1rem;line-height:1.75;max-width:420px;margin:1.8rem 0 2.5rem}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
 .hero-stats{display:flex;gap:2rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,247,238,0.15)}
-.stat-num{font-family:'Poppins',sans-serif;font-size:2rem;color:var(--yellow);line-height:1}
-.stat-label{font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,247,238,0.5);margin-top:3px}
+.stat-num{font-family:'Oswald',sans-serif;font-size:2rem;color:var(--yellow);line-height:1}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,247,238,0.5);margin-top:3px}
 .hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
 .hero-visual::before{content:'';position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,0.22) 0%,transparent 70%);animation:breathe 4s ease-in-out infinite}
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.hero-emoji{font-size:clamp(6rem,14vw,11rem);filter:drop-shadow(0 0 50px rgba(200,16,46,0.5)) drop-shadow(0 30px 60px rgba(0,0,0,0.5));animation:float 4s ease-in-out infinite;position:relative;z-index:1;user-select:none}
+.hero-img-frame{position:relative;z-index:1;width:clamp(280px,36vw,440px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:4px solid rgba(200,16,46,0.5);box-shadow:0 0 0 8px rgba(200,16,46,0.08),0 32px 80px rgba(0,0,0,0.5);animation:float 4s ease-in-out infinite}
+.hero-img-frame img{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-bg-photo{position:absolute;inset:0;opacity:0.08;background:url('assets/imgs/plancha.jpg') center/cover no-repeat;z-index:0}
 @keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-16px) rotate(2deg)}}
 
 .values-section{background:var(--dark)}
@@ -32,7 +34,7 @@
 .value-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease-expo)}
 .value-item:hover{background:rgba(255,247,238,0.06)}.value-item:hover::after{transform:scaleX(1)}
 .value-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
-.value-item h3{font-family:'Poppins',sans-serif;font-size:1.2rem;letter-spacing:2px;color:var(--white);margin-bottom:0.5rem}
+.value-item h3{font-family:'Oswald',sans-serif;font-size:1.2rem;letter-spacing:2px;color:var(--white);margin-bottom:0.5rem}
 .value-item p{color:rgba(255,247,238,0.55);font-size:0.88rem;line-height:1.7}
 
 .featured-section{background:var(--cream)}
@@ -42,31 +44,31 @@
 .feat-thumb{height:140px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative}
 .feat-badge{position:absolute;top:10px;left:10px}
 .feat-body{padding:1.2rem}
-.feat-body h3{font-family:'Poppins',sans-serif;font-size:1.05rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:0.3rem}
+.feat-body h3{font-family:'Oswald',sans-serif;font-size:1.05rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:0.3rem}
 .feat-body p{color:var(--text-muted);font-size:0.82rem;line-height:1.5}
 .feat-footer{display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;padding-top:0.9rem;border-top:1px solid var(--border)}
-.feat-price{font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:700;color:var(--red)}
+.feat-price{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;color:var(--red)}
 
 .how-section{background:var(--surface)}
 .how-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:3rem;counter-reset:step}
 .how-step{text-align:center;padding:2rem 1.5rem;counter-increment:step;position:relative}
-.how-step::before{content:counter(step,'0');font-family:'Poppins',sans-serif;font-size:5rem;font-weight:700;color:rgba(200,16,46,0.1);position:absolute;top:0;left:50%;transform:translateX(-50%);line-height:1}
+.how-step::before{content:counter(step,'0');font-family:'Oswald',sans-serif;font-size:5rem;font-weight:700;color:rgba(200,16,46,0.1);position:absolute;top:0;left:50%;transform:translateX(-50%);line-height:1}
 .step-icon{font-size:2.8rem;margin-bottom:1rem;display:block;position:relative;z-index:1}
-.how-step h3{font-family:'Poppins',sans-serif;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:0.5rem}
+.how-step h3{font-family:'Oswald',sans-serif;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:0.5rem}
 .how-step p{color:var(--text-muted);font-size:0.88rem;line-height:1.6}
 
 .cta-section{background:var(--red);padding:80px 0;text-align:center;position:relative;overflow:hidden}
 .cta-section::before,.cta-section::after{content:'🍔';position:absolute;font-size:12rem;opacity:0.06;user-select:none}
 .cta-section::before{left:-40px;top:-20px}
 .cta-section::after{right:-40px;bottom:-20px}
-.cta-section h2{font-family:'Poppins',sans-serif;font-size:clamp(2.5rem,6vw,4rem);letter-spacing:3px;text-transform:uppercase;color:var(--white);line-height:1;position:relative;z-index:1}
+.cta-section h2{font-family:'Oswald',sans-serif;font-size:clamp(2.5rem,6vw,4rem);letter-spacing:3px;text-transform:uppercase;color:var(--white);line-height:1;position:relative;z-index:1}
 .cta-section p{color:rgba(255,255,255,0.8);font-size:1.1rem;margin:1rem auto 2.5rem;max-width:480px;position:relative;z-index:1}
 .cta-section .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
 </style>
 </head>
 <body>
 <nav>
-  <a href="index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
+  <a href="index.html" class="nav-logo"><img src="assets/imgs/logo_smash.png" alt="Smash & Fire" style="height:12rem;width:auto;display:block"></a>
   <ul class="nav-links">
     <li><a href="index.html" class="active" data-i18n="nav_home">Inicio</a></li>
     <li><a href="fotos/index.html" data-i18n="nav_photos">Fotos</a></li>
@@ -81,9 +83,10 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"><div class="bg-r"></div><div class="bg-dots"></div></div>
+  <div class="hero-bg"><div class="hero-bg-photo"></div><div class="bg-r"></div><div class="bg-dots"></div></div>
   <div class="hero-content">
     <div>
+      <br>
       <div class="hero-eyebrow">Guatemala City · Zona 10 · Desde 2021</div>
       <h1 class="hero-title">LA BURGER<br>QUE TE <span class="line-accent">ENAMORA</span></h1>
       <p class="hero-sub">Carne aplastada a alta temperatura, ingredientes frescos del día y sabores que no olvidarás. Eso es Smash &amp; Fire.</p>
@@ -97,7 +100,7 @@
         <div><div class="stat-num"><span data-count="98">0</span><sup style="font-size:1rem">%</sup></div><div class="stat-label">Clientes felices</div></div>
       </div>
     </div>
-    <div class="hero-visual"><div class="hero-emoji">🍔</div></div>
+    <div class="hero-visual"><div class="hero-img-frame"><img src="/assets/imgs/main_index.jpg" alt="Smash & Fire burger" loading="eager"></div></div>
   </div>
 </section>
 
@@ -112,10 +115,10 @@
     <span class="section-label light reveal">Por qué elegirnos</span>
     <h2 class="section-title light reveal delay-1">LO QUE NOS<br>HACE DISTINTOS</h2>
     <div class="values-grid">
-      <div class="value-item reveal"><span class="value-icon">🔥</span><h3>La Técnica Smash</h3><p>Aplastamos la carne a 300°C para crear la reacción de Maillard perfecta: costra crujiente, interior jugoso.</p></div>
-      <div class="value-item reveal delay-1"><span class="value-icon">🌱</span><h3>Ingredientes Frescos</h3><p>Sin congelados, sin atajos. Cada ingrediente llega fresco cada mañana y se usa el mismo día.</p></div>
-      <div class="value-item reveal delay-2"><span class="value-icon">👨‍🍳</span><h3>Hecho al Momento</h3><p>Tu hamburguesa se prepara desde cero cuando la pides. Nunca batch cooking, siempre a la orden.</p></div>
-      <div class="value-item reveal delay-3"><span class="value-icon">🇬🇹</span><h3>Orgullo Guatemalteco</h3><p>Técnica internacional, corazón chapín. Ingredientes locales y sabores que solo encuentras aquí.</p></div>
+      <div class="value-item reveal"><h3>La Técnica Smash</h3><p>Aplastamos la carne a 300°C para crear la reacción de Maillard perfecta: costra crujiente, interior jugoso.</p></div>
+      <div class="value-item reveal delay-1"><h3>Ingredientes Frescos</h3><p>Sin congelados, sin atajos. Cada ingrediente llega fresco cada mañana y se usa el mismo día.</p></div>
+      <div class="value-item reveal delay-2"><h3>Hecho al Momento</h3><p>Tu hamburguesa se prepara desde cero cuando la pides. Nunca batch cooking, siempre a la orden.</p></div>
+      <div class="value-item reveal delay-3"><h3>Orgullo Guatemalteco</h3><p>Técnica internacional, corazón chapín. Ingredientes locales y sabores que solo encuentras aquí.</p></div>
     </div>
   </div>
 </section>
@@ -126,26 +129,12 @@
     <span class="section-label reveal">Lo más pedido</span>
     <h2 class="section-title reveal delay-1">NUESTRAS<br>ESTRELLAS</h2>
     <div class="feat-grid">
-      <div class="feat-card reveal"><div class="feat-thumb">🍔<span class="feat-badge badge">⭐ Best Seller</span></div><div class="feat-body"><h3>The Classic Smash</h3><p>Doble carne, queso americano fundido, cebolla caramelizada y nuestra salsa especial en pan brioche.</p><div class="feat-footer"><span class="feat-price">Q 55</span><a href="menu/index.html" class="btn btn-sm">Pedir →</a></div></div></div>
-      <div class="feat-card reveal delay-1"><div class="feat-thumb">🥓<span class="feat-badge badge" style="background:#8B1A1A">💀 Picante</span></div><div class="feat-body"><h3>Bacon Fire</h3><p>Tocino ahumado crujiente, cheddar, jalapeños asados y mayonesa artesanal de chipotle.</p><div class="feat-footer"><span class="feat-price">Q 65</span><a href="menu/index.html" class="btn btn-sm">Pedir →</a></div></div></div>
-      <div class="feat-card reveal delay-2"><div class="feat-thumb">🇬🇹</div><div class="feat-body"><h3>La Chapina</h3><p>Guacamol fresco, queso Chancol y lazcas de tortilla frita crujiente. Guatemala en cada bocado.</p><div class="feat-footer"><span class="feat-price">Q 75</span><a href="menu/index.html" class="btn btn-sm">Pedir →</a></div></div></div>
-      <div class="feat-card reveal delay-3"><div class="feat-thumb">🫘<span class="feat-badge badge badge-green">🌱 Nuevo</span></div><div class="feat-body"><h3>Frijolito Smash</h3><p>Salsa de queso fresco, pimiento rojo ahumado y frijoles volteados con crema de Xela.</p><div class="feat-footer"><span class="feat-price">Q 68</span><a href="menu/index.html" class="btn btn-sm">Pedir →</a></div></div></div>
+      <div class="feat-card reveal"><div class="feat-thumb" style="padding:0;overflow:hidden"><img src="menu/../assets/imgs/classic_smash.jpg" style="width:100%;height:100%;object-fit:cover" alt="Classic Smash"><span class="feat-badge badge">⭐ Best Seller</span></div><div class="feat-body"><h3>The Classic Smash</h3><p>Doble carne, queso americano fundido, cebolla caramelizada y nuestra salsa especial en pan brioche.</p><div class="feat-footer"><span class="feat-price">Q 55</span><a href="menu/index.html" class="btn btn-sm">Pedir →</a></div></div></div>
+      <div class="feat-card reveal delay-1"><div class="feat-thumb" style="padding:0;overflow:hidden"><img src="assets/imgs/bacon.webp" style="width:100%;height:100%;object-fit:cover" alt="Bacon Fire"><span class="feat-badge badge" style="background:#8B1A1A">💀 Picante</span></div><div class="feat-body"><h3>Bacon Fire</h3><p>Tocino ahumado crujiente, cheddar, jalapeños asados y mayonesa artesanal de chipotle.</p><div class="feat-footer"><span class="feat-price">Q 65</span><a href="menu/index.html" class="btn btn-sm">Pedir →</a></div></div></div>
+      <div class="feat-card reveal delay-2"><div class="feat-thumb" style="padding:0;overflow:hidden"><img src="assets/imgs/chapina.jpg" style="width:100%;height:100%;object-fit:cover" alt="La Chapina"></div><div class="feat-body"><h3>La Chapina</h3><p>Guacamol fresco, queso Chancol y lazcas de tortilla frita crujiente. Guatemala en cada bocado.</p><div class="feat-footer"><span class="feat-price">Q 75</span><a href="menu/index.html" class="btn btn-sm">Pedir →</a></div></div></div>
+      <div class="feat-card reveal delay-3"><div class="feat-thumb" style="padding:0;overflow:hidden"><img src="assets/imgs/beans.jpg" style="width:100%;height:100%;object-fit:cover" alt="Frijolito Smash"><span class="feat-badge badge badge-green">🌱 Nuevo</span></div><div class="feat-body"><h3>Frijolito Smash</h3><p>Salsa de queso fresco, pimiento rojo ahumado y frijoles volteados con crema de Xela.</p><div class="feat-footer"><span class="feat-price">Q 68</span><a href="menu/index.html" class="btn btn-sm">Pedir →</a></div></div></div>
     </div>
     <div style="text-align:center;margin-top:3rem"><a href="menu/index.html" class="btn btn-outline">Ver Menú Completo →</a></div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how-section">
-  <div class="container">
-    <span class="section-label reveal">El proceso</span>
-    <h2 class="section-title reveal delay-1">ASÍ SE HACE<br>UNA SMASH BURGER</h2>
-    <div class="how-steps">
-      <div class="how-step reveal"><span class="step-icon">🥩</span><h3>La Carne</h3><p>Carne molida fresca del día. Sin preservantes, sin congelados. Solo proteína pura.</p></div>
-      <div class="how-step reveal delay-1"><span class="step-icon">🔥</span><h3>El Smash</h3><p>A 300°C aplastamos la bola de carne contra la plancha para crear la costra perfecta.</p></div>
-      <div class="how-step reveal delay-2"><span class="step-icon">🧀</span><h3>El Queso</h3><p>El queso se funde sobre la carne con el vapor natural. Cremoso y perfectamente derretido.</p></div>
-      <div class="how-step reveal delay-3"><span class="step-icon">🍞</span><h3>El Montaje</h3><p>Pan brioche tostado, ingredientes frescos y nuestra salsa secreta. La magia final.</p></div>
-    </div>
   </div>
 </section>
 
@@ -162,10 +151,7 @@
 <footer>
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand">
-        <div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div>
-        <p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p>
-      </div>
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p></div>
       <div class="footer-col">
         <h4>Navegación</h4>
         <a href="../index.html">Inicio</a>
@@ -175,22 +161,14 @@
         <a href="../fundadores/index.html">Fundadores</a>
         <a href="../empleo/index.html">Empleo</a>
       </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <a href="tel:+50249473557">+502 4947-3557</a>
-        <p>6a Calle 6-50 Zona 10</p>
-        <p>Ciudad de Guatemala</p>
-      </div>
-      <div class="footer-col">
-        <h4>Horarios</h4>
-        <p>Lun – Jue: 11:00 – 22:00</p>
-        <p>Viernes: 11:00 – 23:00</p>
-        <p>Sáb – Dom: 11:00 – 23:00</p>
-      </div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50249473557">+502 4947-3557</a><p>6a Calle 6-50 Zona 10</p><p>Ciudad de Guatemala</p></div>
+      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 11:00 – 23:00</p></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="terminos/index.html">Términos y Condiciones</a></div></div>
+    <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="../terminos/index.html">Términos y Condiciones</a></div></div>
   </div>
 </footer>
+
+<!-- Scripts -->
 <script src="nav.js"></script>
 </body>
 </html>

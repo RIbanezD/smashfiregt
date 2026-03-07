@@ -1,210 +1,294 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fotos — Smash & Fire</title>
-  <link rel="stylesheet" href="../style.css"/>
-  <style>
-.gallery-tabs {
-  display: flex; gap: 0.5rem; flex-wrap: wrap;
-  margin: 2.5rem 0;
-}
-.gtab {
-  background: var(--ash); border: 1px solid var(--ash);
-  color: var(--light); padding: 0.5rem 1.2rem;
-  font-family: 'Work Sans', sans-serif; font-weight: 700;
-  font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
-  border-radius: 3px; cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-.gtab:hover { color: var(--bone); }
-.gtab.active { background: var(--red); border-color: var(--red); color: var(--white); }
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Fotos — Smash & Fire</title>
+<link rel="stylesheet" href="../style.css"/>
+<style>
+/* ── FILTER TABS ── */
+.photo-filters{display:flex;gap:0.4rem;flex-wrap:wrap;margin:2.5rem 0 2rem;border-bottom:2px solid var(--border);padding-bottom:0}
+.pfilt{background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);padding:0.65rem 1.1rem;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.2s}
+.pfilt:hover{color:var(--text)}.pfilt.active{color:var(--red);border-bottom-color:var(--red)}
 
-/* Masonry-style grid */
-.gallery-grid {
-  columns: 3 280px; gap: 1rem;
+/* ── MASONRY GRID ── */
+.photo-grid{
+  columns:3 280px;
+  column-gap:1.2rem;
+  margin-top:0.5rem;
 }
-.gallery-item {
-  break-inside: avoid; margin-bottom: 1rem;
-  border-radius: 4px; overflow: hidden; cursor: pointer;
-  position: relative;
-  background: var(--coal); border: 1px solid var(--border);
-  transition: transform 0.3s, box-shadow 0.3s;
+.photo-card{
+  break-inside:avoid;
+  margin-bottom:1.2rem;
+  border-radius:14px;overflow:hidden;
+  position:relative;cursor:pointer;
+  border:2px solid transparent;
+  transition:border-color 0.25s,transform 0.3s,box-shadow 0.3s;
+  box-shadow:0 2px 10px var(--shadow);
+  background:var(--dark);
 }
-.gallery-item:hover { transform: scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
-.gallery-visual {
-  aspect-ratio: 4/3;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 5rem; position: relative;
-  background: linear-gradient(135deg, var(--ash), var(--coal));
+.photo-card:hover{border-color:var(--red);transform:translateY(-4px);box-shadow:0 12px 32px var(--shadow-lg)}
+.photo-card img{
+  width:100%;display:block;
+  object-fit:cover;
+  transition:transform 0.5s;
 }
-.gallery-item.tall .gallery-visual { aspect-ratio: 3/4; font-size: 6rem; }
-.gallery-item.wide .gallery-visual { aspect-ratio: 16/7; font-size: 6rem; }
-.gallery-visual::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 30%, rgba(28,28,28,0.85));
+.photo-card:hover img{transform:scale(1.06)}
+.photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,8,0,0.85) 0%,transparent 50%);
+  opacity:0;transition:opacity 0.3s;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:1.2rem;
 }
-.gallery-caption {
-  position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
-  padding: 1rem 1.2rem;
-  transform: translateY(10px); opacity: 0;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.gallery-item:hover .gallery-caption { transform: translateY(0); opacity: 1; }
-.gallery-caption h4 {
-  font-family: 'Poppins', sans-serif; font-size: 1rem; letter-spacing: 2px; color: var(--white);
-}
-.gallery-caption p { color: var(--light); font-size: 0.78rem; margin-top: 2px; }
-.gallery-overlay {
-  position: absolute; top: 12px; right: 12px; z-index: 2;
-  width: 36px; height: 36px; border-radius: 50%;
-  background: rgba(28,28,28,0.6); backdrop-filter: blur(8px);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--white); font-size: 0.9rem;
-  opacity: 0; transition: opacity 0.3s;
-}
-.gallery-item:hover .gallery-overlay { opacity: 1; }
+.photo-card:hover .photo-overlay{opacity:1}
+.photo-label{font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);line-height:1.2}
+.photo-cat-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:0.3rem}
+.photo-card.hidden{display:none}
 
-/* LIGHTBOX */
-.lightbox {
-  position: fixed; inset: 0; z-index: 2000;
-  background: rgba(0,0,0,0.92); backdrop-filter: blur(16px);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.3s;
-}
-.lightbox.open { opacity: 1; pointer-events: all; }
-.lb-inner {
-  position: relative; max-width: 700px; width: 90%;
-  background: var(--coal); border: 1px solid var(--border);
-  border-radius: 6px; overflow: hidden;
-  transform: scale(0.9);
-  transition: transform 0.3s var(--ease-out-expo);
-}
-.lightbox.open .lb-inner { transform: scale(1); }
-.lb-visual {
-  height: 380px; display: flex; align-items: center; justify-content: center;
-  font-size: 9rem; background: var(--ash);
-}
-.lb-body { padding: 2rem; }
-.lb-title {
-  font-family: 'Poppins', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: var(--bone);
-}
-.lb-desc { color: var(--light); margin-top: 0.5rem; line-height: 1.7; }
-.lb-close {
-  position: absolute; top: 14px; right: 14px;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--ash); border: 1px solid var(--smoke);
-  color: var(--bone); font-size: 1.1rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s, color 0.2s;
-}
-.lb-close:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+/* ── LIGHTBOX ── */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:2000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(8px)}
+.lightbox.open{display:flex}
+.lb-inner{position:relative;max-width:900px;width:100%;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.lb-img-wrap{border-radius:16px;overflow:hidden;max-height:75vh;display:flex}
+.lb-img-wrap img{max-width:100%;max-height:75vh;object-fit:contain;display:block;border-radius:16px}
+.lb-caption{text-align:center}
+.lb-title{font-family:'Oswald',sans-serif;font-size:1.1rem;letter-spacing:3px;text-transform:uppercase;color:var(--white)}
+.lb-sub{font-size:0.8rem;color:rgba(255,247,238,0.5);margin-top:2px;font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;text-transform:uppercase}
+.lb-close{position:fixed;top:1.2rem;right:1.5rem;background:rgba(255,255,255,0.1);border:none;color:var(--white);width:44px;height:44px;border-radius:50%;font-size:1.5rem;cursor:pointer;transition:background 0.2s;z-index:2001}
+.lb-close:hover{background:var(--red)}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:var(--white);width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;transition:all 0.2s;z-index:2001}
+.lb-nav:hover{background:var(--red)}
+.lb-prev{left:1rem}.lb-next{right:1rem}
+
+/* ── HERO STRIP ── */
+.photo-hero{background:var(--dark);padding:0;overflow:hidden;position:relative;height:380px}
+.photo-hero-strip{display:flex;gap:0;height:100%;transition:transform 0.1s linear}
+.photo-hero-strip img{flex-shrink:0;width:400px;height:100%;object-fit:cover;filter:brightness(0.65);transition:filter 0.3s}
+.photo-hero-strip img:hover{filter:brightness(0.9)}
+.photo-hero-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:2;pointer-events:none}
+.photo-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,8,0,0.5),rgba(26,8,0,0.3));z-index:1}
 </style>
 </head>
 <body>
-<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
-
 <nav>
-  <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="../index.html">Inicio</a></li>
-    <li><a href="../fotos/index.html">Fotos</a></li>
-    <li><a href="../historia/index.html">Historia</a></li>
-    <li><a href="../terminos/index.html">Términos</a></li>
-    <li><a href="../fundadores/index.html">Fundadores</a></li>
-    <li><a href="../empleo/index.html">Empleo</a></li>
+  <a href="../index.html" class="nav-logo"><img src="/assets/imgs/logo_smash.png" alt="Smash & Fire" style="height:12rem;width:auto;display:block"></a>
+  <ul class="nav-links">
+    <li><a href="../index.html" data-i18n="nav_home">Inicio</a></li>
+    <li><a href="../fotos/index.html" class="active" data-i18n="nav_photos">Fotos</a></li>
+    <li><a href="../historia/index.html" data-i18n="nav_history">Historia</a></li>
+    <li><a href="../terminos/index.html" data-i18n="nav_terms">Términos</a></li>
+    <li><a href="../fundadores/index.html" data-i18n="nav_founders">Fundadores</a></li>
+    <li><a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a></li>
     <li><a href="../documentos/index.html">Documentos</a></li>
-    <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Ver Menú</a></li>
   </ul>
-  <button class="nav-toggle"><span></span><span></span><span></span></button>
 </nav>
 
-<div class="page-hero">
-  <div class="container">
-    <span class="section-label reveal">Visual</span>
-    <h1 class="section-title reveal delay-1" style="font-size:clamp(3rem,8vw,6rem)">GALERÍA<br>DE FUEGO</h1>
-    <p class="reveal delay-2">Un vistazo a nuestras creaciones, nuestro local y el equipo que lo hace posible.</p>
+<!-- HERO STRIP -->
+<div class="photo-hero" style="margin-top:var(--nav-h)">
+  <div class="photo-hero-strip" id="heroStrip">
+    <img src="../assets/imgs/classic_smash.jpg" alt="Classic Smash">
+    <img src="../assets/imgs/bacon.webp" alt="Bacon Fire">
+    <img src="../assets/imgs/chapina.jpg" alt="La Chapina">
+    <img src="../assets/imgs/cheese.jpg" alt="Double Smash">
+    <img src="../assets/imgs/plancha.jpg" alt="Plancha">
+    <img src="../assets/imgs/carretona.jpg" alt="La Carretona">
+    <img src="../assets/imgs/fries.jpg" alt="Papas">
+    <img src="../assets/imgs/milkshake.jpg" alt="Milkshake">
+    <img src="../assets/imgs/local.jpg" alt="Local">
+  </div>
+  <div class="photo-hero-overlay" style="z-index:2">
+    <div class="container" style="text-align:center;position:relative;z-index:3">
+      <span class="section-label light">Galería</span>
+      <h1 class="section-title light" style="font-size:clamp(2.8rem,7vw,5rem);margin-top:0.5rem">TODO<br>EL FUEGO</h1>
+    </div>
   </div>
 </div>
 
-<section style="background:var(--char);padding:60px 0 100px;">
+<!-- MAIN GALLERY -->
+<section style="background:var(--cream);padding:60px 0 100px">
   <div class="container">
-    <div class="gallery-tabs">
-      <button class="gtab active" data-gtab="all">Todo</button>
-      <button class="gtab" data-gtab="food">Comida</button>
-      <button class="gtab" data-gtab="place">Local</button>
-      <button class="gtab" data-gtab="team">Equipo</button>
+    <div class="photo-filters">
+      <button class="pfilt active" data-filter="all">Todo</button>
+      <button class="pfilt" data-filter="burgers">Hamburguesas</button>
+      <button class="pfilt" data-filter="sides">Acompañamientos</button>
+      <button class="pfilt" data-filter="drinks">Bebidas</button>
+      <button class="pfilt" data-filter="local">El Local</button>
     </div>
 
-    <div class="gallery-grid">
-      <div class="gallery-item wide reveal" data-gtab="food" data-emoji="🍔" data-title="The Classic Smash" data-desc="Nuestra estrella. Doble carne con la costra perfecta y queso americano derretido.">
-        <div class="gallery-visual">🍔</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>The Classic Smash</h4><p>Best Seller · Q55</p></div>
+    <div class="photo-grid" id="photoGrid">
+
+      <!-- HAMBURGUESAS -->
+      <div class="photo-card reveal" data-cat="burgers" onclick="openLightbox(0)">
+        <img src="../assets/imgs/classic_smash.jpg" alt="The Classic Smash" style="aspect-ratio:1/1">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Hamburguesas</div>
+          <div class="photo-label">The Classic Smash</div>
+        </div>
       </div>
-      <div class="gallery-item reveal delay-1" data-gtab="food" data-emoji="🥓" data-title="Bacon Fire" data-desc="Tocino ahumado crujiente sobre carne smash con queso cheddar y chipotle artesanal.">
-        <div class="gallery-visual">🥓</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>Bacon Fire</h4><p>Popular · Q65</p></div>
+
+      <div class="photo-card reveal delay-1" data-cat="burgers" onclick="openLightbox(1)">
+        <img src="../assets/imgs/bacon.webp" alt="Bacon Fire" style="aspect-ratio:4/3">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Hamburguesas · 💀 Picante</div>
+          <div class="photo-label">Bacon Fire</div>
+        </div>
       </div>
-      <div class="gallery-item tall reveal delay-2" data-gtab="place" data-emoji="🏠" data-title="Nuestro Local" data-desc="Cocina abierta en Zona 10. Aquí puedes ver cada hamburguesa prepararse en vivo.">
-        <div class="gallery-visual">🏠</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>Nuestro Local</h4><p>Zona 10, Guatemala</p></div>
+
+      <div class="photo-card reveal delay-2" data-cat="burgers" onclick="openLightbox(2)">
+        <img src="../assets/imgs/chapina.jpg" alt="La Chapina" style="aspect-ratio:3/4">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Hamburguesas · 🇬🇹 Signature</div>
+          <div class="photo-label">La Chapina</div>
+        </div>
       </div>
-      <div class="gallery-item reveal" data-gtab="food" data-emoji="🔥" data-title="La Plancha" data-desc="300°C de temperatura. La reacción de Maillard en acción. La magia sucede aquí.">
-        <div class="gallery-visual">🔥</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>La Plancha</h4><p>300°C de técnica</p></div>
+
+      <div class="photo-card reveal" data-cat="burgers" onclick="openLightbox(3)">
+        <img src="../assets/imgs/cheese.jpg" alt="Double Smash" style="aspect-ratio:16/9">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Hamburguesas</div>
+          <div class="photo-label">Double Smash</div>
+        </div>
       </div>
-      <div class="gallery-item reveal delay-1" data-gtab="food" data-emoji="🍟" data-title="Papas Artesanales" data-desc="Doradas con sal de mar y tomillo. Crujientes por fuera, suaves por dentro.">
-        <div class="gallery-visual">🍟</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>Papas Artesanales</h4><p>Acompañamiento Q22</p></div>
+
+      <div class="photo-card reveal delay-1" data-cat="burgers" onclick="openLightbox(4)">
+        <img src="../assets/imgs/carretona.jpg" alt="La Carretona" style="aspect-ratio:1/1">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Hamburguesas · Signature</div>
+          <div class="photo-label">La Carretona</div>
+        </div>
       </div>
-      <div class="gallery-item reveal delay-2" data-gtab="team" data-emoji="👨‍🍳" data-title="Carlos — Chef" data-desc="Co-fundador y chef ejecutivo. Más de 10 años de experiencia en cocina profesional.">
-        <div class="gallery-visual">👨‍🍳</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>Carlos Martínez</h4><p>Chef y Co-fundador</p></div>
+
+      <div class="photo-card reveal delay-2" data-cat="burgers" onclick="openLightbox(5)">
+        <img src="../assets/imgs/beans.jpg" alt="Frijolito Smash" style="aspect-ratio:4/3">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Hamburguesas · 🌱 Nuevo</div>
+          <div class="photo-label">Frijolito Smash</div>
+        </div>
       </div>
-      <div class="gallery-item wide reveal" data-gtab="place" data-emoji="✨" data-title="Ambiente" data-desc="Diseño industrial con toques de calidez. El lugar perfecto para cualquier ocasión.">
-        <div class="gallery-visual">✨</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>El Ambiente</h4><p>Diseño industrial · Zona 10</p></div>
+
+      <!-- ACOMPAÑAMIENTOS -->
+      <div class="photo-card reveal" data-cat="sides" onclick="openLightbox(6)">
+        <img src="../assets/imgs/fries.jpg" alt="Papas Clásicas" style="aspect-ratio:1/1">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Acompañamientos</div>
+          <div class="photo-label">Papas Clásicas</div>
+        </div>
       </div>
-      <div class="gallery-item reveal delay-1" data-gtab="food" data-emoji="🌶️" data-title="Diablo Smash" data-desc="Para los valientes. Jalapeños frescos, buffalo casero y queso pepper jack.">
-        <div class="gallery-visual">🌶️</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>Diablo Smash</h4><p>Nivel: Picante · Q68</p></div>
+
+      <div class="photo-card reveal delay-1" data-cat="sides" onclick="openLightbox(7)">
+        <img src="../assets/imgs/onions.jpg" alt="Aros de Cebolla" style="aspect-ratio:3/4">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Acompañamientos</div>
+          <div class="photo-label">Aros de Cebolla</div>
+        </div>
       </div>
-      <div class="gallery-item tall reveal delay-2" data-gtab="team" data-emoji="👩‍💼" data-title="Sofía — Directora" data-desc="Co-fundadora y directora general. La visión detrás de la marca y la experiencia del cliente.">
-        <div class="gallery-visual">👩‍💼</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>Sofía Ramos</h4><p>Co-fundadora &amp; CEO</p></div>
+
+      <div class="photo-card reveal delay-2" data-cat="sides" onclick="openLightbox(8)">
+        <img src="../assets/imgs/loaded.jpg" alt="Papas Loaded" style="aspect-ratio:4/3">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Acompañamientos · 🔥 Popular</div>
+          <div class="photo-label">Papas Loaded</div>
+        </div>
       </div>
-      <div class="gallery-item reveal" data-gtab="food" data-emoji="🥑" data-title="Avocado Dream" data-desc="Lo nuevo del menú. Aguacate fresco aplastado con queso suizo y aderezo de limón.">
-        <div class="gallery-visual">🥑</div>
-        <div class="gallery-overlay">🔍</div>
-        <div class="gallery-caption"><h4>Avocado Dream</h4><p>Nuevo · Q70</p></div>
+
+      <div class="photo-card reveal" data-cat="sides" onclick="openLightbox(9)">
+        <img src="../assets/imgs/yuca.jpg" alt="Yuca Frita" style="aspect-ratio:1/1">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Acompañamientos · Guatemalteco</div>
+          <div class="photo-label">Yuca Frita</div>
+        </div>
       </div>
-    </div>
-    <p class="reveal" style="text-align:center;color:var(--smoke);margin-top:3rem;font-size:0.88rem;">
-      Síguenos en <strong style="color:var(--red)">@smashandfire.gt</strong> para ver más contenido fresco cada semana.
-    </p>
+
+      <div class="photo-card reveal delay-1" data-cat="sides" onclick="openLightbox(10)">
+        <img src="../assets/imgs/elote.jpg" alt="Elote Asado" style="aspect-ratio:16/9">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Acompañamientos · Guatemalteco</div>
+          <div class="photo-label">Elote Asado</div>
+        </div>
+      </div>
+
+      <div class="photo-card reveal delay-2" data-cat="sides" onclick="openLightbox(11)">
+        <img src="../assets/imgs/salad.jpg" alt="Ensalada Fresca" style="aspect-ratio:1/1">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Acompañamientos</div>
+          <div class="photo-label">Ensalada Fresca</div>
+        </div>
+      </div>
+
+      <div class="photo-card reveal" data-cat="sides" onclick="openLightbox(12)">
+        <img src="../assets/imgs/nuggets.jpg" alt="Nuggets de Pollo" style="aspect-ratio:1/1">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Acompañamientos</div>
+          <div class="photo-label">Nuggets de Pollo</div>
+        </div>
+      </div>
+
+      <!-- BEBIDAS -->
+      <div class="photo-card reveal delay-1" data-cat="drinks" onclick="openLightbox(13)">
+        <img src="../assets/imgs/bebidas_frias.jpg" alt="Refrescos" style="aspect-ratio:4/3">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Bebidas</div>
+          <div class="photo-label">Refrescos</div>
+        </div>
+      </div>
+
+      <div class="photo-card reveal delay-2" data-cat="drinks" onclick="openLightbox(14)">
+        <img src="../assets/imgs/milkshake.jpg" alt="Milkshake Artesanal" style="aspect-ratio:3/4">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Bebidas</div>
+          <div class="photo-label">Milkshake Artesanal</div>
+        </div>
+      </div>
+
+      <div class="photo-card reveal" data-cat="drinks" onclick="openLightbox(15)">
+        <img src="../assets/imgs/cafe.jpg" alt="Café" style="aspect-ratio:4/3">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Bebidas · Calientes</div>
+          <div class="photo-label">Café de Guatemala</div>
+        </div>
+      </div>
+
+      <div class="photo-card reveal delay-1" data-cat="drinks" onclick="openLightbox(16)">
+        <img src="../assets/imgs/cocoa.webp" alt="Cocoa Caliente" style="aspect-ratio:4/3">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">Bebidas · Calientes</div>
+          <div class="photo-label">Cocoa Artesanal</div>
+        </div>
+      </div>
+
+      <!-- EL LOCAL -->
+      <div class="photo-card reveal delay-2" data-cat="local" onclick="openLightbox(17)">
+        <img src="../assets/imgs/local.jpg" alt="Interior Smash & Fire" style="aspect-ratio:4/3">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">El Local</div>
+          <div class="photo-label">Sala Principal</div>
+        </div>
+      </div>
+
+      <div class="photo-card reveal" data-cat="local" onclick="openLightbox(18)">
+        <img src="../assets/imgs/plancha.jpg" alt="La Plancha en acción" style="aspect-ratio:16/9">
+        <div class="photo-overlay">
+          <div class="photo-cat-tag">El Local · Cocina</div>
+          <div class="photo-label">La Plancha en Acción</div>
+        </div>
+      </div>
+
+    </div><!-- /photo-grid -->
   </div>
 </section>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button>
+  <button class="lb-nav lb-next" onclick="lbNav(1)">›</button>
   <div class="lb-inner">
-    <div class="lb-visual" id="lbVisual">🍔</div>
-    <div class="lb-body">
-      <div class="lb-title" id="lbTitle">Título</div>
-      <p class="lb-desc" id="lbDesc">Descripción</p>
+    <div class="lb-img-wrap"><img id="lbImg" src="" alt=""></div>
+    <div class="lb-caption">
+      <div class="lb-title" id="lbTitle"></div>
+      <div class="lb-sub" id="lbSub"></div>
     </div>
-    <button class="lb-close" id="lbClose">✕</button>
   </div>
 </div>
 
@@ -231,36 +315,88 @@
 
 <script src="../nav.js"></script>
 <script>
-// Gallery tabs
-document.querySelectorAll('.gtab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
+// ── FILTER ───────────────────────────────────────────────────
+document.querySelectorAll('.pfilt').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.pfilt').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    const f = btn.dataset.gtab;
-    document.querySelectorAll('.gallery-item').forEach(el => {
-      el.style.display = (f === 'all' || el.dataset.gtab === f) ? '' : 'none';
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.photo-card').forEach(card=>{
+      if(f==='all'||card.dataset.cat===f){card.classList.remove('hidden')}
+      else{card.classList.add('hidden')}
     });
   });
 });
 
-// Lightbox
-const lb = document.getElementById('lightbox');
-const lbV = document.getElementById('lbVisual');
-const lbT = document.getElementById('lbTitle');
-const lbD = document.getElementById('lbDesc');
-document.querySelectorAll('.gallery-item').forEach(item => {
-  item.addEventListener('click', () => {
-    lbV.textContent = item.dataset.emoji;
-    lbT.textContent = item.dataset.title;
-    lbD.textContent = item.dataset.desc;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
+// ── LIGHTBOX ─────────────────────────────────────────────────
+const photos=[
+  {src:'../assets/imgs/classic_smash.jpg',title:'The Classic Smash',sub:'Hamburguesas · Q 55'},
+  {src:'../assets/imgs/bacon.webp',title:'Bacon Fire',sub:'Hamburguesas · Q 65 · 💀 Picante'},
+  {src:'../assets/imgs/chapina.jpg',title:'La Chapina',sub:'Hamburguesas Signature · Q 75'},
+  {src:'../assets/imgs/cheese.jpg',title:'Double Smash',sub:'Hamburguesas · Q 75'},
+  {src:'../assets/imgs/carretona.jpg',title:'La Carretona',sub:'Hamburguesas Signature · Q 72'},
+  {src:'../assets/imgs/beans.jpg',title:'Frijolito Smash',sub:'Hamburguesas · Q 68 · Nuevo'},
+  {src:'../assets/imgs/fries.jpg',title:'Papas Clásicas',sub:'Acompañamientos · Q 22'},
+  {src:'../assets/imgs/onions.jpg',title:'Aros de Cebolla',sub:'Acompañamientos · Q 28'},
+  {src:'../assets/imgs/loaded.jpg',title:'Papas Loaded',sub:'Acompañamientos · Q 38 · Popular'},
+  {src:'../assets/imgs/yuca.jpg',title:'Yuca Frita',sub:'Acompañamientos · Q 25'},
+  {src:'../assets/imgs/elote.jpg',title:'Elote Asado',sub:'Acompañamientos · Q 20'},
+  {src:'../assets/imgs/salad.jpg',title:'Ensalada Fresca',sub:'Acompañamientos · Q 24'},
+  {src:'../assets/imgs/nuggets.jpg',title:'Nuggets de Pollo',sub:'Acompañamientos · Q 30'},
+  {src:'../assets/imgs/bebidas_frias.jpg',title:'Refrescos',sub:'Bebidas · Q 15'},
+  {src:'../assets/imgs/milkshake.jpg',title:'Milkshake Artesanal',sub:'Bebidas · Q 30'},
+  {src:'../assets/imgs/cafe.jpg',title:'Café de Guatemala',sub:'Bebidas · Caliente'},
+  {src:'../assets/imgs/cocoa.webp',title:'Cocoa Artesanal',sub:'Bebidas · Caliente'},
+  {src:'../assets/imgs/local.jpg',title:'Sala Principal',sub:'El Local · Zona 10, Guatemala'},
+  {src:'../assets/imgs/plancha.jpg',title:'La Plancha en Acción',sub:'Cocina · Artesanal'},
+];
+let current=0;
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+const lbTitle=document.getElementById('lbTitle');
+const lbSub=document.getElementById('lbSub');
+
+function openLightbox(i){
+  current=i;
+  const p=photos[i];
+  lbImg.src=p.src;lbImg.alt=p.title;
+  lbTitle.textContent=p.title;lbSub.textContent=p.sub;
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){lb.classList.remove('open');document.body.style.overflow=''}
+function closeLightboxOutside(e){if(e.target===lb)closeLightbox()}
+function lbNav(dir){
+  // skip hidden cards
+  const visible=photos.filter((_,i)=>{
+    const cards=document.querySelectorAll('.photo-card');
+    return cards[i]&&!cards[i].classList.contains('hidden');
   });
+  const visIdx=visible.findIndex((_,i)=>photos.indexOf(visible[i])===current);
+  const next=(visIdx+dir+visible.length)%visible.length;
+  const nextGlobal=photos.indexOf(visible[next]);
+  openLightbox(nextGlobal>=0?nextGlobal:current);
+}
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')closeLightbox();
+  if(e.key==='ArrowRight')lbNav(1);
+  if(e.key==='ArrowLeft')lbNav(-1);
 });
-function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-document.getElementById('lbClose').addEventListener('click', closeLb);
-lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+// ── HERO STRIP auto-scroll ────────────────────────────────────
+const strip=document.getElementById('heroStrip');
+let offset=0;
+function animStrip(){
+  offset-=0.4;
+  const total=strip.scrollWidth/2;
+  if(Math.abs(offset)>=total)offset=0;
+  strip.style.transform=`translateX(${offset}px)`;
+  requestAnimationFrame(animStrip);
+}
+// duplicate strip for seamless loop
+strip.innerHTML+=strip.innerHTML;
+animStrip();
 </script>
 </body>
 </html>
