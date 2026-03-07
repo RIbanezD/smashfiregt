@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licencia de Bevidas Alcohólicas - Smash & Fire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #d32f2f;
+        }
+        .header h1 {
+            color: #d32f2f;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 12px;
+            color: #666;
+        }
+        .government-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .document-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 30px 0 20px 0;
+            text-transform: uppercase;
+            color: #333;
+        }
+        .document-subtitle {
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .license-number {
+            text-align: center;
+            background-color: #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #d32f2f;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .warning-box {
+            background-color: #ffcdd2;
+            border: 3px solid #d32f2f;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .warning-title {
+            font-weight: bold;
+            color: #c62828;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .warning-content {
+            font-size: 13px;
+            line-height: 1.7;
+        }
+        .warning-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .warning-content li {
+            margin: 8px 0;
+        }
+        .section {
+            margin: 20px 0;
+            text-align: justify;
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin: 25px 0 15px 0;
+            color: #d32f2f;
+            text-transform: uppercase;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .subsection-title {
+            font-weight: bold;
+            font-size: 13px;
+            margin: 15px 0 10px 20px;
+            color: #333;
+        }
+        .content-text {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .article {
+            margin: 15px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .article-number {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        .policy-box {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #d32f2f;
+        }
+        .policy-box strong {
+            color: #d32f2f;
+        }
+        .conditions-table {
+            width: 100%;
+            margin: 15px 0;
+            border-collapse: collapse;
+        }
+        .conditions-table td, .conditions-table th {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .conditions-table th {
+            background-color: #d32f2f;
+            color: white;
+            font-weight: bold;
+        }
+        .conditions-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        ul {
+            margin-left: 40px;
+            margin-top: 10px;
+        }
+        ul li {
+            margin: 8px 0;
+        }
+        .prohibition-section {
+            background-color: #fcf8e3;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .prohibition-title {
+            font-weight: bold;
+            color: #cc7000;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .signature-section {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .signature-box {
+            width: 45%;
+        }
+        .signature-line {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding-top: 10px;
+            font-size: 12px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+            color: #666;
+        }
+        .page-number {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 11px;
+            color: #999;
+        }
+        .approval-box {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #4caf50;
+            border-left: 4px solid #4caf50;
+        }
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 30px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="government-header">
+            MINISTERIO DE SALUD PÚBLICA Y ASISTENCIA SOCIAL<br>
+            DIRECCIÓN GENERAL DE REGULACIÓN, VIGILANCIA Y CONTROL DE LA SALUD<br>
+            REPÚBLICA DE GUATEMALA
+        </div>
+
+        <div class="header">
+            <h1>SMASH & FIRE</h1>
+            <p>Restaurante de Hamburguesas Premium</p>
+            <p>Guatemala, Centro América</p>
+        </div>
+
+        <div class="document-title">Licencia para la Venta de Bebidas Alcohólicas</div>
+        <div class="document-subtitle">Documento Oficial de Autorización</div>
+
+        <div class="license-number">
+            LICENCIA No. DGR-2026-001847<br>
+            Expedida: 6 de marzo de 2026<br>
+            Vigencia: 12 meses
+        </div>
+
+        <div class="warning-box">
+            <div class="warning-title">Advertencia Obligatoria</div>
+            <div class="warning-content">
+                <p><strong>PROHIBIDO LA VENTA A MENORES:</strong> La venta, distribución o entrega de bebidas alcohólicas a personas menores de 18 años es ESTRICTAMENTE PROHIBIDA conforme a la ley de Guatemala. Violación de esta disposición resultará en sanciones civiles, penales y revocación de esta licencia.</p>
+                <p style="margin-top: 15px;"><strong>IDENTIFICACIÓN REQUERIDA:</strong> Es obligatorio solicitar identificación válida que compruebe mayoría de edad (18 años o más) antes de vender cualquier bebida alcohólica.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">I. OTORGANTE Y AUTORIZACIÓN</div>
+            <div class="content-text">
+                <p>Por medio del presente, y conforme a las disposiciones establecidas en:</p>
+                <ul>
+                    <li>Código de Salud de Guatemala (Decreto 90-97)</li>
+                    <li>Reglamento para el Control y la Venta de Bebidas Alcohólicas</li>
+                    <li>Acuerdo Gubernativo que regula la expedición de licencias</li>
+                    <li>Leyes de protección al consumidor</li>
+                </ul>
+                <p style="margin-top: 15px;">Se AUTORIZA a SMASH & FIRE, Sociedad Anónima, debidamente inscrita en el Registro Mercantil General de la República, para comercializar bebidas alcohólicas en su establecimiento ubicado en Guatemala.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">II. DATOS DEL ESTABLECIMIENTO</div>
+            <div class="content-text">
+                <table class="conditions-table">
+                    <tr>
+                        <td style="width: 30%; font-weight: bold;">Nombre Comercial:</td>
+                        <td>SMASH & FIRE</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Razón Social:</td>
+                        <td>SMASH & FIRE, Sociedad Anónima</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">NIT:</td>
+                        <td>7654321-8</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Giro de Negocio:</td>
+                        <td>Restaurante de Servicio de Alimentos y Bebidas</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Ubicación:</td>
+                        <td>Zona 4, Guatemala, Guatemala, Centro América</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Teléfono:</td>
+                        <td>+502 XXXX-XXXX</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Gerente General:</td>
+                        <td>________________________</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Afiliación IGSS:</td>
+                        <td>Confirmada y activa</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">III. TIPOS DE BEBIDAS AUTORIZADAS</div>
+            <div class="content-text">
+                <p>Esta licencia AUTORIZA la venta y distribución de:</p>
+                <table class="conditions-table">
+                    <tr>
+                        <th>Tipo de Bebida</th>
+                        <th>Grado Alcohólico</th>
+                        <th>Tipos de Envase</th>
+                    </tr>
+                    <tr>
+                        <td>Cervezas</td>
+                        <td>4-6% Vol.</td>
+                        <td>Botellas, latas, barril</td>
+                    </tr>
+                    <tr>
+                        <td>Vinos</td>
+                        <td>8-15% Vol.</td>
+                        <td>Botellas estándar</td>
+                    </tr>
+                    <tr>
+                        <td>Licores y Destilados</td>
+                        <td>20-50% Vol.</td>
+                        <td>Botellas de 500ml-1L</td>
+                    </tr>
+                    <tr>
+                        <td>Bebidas Preparadas</td>
+                        <td>Variable</td>
+                        <td>Vasos, copas (consumo en sitio)</td>
+                    </tr>
+                    <tr>
+                        <td>Bebidas Importadas</td>
+                        <td>Según especificación</td>
+                        <td>Con etiquetado en español</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px;">Todas las bebidas deben estar debidamente etiquetadas con graduación alcohólica, país de origen y fecha de caducidad visible.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">IV. RESTRICCIONES Y LIMITACIONES</div>
+            <div class="prohibition-section">
+                <div class="prohibition-title">Límite de Consumo Por Cliente</div>
+                <p><strong>MÁXIMO 2 BEBIDAS ALCOHÓLICAS POR PERSONA POR SERVICIO</strong></p>
+                <p style="margin-top: 10px;">Esta medida tiene como objetivo promover el consumo responsable y prevenir la intoxicación. El personal de SMASH & FIRE debe negarse a servir bebidas alcohólicas cuando se supere este límite.</p>
+            </div>
+
+            <div class="prohibition-section">
+                <div class="prohibition-title">Horarios Permitidos</div>
+                <ul style="margin-left: 40px; margin-top: 10px;">
+                    <li>Lunes a Jueves: 12:00 PM a 11:00 PM</li>
+                    <li>Viernes a Domingo: 12:00 PM a 1:00 AM</li>
+                    <li>Días festivos nacionales: Según regulación especial</li>
+                    <li>No se puede servir bebidas alcohólicas fuera de estos horarios</li>
+                </ul>
+            </div>
+
+            <div class="prohibition-section">
+                <div class="prohibition-title">Prohibiciones Absolutas</div>
+                <ul style="margin-left: 40px; margin-top: 10px;">
+                    <li>Venta a menores de 18 años (delito penal)</li>
+                    <li>Venta a personas visiblemente intoxicadas</li>
+                    <li>Venta a personas con problemas de adicción (si es conocido)</li>
+                    <li>Servir bebidas alcohólicas en envases que no sean los autorizados</li>
+                    <li>Venta al menudeo (solo al por mayor o consumo en sitio es permitido)</li>
+                    <li>Promoción irresponsable de alcohol ("tragos gratis", exceso)</li>
+                    <li>Bebidas adulteradas o contrabando</li>
+                    <li>Almacenamiento en condiciones inadecuadas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">V. OBLIGACIONES DEL TITULAR</div>
+            <div class="content-text">
+                <p>SMASH & FIRE se compromete a cumplir con las siguientes obligaciones:</p>
+
+                <div class="subsection-title">5.1 Control de Edad</div>
+                <div class="policy-box">
+                    <ul>
+                        <li>Solicitar identificación válida a cualquier cliente cuya edad parezca ser menor a 30 años</li>
+                        <li>Rechazar clientes sin identificación válida</li>
+                        <li>Mantener registro de clientes rechazados</li>
+                        <li>Capacitar a todoPersonal sobre verificación de edad</li>
+                        <li>Instalar carteles visibles previniendo venta a menores</li>
+                    </ul>
+                </div>
+
+                <div class="subsection-title">5.2 Capacitación del Personal</div>
+                <div class="policy-box">
+                    <ul>
+                        <li>Todos los camareros y cantineros deben recibir capacitación anual</li>
+                        <li>Capacitación debe incluir: edad legal, identificación válida, signos de intoxicación</li>
+                        <li>Documentación de capacitación debe estar disponible para inspección</li>
+                        <li>Responsabilidad de camareros sobre cumplimiento de leyes</li>
+                    </ul>
+                </div>
+
+                <div class="subsection-title">5.3 Almacenamiento y Manejo</div>
+                <div class="policy-box">
+                    <ul>
+                        <li>Almacenar bebidas en lugar seguro y con temperatura controlada</li>
+                        <li>Mantener inventario actualizado</li>
+                        <li>Inspección mensual de condiciones de almacenamiento</li>
+                        <li>Registro de entrada y salida de bebidas</li>
+                        <li>Cumplimiento de normas sanitarias</li>
+                    </ul>
+                </div>
+
+                <div class="subsection-title">5.4 Seguridad y Orden Público</div>
+                <div class="policy-box">
+                    <ul>
+                        <li>Mantener orden en el establecimiento</li>
+                        <li>Medidas para prevenir violencia o conducta disruptiva</li>
+                        <li>Personal de seguridad idóneamente capacitado</li>
+                        <li>Reportar incidentes a autoridades cuando sea necesario</li>
+                        <li>No permitir consumo de drogas en el local</li>
+                    </ul>
+                </div>
+
+                <div class="subsection-title">5.5 Información y Publicidad</div>
+                <div class="policy-box">
+                    <ul>
+                        <li>Mostrar esta licencia en lugar visible al público</li>
+                        <li>Carteles sobre "Prohibida Venta a Menores"</li>
+                        <li>No hacer publicidad engañosa o irresponsable</li>
+                        <li>No publicitar como bebida medicinal</li>
+                        <li>Advertencias sobre conducción bajo influencia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">VI. ADVERTENCIAS DE SALUD PÚBLICA</div>
+            <div class="warning-box">
+                <div class="warning-title">Información de Salud</div>
+                <div class="warning-content">
+                    <p><strong>CONSUMO RESPONSABLE:</strong> SMASH & FIRE debe promover el consumo responsable de bebidas alcohólicas y proporcionar información sobre los peligros del consumo excesivo.</p>
+
+                    <p style="margin-top: 15px;"><strong>EFECTOS DEL ALCOHOL:</strong></p>
+                    <ul>
+                        <li>Afecta el sistema nervioso central</li>
+                        <li>Compromete la capacidad de conducir vehículos</li>
+                        <li>Puede causar dependencia y adicción</li>
+                        <li>Riesgos aumentados en menores de edad</li>
+                        <li>Efectos adversos en embarazo</li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>PROHIBIDA CONDUCCIÓN:</strong> Se informa a clientes que conducir bajo la influencia del alcohol es delito en Guatemala, con penas de prisión y multas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">VII. CONDICIONES DE VIGENCIA</div>
+            <div class="content-text">
+                <p><span class="article-number">7.1</span> Esta licencia es válida por <strong>12 meses</strong> a partir de la fecha de expedición (6 de marzo de 2026), venciendo el 6 de marzo de 2027.</p>
+
+                <p style="margin-top: 15px;"><span class="article-number">7.2</span> <strong>Renovación:</strong> Debe renovarse anualmente 30 días antes del vencimiento, presentando:</p>
+                <ul style="margin-left: 40px; margin-top: 10px;">
+                    <li>Solicitud de renovación</li>
+                    <li>Comprobante de cumplimiento tributario</li>
+                    <li>Comprobante de IGSS actualizado</li>
+                    <li>Certificado de inspección sanitaria</li>
+                    <li>Documentación de capacitación del personal</li>
+                    <li>Pago de aranceles establecidos</li>
+                </ul>
+
+                <p style="margin-top: 15px;"><span class="article-number">7.3</span> <strong>Suspensión o Revocación:</strong> Esta licencia puede ser suspendida o revocada por:</p>
+                <ul style="margin-left: 40px; margin-top: 10px;">
+                    <li>Venta de bebidas alcohólicas a menores</li>
+                    <li>Incumplimiento reiterado de regulaciones</li>
+                    <li>Falta de pago de impuestos</li>
+                    <li>Violación de horarios permitidos</li>
+                    <li>Conducta que comprometa orden público</li>
+                    <li>Falsificación o adulteración de bebidas</li>
+                    <li>Conducta fraudulenta</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">VIII. RESPONSABILIDAD LEGAL</div>
+            <div class="content-text">
+                <p>El titular de esta licencia es responsable legalmente por:</p>
+                <ul>
+                    <li>Cumplimiento de todas las condiciones establecidas</li>
+                    <li>Acciones de empleados en relación a venta de alcohol</li>
+                    <li>Daños y perjuicios derivados del consumo de bebidas alcohólicas</li>
+                    <li>Mantenimiento de orden público en el establecimiento</li>
+                    <li>Pago de impuestos sobre venta de bebidas</li>
+                    <li>Cumplimiento de normas sanitarias</li>
+                </ul>
+                <p style="margin-top: 15px;">Las infracciones pueden resultar en multas de Q 5,000 a Q 50,000 y revocación de la licencia sin derecho a reembolso de aranceles pagados.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">IX. INSPECCIONES OFICIALES</div>
+            <div class="content-text">
+                <p>SMASH & FIRE se somete a inspecciones sin previo aviso por parte de:</p>
+                <ul>
+                    <li>Ministerio de Salud Pública</li>
+                    <li>Ministerio de Gobernación</li>
+                    <li>PNC (Policía Nacional Civil)</li>
+                    <li>SAT (Superintendencia de Administración Tributaria)</li>
+                    <li>Autoridades municipales</li>
+                </ul>
+                <p style="margin-top: 15px;">El titular debe proporcionar acceso y documentación requerida durante inspecciones. Obstrucción de inspecciones es delito.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">X. INFORMACIÓN PARA CLIENTES</div>
+            <div class="prohibition-section">
+                <div class="prohibition-title">Carteles Obligatorios a Mostrar</div>
+                <p>SMASH & FIRE debe tener carteles visibles en el establecimiento con el siguiente contenido:</p>
+                <ul style="margin-left: 40px; margin-top: 10px;">
+                    <li>"PROHIBIDA LA VENTA DE BEBIDAS ALCOHÓLICAS A MENORES DE 18 AÑOS"</li>
+                    <li>"NO CONDUCIR BAJO INFLUENCIA DE ALCOHOL"</li>
+                    <li>"MÁXIMO 2 BEBIDAS ALCOHÓLICAS POR PERSONA"</li>
+                    <li>Horarios de venta permitidos</li>
+                    <li>Información de servicio al cliente</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="signature-section" style="margin-top: 50px;">
+            <div class="signature-box">
+                <div class="signature-line">
+                    DIRECCIÓN GENERAL DE REGULACIÓN<br>
+                    ________________________<br>
+                    <span style="font-size: 10px;">Director<br>
+                    Ministerio de Salud Pública<br>
+                    Guatemala</span>
+                </div>
+            </div>
+            <div class="signature-box">
+                <div class="signature-line">
+                    GERENTE GENERAL<br>
+                    ________________________<br>
+                    <span style="font-size: 10px;">SMASH & FIRE, S.A.<br>
+                    Guatemala</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>ACUSO DE RECIBIDO:</strong> El titular de SMASH & FIRE declara haber recibido esta licencia<br>
+            y acepta cumplir integralmente con la regulación establecida en este documento.</p>
+            <p style="margin-top: 15px;">Guatemala, 6 de marzo de 2026</p>
+            <p style="margin-top: 15px;">Documento oficial expedido conforme Código de Salud de Guatemala (Decreto 90-97)<br>
+            y regulaciones sobre control de bebidas alcohólicas.</p>
+            <p style="margin-top: 15px;">LA EXPEDICIÓN DE ESTA LICENCIA NO EXIME DE CUMPLIR CON OTRAS<br>
+            REGULACIONES, IMPUESTOS O REQUISITOS ADICIONALES REQUERIDOS POR LEY.</p>
+        </div>
+
+        <div class="page-number">
+            Página oficial | Licencia No. DGR-2026-001847<br>
+            Fecha de generación: 6 de marzo de 2026<br>
+            Vigencia: hasta 6 de marzo de 2027
+        </div>
+    </div>
+</body>
+</html>

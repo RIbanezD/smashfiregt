@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Documentos — Smash & Fire</title>
+<link rel="stylesheet" href="../style.css"/>
+<style>
+/* ── DOCS LAYOUT ── */
+.docs-wrapper{padding:48px 0 100px}
+.docs-category{margin-bottom:3.5rem}
+.cat-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.cat-icon{font-size:1.6rem;flex-shrink:0}
+.cat-title{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text)}
+.cat-title span{color:var(--red)}
+.cat-line{flex:1;height:2px;background:var(--border)}
+
+/* ── DOC CARDS GRID ── */
+.docs-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1.5rem;
+}
+.doc-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  box-shadow:0 2px 10px var(--shadow);
+}
+.doc-card:hover{
+  box-shadow:0 8px 32px var(--shadow-lg);
+  transform:translateY(-3px);
+  border-color:rgba(200,16,46,0.3);
+}
+.doc-card-top{
+  background:var(--red);
+  padding:1.3rem 1.5rem 1.1rem;
+  position:relative;
+  overflow:hidden;
+}
+.doc-card-top::after{
+  content:'';position:absolute;right:-10px;bottom:-12px;
+  width:70px;height:70px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+}
+.doc-cat-label{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.75);margin-bottom:0.4rem;display:block;
+}
+.doc-card-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:0.8rem}
+.doc-card-title{font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:700;color:var(--white);line-height:1.25}
+.doc-card-emoji{font-size:1.8rem;flex-shrink:0;line-height:1}
+.doc-card-body{padding:1.2rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+.doc-desc{font-size:0.84rem;color:var(--text-muted);line-height:1.6}
+.doc-meta{display:flex;gap:0.5rem;flex-wrap:wrap}
+.doc-meta-tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.68rem;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);
+  background:var(--surface);border:1px solid var(--border);
+  padding:3px 8px;border-radius:4px;
+}
+.doc-actions{display:flex;gap:0.6rem;margin-top:auto;padding-top:0.5rem}
+.doc-btn-preview{
+  flex:1;padding:0.6rem 0.8rem;border:2px solid var(--border);border-radius:8px;
+  background:var(--white);cursor:pointer;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text);transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:4px;
+}
+.doc-btn-preview:hover{border-color:var(--red);color:var(--red)}
+.doc-btn-dl{
+  flex:1;padding:0.6rem 0.8rem;border:none;border-radius:8px;
+  background:var(--red);cursor:pointer;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--white);transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:4px;
+}
+.doc-btn-dl:hover{background:var(--red-dark)}
+
+/* ── PREVIEW MODAL ── */
+.preview-modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(26,8,0,0.85);
+  backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:1.5rem}
+.preview-modal.open{display:flex}
+.preview-box{background:var(--white);border-radius:16px;max-width:560px;width:100%;max-height:88vh;
+  overflow-y:auto;box-shadow:0 24px 60px rgba(26,8,0,0.4)}
+.preview-header{background:var(--dark);padding:1.2rem 1.8rem;border-radius:16px 16px 0 0;
+  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0}
+.preview-header h3{font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:2px;
+  text-transform:uppercase;color:var(--white)}
+.preview-close{background:none;border:none;color:rgba(255,247,238,0.7);font-size:1.3rem;cursor:pointer;transition:color 0.2s}
+.preview-close:hover{color:var(--white)}
+.preview-body{padding:2rem 2.2rem}
+.preview-body h2{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text);margin-bottom:0.3rem}
+.preview-body .preview-cat{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:1.2rem}
+.preview-body p{font-size:0.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:0.9rem}
+.preview-body ul{padding-left:1.3rem;margin-bottom:1rem}
+.preview-body ul li{font-size:0.88rem;color:var(--text-muted);line-height:1.8}
+.preview-meta{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.preview-actions{display:flex;gap:0.7rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+
+/* ── STATS BAR ── */
+.docs-stats{display:flex;gap:2rem;background:var(--dark);border-radius:14px;padding:1.5rem 2.2rem;
+  margin-bottom:3.5rem;flex-wrap:wrap}
+.stat-item{text-align:center;flex:1;min-width:80px}
+.stat-num{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--yellow)}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.72rem;
+  letter-spacing:2px;text-transform:uppercase;color:rgba(255,247,238,0.6);margin-top:2px}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html" data-i18n="nav_home">Inicio</a></li>
+    <li><a href="../fotos/index.html" data-i18n="nav_photos">Fotos</a></li>
+    <li><a href="../historia/index.html" data-i18n="nav_history">Historia</a></li>
+    <li><a href="../terminos/index.html" data-i18n="nav_terms">Términos</a></li>
+    <li><a href="../fundadores/index.html" data-i18n="nav_founders">Fundadores</a></li>
+    <li><a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a></li>
+    <li><a href="../documentos/index.html" class="active">Documentos</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Ver Menú</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label reveal">Transparencia Total</span>
+    <h1 class="section-title reveal delay-1" style="font-size:clamp(3rem,8vw,6rem)">DOCUMENTOS<br>OFICIALES</h1>
+    <p class="reveal delay-2">Contratos, manuales, políticas internas y documentación legal. Todo en un solo lugar.</p>
+  </div>
+</div>
+<div class="ticker"><div class="ticker-inner">
+  <span>Documentación Legal</span><span class="sep">◆</span><span>Transparencia</span><span class="sep">◆</span><span>Cumplimiento</span><span class="sep">◆</span><span>Operaciones</span><span class="sep">◆</span><span>Recursos Humanos</span><span class="sep">◆</span>
+</div></div>
+
+<section class="docs-wrapper" style="background:var(--cream)">
+<div class="container">
+
+  <!-- Stats -->
+  <div class="docs-stats reveal">
+    <div class="stat-item"><div class="stat-num">13</div><div class="stat-label">Documentos</div></div>
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Empleados</div></div>
+    <div class="stat-item"><div class="stat-num">2026</div><div class="stat-label">Actualización</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Cumplimiento</div></div>
+  </div>
+
+  <!-- CATEGORÍA: CONSTITUCIÓN & LEGAL -->
+  <div class="docs-category reveal">
+    <div class="cat-header">
+      <div class="cat-icon">⚖️</div>
+      <div class="cat-title">Constitución <span>&amp;</span> Legal</div>
+      <div class="cat-line"></div>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">Legal</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Escritura Constitutiva S.A.</div><div class="doc-card-emoji">📜</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Escritura pública de constitución de Smash &amp; Fire, S.A. Incluye razón social, capital social mínimo de Q200, socios fundadores y objeto social.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 18 págs</span><span class="doc-meta-tag">🔒 Oficial</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('escritura')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('escritura')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">Legal</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Licencia de Bebidas Alcohólicas</div><div class="doc-card-emoji">🍺</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Documentación para la licencia de venta de bebidas alcohólicas ante el MSPAS de Guatemala. Incluye requisitos y formularios de solicitud.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 12 págs</span><span class="doc-meta-tag">🔒 Oficial</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('licencia_alc')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('licencia_alc')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">Legal</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Plan de Expansión EE.UU.</div><div class="doc-card-emoji">🇺🇸</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Plan estratégico de internacionalización hacia el mercado estadounidense. Análisis de mercado, estructura legal requerida y hoja de ruta.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 30 págs</span><span class="doc-meta-tag">📌 Estratégico</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('expansion')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('expansion')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORÍA: RECURSOS HUMANOS -->
+  <div class="docs-category reveal">
+    <div class="cat-header">
+      <div class="cat-icon">👥</div>
+      <div class="cat-title">Recursos Humanos</div>
+      <div class="cat-line"></div>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">RR.HH.</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Reglamento Interno de Trabajo</div><div class="doc-card-emoji">📋</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Reglamento conforme al Código de Trabajo de Guatemala. Jornadas, descansos, disciplina, derechos y obligaciones del personal.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 22 págs</span><span class="doc-meta-tag">🔒 Oficial</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('reglamento')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('reglamento')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">RR.HH.</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Contratos Laborales</div><div class="doc-card-emoji">✍️</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Contratos individuales para los 6 colaboradores: Chef Ejecutivo, Cocineros, Meseros y Cajera. Incluye salario, funciones y vigencia.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 6 contratos</span><span class="doc-meta-tag">🔒 Oficial</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('contratos')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('contratos')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">RR.HH.</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Perfiles de Puesto</div><div class="doc-card-emoji">🎯</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Descripción detallada de los 6 puestos operativos: requisitos, responsabilidades, competencias y dependencia jerárquica.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 16 págs</span><span class="doc-meta-tag">📌 Interno</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('perfiles')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('perfiles')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">RR.HH.</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Manual del Empleado</div><div class="doc-card-emoji">📘</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Guía de bienvenida y cultura organizacional de Smash &amp; Fire. Valores, código de conducta, beneficios y procesos internos.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 20 págs</span><span class="doc-meta-tag">📌 Interno</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('manual_emp')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('manual_emp')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">RR.HH.</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Organigrama</div><div class="doc-card-emoji">🏗️</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Estructura organizacional de Smash &amp; Fire S.A. Jerarquía de puestos, líneas de reporte y responsabilidades por área.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 3 págs</span><span class="doc-meta-tag">📌 Interno</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('organigrama')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadOrganigrama()">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORÍA: PROCEDIMIENTOS -->
+  <div class="docs-category reveal">
+    <div class="cat-header">
+      <div class="cat-icon">⚙️</div>
+      <div class="cat-title">Procedimientos</div>
+      <div class="cat-line"></div>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">Procedimientos</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Manual de Operaciones</div><div class="doc-card-emoji">📖</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Manual completo de procedimientos operacionales, incluyendo preparación de alimentos, servicio y control de calidad.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 25 págs</span><span class="doc-meta-tag">🔒 Oficial</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('manual_ops')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('manual_ops')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">Procedimientos</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Protocolo de Atención al Cliente</div><div class="doc-card-emoji">🤝</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Estándares de servicio al cliente, manejo de quejas, tiempos de espera y protocolos de atención para una experiencia excepcional.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 12 págs</span><span class="doc-meta-tag">📌 Interno</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('atencion')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('atencion')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORÍA: SEGURIDAD -->
+  <div class="docs-category reveal">
+    <div class="cat-header">
+      <div class="cat-icon">🛡️</div>
+      <div class="cat-title">Seguridad</div>
+      <div class="cat-line"></div>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">Seguridad</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Protocolo de Higiene y Seguridad</div><div class="doc-card-emoji">🧼</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Protocolos de higiene alimentaria, seguridad laboral y prevención de accidentes conforme a regulaciones internacionales.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 14 págs</span><span class="doc-meta-tag">🔒 Oficial</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('higiene')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('higiene')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">Seguridad</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Política de Bebidas Alcohólicas</div><div class="doc-card-emoji">🔞</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Política interna de venta responsable de alcohol: verificación de mayoría de edad, límite de 2 bebidas por persona y protocolos de negativa de servicio.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 8 págs</span><span class="doc-meta-tag">🔒 Oficial</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('pol_alc')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('pol_alc')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORÍA: FINANZAS -->
+  <div class="docs-category reveal">
+    <div class="cat-header">
+      <div class="cat-icon">💰</div>
+      <div class="cat-title">Finanzas</div>
+      <div class="cat-line"></div>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">Finanzas</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Políticas de Tesorería</div><div class="doc-card-emoji">💰</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Políticas de manejo de efectivo, transacciones, reportes financieros y control interno de la empresa.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 10 págs</span><span class="doc-meta-tag">🔒 Oficial</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('tesoreria')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('tesoreria')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-top">
+          <span class="doc-cat-label">Finanzas</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Alianzas Estratégicas</div><div class="doc-card-emoji">🤝</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Modelo de contrato para acuerdos de colaboración con proveedores, distribuidores y socios comerciales nacionales e internacionales.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">📄 14 págs</span><span class="doc-meta-tag">📌 Plantilla</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('alianzas')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('alianzas')">⬇ Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p></div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="../index.html">Inicio</a>
+        <a href="../fotos/index.html">Fotos</a>
+        <a href="../menu/index.html">Menú</a>
+        <a href="../historia/index.html">Nuestra Historia</a>
+        <a href="../fundadores/index.html">Fundadores</a>
+        <a href="../empleo/index.html">Empleo</a>
+      </div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50249473557">+502 4947-3557</a><p>6a Calle 6-50 Zona 10</p><p>Ciudad de Guatemala</p></div>
+      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 11:00 – 23:00</p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="../terminos/index.html">Términos y Condiciones</a></div></div>
+  </div>
+</footer>
+
+<!-- PREVIEW MODAL -->
+<div class="preview-modal" id="previewModal">
+  <div class="preview-box">
+    <div class="preview-header">
+      <h3 id="previewTitle">Vista Previa</h3>
+      <button class="preview-close" onclick="closePreview()">✕</button>
+    </div>
+    <div class="preview-body" id="previewBody"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../nav.js"></script>
+<script>
+const previews={
+  escritura:{cat:'Legal',title:'Escritura Constitutiva S.A.',content:`
+    <p>Escritura Número <strong>Ochenta y Dos (82)</strong> de la serie de actos y contratos de carácter mercantil, otorgada en la ciudad de Guatemala a los quince días del mes de enero de dos mil veintiuno.</p>
+    <p><strong>SOCIOS FUNDADORES:</strong></p>
+    <ul><li>Dania Estrellitas Telles – Gerente General</li><li>Victor Alexander López López – Chef Ejecutivo y Cofundador</li><li>José Estuardo Milian García – Director de Operaciones</li></ul>
+    <p><strong>RAZÓN SOCIAL:</strong> SMASH & FIRE, SOCIEDAD ANÓNIMA (S.A.)</p>
+    <p><strong>CAPITAL SOCIAL:</strong> Q200,000.00 — dividido en 200 acciones nominativas de Q1,000.00 cada una.</p>
+    <p><strong>OBJETO SOCIAL:</strong> La empresa tendrá como objeto principal la preparación y venta de alimentos, con especialidad en hamburguesas estilo smash, bebidas, acompañamientos y experiencias gastronómicas.</p>
+    <p><strong>DOMICILIO:</strong> 6a Calle 6-50, Zona 10, Ciudad de Guatemala, Guatemala.</p>`},
+  licencia_alc:{cat:'Legal',title:'Licencia de Bebidas Alcohólicas',content:`
+    <p>Solicitud de Licencia ante el <strong>Ministerio de Salud Pública y Asistencia Social (MSPAS)</strong> de Guatemala para la venta de bebidas alcohólicas en establecimiento de alimentos.</p>
+    <p><strong>TIPO DE LICENCIA:</strong> Expendio de Bebidas Alcohólicas en Restaurante (Categoría B)</p>
+    <p><strong>REQUISITOS PRESENTADOS:</strong></p>
+    <ul><li>Copia legalizada de patente de comercio</li><li>DPI del representante legal</li><li>Plano de ubicación del establecimiento</li><li>Dictamen de la municipalidad de Guatemala</li><li>Comprobante de pago de tasa municipal</li></ul>
+    <p><strong>RESTRICCIONES:</strong> Venta únicamente para mayores de 18 años. Horario de venta de bebidas alcohólicas: 11:00 – 23:00 horas.</p>`},
+  reglamento:{cat:'RR.HH.',title:'Reglamento Interno de Trabajo',content:`
+    <p>Reglamento elaborado conforme al <strong>Decreto Número 1441 — Código de Trabajo de Guatemala</strong> y sus reformas.</p>
+    <p><strong>JORNADAS DE TRABAJO:</strong></p>
+    <ul><li>Jornada diurna: 6:00 a 18:00 horas (máximo 8 horas/día, 44 horas/semana)</li><li>Jornada mixta según necesidades operativas</li></ul>
+    <p><strong>DESCANSOS:</strong> Un día de descanso remunerado por semana. Asuetos nacionales según el Código de Trabajo.</p>
+    <p><strong>DISCIPLINA:</strong> Se establecen tres niveles de sanción: amonestación verbal, amonestación escrita y despido justificado, conforme al artículo 77 del Código de Trabajo.</p>
+    <p><strong>DERECHOS DEL TRABAJADOR:</strong> Salario mínimo vigente, IGSS, vacaciones anuales, aguinaldo e indemnización por despido injustificado.</p>`},
+  manual_ops:{cat:'Procedimientos',title:'Manual de Operaciones',content:`
+    <p>Manual que define los procedimientos estándar de operación (SOPs) de Smash &amp; Fire para garantizar la consistencia y calidad en cada servicio.</p>
+    <p><strong>CAPÍTULOS:</strong></p>
+    <ul><li>Apertura del restaurante (checklist 47 puntos)</li><li>Preparación de la carne smash: temperatura, presión y tiempo</li><li>Manejo y conservación de insumos</li><li>Estaciones de trabajo: cocina, caja y servicio</li><li>Procedimiento de cierre y limpieza</li><li>Control de calidad y trazabilidad</li></ul>
+    <p><strong>TEMPERATURA CRÍTICA DE LA CARNE:</strong> Cocción mínima a 71°C para garantizar inocuidad alimentaria.</p>`},
+  higiene:{cat:'Seguridad',title:'Protocolo de Higiene y Seguridad',content:`
+    <p>Protocolo basado en el sistema <strong>HACCP (Hazard Analysis and Critical Control Points)</strong> y las normas del Codex Alimentarius.</p>
+    <p><strong>PUNTOS CRÍTICOS DE CONTROL:</strong></p>
+    <ul><li>Recepción y almacenamiento de materias primas</li><li>Control de temperaturas en cadena de frío</li><li>Higiene personal del personal de cocina</li><li>Desinfección de superficies y equipos</li><li>Manejo de residuos y control de plagas</li></ul>
+    <p><strong>EQUIPOS DE PROTECCIÓN:</strong> Obligatorio el uso de guantes, cofia, delantal y zapatos cerrados en el área de cocina.</p>`},
+  pol_alc:{cat:'Seguridad',title:'Política de Bebidas Alcohólicas',content:`
+    <p>Política interna de venta responsable de bebidas con contenido alcohólico, conforme a la legislación guatemalteca y estándares internacionales de responsabilidad social.</p>
+    <p><strong>VERIFICACIÓN DE EDAD:</strong> Es obligatorio solicitar identificación (DPI) a todo cliente que aparente ser menor de 25 años antes de servir cualquier bebida alcohólica.</p>
+    <p><strong>LÍMITE DE CONSUMO:</strong> Máximo 2 (dos) bebidas alcohólicas por persona por visita, para garantizar el consumo responsable.</p>
+    <p><strong>PROHIBICIONES:</strong></p>
+    <ul><li>Servir a personas visiblemente intoxicadas</li><li>Venta para llevar de bebidas alcohólicas abiertas</li><li>Descuentos o promociones que incentiven el consumo excesivo</li></ul>`},
+  tesoreria:{cat:'Finanzas',title:'Políticas de Tesorería',content:`
+    <p>Políticas que regulan el manejo, custodia y control de los recursos monetarios de Smash &amp; Fire, S.A.</p>
+    <p><strong>MANEJO DE EFECTIVO:</strong> Arqueos de caja al inicio y cierre de cada jornada. La cajera es responsable de cuadres y faltantes.</p>
+    <p><strong>TRANSACCIONES BANCARIAS:</strong> Autorizadas únicamente por el Gerente General o Director de Operaciones con firma mancomunada.</p>
+    <p><strong>REPORTES:</strong> Estado financiero mensual presentado a los socios en los primeros 5 días hábiles de cada mes.</p>`},
+  contratos:{cat:'RR.HH.',title:'Contratos Laborales',content:`
+    <p>Contratos individuales de trabajo para los colaboradores de Smash &amp; Fire, S.A., firmados conforme al Código de Trabajo de Guatemala.</p>
+    <p><strong>COLABORADORES:</strong></p>
+    <ul><li>José Estuardo — Chef Ejecutivo</li><li>Darwin Alexander — Cocinero</li><li>Ruben Andre — Cocinero</li><li>Víctor López — Mesero</li><li>Estrellita Telles — Mesera</li><li>Linda Cifuente — Cajera</li></ul>
+    <p>Cada contrato especifica cargo, salario, jornada, prestaciones legales y cláusulas de confidencialidad.</p>`},
+  perfiles:{cat:'RR.HH.',title:'Perfiles de Puesto',content:`
+    <p>Descriptivos de puesto para los 6 roles operativos de Smash &amp; Fire, basados en la plantilla institucional.</p>
+    <p><strong>PUESTOS DESCRITOS:</strong></p>
+    <ul><li>Chef Ejecutivo — Responsable de producción y calidad</li><li>Cocinero — Preparación de alimentos según SOPs</li><li>Mesero/Mesera — Atención directa al cliente</li><li>Cajera — Control de caja, facturación y cierre</li></ul>
+    <p>Cada perfil incluye: requisitos académicos, experiencia, competencias conductuales y técnicas, y a quién reporta.</p>`},
+  manual_emp:{cat:'RR.HH.',title:'Manual del Empleado',content:`
+    <p>Documento de bienvenida que define la cultura, valores y normas de convivencia de Smash &amp; Fire.</p>
+    <p><strong>VALORES INSTITUCIONALES:</strong> Fuego (pasión), Precisión (calidad), Comunidad (equipo) y Autenticidad (sabor real).</p>
+    <p><strong>BENEFICIOS:</strong></p>
+    <ul><li>Alimentación durante la jornada (1 tiempo de comida)</li><li>Uniformes proporcionados por la empresa</li><li>Capacitaciones continuas en cocina y servicio</li><li>Ambiente de trabajo inclusivo y respetuoso</li></ul>`},
+  organigrama:{cat:'RR.HH.',title:'Organigrama',content:`
+    <p>Estructura organizacional de Smash &amp; Fire, S.A.</p>
+    <ul><li>🔝 <strong>Junta de Socios</strong> — Dania T., Victor L., José E.</li><li>👩‍💼 <strong>Gerente General</strong> — Dania Estrellitas Telles</li><li>👨‍🍳 <strong>Chef Ejecutivo</strong> — Victor Alexander López López</li><li>🍳 <strong>Cocineros</strong> — Darwin Alexander, Ruben Andre</li><li>🛎 <strong>Meseros</strong> — Víctor López, Estrellita Telles</li><li>🧾 <strong>Cajera</strong> — Linda Cifuente</li></ul>`},
+  expansion:{cat:'Legal / Estratégico',title:'Plan de Expansión EE.UU.',content:`
+    <p>Hoja de ruta para la apertura de la primera unidad de Smash &amp; Fire en el mercado estadounidense (Miami, FL — target 2026).</p>
+    <p><strong>ESTRUCTURA LEGAL REQUERIDA:</strong></p>
+    <ul><li>Constitución de LLC en Florida</li><li>EIN (Employer Identification Number)</li><li>Licencias municipales de alimentos y alcohol</li><li>Cumplimiento con FDA Food Safety Modernization Act</li></ul>
+    <p><strong>ANÁLISIS DE MERCADO:</strong> Alta concentración de la diáspora guatemalteca y centroamericana en el área de Miami-Doral. Oportunidad de posicionamiento como fast-casual auténtico con identidad guatemalteca.</p>`},
+  alianzas:{cat:'Finanzas',title:'Alianzas Estratégicas',content:`
+    <p>Modelo de contrato marco para formalizar alianzas con proveedores clave, plataformas de delivery y socios comerciales.</p>
+    <p><strong>TIPOS DE ALIANZA:</strong></p>
+    <ul><li>Proveedores de insumos (carne, pan brioche, vegetales)</li><li>Plataformas de delivery (Pedidos Ya, Rappi)</li><li>Franquiciados potenciales (para expansión)</li><li>Socios inversores (para apertura EE.UU.)</li></ul>
+    <p>Incluye cláusulas de exclusividad, confidencialidad, duración y terminación del acuerdo.</p>`},
+  atencion:{cat:'Procedimientos',title:'Protocolo de Atención al Cliente',content:`
+    <p>Estándares de la experiencia Smash &amp; Fire desde que el cliente entra hasta que se retira del local.</p>
+    <p><strong>CICLO DE SERVICIO:</strong></p>
+    <ul><li>Bienvenida (primeros 30 segundos)</li><li>Toma de orden y sugerencias del día</li><li>Tiempo máximo de entrega: 12 minutos</li><li>Visita de seguimiento en mesa</li><li>Despedida y fidelización</li></ul>
+    <p><strong>MANEJO DE QUEJAS:</strong> Escucha activa, disculpa genuina, solución inmediata. El colaborador puede ofrecer reposición o descuento del 15% sin necesidad de autorización superior.</p>`}
+};
+
+function openPreview(key){
+  const p=previews[key];if(!p)return;
+  document.getElementById('previewTitle').textContent=p.title;
+  document.getElementById('previewBody').innerHTML=`<div class="preview-cat">${p.cat}</div><h2>${p.title}</h2><div class="preview-meta"><span class="doc-meta-tag">📅 2026</span><span class="doc-meta-tag">🔒 Smash &amp; Fire S.A.</span></div>${p.content}<div class="preview-actions"><button class="doc-btn-dl" onclick="${key==='organigrama'?'downloadOrganigrama':'downloadDocPDF(\''+key+'\')'};closePreview()">⬇ Descargar PDF Completo</button><button class="doc-btn-preview" onclick="closePreview()">Cerrar</button></div>`;
+  document.getElementById('previewModal').classList.add('open');
+}
+function closePreview(){document.getElementById('previewModal').classList.remove('open')}
+
+async function downloadOrganigrama(){
+  const {jsPDF}=window.jspdf;
+  const pdfjsLib=window['pdfjs-dist/build/pdf'];
+  pdfjsLib.GlobalWorkerOptions.workerSrc=
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  showToast('⏳ Generando PDF...','ok');
+
+  // Load the source PDF
+  const pdfUrl='../assets/organigrama.pdf';
+  let pdfData;
+  try{
+    const resp=await fetch(pdfUrl);
+    if(!resp.ok)throw new Error('not found');
+    pdfData=await resp.arrayBuffer();
+  }catch(e){
+    showToast('⚠️ Archivo no encontrado. Sube organigrama.pdf a assets/','warn');
+    return;
+  }
+
+  // Render page 1 to canvas
+  const loadingTask=pdfjsLib.getDocument({data:pdfData});
+  const pdfDoc=await loadingTask.promise;
+  const page=await pdfDoc.getPage(1);
+  const scale=2.5;
+  const viewport=page.getViewport({scale});
+  const canvas=document.createElement('canvas');
+  canvas.width=viewport.width; canvas.height=viewport.height;
+  await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;
+  const imgData=canvas.toDataURL('image/jpeg',0.92);
+
+  // Build jsPDF: A4 landscape for the org chart to fit well
+  const doc=new jsPDF({unit:'mm',format:'a4',orientation:'landscape'});
+  const W=297, H=210, M=14;
+
+  // Header bar
+  doc.setFillColor(200,16,46);
+  doc.rect(0,0,W,24,'F');
+  doc.setFontSize(18);doc.setFont('helvetica','bold');doc.setTextColor(255,255,255);
+  doc.text('SMASH & FIRE',M,13);
+  doc.setFontSize(8);doc.setFont('helvetica','normal');
+  doc.text('Smash & Fire, S.A.  —  6a Calle 6-50 Zona 10, Ciudad de Guatemala',M,20);
+  doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(245,184,0);
+  doc.text('ORGANIGRAMA EMPRESARIAL',W-M,13,{align:'right'});
+  doc.setFontSize(8);doc.setFont('helvetica','normal');doc.setTextColor(255,255,255);
+  doc.text('Vigente 2026',W-M,20,{align:'right'});
+
+  // Embed the rendered org chart image
+  const imgW=W-M*2;
+  const imgH=(canvas.height/canvas.width)*imgW;
+  const imgY=28;
+  doc.addImage(imgData,'JPEG',M,imgY,imgW,Math.min(imgH,H-imgY-10));
+
+  // Footer
+  doc.setFillColor(200,16,46);doc.rect(0,H-10,W,10,'F');
+  doc.setFontSize(7.5);doc.setFont('helvetica','normal');doc.setTextColor(255,255,255);
+  doc.text('Documento confidencial — Smash & Fire, S.A.',M,H-4);
+  doc.text('Página 1 de 1',W-M,H-4,{align:'right'});
+
+  doc.save('SF-Organigrama-2026.pdf');
+  showToast('✅ Organigrama descargado');
+}
+
+function downloadDocPDF(key){
+  const p=previews[key]; if(!p) return;
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  const W=210, M=18;
+  let y=M;
+
+  // Header
+  doc.setFillColor(200,16,46);
+  doc.rect(0,0,W,30,'F');
+  doc.setFontSize(20);doc.setFont('helvetica','bold');doc.setTextColor(255,255,255);
+  doc.text('SMASH & FIRE',M,13);
+  doc.setFontSize(8.5);doc.setFont('helvetica','normal');
+  doc.text('6a Calle 6-50 Zona 10, Ciudad de Guatemala  |  hola@smashandfire.gt',M,20);
+  doc.text('Smash & Fire, S.A.  —  Documento Oficial 2026',M,26);
+  y=40;
+
+  // Category badge
+  doc.setFontSize(7.5);doc.setFont('helvetica','bold');doc.setTextColor(200,16,46);
+  doc.text(p.cat.toUpperCase(),M,y);
+  y+=7;
+
+  // Title
+  doc.setFontSize(17);doc.setFont('helvetica','bold');doc.setTextColor(26,8,0);
+  const titleLines=doc.splitTextToSize(p.title,W-M*2);
+  doc.text(titleLines,M,y);
+  y+=titleLines.length*8+4;
+
+  // Divider
+  doc.setDrawColor(232,206,170);doc.setLineWidth(0.5);doc.line(M,y,W-M,y);y+=8;
+
+  // Strip HTML tags and render content
+  const raw=p.content
+    .replace(/<strong>(.*?)<\/strong>/g,'$1')
+    .replace(/<li>(.*?)<\/li>/g,'  → $1\n')
+    .replace(/<ul>(.*?)<\/ul>/gs,'$1')
+    .replace(/<p>(.*?)<\/p>/gs,'$1\n\n')
+    .replace(/<[^>]+>/g,'')
+    .replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+
+  const blocks=raw.split('\n').map(l=>l.trim()).filter(Boolean);
+  doc.setFontSize(9.5);doc.setTextColor(42,18,0);
+
+  blocks.forEach(block=>{
+    if(y>270){doc.addPage();y=M;}
+    const isBold=block.endsWith(':') && block.length<60;
+    if(isBold){
+      doc.setFont('helvetica','bold');doc.setTextColor(26,8,0);
+    } else if(block.startsWith('→')){
+      doc.setFont('helvetica','normal');doc.setTextColor(100,60,20);
+    } else {
+      doc.setFont('helvetica','normal');doc.setTextColor(42,18,0);
+    }
+    const lines=doc.splitTextToSize(block,W-M*2);
+    lines.forEach(line=>{
+      if(y>275){doc.addPage();y=M;}
+      doc.text(line,M,y);
+      y+=6;
+    });
+    y+=2;
+  });
+
+  // Footer
+  const pages=doc.getNumberOfPages();
+  for(let i=1;i<=pages;i++){
+    doc.setPage(i);
+    doc.setFillColor(200,16,46);doc.rect(0,285,W,12,'F');
+    doc.setFontSize(7.5);doc.setFont('helvetica','normal');doc.setTextColor(255,255,255);
+    doc.text('Smash & Fire S.A. — Documento confidencial de uso interno',M,292);
+    doc.text(`Página ${i} de ${pages}`,W-M,292,{align:'right'});
+  }
+
+  const fname=p.title.replace(/[^a-zA-Z0-9]/g,'-').replace(/-+/g,'-')+'.pdf';
+  doc.save('SF-'+fname);
+  showToast('✅ PDF descargado: '+p.title);
+}
+
+function showToast(msg,type='ok'){
+  const t=document.createElement('div');
+  t.style.cssText=`position:fixed;bottom:20px;right:20px;z-index:9999;background:${type==='warn'?'#F5B800':'#1A0800'};color:${type==='warn'?'#1A0800':'#fff'};padding:10px 18px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:1px;box-shadow:0 8px 24px rgba(0,0,0,0.2)`;
+  t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2500)
+}
+</script>
+</body>
+</html>

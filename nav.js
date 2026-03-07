@@ -1,36 +1,53 @@
-/* ──────────────────────────────────────
-   SHARED JS — nav.js
-────────────────────────────────────── */
+/* ── SHARED NAV.JS ── */
 
-// Custom cursor
-(function() {
-  const dot  = document.getElementById('cursor-dot');
-  const ring = document.getElementById('cursor-ring');
-  if (!dot || !ring) return;
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function loop() {
-    rx += (mx - rx) * 0.18;
-    ry += (my - ry) * 0.18;
-    dot.style.left  = mx + 'px';
-    dot.style.top   = my + 'px';
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(loop);
-  })();
-  document.querySelectorAll('a,button,.btn,.card,.gallery-item,.menu-item').forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+// ─── TRANSLATIONS ─────────────────────────────────────────────
+const i18n = {
+  es: {
+    nav_home:'Inicio', nav_photos:'Fotos', nav_history:'Historia',
+    nav_terms:'Términos', nav_founders:'Fundadores', nav_jobs:'Empleo',
+    nav_marketing:'Marketing', nav_menu:'Ver Menú',
+    footer_nav:'Navegación', footer_contact:'Contacto', footer_hours:'Horarios',
+    footer_copy:'© 2025 Smash & Fire. Todos los derechos reservados.',
+    footer_terms:'Términos', footer_privacy:'Privacidad',
+    hours_weekday:'Lun – Jue: 11:00 – 22:00',
+    hours_friday:'Viernes: 11:00 – 23:00',
+    hours_weekend:'Sáb – Dom: 11:00 – 23:00',
+  },
+  en: {
+    nav_home:'Home', nav_photos:'Photos', nav_history:'Our Story',
+    nav_terms:'Terms', nav_founders:'Founders', nav_jobs:'Jobs',
+    nav_marketing:'Marketing', nav_menu:'See Menu',
+    footer_nav:'Navigation', footer_contact:'Contact', footer_hours:'Hours',
+    footer_copy:'© 2025 Smash & Fire. All rights reserved.',
+    footer_terms:'Terms', footer_privacy:'Privacy',
+    hours_weekday:'Mon – Thu: 11:00 AM – 10:00 PM',
+    hours_friday:'Friday: 11:00 AM – 11:00 PM',
+    hours_weekend:'Sat – Sun: 11:00 AM – 11:00 PM',
+  }
+};
+
+let currentLang = localStorage.getItem('sf_lang') || 'es';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('sf_lang', lang);
+  document.documentElement.setAttribute('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18n[lang][key] !== undefined) el.textContent = i18n[lang][key];
   });
-})();
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
 
-// Navbar scroll effect
+// ─── NAVBAR SCROLL ─────────────────────────────────────────────
 const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
   nav && nav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-// Mobile toggle
+// ─── MOBILE TOGGLE ─────────────────────────────────────────────
 const toggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 if (toggle && navLinks) {
@@ -46,7 +63,13 @@ if (toggle && navLinks) {
   });
 }
 
-// Active link
+// ─── LANG TOGGLE ───────────────────────────────────────────────
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+});
+applyLang(currentLang);
+
+// ─── ACTIVE LINK ───────────────────────────────────────────────
 (function() {
   const segs = location.pathname.replace(/\/$/, '').split('/');
   const current = segs[segs.length - 1] || 'index.html';
@@ -61,39 +84,24 @@ if (toggle && navLinks) {
   });
 })();
 
-// Scroll reveal
+// ─── SCROLL REVEAL ─────────────────────────────────────────────
 (function() {
   const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   if (!els.length) return;
   const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.12 });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
   els.forEach(el => io.observe(el));
 })();
 
-// Parallax via scroll
-(function() {
-  const pElems = document.querySelectorAll('[data-parallax]');
-  if (!pElems.length) return;
-  window.addEventListener('scroll', () => {
-    const sy = window.scrollY;
-    pElems.forEach(el => {
-      const speed = parseFloat(el.dataset.parallax) || 0.3;
-      const rect  = el.getBoundingClientRect();
-      const center = rect.top + rect.height / 2 + sy - window.innerHeight / 2;
-      el.style.transform = `translateY(${center * speed}px)`;
-    });
-  }, { passive: true });
-})();
-
-// Ticker duplicate for seamless loop
+// ─── TICKER DUPLICATE ──────────────────────────────────────────
 (function() {
   const inner = document.querySelector('.ticker-inner');
   if (!inner) return;
   inner.innerHTML += inner.innerHTML;
 })();
 
-// Number counters
+// ─── NUMBER COUNTERS ───────────────────────────────────────────
 (function() {
   const counters = document.querySelectorAll('[data-count]');
   if (!counters.length) return;
@@ -102,13 +110,12 @@ if (toggle && navLinks) {
       if (!e.isIntersecting) return;
       const el = e.target;
       const target = parseInt(el.dataset.count);
-      const duration = 1800;
-      const step = target / (duration / 16);
-      let current = 0;
+      const step = target / (1800 / 16);
+      let cur = 0;
       const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = Math.floor(current).toLocaleString();
-        if (current >= target) clearInterval(timer);
+        cur = Math.min(cur + step, target);
+        el.textContent = Math.floor(cur).toLocaleString();
+        if (cur >= target) clearInterval(timer);
       }, 16);
       io.unobserve(el);
     });

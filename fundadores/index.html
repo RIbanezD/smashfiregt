@@ -1,223 +1,280 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fundadores — Smash & Fire</title>
-  <link rel="stylesheet" href="../style.css"/>
-  <style>
-.founders-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;
-  margin-top:3rem;
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Equipo — Smash & Fire</title>
+<link rel="stylesheet" href="../style.css"/>
+<style>
+/* ── CEO HERO CARD ── */
+.ceo-section{background:var(--dark);padding:80px 0 90px;position:relative;overflow:hidden}
+.ceo-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 50%,rgba(200,16,46,0.18) 0%,transparent 70%)}
+.ceo-card{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+  position:relative;z-index:1;
 }
-.founder-card {
-  background: var(--coal); border: 1px solid var(--ash);
-  border-radius: 4px; overflow: hidden;
-  transition: border-color 0.3s, transform 0.3s;
+@media(max-width:800px){.ceo-card{grid-template-columns:1fr;gap:3rem}}
+.ceo-avatar-wrap{position:relative;display:flex;justify-content:center}
+.ceo-avatar-ring{
+  width:280px;height:280px;border-radius:50%;
+  border:4px solid var(--red);
+  box-shadow:0 0 0 8px rgba(200,16,46,0.12),0 24px 60px rgba(26,8,0,0.5);
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:var(--dark2);font-size:9rem;
+  position:relative;
 }
-.founder-card:hover { border-color: rgba(232,50,10,0.4); transform: translateY(-6px); }
-.founder-header {
-  height: 220px; position: relative;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
+.ceo-avatar-ring img{width:100%;height:100%;object-fit:cover}
+.ceo-role-badge{
+  position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
+  background:var(--red);color:var(--white);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;
+  padding:5px 20px;border-radius:20px;white-space:nowrap;
+  box-shadow:0 4px 12px rgba(200,16,46,0.4);
 }
-.founder-header::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--ash) 0%, var(--char) 100%);
+.ceo-info{}
+.ceo-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.72rem;letter-spacing:4px;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:0.8rem;
 }
-.founder-header::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, rgba(14,11,7,0.95));
+.ceo-eyebrow::before{content:'';width:20px;height:2px;background:var(--yellow)}
+.ceo-name{font-family:'Oswald',sans-serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--white);line-height:1.05;margin-bottom:0.3rem}
+.ceo-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;
+  letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:1.4rem}
+.ceo-bio{color:rgba(255,247,238,0.7);font-size:0.95rem;line-height:1.8;max-width:440px;margin-bottom:1.6rem}
+.ceo-quote{
+  border-left:3px solid var(--yellow);padding:0.9rem 1.2rem;
+  background:rgba(245,184,0,0.07);border-radius:0 8px 8px 0;
 }
-.founder-emoji { font-size: 7rem; position: relative; z-index: 1; }
-.founder-name-overlay {
-  position: absolute; bottom: 16px; left: 20px; z-index: 2;
-}
-.founder-name-overlay h3 {
-  font-family: 'Anton', sans-serif; font-size: 1.6rem; letter-spacing: 2px; color: var(--white);
-}
-.founder-name-overlay .role {
-  font-family: 'Rajdhani', sans-serif; font-weight: 700;
-  font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--fire);
-  margin-top: 2px;
-}
-.founder-body { padding: 1.8rem; }
-.founder-body p { color: var(--light); line-height: 1.7; font-size: 0.9rem; }
+.ceo-quote p{font-style:italic;color:rgba(255,247,238,0.85);font-size:0.9rem;line-height:1.65}
+.ceo-quote cite{display:block;margin-top:0.5rem;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--yellow);font-style:normal}
 
-/* Skill bars */
-.skills { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
-.skill-row {}
-.skill-label {
-  display: flex; justify-content: space-between;
-  font-family: 'Rajdhani', sans-serif; font-weight: 600;
-  font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--gray); margin-bottom: 6px;
+/* ── MANAGEMENT ROW ── */
+.mgmt-section{background:var(--surface);padding:80px 0}
+.mgmt-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;
 }
-.skill-bar {
-  height: 4px; background: var(--ash); border-radius: 2px; overflow: hidden;
+@media(max-width:900px){.mgmt-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.mgmt-grid{grid-template-columns:1fr}}
+.mgmt-card{
+  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  overflow:hidden;transition:all 0.3s var(--ease-expo);
+  box-shadow:0 2px 12px var(--shadow);
 }
-.skill-fill {
-  height: 100%; background: var(--fire); border-radius: 2px;
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 1.5s var(--ease-out-expo);
+.mgmt-card:hover{border-color:var(--red);transform:translateY(-6px);box-shadow:0 16px 48px var(--shadow-lg)}
+.mgmt-thumb{
+  height:180px;display:flex;align-items:center;justify-content:center;
+  background:var(--dark);font-size:6rem;position:relative;overflow:hidden;
 }
-.skill-fill.anim { transform: scaleX(1); }
+.mgmt-thumb img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.mgmt-thumb-overlay{
+  position:absolute;bottom:0;left:0;right:0;height:50%;
+  background:linear-gradient(to bottom,transparent,rgba(26,8,0,0.7));
+}
+.mgmt-body{padding:1.4rem 1.5rem}
+.mgmt-role{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--red);margin-bottom:0.3rem;display:block;
+}
+.mgmt-name{font-family:'Oswald',sans-serif;font-size:1.25rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:0.7rem;line-height:1.1}
+.mgmt-desc{color:var(--text-muted);font-size:0.84rem;line-height:1.65}
 
-.founder-quote {
-  margin-top: 1.5rem; padding: 1.2rem 1.5rem;
-  border-left: 3px solid var(--fire);
-  background: var(--ash); border-radius: 0 3px 3px 0;
-}
-.founder-quote p { font-style: italic; color: var(--light); font-size: 0.9rem; line-height: 1.6; margin: 0; }
-.founder-quote cite {
-  display: block; margin-top: 0.5rem;
-  font-family: 'Rajdhani', sans-serif; font-weight: 700;
-  font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--fire); font-style: normal;
-}
+/* ── SKILLS BAR ── */
+.skill-list{margin-top:1.1rem;display:flex;flex-direction:column;gap:0.65rem}
+.skill-row-label{display:flex;justify-content:space-between;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:4px}
+.skill-bar-track{height:4px;background:var(--surface2);border-radius:2px;overflow:hidden}
+.skill-bar-fill{height:100%;background:var(--red);border-radius:2px;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 1.4s var(--ease-expo)}
+.skill-bar-fill.animate{transform:scaleX(1)}
 
-/* Team mosaic */
-.team-mosaic {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 3px; background: var(--ash); border-radius: 4px; overflow: hidden;
-  margin-top: 3rem;
+/* ── STAFF MOSAIC ── */
+.staff-section{background:var(--cream);padding:80px 0 100px}
+.staff-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;
 }
-.team-tile {
-  background: var(--coal); padding: 2rem 1.5rem; text-align: center;
-  transition: background 0.3s;
+@media(max-width:700px){.staff-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.staff-grid{grid-template-columns:1fr}}
+.staff-card{
+  background:var(--white);border:1px solid var(--border);border-radius:14px;
+  padding:2rem 1.5rem;text-align:center;
+  transition:all 0.3s var(--ease-expo);
 }
-.team-tile:hover { background: var(--ash); }
-.team-tile .t-emoji { font-size: 2.2rem; margin-bottom: 0.75rem; }
-.team-tile h4 {
-  font-family: 'Rajdhani', sans-serif; font-weight: 700;
-  font-size: 0.85rem; letter-spacing: 2px; color: var(--bone);
+.staff-card:hover{border-color:rgba(200,16,46,0.3);box-shadow:0 8px 24px var(--shadow);transform:translateY(-4px)}
+.staff-avatar{
+  width:80px;height:80px;border-radius:50%;border:3px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface);font-size:2.8rem;margin:0 auto 1rem;overflow:hidden;
+  transition:border-color 0.3s;
 }
-.team-tile span { color: var(--light); font-size: 0.75rem; display: block; margin-top: 3px; }
+.staff-card:hover .staff-avatar{border-color:var(--red)}
+.staff-avatar img{width:100%;height:100%;object-fit:cover}
+.staff-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:0.2rem}
+.staff-role{font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red)}
+.staff-dep{font-size:0.78rem;color:var(--text-muted);margin-top:0.3rem}
+
+/* ── ORG CHART PREVIEW ── */
+.orgchart-section{background:var(--dark);padding:80px 0}
+.orgchart-frame{
+  margin-top:2.5rem;background:var(--dark2);border:1px solid rgba(255,247,238,0.1);
+  border-radius:14px;overflow:hidden;text-align:center;
+  padding:2rem;
+}
+.orgchart-frame canvas{max-width:100%;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.orgchart-loading{color:rgba(255,247,238,0.5);font-size:0.9rem;padding:3rem}
+.orgchart-dl{margin-top:1.5rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
 </style>
 </head>
 <body>
-<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
-
 <nav>
   <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="../index.html">Inicio</a></li>
-    <li><a href="../fotos/index.html">Fotos</a></li>
-    <li><a href="../historia/index.html">Historia</a></li>
-    <li><a href="../terminos/index.html">Términos</a></li>
-    <li><a href="../fundadores/index.html">Fundadores</a></li>
-    <li><a href="../empleo/index.html">Empleo</a></li>
-    <li><a href="../marketing/index.html">Marketing</a></li>
-    <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
+  <ul class="nav-links">
+    <li><a href="../index.html" data-i18n="nav_home">Inicio</a></li>
+    <li><a href="../fotos/index.html" data-i18n="nav_photos">Fotos</a></li>
+    <li><a href="../historia/index.html" data-i18n="nav_history">Historia</a></li>
+    <li><a href="../terminos/index.html" data-i18n="nav_terms">Términos</a></li>
+    <li><a href="../fundadores/index.html" class="active" data-i18n="nav_founders">Fundadores</a></li>
+    <li><a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a></li>
+    <li><a href="../documentos/index.html">Documentos</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Ver Menú</a></li>
   </ul>
-  <button class="nav-toggle"><span></span><span></span><span></span></button>
 </nav>
 
+<!-- PAGE HERO -->
 <div class="page-hero">
   <div class="container">
-    <span class="section-label reveal">El equipo</span>
+    <span class="section-label reveal">Nuestro equipo</span>
     <h1 class="section-title reveal delay-1" style="font-size:clamp(3rem,8vw,6rem)">LAS PERSONAS<br>DETRÁS DEL FUEGO</h1>
     <p class="reveal delay-2">El talento, la visión y la pasión que convierten ingredientes simples en experiencias memorables.</p>
   </div>
 </div>
 
-<section style="background:var(--char);padding:80px 0 100px;">
+<!-- CEO -->
+<section class="ceo-section">
   <div class="container">
-    <span class="section-label reveal">Co-fundadores</span>
-    <h2 class="section-title reveal delay-1">LOS TRES<br>CO-FUNDADORES</h2>
-    <div class="founders-grid">
-
-      <div class="founder-card reveal delay-1">
-        <div class="founder-header">
-          <div class="founder-emoji">👩‍💼</div>
-          <div class="founder-name-overlay">
-            <h3>DANIA ESTRELLITAS TELLES</h3>
-            <div class="role">Co-Fundadora · Gerente General</div>
-          </div>
+    <div class="ceo-card">
+      <div class="ceo-avatar-wrap reveal-left">
+        <div class="ceo-avatar-ring">
+          <img src="../assets/team/estrellita.jpeg" alt="Estrellita Telles">
+          <!-- Reemplaza el emoji con: <img src="../assets/team/estrellita.jpg" alt="Estrellita Telles"> -->
         </div>
-        <div class="founder-body">
-          <p>Administradora de empresas con visión y olfato para los negocios gastronómicos. Dania construyó la marca, la estrategia de crecimiento y el modelo que llevó a Smash & Fire del garage al restaurante reconocido.</p>
-          <div class="skills">
-            <div class="skill-row">
-              <div class="skill-label"><span>Técnica Smash</span><span>98%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-width="98"></div></div>
+        <div class="ceo-role-badge">👑 CEO &amp; Fundadora</div>
+      </div>
+      <div class="ceo-info reveal-right">
+        <div class="ceo-eyebrow">Dirección General</div>
+        <h2 class="ceo-name">Estrellita<br>Telles</h2>
+        <div class="ceo-title">Chief Executive Officer</div>
+        <p class="ceo-bio">Emprendedora guatemalteca con visión y olfato para los negocios gastronómicos. Estrellita construyó la marca, la estrategia de crecimiento y el modelo de operaciones que llevó a Smash &amp; Fire de una idea a un restaurante consolidado en Zona 10.</p>
+        <p class="ceo-bio" style="margin-top:0">Lidera el equipo con exigencia y calidez, asegurando que cada hamburguesa que sale de la cocina cargue el estándar que prometimos desde el primer día.</p>
+        <div class="ceo-quote">
+          <p>"El éxito se mide en clientes que regresan, no en visitas únicas."</p>
+          <cite>— Estrellita Telles, CEO</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANAGEMENT: Chef + Admin + Jefe Meseros -->
+<section class="mgmt-section">
+  <div class="container">
+    <span class="section-label reveal">Mando medio</span>
+    <h2 class="section-title reveal delay-1">LÍDERES DE ÁREA</h2>
+    <p class="reveal delay-2" style="color:var(--text-muted);max-width:480px;margin-top:0.5rem">Los tres pilares operativos que garantizan que el fuego nunca se apague.</p>
+
+    <div class="mgmt-grid">
+
+      <!-- CHEF -->
+      <div class="mgmt-card reveal delay-1">
+        <div class="mgmt-thumb">
+          <img src="../assets/team/jose-milian.jpg" alt="José Milian">
+          <!-- <img src="../assets/team/jose-milian.jpg" alt="José Milian"> -->
+          <div class="mgmt-thumb-overlay"></div>
+        </div>
+        <div class="mgmt-body">
+          <span class="mgmt-role">Cocina · Chef Principal</span>
+          <div class="mgmt-name">José Milian</div>
+          <p class="mgmt-desc">Cerebro culinario de Smash &amp; Fire. José perfeccionó la técnica smash durante años y es el guardián del sabor y la consistencia de cada receta en la cocina.</p>
+          <div class="skill-list">
+            <div>
+              <div class="skill-row-label"><span>Técnica Smash</span><span>98%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.98"></div></div>
             </div>
-            <div class="skill-row">
-              <div class="skill-label"><span>Desarrollo de Recetas</span><span>95%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+            <div>
+              <div class="skill-row-label"><span>Desarrollo de Recetas</span><span>95%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.95"></div></div>
             </div>
-            <div class="skill-row">
-              <div class="skill-label"><span>Gestión de Cocina</span><span>88%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+            <div>
+              <div class="skill-row-label"><span>Gestión de Cocina</span><span>90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.90"></div></div>
             </div>
-          </div>
-          <div class="founder-quote">
-            <p>"El éxito se mide en clientes que regresan, no en visitas únicas."</p>
-            <cite>— Dania Tellez</cite>
           </div>
         </div>
       </div>
 
-      <div class="founder-card reveal delay-2">
-        <div class="founder-header">
-          <div class="founder-emoji">👨‍🍳</div>
-          <div class="founder-name-overlay">
-            <h3>VICTOR ALEXANDER LÓPEZ LÓPEZ</h3>
-            <div class="role">Co-Fundador · Chef Ejecutivo</div>
-          </div>
+      <!-- ADMINISTRADORA -->
+      <div class="mgmt-card reveal delay-2">
+        <div class="mgmt-thumb">
+          <img src="../assets/team/linda-cifuentes.jpg" alt="Linda Cifuentes">
+          <!-- <img src="../assets/team/linda-cifuentes.jpg" alt="Linda Cifuentes"> -->
+          <div class="mgmt-thumb-overlay"></div>
         </div>
-        <div class="founder-body">
-          <p>Con más de 10 años en cocina profesional, Victor es la cerebro culinario de Smash & Fire. Estudió gastronomía en México y perfeccionó la técnica smash durante dos años antes de abrir el local.</p>
-          <div class="skills">
-            <div class="skill-row">
-              <div class="skill-label"><span>Estrategia de Marca</span><span>97%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-width="97"></div></div>
+        <div class="mgmt-body">
+          <span class="mgmt-role">Administración</span>
+          <div class="mgmt-name">Linda Cifuentes</div>
+          <p class="mgmt-desc">Administradora del negocio, responsable de los procesos financieros, control interno, caja y coordinación administrativa. La columna vertebral operativa de Smash &amp; Fire.</p>
+          <div class="skill-list">
+            <div>
+              <div class="skill-row-label"><span>Control Financiero</span><span>97%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.97"></div></div>
             </div>
-            <div class="skill-row">
-              <div class="skill-label"><span>Experiencia del Cliente</span><span>94%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-width="94"></div></div>
+            <div>
+              <div class="skill-row-label"><span>Administración</span><span>94%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.94"></div></div>
             </div>
-            <div class="skill-row">
-              <div class="skill-label"><span>Finanzas &amp; Crecimiento</span><span>90%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            <div>
+              <div class="skill-row-label"><span>Atención al Cliente</span><span>91%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.91"></div></div>
             </div>
-          </div>
-          <div class="founder-quote">
-            <p>"Una hamburguesa bien hecha no necesita disculpas. Habla sola."</p>
-            <cite>— Victor López</cite>
           </div>
         </div>
       </div>
 
-      <div class="founder-card reveal delay-3">
-        <div class="founder-header">
-          <div class="founder-emoji">👨‍💻</div>
-          <div class="founder-name-overlay">
-            <h3>JOSÉ ESTUARDO MILIAN GARCÍA</h3>
-            <div class="role">Co-Fundador · Director Operaciones</div>
-          </div>
+      <!-- JEFE DE MESEROS -->
+      <div class="mgmt-card reveal delay-3">
+        <div class="mgmt-thumb">
+          <img src="../assets/team/Darwin.jpeg" alt="Darwin Pérez">
+          <!-- <img src="../assets/team/darwin-perez.jpg" alt="Darwin Pérez"> -->
+          <div class="mgmt-thumb-overlay"></div>
         </div>
-        <div class="founder-body">
-          <p>Administrador de Sistemas convertido en experto en operaciones gastronómicas. José diseñó el sistema de producción que garantiza que cada hamburguesa sea perfecta en hora pico o en servicio tranquilo.</p>
-          <div class="skills">
-            <div class="skill-row">
-              <div class="skill-label"><span>Operaciones</span><span>96%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-width="96"></div></div>
+        <div class="mgmt-body">
+          <span class="mgmt-role">Servicio · Jefe de Meseros</span>
+          <div class="mgmt-name">Darwin Pérez</div>
+          <p class="mgmt-desc">Líder del equipo de sala. Darwin coordina al personal de servicio, cuida los tiempos de atención y asegura que cada cliente viva la experiencia Smash &amp; Fire desde que entra hasta que se va.</p>
+          <div class="skill-list">
+            <div>
+              <div class="skill-row-label"><span>Liderazgo de Equipo</span><span>96%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.96"></div></div>
             </div>
-            <div class="skill-row">
-              <div class="skill-label"><span>Control de Calidad</span><span>93%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-width="93"></div></div>
+            <div>
+              <div class="skill-row-label"><span>Experiencia del Cliente</span><span>94%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.94"></div></div>
             </div>
-            <div class="skill-row">
-              <div class="skill-label"><span>Gestión de Equipo</span><span>89%</span></div>
-              <div class="skill-bar"><div class="skill-fill" data-width="89"></div></div>
+            <div>
+              <div class="skill-row-label"><span>Gestión de Sala</span><span>89%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.89"></div></div>
             </div>
-          </div>
-          <div class="founder-quote">
-            <p>"La consistencia es la forma más alta de creatividad en un restaurante."</p>
-            <cite>— José Milian</cite>
           </div>
         </div>
       </div>
@@ -226,18 +283,48 @@
   </div>
 </section>
 
-<section style="background:var(--coal);padding:80px 0 100px;">
+<!-- STAFF -->
+<section class="staff-section">
   <div class="container">
-    <span class="section-label reveal">Todo el equipo</span>
+    <span class="section-label reveal">Equipo completo</span>
     <h2 class="section-title reveal delay-1">LOS QUE HACEN<br>EL FUEGO POSIBLE</h2>
-    <div class="team-mosaic">
-      <div class="team-tile reveal"><div class="t-emoji">👨‍🍳</div><h4>Rubén I.</h4><span>Chef de Línea</span></div>
-      <div class="team-tile reveal delay-1"><div class="t-emoji">👨‍💼</div><h4>Darwin P.</h4><span>Encargado de Finanzas</span></div>
-      <div class="team-tile reveal delay-2"><div class="t-emoji">👩‍💼</div><h4>Linda C.</h4><span>Marketing y Atención al Cliente</span></div>
+    <p class="reveal delay-2" style="color:var(--text-muted);max-width:460px;margin-top:0.5rem">Cada uno en su posición, con la misma pasión por el detalle.</p>
+
+    <div class="staff-grid">
+      <div class="staff-card reveal delay-1">
+        <div class="staff-avatar"><img src="../assets/team/ruben.png" alt="Ruben Ibañez"><!-- <img src="../assets/team/ruben-ibanez.jpg" alt="Ruben Ibañez"> --></div>
+        <div class="staff-name">Ruben Ibañez</div>
+        <div class="staff-role">Sous-Chef</div>
+        <div class="staff-dep">Reporte a: Chef José Milian</div>
+      </div>
+      <div class="staff-card reveal delay-2">
+        <div class="staff-avatar">
+        <img src="../assets/team/victor-lopez.jpg" alt="Victor Lopez">
+          <!-- <img src="../assets/team/victor-lopez.jpg" alt="Victor Lopez"> --></div>
+        <div class="staff-name">Victor Lopez</div>
+        <div class="staff-role">Mesero</div>
+        <div class="staff-dep">Reporte a: Darwin Pérez</div>
+      </div>
     </div>
-    <p style="text-align:center;margin-top:2.5rem;color:var(--gray);font-size:0.88rem;">
-      ¿Quieres ser parte? <a href="../empleo/index.html" style="color:var(--fire);text-decoration:none;font-weight:700;">Ver plazas disponibles →</a>
+
+    <p class="reveal" style="text-align:center;margin-top:2.5rem;color:var(--text-muted);font-size:0.88rem">
+      ¿Quieres unirte? <a href="../empleo/index.html" style="color:var(--red);font-weight:700;text-decoration:none">Ver plazas disponibles →</a>
     </p>
+  </div>
+</section>
+
+<!-- ORGANIGRAMA -->
+<section class="orgchart-section">
+  <div class="container">
+    <span class="section-label light reveal">Estructura</span>
+    <h2 class="section-title light reveal delay-1">ORGANIGRAMA<br>EMPRESARIAL</h2>
+    <div class="orgchart-frame reveal delay-2">
+      <div class="orgchart-loading" id="orgLoading">⏳ Cargando organigrama...</div>
+      <canvas id="orgCanvas" style="display:none"></canvas>
+      <div class="orgchart-dl" id="orgDl" style="display:none">
+        <a href="../assets/organigrama.pdf" download class="btn btn-outline" style="color:rgba(255,247,238,0.8);border-color:rgba(255,247,238,0.3)">⬇ Descargar PDF original</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -245,15 +332,7 @@
 <footer>
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand">
-        <div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div>
-        <p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p>
-        <div class="social-row" style="margin-top:1.5rem;">
-          <a class="social-btn" href="#" title="Instagram">📸</a>
-          <a class="social-btn" href="#" title="Facebook">👥</a>
-          <a class="social-btn" href="#" title="TikTok">🎵</a>
-        </div>
-      </div>
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p></div>
       <div class="footer-col">
         <h4>Navegación</h4>
         <a href="../index.html">Inicio</a>
@@ -262,48 +341,58 @@
         <a href="../historia/index.html">Nuestra Historia</a>
         <a href="../fundadores/index.html">Fundadores</a>
         <a href="../empleo/index.html">Empleo</a>
-        <a href="../marketing/index.html">Marketing</a>
       </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <a href="tel:+50212345678">+502 1234-5678</a>
-        <a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a>
-        <p>6a Calle 6-50 Zona 10</p>
-        <p>Guatemala City</p>
-      </div>
-      <div class="footer-col">
-        <h4>Horarios</h4>
-        <p>Lun – Jue: 11:00 – 22:00</p>
-        <p>Viernes: 11:00 – 23:00</p>
-        <p>Sáb – Dom: 11:00 – 23:00</p>
-        <a href="terminos/index.html" style="margin-top:1rem;">Términos y Condiciones</a>
-      </div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50249473557">+502 4947-3557</a><p>6a Calle 6-50 Zona 10</p><p>Ciudad de Guatemala</p></div>
+      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 11:00 – 23:00</p></div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Smash & Fire. Todos los derechos reservados.</p>
-      <div><a href="terminos/index.html">Términos</a> &nbsp;·&nbsp; <a href="#">Privacidad</a></div>
-    </div>
+    <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="../terminos/index.html">Términos y Condiciones</a></div></div>
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../nav.js"></script>
 <script>
-const founderCards = document.querySelectorAll('.founder-card');
-const skillObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.querySelectorAll('.skill-fill').forEach(fill => {
-      const w = fill.dataset.width;
-      requestAnimationFrame(() => {
-        fill.style.transform = 'scaleX(' + (w / 100) + ')';
-        fill.classList.add('anim');
-      });
+// ── SKILL BAR ANIMATION ──────────────────────────────────────
+const skillObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.querySelectorAll('.skill-bar-fill').forEach(bar=>{
+      bar.style.transform=`scaleX(${bar.dataset.w})`;
+      bar.classList.add('animate');
     });
-    skillObserver.unobserve(e.target);
+    skillObs.unobserve(e.target);
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+},{threshold:0.15});
+document.querySelectorAll('.mgmt-card').forEach(c=>skillObs.observe(c));
 
-founderCards.forEach(card => skillObserver.observe(card));
-</script>>
+// ── ORGANIGRAMA RENDER ───────────────────────────────────────
+(async function(){
+  const canvas=document.getElementById('orgCanvas');
+  const loading=document.getElementById('orgLoading');
+  const dlRow=document.getElementById('orgDl');
+
+  try{
+    const pdfjsLib=window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc=
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    const resp=await fetch('../assets/organigrama.pdf');
+    if(!resp.ok)throw new Error('not found');
+    const data=await resp.arrayBuffer();
+
+    const pdfDoc=await pdfjsLib.getDocument({data}).promise;
+    const page=await pdfDoc.getPage(1);
+    const vp=page.getViewport({scale:2});
+    canvas.width=vp.width; canvas.height=vp.height;
+    await page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise;
+
+    loading.style.display='none';
+    canvas.style.display='block';
+    dlRow.style.display='flex';
+  }catch(err){
+    loading.innerHTML='<span style="color:rgba(255,247,238,0.35);font-size:0.82rem">Sube <code style="color:var(--yellow)">assets/organigrama.pdf</code> al repositorio para visualizarlo aquí.</span>';
+  }
+})();
+</script>
 </body>
 </html>

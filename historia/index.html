@@ -14,7 +14,7 @@
 }
 .hi-bg {
   position: absolute; inset: -40%; pointer-events: none;
-  background: radial-gradient(ellipse at 60% 50%, rgba(232,50,10,0.12), transparent 60%),
+  background: radial-gradient(ellipse at 60% 50%, rgba(214,35,0,0.12), transparent 60%),
     repeating-conic-gradient(var(--ash) 0% 25%, transparent 0% 50%) at center;
   background-size: 60px 60px;
   opacity: 0.3;
@@ -30,9 +30,9 @@
   color: var(--gray); line-height: 1.9; font-size: 1.05rem; margin-top: 1.5rem;
 }
 .hi-num {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(8rem, 18vw, 14rem);
-  color: var(--light);
+  color: rgba(214,35,0,0.08);
   line-height: 1; user-select: none;
   text-align: right;
 }
@@ -80,11 +80,11 @@
   border-radius: 4px; padding: 1.5rem;
 }
 .t-year {
-  font-family: 'Anton', sans-serif; font-size: 2rem; letter-spacing: 3px;
+  font-family: 'Poppins', sans-serif; font-size: 2rem; letter-spacing: 3px;
   color: var(--fire); line-height: 1; margin-bottom: 0.5rem;
 }
 .t-content h3 {
-  font-family: 'Anton', sans-serif; font-size: 1.1rem; letter-spacing: 2px;
+  font-family: 'Poppins', sans-serif; font-size: 1.1rem; letter-spacing: 2px;
   color: var(--bone); margin-bottom: 0.5rem;
 }
 .t-content p { color: var(--light); font-size: 0.85rem; line-height: 1.7; }
@@ -104,21 +104,21 @@
   border-radius: 4px; padding: 2rem;
   transition: border-color 0.3s;
 }
-.bento-item:hover { border-color: rgba(232,50,10,0.4); }
+.bento-item:hover { border-color: rgba(214,35,0,0.4); }
 .bento-item.span2 { grid-column: span 2; }
 .bento-item.fire-bg {
   background: var(--fire);
 }
 .bento-item .bento-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
 .bento-item h3 {
-  font-family: 'Anton', sans-serif; font-size: 1.2rem; letter-spacing: 2px;
+  font-family: 'Poppins', sans-serif; font-size: 1.2rem; letter-spacing: 2px;
   color: var(--bone); margin-bottom: 0.5rem;
 }
 .bento-item.fire-bg h3 { color: var(--white); }
 .bento-item p { color: var(--light); font-size: 0.85rem; line-height: 1.7; }
 .bento-item.fire-bg p { color: rgba(255,255,255,0.8); }
 .big-quote {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   letter-spacing: 2px; line-height: 1.2;
   color: var(--white);
@@ -137,7 +137,7 @@
     <li><a href="../terminos/index.html">Términos</a></li>
     <li><a href="../fundadores/index.html">Fundadores</a></li>
     <li><a href="../empleo/index.html">Empleo</a></li>
-    <li><a href="../marketing/index.html">Marketing</a></li>
+    <li><a href="../documentos/index.html">Documentos</a></li>
     <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
   </ul>
   <button class="nav-toggle"><span></span><span></span><span></span></button>
@@ -163,7 +163,7 @@
     </div>
     <div class="reveal-right" style="text-align:center;">
       <div class="hi-num">2019</div>
-      <p style="color:var(--gray);font-size:0.85rem;letter-spacing:3px;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;">Año fundación</p>
+      <p style="color:var(--smoke);font-size:0.85rem;letter-spacing:3px;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;">Año fundación</p>
     </div>
   </div>
 </section>
@@ -288,15 +288,7 @@
 <footer>
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand">
-        <div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div>
-        <p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p>
-        <div class="social-row" style="margin-top:1.5rem;">
-          <a class="social-btn" href="#" title="Instagram">📸</a>
-          <a class="social-btn" href="#" title="Facebook">👥</a>
-          <a class="social-btn" href="#" title="TikTok">🎵</a>
-        </div>
-      </div>
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p></div>
       <div class="footer-col">
         <h4>Navegación</h4>
         <a href="../index.html">Inicio</a>
@@ -305,29 +297,15 @@
         <a href="../historia/index.html">Nuestra Historia</a>
         <a href="../fundadores/index.html">Fundadores</a>
         <a href="../empleo/index.html">Empleo</a>
-        <a href="../marketing/index.html">Marketing</a>
       </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <a href="tel:+50212345678">+502 1234-5678</a>
-        <a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a>
-        <p>6a Calle 6-50 Zona 10</p>
-        <p>Guatemala City</p>
-      </div>
-      <div class="footer-col">
-        <h4>Horarios</h4>
-        <p>Lun – Jue: 11:00 – 22:00</p>
-        <p>Viernes: 11:00 – 23:00</p>
-        <p>Sáb – Dom: 11:00 – 23:00</p>
-        <a href="terminos/index.html" style="margin-top:1rem;">Términos y Condiciones</a>
-      </div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50249473557">+502 4947-3557</a><p>6a Calle 6-50 Zona 10</p><p>Ciudad de Guatemala</p></div>
+      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 11:00 – 23:00</p></div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Smash & Fire. Todos los derechos reservados.</p>
-      <div><a href="terminos/index.html">Términos</a> &nbsp;·&nbsp; <a href="#">Privacidad</a></div>
-    </div>
+    <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="../terminos/index.html">Términos y Condiciones</a></div></div>
   </div>
 </footer>
+
+<!-- Scripts -->
 <script src="../nav.js"></script>
 </body>
 </html>

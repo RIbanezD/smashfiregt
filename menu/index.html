@@ -1,209 +1,348 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menú — Smash & Fire</title>
-  <link rel="stylesheet" href="../style.css"/>
-  <style>
-.filter-bar {
-  display: flex; gap: 0.5rem; flex-wrap: wrap;
-  margin: 3rem 0 2.5rem;
-  border-bottom: 1px solid var(--ash);
-  padding-bottom: 0;
-}
-.filt {
-  background: none; border: none; cursor: pointer;
-  font-family: 'Rajdhani', sans-serif; font-weight: 700;
-  font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--light); padding: 0.7rem 1.2rem;
-  border-bottom: 3px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
-  margin-bottom: -1px;
-}
-.filt:hover { color: var(--bone); }
-.filt.active { color: var(--fire); border-bottom-color: var(--fire); }
-
-.menu-section-title {
-  font-family: 'Anton', sans-serif;
-  font-size: 2rem; letter-spacing: 3px;
-  text-transform: uppercase; margin: 4rem 0 2rem;
-  display: flex; align-items: center; gap: 1.5rem; color: var(--bone);
-}
-.menu-section-title::after {
-  content: ''; flex: 1; height: 1px;
-  background: linear-gradient(to right, var(--ash), transparent);
-}
-
-.menu-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-  gap: 1.5rem;
-}
-.menu-card {
-  background: var(--coal); border: 1px solid var(--ash);
-  border-radius: 4px; overflow: hidden;
-  display: flex; flex-direction: column;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-}
-.menu-card:hover {
-  border-color: rgba(232,50,10,0.4);
-  transform: translateY(-5px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-}
-.menu-thumb {
-  height: 150px;
-  background: linear-gradient(135deg, var(--ash), var(--coal));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 5rem; position: relative; overflow: hidden;
-}
-.menu-thumb::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 30%, rgba(14,11,7,0.7));
-}
-.menu-badge {
-  position: absolute; top: 12px; left: 12px; z-index: 1;
-  background: var(--fire); color: var(--white);
-  font-family: 'Rajdhani', sans-serif; font-weight: 700;
-  font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 2px;
-}
-.menu-badge.yellow { background: var(--yellow); color: var(--char); }
-.menu-card-body { padding: 1.3rem; flex: 1; display: flex; flex-direction: column; }
-.menu-card-body h3 {
-  font-family: 'Anton', sans-serif; font-size: 1.25rem; letter-spacing: 2px;
-  color: var(--bone); margin-bottom: 0.4rem;
-}
-.menu-card-body p { color: var(--light); font-size: 0.85rem; line-height: 1.6; flex: 1; }
-.menu-card-footer {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--ash);
-}
-.menu-price {
-  font-family: 'Anton', sans-serif; font-size: 1.7rem; color: var(--fire); line-height: 1;
-}
-.add-btn {
-  width: 38px; height: 38px; border-radius: 3px;
-  border: 1px solid var(--fire); background: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--fire); font-size: 1.3rem;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
-}
-.add-btn:hover { background: var(--fire); color: var(--white); transform: scale(1.1); }
-
-/* Promo banner */
-.promo-banner {
-  background: var(--fire);
-  border-radius: 4px;
-  padding: 2.5rem 3rem;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
-  margin: 4rem 0;
-  position: relative; overflow: hidden;
-}
-.promo-banner::before {
-  content: '🍔';
-  position: absolute; right: -20px; bottom: -20px;
-  font-size: 10rem; opacity: 0.1; pointer-events: none;
-}
-.promo-banner h3 {
-  font-family: 'Anton', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: var(--white);
-}
-.promo-banner p { color: rgba(255,255,255,0.8); max-width: 400px; margin-top: 0.4rem; }
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Menú — Smash & Fire</title>
+<link rel="stylesheet" href="../style.css"/>
+<style>
+.menu-wrapper{display:grid;grid-template-columns:1fr 350px;gap:2.5rem;align-items:start;margin-top:2rem}
+@media(max-width:1050px){.menu-wrapper{grid-template-columns:1fr 300px}}
+@media(max-width:860px){.menu-wrapper{grid-template-columns:1fr}}
+.filter-bar{display:flex;gap:0.4rem;flex-wrap:wrap;margin:2rem 0 1.5rem;border-bottom:2px solid var(--border);padding-bottom:0}
+.filt{background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);padding:0.65rem 1.1rem;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.2s}
+.filt:hover{color:var(--text)}.filt.active{color:var(--red);border-bottom-color:var(--red)}
+.order-type-bar{display:flex;gap:0.8rem;margin-bottom:2rem;flex-wrap:wrap;background:var(--surface);border-radius:12px;padding:1.2rem 1.5rem;border:1px solid var(--border)}
+.order-type-bar h4{font-family:'Oswald',sans-serif;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);width:100%;margin-bottom:0.4rem}
+.otype-btn{flex:1;min-width:100px;display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.75rem;border-radius:8px;border:2px solid var(--border);background:var(--white);cursor:pointer;transition:all 0.2s;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted)}
+.otype-btn.active{border-color:var(--red);background:var(--red);color:var(--white)}
+.otype-btn .ot-icon{font-size:1.2rem}
+.menu-section-title{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:2.5rem 0 1rem;display:flex;align-items:center;gap:1rem;color:var(--text)}
+.menu-section-title::after{content:'';flex:1;height:2px;background:var(--border)}
+/* accordion items */
+.menu-item{background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:0.7rem;overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s}
+.menu-item:hover{border-color:rgba(200,16,46,0.35);box-shadow:0 4px 16px var(--shadow)}
+.menu-item-header{display:flex;align-items:center;gap:1rem;padding:0.9rem 1.1rem;cursor:pointer;user-select:none}
+.item-emoji{font-size:2.2rem;width:48px;text-align:center;flex-shrink:0}
+.item-info{flex:1;min-width:0}
+.item-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.item-desc-short{font-size:0.8rem;color:var(--text-muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+.item-right{display:flex;align-items:center;gap:0.7rem;flex-shrink:0}
+.item-price{font-family:'Oswald',sans-serif;font-size:1.25rem;font-weight:700;color:var(--red)}
+.expand-icon{color:var(--text-muted);transition:transform 0.3s;font-size:0.75rem}
+.menu-item.open .expand-icon{transform:rotate(180deg)}
+.menu-item-body{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.16,1,0.3,1);border-top:0 solid var(--border)}
+.menu-item.open .menu-item-body{max-height:450px;border-top-width:1px}
+.menu-item-body-inner{padding:1.1rem}
+.item-desc-full{color:var(--text-muted);font-size:0.9rem;line-height:1.65;margin-bottom:1rem}
+.opt-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.3rem;display:block}
+.item-options{margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.4rem}
+.opt-btn{border:1px solid var(--border);background:var(--cream);border-radius:6px;padding:4px 11px;font-size:0.8rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all 0.15s}
+.opt-btn.selected{border-color:var(--red);background:rgba(200,16,46,0.08);color:var(--red);font-weight:700}
+.qty-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:0.5rem}
+.qty-ctrl{display:flex;align-items:center;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.qty-btn{width:34px;height:34px;border:none;background:var(--surface);cursor:pointer;font-size:1.1rem;font-weight:700;color:var(--text-muted);transition:all 0.15s;display:flex;align-items:center;justify-content:center}
+.qty-btn:hover{background:var(--red);color:var(--white)}
+.qty-num{width:40px;text-align:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:1rem;color:var(--text);border:none;background:var(--white);pointer-events:none;line-height:34px}
+/* cart */
+.cart-sidebar{position:sticky;top:calc(var(--nav-h)+16px);background:var(--white);border:2px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px var(--shadow)}
+.cart-header{background:var(--red);padding:1rem 1.4rem;display:flex;align-items:center;justify-content:space-between}
+.cart-header h3{font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.cart-count{background:var(--yellow);color:var(--dark);font-family:'Oswald',sans-serif;font-weight:700;font-size:0.85rem;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.cart-body{padding:0.8rem 1rem;max-height:300px;overflow-y:auto}
+.cart-empty{text-align:center;padding:1.5rem 1rem;color:var(--text-muted)}
+.cart-empty .empty-icon{font-size:2.5rem;margin-bottom:0.6rem}
+.cart-empty p{font-size:0.83rem;line-height:1.5}
+.cart-line{display:flex;align-items:flex-start;gap:0.6rem;padding:0.6rem 0;border-bottom:1px solid var(--border)}
+.cart-line:last-child{border-bottom:none}
+.cart-item-emoji{font-size:1.4rem;flex-shrink:0}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text)}
+.cart-item-sub{font-size:0.72rem;color:var(--text-muted)}
+.cart-item-price{font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:700;color:var(--red);flex-shrink:0}
+.cart-remove{background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:0.8rem;padding:2px 5px;border-radius:4px;transition:all 0.15s;flex-shrink:0}
+.cart-remove:hover{background:var(--red);color:var(--white)}
+.cart-footer{padding:0.9rem 1rem;border-top:2px solid var(--border);background:var(--surface)}
+.cart-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem}
+.cart-total-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
+.cart-total-val{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;color:var(--text)}
+.checkout-btn{width:100%;justify-content:center}
+/* promo */
+.promo-banner{background:var(--red);border-radius:14px;padding:1.8rem 2.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin:2.5rem 0;position:relative;overflow:hidden}
+.promo-banner::before{content:'🍔';position:absolute;right:-10px;bottom:-15px;font-size:8rem;opacity:0.12;pointer-events:none}
+.promo-banner h3{font-family:'Oswald',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--white)}
+.promo-banner p{color:rgba(255,255,255,0.85);max-width:340px;margin-top:0.3rem;font-size:0.9rem}
+/* age modal */
+.age-modal-overlay{display:none;position:fixed;inset:0;z-index:3000;background:rgba(26,8,0,0.85);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+.age-modal-overlay.open{display:flex}
+.age-modal{background:var(--white);border-radius:16px;padding:2.2rem;max-width:400px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(26,8,0,0.4)}
+.age-modal h2{font-family:'Oswald',sans-serif;font-size:1.5rem;letter-spacing:2px;text-transform:uppercase;margin-top:0.8rem;color:var(--text)}
+.age-modal p{color:var(--text-muted);margin:0.8rem 0 1.3rem;font-size:0.9rem;line-height:1.6}
+.age-modal-icon{font-size:3rem}
+.age-actions{display:flex;gap:0.7rem}
+.age-actions .btn{flex:1;justify-content:center;font-size:0.85rem}
+/* checkout modal */
+.checkout-modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(26,8,0,0.75);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:1rem}
+.checkout-modal.open{display:flex}
+.checkout-box{background:var(--white);border-radius:16px;max-width:540px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(26,8,0,0.4)}
+.checkout-box-header{background:var(--dark);padding:1.3rem 1.8rem;display:flex;align-items:center;justify-content:space-between;border-radius:16px 16px 0 0;position:sticky;top:0;z-index:10}
+.checkout-box-header h2{font-family:'Oswald',sans-serif;font-size:1.2rem;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.close-modal{background:none;border:none;cursor:pointer;color:rgba(255,247,238,0.7);font-size:1.3rem;transition:color 0.2s}
+.close-modal:hover{color:var(--white)}
+.checkout-body{padding:1.5rem 1.8rem}
+.checkout-section{margin-bottom:1.4rem}
+.checkout-section h4{font-family:'Oswald',sans-serif;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.7rem}
+.delivery-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-bottom:0.8rem}
+.d-opt{border:2px solid var(--border);border-radius:10px;padding:0.8rem 0.5rem;cursor:pointer;text-align:center;transition:all 0.2s}
+.d-opt.active{border-color:var(--red);background:rgba(200,16,46,0.05)}
+.d-opt .d-icon{font-size:1.6rem;margin-bottom:0.3rem}
+.d-opt h5{font-family:'Oswald',sans-serif;font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;color:var(--text)}
+.d-opt p{font-size:0.7rem;color:var(--text-muted);margin-top:2px}
+.form-field{margin-bottom:0.75rem}
+.form-field label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.form-field input,.form-field textarea,.form-field select{width:100%;padding:0.65rem 0.85rem;border:1px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:0.9rem;color:var(--text);background:var(--cream);transition:border-color 0.2s}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--red)}
+.address-fields{display:none}
+.address-fields.show{display:block}
+.payment-methods{display:flex;flex-direction:column;gap:0.5rem}
+.pay-opt{display:flex;align-items:center;gap:0.8rem;border:2px solid var(--border);border-radius:10px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s}
+.pay-opt.active{border-color:var(--red);background:rgba(200,16,46,0.04)}
+.pay-opt .pay-icon{font-size:1.4rem;flex-shrink:0}
+.pay-opt .pay-info h5{font-family:'Oswald',sans-serif;font-size:0.9rem;letter-spacing:1px;text-transform:uppercase;color:var(--text);font-weight:600}
+.pay-opt .pay-info p{font-size:0.75rem;color:var(--text-muted)}
+.order-summary-mini{background:var(--surface);border-radius:10px;padding:0.9rem}
+.osm-row{display:flex;justify-content:space-between;font-size:0.85rem;padding:3px 0;color:var(--text-muted)}
+.osm-total{font-family:'Oswald',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);border-top:1px solid var(--border);padding-top:7px;margin-top:7px}
+.place-order-btn{width:100%;justify-content:center;margin-top:0.8rem}
+.order-success{text-align:center;padding:2.5rem 2rem;display:none}
+.order-success.show{display:block}
+.success-icon{font-size:3.5rem;margin-bottom:0.8rem}
+.order-success h2{font-family:'Oswald',sans-serif;font-size:1.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:0.6rem}
+.order-success p{color:var(--text-muted);font-size:0.9rem;line-height:1.6;max-width:320px;margin:0 auto 1.2rem}
+.order-id{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;color:var(--red);background:var(--surface);display:inline-block;padding:5px 16px;border-radius:20px;margin-bottom:1.2rem}
+/* billing & contact fields */
+.billing-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem}
+.billing-grid .span-2{grid-column:1/-1}
+.field-required{color:var(--red);margin-left:1px}
+.form-field input.invalid{border-color:var(--red);background:#fff5f6}
+.form-field input::placeholder{color:var(--text-light);opacity:0.7}
+.nit-row{display:grid;grid-template-columns:1fr 1.4fr 1.4fr;gap:0.6rem}
+.section-divider{height:1px;background:var(--border);margin:0.3rem 0 1.2rem}
+.invoice-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--yellow);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1.5px;font-size:0.9rem;padding:0.7rem 1.4rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;text-transform:uppercase;margin-right:0.6rem}
+.invoice-btn:hover{background:#e0a900;transform:translateY(-1px)}
+.success-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-top:1rem}
+/* checkout section label */
+.checkout-section-label{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--white);background:var(--red);padding:2px 8px;border-radius:3px;margin-bottom:0.75rem}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-<div id="cursor"><div id="cursor-dot"></div><div id="cursor-ring"></div></div>
-
 <nav>
   <a href="../index.html" class="nav-logo"><span class="logo-flame">🔥</span><span class="logo-text">Smash <span>&amp;</span> Fire</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="../index.html">Inicio</a></li>
-    <li><a href="../fotos/index.html">Fotos</a></li>
-    <li><a href="../historia/index.html">Historia</a></li>
-    <li><a href="../terminos/index.html">Términos</a></li>
-    <li><a href="../fundadores/index.html">Fundadores</a></li>
-    <li><a href="../empleo/index.html">Empleo</a></li>
-    <li><a href="../marketing/index.html">Marketing</a></li>
-    <li><a href="../menu/index.html" class="nav-cta-link">Ver Menú</a></li>
+  <ul class="nav-links">
+    <li><a href="../index.html" data-i18n="nav_home">Inicio</a></li>
+    <li><a href="../fotos/index.html" data-i18n="nav_photos">Fotos</a></li>
+    <li><a href="../historia/index.html" data-i18n="nav_history">Historia</a></li>
+    <li><a href="../terminos/index.html" data-i18n="nav_terms">Términos</a></li>
+    <li><a href="../fundadores/index.html" data-i18n="nav_founders">Fundadores</a></li>
+    <li><a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a></li>
+    <li><a href="../documentos/index.html">Documentos</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link active" data-i18n="nav_menu">Ver Menú</a></li>
   </ul>
-  <button class="nav-toggle"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-hero">
   <div class="container">
     <span class="section-label reveal">Lo que servimos</span>
-    <h1 class="section-title reveal delay-1" style="font-size:clamp(3.5rem,9vw,7rem)">NUESTRO<br>MENÚ</h1>
-    <p class="reveal delay-2">Smash burgers, combos, acompañamientos y bebidas. Todo preparado al momento, sin atajos.</p>
+    <h1 class="section-title reveal delay-1" style="font-size:clamp(3rem,8vw,6rem)">NUESTRO<br>MENÚ</h1>
+    <p class="reveal delay-2">Smash burgers, combos, acompañamientos y bebidas. Todo preparado al momento.</p>
   </div>
 </div>
+<div class="ticker"><div class="ticker-inner">
+  <span>Smash Burger</span><span class="sep">◆</span><span>Fuego Real</span><span class="sep">◆</span><span>Pan Brioche</span><span class="sep">◆</span><span>Frescos Cada Día</span><span class="sep">◆</span><span>Hecho al Momento</span><span class="sep">◆</span>
+</div></div>
 
-<div class="ticker">
-  <div class="ticker-inner">
-    <span>Smash Burger</span><span class="sep">◆</span><span>Fuego Real</span><span class="sep">◆</span><span>Frescos Cada Día</span><span class="sep">◆</span><span>Pan Brioche</span><span class="sep">◆</span><span>Hecho al Momento</span><span class="sep">◆</span><span>Smash Burger</span><span class="sep">◆</span><span>Fuego Real</span><span class="sep">◆</span><span>Frescos Cada Día</span><span class="sep">◆</span><span>Pan Brioche</span><span class="sep">◆</span><span>Hecho al Momento</span><span class="sep">◆</span>
+<section style="background:var(--cream);padding:40px 0 100px">
+<div class="container">
+  <div class="order-type-bar reveal">
+    <h4>¿Cómo recibirás tu pedido?</h4>
+    <button class="otype-btn active" id="otype-local" onclick="setOrderType('local')"><span class="ot-icon">🍽️</span>Comer Aquí</button>
+    <button class="otype-btn" id="otype-takeout" onclick="setOrderType('takeout')"><span class="ot-icon">🥡</span>Para Llevar</button>
+    <button class="otype-btn" id="otype-delivery" onclick="setOrderType('delivery')"><span class="ot-icon">🛵</span>Delivery</button>
   </div>
-</div>
+  <div class="filter-bar">
+    <button class="filt active" data-filter="all">Todo</button>
+    <button class="filt" data-filter="burgers">Hamburguesas</button>
+    <button class="filt" data-filter="sides">Acompañamientos</button>
+    <button class="filt" data-filter="drinks">Bebidas Frías</button>
+    <button class="filt" data-filter="hot-drinks">Bebidas Calientes</button>
+  </div>
 
-<section style="background:var(--char);padding:60px 0 100px;">
-  <div class="container">
-    <div class="filter-bar">
-      <button class="filt active" data-filter="all">Todo</button>
-      <button class="filt" data-filter="burgers">Hamburguesas</button>
-      <button class="filt" data-filter="sides">Acompañamientos</button>
-      <button class="filt" data-filter="drinks">Bebidas</button>
-    </div>
-
-    <h2 class="menu-section-title reveal" data-cat="burgers">Hamburguesas Clásicas</h2>
-    <div class="menu-grid" data-cat="burgers">
-      <div class="menu-card reveal delay-1"><div class="menu-thumb">🍔<span class="menu-badge">⭐ Best Seller</span></div><div class="menu-card-body"><h3>THE CLASSIC SMASH</h3><p>Doble carne smash, queso americano fundido, cebolla caramelizada, pepinillos y salsa especial en pan brioche tostado.</p><div class="menu-card-footer"><span class="menu-price">Q 55</span><button class="add-btn">+</button></div></div></div>
-      <div class="menu-card reveal delay-2"><div class="menu-thumb">🥓<span class="menu-badge">💀 Picante</span></div><div class="menu-card-body"><h3>BACON FIRE</h3><p>Carne smash, tocino ahumado crujiente, queso cheddar, jalapeños asados y mayonesa artesanal de chipotle.</p><div class="menu-card-footer"><span class="menu-price">Q 65</span><button class="add-btn">+</button></div></div></div>
-      <div class="menu-card reveal delay-3"><div class="menu-thumb">🧀</div><div class="menu-card-body"><h3>DOUBLE SMASH</h3><p>4 Tortas de carne smash, elige un tipo de queso (cheddar, americano, pepper jack), cebolla crujiente y mostaza artesanal de granos.</p><div class="menu-card-footer"><span class="menu-price">Q 75</span><button class="add-btn">+</button></div></div></div>
-    </div>
-
-    <h2 class="menu-section-title reveal" data-cat="burgers">🔥 Hamburguesas Signature</h2>
-    <div class="menu-grid" data-cat="burgers">
-      <div class="menu-card reveal delay-3"><div class="menu-thumb">🇬🇹</div><div class="menu-card-body"><h3>LA CHAPINA</h3><p>Doble carne smash, guacamol fresco, queso Chancol y lazcas de tortilla frita crujiente.</p><div class="menu-card-footer"><span class="menu-price">Q 75</span><button class="add-btn">+</button></div></div></div>
-      <div class="menu-card reveal delay-1"><div class="menu-thumb">🫘<span class="menu-badge">🌱 Nuevo</span></div><div class="menu-card-body"><h3>FRIJOLITO SMASH</h3><p>Carne smash junto a una salsa de queso fresco y pimiento rojo ahumado, acompañada de una mezcla de frijoles volteados y crema de Xela.</p><div class="menu-card-footer"><span class="menu-price">Q 68</span><button class="add-btn">+</button></div></div></div>
-      <div class="menu-card reveal delay-2"><div class="menu-thumb">⛪<span class="menu-badge yellow">🌱 Nuevo</span></div><div class="menu-card-body"><h3>ANTIGUA GT</h3><p>Carne smash con aguacate aplastado, bañado en chirmolito y queso de cabra.</p><div class="menu-card-footer"><span class="menu-price">Q 70</span><button class="add-btn">+</button></div></div></div>
-      <div class="menu-card reveal delay-3"><div class="menu-thumb">🌭</div><div class="menu-card-body"><h3>LA CARRETONA</h3><p>Carne smash combinada con longaniza huehueteca, una capa de repollo sazonado y selección de salsas especiales (Preguntar por disponibilidad).</p><div class="menu-card-footer"><span class="menu-price">Q 72</span><button class="add-btn">+</button></div></div></div>
-    </div>
-
-    <div class="promo-banner reveal" style="margin-top:5rem;">
-      <div>
-        <h3>COMBO SMASH</h3>
-        <p>Cualquier hamburguesa + papas clásicas + refresco. Ahorra Q15 en cada combo.</p>
+  <div class="menu-wrapper">
+    <div><!-- ITEMS COLUMN -->
+      <h2 class="menu-section-title reveal" data-cat="burgers">🍔 Hamburguesas Clásicas</h2>
+      <div data-cat="burgers">
+        <div class="menu-item reveal delay-1" data-id="classic" data-price="55" data-name="The Classic Smash" data-emoji="🍔">
+          <div class="menu-item-header" onclick="toggleItem(this)">
+            <div class="item-emoji">🍔</div>
+            <div class="item-info">
+              <div class="item-name">The Classic Smash <span class="badge" style="font-size:0.58rem">⭐ Best Seller</span></div>
+              <div class="item-desc-short">Doble carne smash, queso americano, cebolla caramelizada, pepinillos, salsa especial...</div>
+            </div>
+            <div class="item-right"><div class="item-price">Q 55</div><div class="expand-icon">▼</div></div>
+          </div>
+          <div class="menu-item-body"><div class="menu-item-body-inner">
+            <p class="item-desc-full">Doble carne smash con la costra perfecta, queso americano fundido, cebolla caramelizada, pepinillos y nuestra salsa especial en pan brioche tostado.</p>
+            <span class="opt-label">Punto de cocción:</span>
+            <div class="item-options">
+              <button class="opt-btn selected" onclick="selectOpt(this,'cook')">Término Medio</button>
+              <button class="opt-btn" onclick="selectOpt(this,'cook')">Bien Cocido</button>
+            </div>
+            <div class="qty-row">
+              <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
+              <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
+            </div>
+          </div></div>
+        </div>
+        <div class="menu-item reveal delay-2" data-id="bacon" data-price="65" data-name="Bacon Fire" data-emoji="🥓">
+          <div class="menu-item-header" onclick="toggleItem(this)">
+            <div class="item-emoji">🥓</div>
+            <div class="item-info">
+              <div class="item-name">Bacon Fire <span class="badge" style="font-size:0.58rem;background:#8B1A1A">💀 Picante</span></div>
+              <div class="item-desc-short">Tocino ahumado crujiente, queso cheddar, jalapeños, chipotle artesanal...</div>
+            </div>
+            <div class="item-right"><div class="item-price">Q 65</div><div class="expand-icon">▼</div></div>
+          </div>
+          <div class="menu-item-body"><div class="menu-item-body-inner">
+            <p class="item-desc-full">Carne smash, tocino ahumado crujiente, queso cheddar, jalapeños asados y mayonesa artesanal de chipotle.</p>
+            <span class="opt-label">Nivel de picante:</span>
+            <div class="item-options">
+              <button class="opt-btn selected" onclick="selectOpt(this,'spice')">Medio</button>
+              <button class="opt-btn" onclick="selectOpt(this,'spice')">Picante</button>
+              <button class="opt-btn" onclick="selectOpt(this,'spice')">Extremo 🔥</button>
+            </div>
+            <div class="qty-row">
+              <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
+              <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
+            </div>
+          </div></div>
+        </div>
+        <div class="menu-item reveal delay-3" data-id="double" data-price="75" data-name="Double Smash" data-emoji="🧀">
+          <div class="menu-item-header" onclick="toggleItem(this)">
+            <div class="item-emoji">🧀</div>
+            <div class="item-info">
+              <div class="item-name">Double Smash</div>
+              <div class="item-desc-short">4 tortas de carne smash, tu queso favorito, cebolla crujiente, mostaza artesanal...</div>
+            </div>
+            <div class="item-right"><div class="item-price">Q 75</div><div class="expand-icon">▼</div></div>
+          </div>
+          <div class="menu-item-body"><div class="menu-item-body-inner">
+            <p class="item-desc-full">Cuatro tortas de carne smash apiladas con tu queso favorito, cebolla crujiente y mostaza artesanal de granos enteros.</p>
+            <span class="opt-label">Tipo de queso:</span>
+            <div class="item-options">
+              <button class="opt-btn selected" onclick="selectOpt(this,'cheese')">Cheddar</button>
+              <button class="opt-btn" onclick="selectOpt(this,'cheese')">Americano</button>
+              <button class="opt-btn" onclick="selectOpt(this,'cheese')">Pepper Jack</button>
+              <button class="opt-btn" onclick="selectOpt(this,'cheese')">Suizo</button>
+            </div>
+            <div class="qty-row">
+              <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
+              <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
+            </div>
+          </div></div>
+        </div>
       </div>
-      <a href="#" class="btn btn-dark">Armar Combo →</a>
-    </div>
+      <h2 class="menu-section-title reveal" data-cat="burgers">🔥 Hamburguesas Signature</h2>
+      <div data-cat="burgers">
+        <div class="menu-item reveal" data-id="chapina" data-price="75" data-name="La Chapina" data-emoji="🇬🇹">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🇬🇹</div><div class="item-info"><div class="item-name">La Chapina</div><div class="item-desc-short">Doble smash, guacamol fresco, queso Chancol, tortilla frita crujiente...</div></div><div class="item-right"><div class="item-price">Q 75</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Doble carne smash, guacamol fresco, queso Chancol y lazcas de tortilla frita crujiente. Guatemala en cada bocado.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-1" data-id="frijolito" data-price="68" data-name="Frijolito Smash" data-emoji="🫘">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🫘</div><div class="item-info"><div class="item-name">Frijolito Smash <span class="badge badge-green" style="font-size:0.58rem">🌱 Nuevo</span></div><div class="item-desc-short">Salsa de queso fresco, pimiento rojo ahumado, frijoles volteados, crema de Xela...</div></div><div class="item-right"><div class="item-price">Q 68</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Carne smash con salsa de queso fresco y pimiento rojo ahumado, acompañada de frijoles volteados y crema de Xela. Sabor chapín auténtico.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-2" data-id="antigua" data-price="70" data-name="Antigua GT" data-emoji="⛪">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">⛪</div><div class="item-info"><div class="item-name">Antigua GT <span class="badge badge-green" style="font-size:0.58rem">🌱 Nuevo</span></div><div class="item-desc-short">Aguacate aplastado, chirmolito casero, queso de cabra...</div></div><div class="item-right"><div class="item-price">Q 70</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Carne smash con aguacate aplastado fresco, bañado en chirmolito casero y queso de cabra. Inspirada en los sabores coloniales.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-3" data-id="carretona" data-price="72" data-name="La Carretona" data-emoji="🌭">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🌭</div><div class="item-info"><div class="item-name">La Carretona</div><div class="item-desc-short">Longaniza huehueteca, repollo sazonado, salsas especiales...</div></div><div class="item-right"><div class="item-price">Q 72</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Carne smash con longaniza huehueteca, repollo sazonado y salsas especiales. Preguntar por disponibilidad.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+      </div>
+      <div class="promo-banner reveal"><div><h3>COMBO SMASH</h3><p>Cualquier hamburguesa + papas + refresco. ¡Ahorra Q15!</p></div><button class="btn btn-yellow" onclick="showToast('¡Pronto disponible!','warn')">Armar Combo →</button></div>
+      <h2 class="menu-section-title reveal" data-cat="sides">🍟 Acompañamientos</h2>
+      <div data-cat="sides">
+        <div class="menu-item reveal" data-id="papas-c" data-price="22" data-name="Papas Clásicas" data-emoji="🍟">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🍟</div><div class="item-info"><div class="item-name">Papas Clásicas</div><div class="item-desc-short">Doradas con sal de mar y tomillo, crujientes por fuera...</div></div><div class="item-right"><div class="item-price">Q 22</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Papas fritas doradas con sal de mar y tomillo seco. Crujientes por fuera, suaves por dentro.</p><span class="opt-label">Tamaño:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'size')">Regular</button><button class="opt-btn" onclick="selectOpt(this,'size')">Grande (+Q8)</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-1" data-id="aros" data-price="28" data-name="Aros de Cebolla" data-emoji="🧅">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🧅</div><div class="item-info"><div class="item-name">Aros de Cebolla</div><div class="item-desc-short">Tempura crujiente, salsa ranch artesanal de la casa...</div></div><div class="item-right"><div class="item-price">Q 28</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Aros de cebolla dulce en tempura crujiente con salsa ranch artesanal de la casa.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-2" data-id="loaded" data-price="38" data-name="Papas Loaded" data-emoji="🧇">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🧇</div><div class="item-info"><div class="item-name">Papas Loaded <span class="badge" style="font-size:0.58rem">🔥 Popular</span></div><div class="item-desc-short">Cheddar fundido, tocino crujiente, crema ácida, cebollín fresco...</div></div><div class="item-right"><div class="item-price">Q 38</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Papas con queso cheddar derretido, tocino picado crujiente, crema ácida y cebollín fresco.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-3" data-id="yuca" data-price="25" data-name="Yuca Frita" data-emoji="🥔">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🥔</div><div class="item-info"><div class="item-name">Yuca Frita <span class="badge badge-green" style="font-size:0.58rem">Nuevo</span></div><div class="item-desc-short">Yuca guatemalteca, ajo, cilantro, salsa de la casa...</div></div><div class="item-right"><div class="item-price">Q 25</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Yuca guatemalteca frita a la perfección, sazonada con ajo y cilantro, servida con nuestra salsa especial. Alternativa deliciosa a las papas.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal" data-id="elote" data-price="20" data-name="Elote Asado" data-emoji="🌽">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🌽</div><div class="item-info"><div class="item-name">Elote Asado</div><div class="item-desc-short">Elote tierno a las brasas, mantequilla, chile cobanero, limón...</div></div><div class="item-right"><div class="item-price">Q 20</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Elote tierno asado a las brasas, bañado con mantequilla artesanal, chile cobanero y limón. El sabor de Guatemala de la calle al plato.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-1" data-id="ensalada" data-price="24" data-name="Ensalada Fresca" data-emoji="🥗">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🥗</div><div class="item-info"><div class="item-name">Ensalada Fresca</div><div class="item-desc-short">Mix de lechugas, tomate cherry, pepino, zanahoria, aderezo casero...</div></div><div class="item-right"><div class="item-price">Q 24</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Mix de lechugas frescas, tomate cherry, pepino, zanahoria rallada y aderezo casero.</p><span class="opt-label">Aderezo:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'dressing')">Limón y Hierbas</button><button class="opt-btn" onclick="selectOpt(this,'dressing')">Ranch</button><button class="opt-btn" onclick="selectOpt(this,'dressing')">Vinagreta</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-2" data-id="nuggets" data-price="30" data-name="Nuggets de Pollo" data-emoji="🍗">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🍗</div><div class="item-info"><div class="item-name">Nuggets de Pollo</div><div class="item-desc-short">6 piezas empanizadas al momento, salsa BBQ artesanal...</div></div><div class="item-right"><div class="item-price">Q 30</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">6 piezas de pollo empanizadas al momento, doradas y crujientes, servidas con salsa BBQ artesanal.</p><span class="opt-label">Salsa dip:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'dip')">BBQ Artesanal</button><button class="opt-btn" onclick="selectOpt(this,'dip')">Ranch</button><button class="opt-btn" onclick="selectOpt(this,'dip')">Chipotle</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+      </div>
+      <h2 class="menu-section-title reveal" data-cat="drinks">🥤 Bebidas Frías</h2>
+      <div data-cat="drinks">
+        <div class="menu-item reveal" data-id="refresco" data-price="15" data-name="Refresco" data-emoji="🥤">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🥤</div><div class="item-info"><div class="item-name">Bebidas</div><div class="item-desc-short">Coca-Cola, Sprite, Fanta, agua mineral. Tamaño grande con hielo...</div></div><div class="item-right"><div class="item-price">Q 15</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Coca-Cola, Sprite, Fanta o agua mineral. Tamaño grande con hielo.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'soda')">Coca-Cola</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Sprite</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Fanta</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Agua Mineral</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-1" data-id="malteada" data-price="30" data-name="Malteada Artesanal" data-emoji="🥛">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🥛</div><div class="item-info"><div class="item-name">Malteada Artesanal</div><div class="item-desc-short">Preparada al momento, helado premium, leche entera...</div></div><div class="item-right"><div class="item-price">Q 30</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Preparadas al momento con helado de alta calidad y leche entera. Cremosas y absolutamente deliciosas.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'shake')">Vainilla</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Chocolate</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Fresa</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Oreo</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+      </div>
+      <h2 class="menu-section-title reveal" data-cat="hot-drinks">🥤 Bebidas Calientes</h2>
+      <div data-cat="hot-drinks">
+        <div class="menu-item reveal" data-id="Café Americano" data-price="15" data-name="Café Americano" data-emoji="☕">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">☕</div><div class="item-info"><div class="item-name">Café Americano</div><div class="item-desc-short">Café negro fuerte, servido caliente en una taza...</div></div><div class="item-right"><div class="item-price">Q 15</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Café negro fuerte, servido caliente en una taza.</p><span class="opt-label">Tamaño:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'size')">Pequeño</button><button class="opt-btn" onclick="selectOpt(this,'size')">Mediano</button><button class="opt-btn" onclick="selectOpt(this,'size')">Grande</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+        <div class="menu-item reveal delay-1" data-id="Chocolate Caliente" data-price="22" data-name="Chocolate Caliente" data-emoji="🍫">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-emoji">🍫</div><div class="item-info"><div class="item-name">Chocolate Caliente</div><div class="item-desc-short">Chocolate caliente cremoso, servido en una taza...</div></div><div class="item-right"><div class="item-price">Q 22</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><p class="item-desc-full">Chocolate caliente cremoso, servido en una taza.</p><span class="opt-label">Tamaño:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'size')">Pequeño</button><button class="opt-btn" onclick="selectOpt(this,'size')">Mediano</button><button class="opt-btn" onclick="selectOpt(this,'size')">Grande</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        </div>
+      </div>
+    </div><!-- /items col -->
 
-    <h2 class="menu-section-title reveal" data-cat="sides">🍟 Acompañamientos</h2>
-    <div class="menu-grid" data-cat="sides">
-      <div class="menu-card reveal delay-1"><div class="menu-thumb">🍟</div><div class="menu-card-body"><h3>PAPAS CLÁSICAS</h3><p>Papas fritas doradas con sal de mar y tomillo seco. Crujientes por fuera, suaves por dentro.</p><div class="menu-card-footer"><span class="menu-price">Q 22</span><button class="add-btn">+</button></div></div></div>
-      <div class="menu-card reveal delay-2"><div class="menu-thumb">🧅</div><div class="menu-card-body"><h3>AROS DE CEBOLLA</h3><p>Aros de cebolla dulce en tempura crujiente, servidos con salsa ranch artesanal de la casa.</p><div class="menu-card-footer"><span class="menu-price">Q 28</span><button class="add-btn">+</button></div></div></div>
-      <div class="menu-card reveal delay-3"><div class="menu-thumb">🧇<span class="menu-badge">🔥 Popular</span></div><div class="menu-card-body"><h3>PAPAS LOADED</h3><p>Papas con queso cheddar derretido, tocino picado crujiente, crema ácida y cebollín fresco.</p><div class="menu-card-footer"><span class="menu-price">Q 38</span><button class="add-btn">+</button></div></div></div>
-    </div>
-
-    <h2 class="menu-section-title reveal" data-cat="drinks">🥤 Bebidas</h2>
-    <div class="menu-grid" data-cat="drinks">
-      <div class="menu-card reveal delay-1"><div class="menu-thumb">🥤</div><div class="menu-card-body"><h3>REFRESCOS</h3><p>Coca-Cola, Sprite, Fanta o agua mineral. Tamaño grande con hielo.</p><div class="menu-card-footer"><span class="menu-price">Q 15</span><button class="add-btn">+</button></div></div></div>
-      <div class="menu-card reveal delay-2"><div class="menu-thumb">🍺<span class="menu-badge yellow">Nuevo</span></div><div class="menu-card-body"><h3>CERVEZA ARTESANAL</h3><p>Selección rotativa de cervezas locales guatemaltecas. Pregunta por la variedad del día.</p><div class="menu-card-footer"><span class="menu-price">Q 35</span><button class="add-btn">+</button></div></div></div>
-      <div class="menu-card reveal delay-3"><div class="menu-thumb">🧃</div><div class="menu-card-body"><h3>MALTEADA ARTESANAL</h3><p>Vainilla, chocolate o fresa. Preparadas al momento con helado de alta calidad y leche entera.</p><div class="menu-card-footer"><span class="menu-price">Q 30</span><button class="add-btn">+</button></div></div></div>
+    <!-- CART -->
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header"><h3>🛒 Tu Pedido</h3><div class="cart-count" id="cartCount">0</div></div>
+      <div class="cart-body" id="cartBody"><div class="cart-empty"><div class="empty-icon">🛒</div><p>Tu carrito está vacío.<br>¡Agrega algo delicioso!</p></div></div>
+      <div class="cart-footer" id="cartFooter" style="display:none">
+        <div class="cart-total-row"><span class="cart-total-label">Total</span><span class="cart-total-val" id="cartTotal">Q 0</span></div>
+        <button class="btn checkout-btn" onclick="openCheckout()">Pagar →</button>
+      </div>
     </div>
   </div>
+</div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand">
-        <div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div>
-        <p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p>
-        <div class="social-row" style="margin-top:1.5rem;">
-          <a class="social-btn" href="#" title="Instagram">📸</a>
-          <a class="social-btn" href="#" title="Facebook">👥</a>
-          <a class="social-btn" href="#" title="TikTok">🎵</a>
-        </div>
-      </div>
+      <div class="footer-brand"><div class="wordmark">🔥 SMASH <span>&amp;</span> FIRE</div><p>Hamburguesas artesanales hechas con técnica smash y pasión por el fuego. Ciudad de Guatemala desde 2021.</p></div>
       <div class="footer-col">
         <h4>Navegación</h4>
         <a href="../index.html">Inicio</a>
@@ -212,44 +351,264 @@
         <a href="../historia/index.html">Nuestra Historia</a>
         <a href="../fundadores/index.html">Fundadores</a>
         <a href="../empleo/index.html">Empleo</a>
-        <a href="../marketing/index.html">Marketing</a>
       </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <a href="tel:+50212345678">+502 1234-5678</a>
-        <a href="mailto:hola@smashandfire.gt">hola@smashandfire.gt</a>
-        <p>6a Calle 6-50 Zona 10</p>
-        <p>Guatemala City</p>
-      </div>
-      <div class="footer-col">
-        <h4>Horarios</h4>
-        <p>Lun – Jue: 11:00 – 22:00</p>
-        <p>Viernes: 11:00 – 23:00</p>
-        <p>Sáb – Dom: 11:00 – 23:00</p>
-        <a href="terminos/index.html" style="margin-top:1rem;">Términos y Condiciones</a>
-      </div>
+      <div class="footer-col"><h4>Contacto</h4><a href="tel:+50249473557">+502 4947-3557</a><p>6a Calle 6-50 Zona 10</p><p>Ciudad de Guatemala</p></div>
+      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 11:00 – 23:00</p></div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Smash & Fire. Todos los derechos reservados.</p>
-      <div><a href="terminos/index.html">Términos</a> &nbsp;·&nbsp; <a href="#">Privacidad</a></div>
-    </div>
+    <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="../terminos/index.html">Términos y Condiciones</a></div></div>
   </div>
 </footer>
 
+<!-- CHECKOUT MODAL -->
+<div class="checkout-modal" id="checkoutModal">
+  <div class="checkout-box">
+    <div class="checkout-box-header"><h2>Finalizar Pedido</h2><button class="close-modal" onclick="closeCheckout()">✕</button></div>
+    <div id="checkoutFormView">
+      <div class="checkout-body">
+        <div class="checkout-section"><h4>Resumen del Pedido</h4><div class="order-summary-mini" id="orderSummaryMini"></div></div>
+        <div class="checkout-section">
+          <h4>Tipo de Entrega</h4>
+          <div class="delivery-opts">
+            <div class="d-opt active" id="co-local" onclick="selectDelivery('local')"><div class="d-icon">🍽️</div><h5>Aquí</h5><p>Mesa en local</p></div>
+            <div class="d-opt" id="co-takeout" onclick="selectDelivery('takeout')"><div class="d-icon">🥡</div><h5>Llevar</h5><p>Recoge en caja</p></div>
+            <div class="d-opt" id="co-delivery" onclick="selectDelivery('delivery')"><div class="d-icon">🛵</div><h5>Delivery</h5><p>+Q 20 envío</p></div>
+          </div>
+          <div class="address-fields" id="addressFields">
+          </div>
+        </div>
+        <div class="checkout-section">
+          <h4>Método de Pago</h4>
+          <div class="payment-methods">
+            <div class="pay-opt active" id="pay-cash" onclick="selectPayment('cash')"><div class="pay-icon">💵</div><div class="pay-info"><h5>Efectivo</h5><p>Paga al retirar</p></div></div>
+            <div class="pay-opt" id="pay-card" onclick="selectPayment('card')"><div class="pay-icon">💳</div><div class="pay-info"><h5>Tarjeta</h5><p>Visa, Mastercard, Amex</p></div></div>
+          </div>
+        </div>
+        <!-- CONTACT DATA -->
+        <div class="checkout-section">
+          <div class="checkout-section-label">Tus datos de contacto</div>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.8rem">Ingresa tu nombre, teléfono y correo para continuar.</p>
+          <div class="billing-grid">
+            <div class="form-field span-2"><label>Nombre completo <span class="field-required">*</span></label><input type="text" id="cNombre" placeholder="Tu nombre completo"/></div>
+            <div class="form-field"><label>Teléfono <span class="field-required">*</span></label><input type="tel" id="cTelefono" placeholder="1234 5678"/></div>
+            <div class="form-field"><label>Tel. de referencia</label><input type="tel" id="cTelRef" placeholder="Opcional"/></div>
+            <div class="form-field span-2"><label>Dirección de entrega</label><input type="text" placeholder="Calle, número, zona..."/></div>
+            <div class="form-field span-2"><label>Correo electrónico <span class="field-required">*</span></label><input type="email" id="cCorreo" placeholder="tu@correo.com"/></div>
+          </div>
+        </div>
+        <div class="section-divider"></div>
+        <!-- BILLING DATA -->
+        <div class="checkout-section">
+          <div class="checkout-section-label">Datos para facturación</div>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.8rem">Ingresa tu NIT o deja el campo vacío para usar CF.</p>
+          <div class="nit-row">
+            <div class="form-field"><label>NIT o DPI <span class="field-required">*</span></label><input type="text" id="bNIT" placeholder="CF" value="CF"/><div style="font-size:0.68rem;color:var(--text-muted);margin-top:3px">Solo números. Usa CF si no tienes NIT.</div></div>
+            <div class="form-field"><label>Nombre para facturar</label><input type="text" id="bNombre" placeholder="Consumidor Final"/></div>
+            <div class="form-field"><label>Dirección para facturar</label><input type="text" id="bDireccion" placeholder="Ciudad"/></div>
+          </div>
+        </div>
+        <div class="section-divider"></div>
+        <div class="form-field"><label>Notas especiales</label><textarea id="cNotas" placeholder="Alergias, preferencias..." rows="2" style="resize:none"></textarea></div>
+        <button class="btn place-order-btn" onclick="placeOrder()">✔ Confirmar y Pagar</button>
+      </div>
+    </div>
+    <div class="order-success" id="orderSuccess">
+      <div class="success-icon">✅</div>
+      <h2>¡Pedido Confirmado!</h2>
+      <div class="order-id" id="successOrderId">#SF-00000</div>
+      <p>Tu pedido está siendo preparado. Te avisaremos cuando esté listo.</p>
+      <div class="success-actions">
+        <button class="invoice-btn" onclick="downloadInvoicePDF()">📄 Descargar Factura PDF</button>
+        <button class="btn btn-outline" onclick="closeCheckout();clearCart()">Volver al Menú</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="../nav.js"></script>
 <script>
-// Filter tabs
-const filters = document.querySelectorAll('.filt');
-filters.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filters.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.filter;
-    document.querySelectorAll('[data-cat]').forEach(el => {
-      el.style.display = (f === 'all' || el.dataset.cat === f) ? '' : 'none';
-    });
+let cart=[],orderType='local',checkoutDelivery='local',payMethod='cash',pendingAlcBtn=null;
+let lastOrderData={};
+
+function toggleItem(h){const i=h.closest('.menu-item');const was=i.classList.contains('open');document.querySelectorAll('.menu-item.open').forEach(e=>e.classList.remove('open'));if(!was)i.classList.add('open')}
+function selectOpt(b,g){b.closest('.item-options').querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')}
+function changeQty(b,d){const n=b.closest('.qty-ctrl').querySelector('.qty-num');let v=parseInt(n.textContent)+d;n.textContent=Math.max(1,Math.min(9,v))}
+document.querySelectorAll('.filt').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filt').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;document.querySelectorAll('[data-cat]').forEach(el=>el.style.display=(f==='all'||el.dataset.cat===f)?'':'none')}));
+function setOrderType(t){orderType=t;['local','takeout','delivery'].forEach(x=>document.getElementById('otype-'+x).classList.toggle('active',x===t))}
+function addToCart(b){
+  const i=b.closest('.menu-item');
+  const qty=parseInt(i.querySelector('.qty-num').textContent);
+  const opts=[...i.querySelectorAll('.opt-btn.selected')].map(x=>x.textContent.trim()).join(', ');
+  for(let j=0;j<qty;j++) cart.push({id:i.dataset.id+'_'+Date.now()+'_'+j,name:i.dataset.name,emoji:i.dataset.emoji,price:parseInt(i.dataset.price),sub:opts});
+  renderCart();showToast(i.dataset.emoji+' '+i.dataset.name+' x'+qty+' agregado')
+}
+function addToCartAlcohol(b){pendingAlcBtn=b;document.getElementById('ageModal').classList.add('open')}
+function closeAgeModal(){document.getElementById('ageModal').classList.remove('open');pendingAlcBtn=null}
+function confirmAge(){
+  document.getElementById('ageModal').classList.remove('open');
+  if(!pendingAlcBtn)return;
+  const alcIds=['cerveza','vino'];
+  const alcCount=cart.filter(x=>alcIds.some(a=>x.id.startsWith(a))).length;
+  if(alcCount>=2){showToast('⚠️ Límite de 2 bebidas alcohólicas por persona','warn');pendingAlcBtn=null;return}
+  addToCart(pendingAlcBtn);pendingAlcBtn=null
+}
+function removeFromCart(id){cart=cart.filter(x=>x.id!==id);renderCart()}
+function renderCart(){
+  const body=document.getElementById('cartBody');const footer=document.getElementById('cartFooter');
+  document.getElementById('cartCount').textContent=cart.length;
+  if(!cart.length){body.innerHTML='<div class="cart-empty"><div class="empty-icon">🛒</div><p>Tu carrito está vacío.<br>¡Agrega algo delicioso!</p></div>';footer.style.display='none';return}
+  const grouped={};
+  cart.forEach(i=>{const k=i.name+'|'+i.sub;if(!grouped[k])grouped[k]={...i,qty:0,ids:[]};grouped[k].qty++;grouped[k].ids.push(i.id)});
+  body.innerHTML=Object.values(grouped).map(g=>`<div class="cart-line"><div class="cart-item-emoji">${g.emoji}</div><div class="cart-item-info"><div class="cart-item-name">${g.qty>1?g.qty+'x ':''} ${g.name}</div>${g.sub?`<div class="cart-item-sub">${g.sub}</div>`:''}</div><div class="cart-item-price">Q${g.price*g.qty}</div><button class="cart-remove" onclick="removeFromCart('${g.ids[g.ids.length-1]}')">✕</button></div>`).join('');
+  const total=cart.reduce((s,i)=>s+i.price,0);
+  document.getElementById('cartTotal').textContent='Q '+total;footer.style.display='block'
+}
+function clearCart(){cart=[];renderCart()}
+function showToast(msg,type='ok'){
+  const t=document.createElement('div');
+  t.style.cssText=`position:fixed;bottom:20px;right:20px;z-index:9999;background:${type==='warn'?'#F5B800':'#1A0800'};color:${type==='warn'?'#1A0800':'#fff'};padding:10px 18px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:1px;box-shadow:0 8px 24px rgba(0,0,0,0.2);animation:fadeUp 0.3s ease`;
+  t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2800)
+}
+function openCheckout(){if(!cart.length){showToast('¡Tu carrito está vacío!','warn');return}renderOrderSummary();document.getElementById('checkoutModal').classList.add('open');document.getElementById('checkoutFormView').style.display='block';document.getElementById('orderSuccess').style.display='none';selectDelivery(orderType)}
+function closeCheckout(){document.getElementById('checkoutModal').classList.remove('open')}
+function renderOrderSummary(){
+  const g={};cart.forEach(i=>{if(!g[i.name])g[i.name]={...i,qty:0};g[i.name].qty++});
+  const del=checkoutDelivery==='delivery'?20:0;const sub=cart.reduce((s,i)=>s+i.price,0);
+  document.getElementById('orderSummaryMini').innerHTML=Object.values(g).map(x=>`<div class="osm-row"><span>${x.qty>1?x.qty+'x ':''} ${x.name}</span><span>Q${x.price*x.qty}</span></div>`).join('')+(del?'<div class="osm-row"><span>Delivery</span><span>Q20</span></div>':'')+`<div class="osm-row osm-total"><span>Total</span><span>Q${sub+del}</span></div>`
+}
+function selectDelivery(t){checkoutDelivery=t;['local','takeout','delivery'].forEach(x=>{const el=document.getElementById('co-'+x);if(el)el.classList.toggle('active',x===t)});document.getElementById('addressFields').classList.toggle('show',t==='delivery');document.getElementById('tableField').style.display=t==='local'?'block':'none';renderOrderSummary()}
+function selectPayment(t){payMethod=t;['cash','card','paypal','zelle'].forEach(x=>{const el=document.getElementById('pay-'+x);if(el)el.classList.toggle('active',x===t)})}
+
+function placeOrder(){
+  // Basic validation
+  const nombre=document.getElementById('cNombre').value.trim();
+  const tel=document.getElementById('cTelefono').value.trim();
+  const correo=document.getElementById('cCorreo').value.trim();
+  let valid=true;
+  if(!nombre){document.getElementById('cNombre').classList.add('invalid');valid=false}else document.getElementById('cNombre').classList.remove('invalid');
+  if(!tel){document.getElementById('cTelefono').classList.add('invalid');valid=false}else document.getElementById('cTelefono').classList.remove('invalid');
+  if(!correo||!correo.includes('@')){document.getElementById('cCorreo').classList.add('invalid');valid=false}else document.getElementById('cCorreo').classList.remove('invalid');
+  if(!valid){showToast('⚠️ Completa los campos requeridos','warn');return}
+
+  const del=checkoutDelivery==='delivery'?20:0;
+  const sub=cart.reduce((s,i)=>s+i.price,0);
+  const id='#SF-'+Math.floor(10000+Math.random()*90000);
+
+  // Snapshot grouped cart
+  const g={};cart.forEach(i=>{if(!g[i.name])g[i.name]={...i,qty:0};g[i.name].qty++});
+
+  lastOrderData={
+    id,
+    fecha:new Date().toLocaleDateString('es-GT',{year:'numeric',month:'long',day:'numeric'}),
+    hora:new Date().toLocaleTimeString('es-GT',{hour:'2-digit',minute:'2-digit'}),
+    nombre,tel,correo,
+    telRef:document.getElementById('cTelRef').value.trim(),
+    nit:document.getElementById('bNIT').value.trim()||'CF',
+    bNombre:document.getElementById('bNombre').value.trim()||'Consumidor Final',
+    bDireccion:document.getElementById('bDireccion').value.trim()||'Ciudad',
+    notas:document.getElementById('cNotas').value.trim(),
+    tipo:checkoutDelivery,payMethod,
+    items:Object.values(g),
+    subtotal:sub,delivery:del,total:sub+del
+  };
+
+  document.getElementById('successOrderId').textContent=id;
+  document.getElementById('checkoutFormView').style.display='none';
+  document.getElementById('orderSuccess').style.display='block';
+}
+
+function downloadInvoicePDF(){
+  const {jsPDF}=window.jspdf;
+  const d=lastOrderData;
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  const W=210,M=18;
+  let y=M;
+
+  // Header bar
+  doc.setFillColor(200,16,46);
+  doc.rect(0,0,W,32,'F');
+  doc.setFontSize(22);doc.setFont('helvetica','bold');doc.setTextColor(255,255,255);
+  doc.text('SMASH & FIRE',M,15);
+  doc.setFontSize(9);doc.setFont('helvetica','normal');
+  doc.text('6a Calle 6-50 Zona 10, Ciudad de Guatemala',M,22);
+  doc.text('+502 4947-3557',M,28);
+  y=44;
+
+  // Title
+  doc.setFontSize(16);doc.setFont('helvetica','bold');doc.setTextColor(26,8,0);
+  doc.text('FACTURA / RECIBO',M,y);
+  doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(100,60,20);
+  doc.text(`No. de Orden: ${d.id}`,W-M,y,{align:'right'});
+  doc.text(`Fecha: ${d.fecha}  Hora: ${d.hora}`,W-M,y+6,{align:'right'});
+  y+=16;
+
+  // Horizontal line
+  doc.setDrawColor(232,206,170);doc.setLineWidth(0.4);doc.line(M,y,W-M,y);y+=8;
+
+  // Client info
+  doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(200,16,46);
+  doc.text('DATOS DEL CLIENTE',M,y);y+=6;
+  doc.setFont('helvetica','normal');doc.setTextColor(42,18,0);
+  const leftCol=[
+    ['Cliente',d.nombre],['Teléfono',d.tel+(d.telRef?` / Ref: ${d.telRef}`:'')],
+    ['Correo',d.correo]
+  ];
+  const rightCol=[
+    ['NIT / DPI',d.nit],['Facturar a',d.bNombre],['Dirección',d.bDireccion]
+  ];
+  const maxR=Math.max(leftCol.length,rightCol.length);
+  for(let i=0;i<maxR;i++){
+    if(leftCol[i]){doc.setFont('helvetica','bold');doc.text(leftCol[i][0]+':',M,y);doc.setFont('helvetica','normal');doc.text(leftCol[i][1],M+28,y)}
+    if(rightCol[i]){doc.setFont('helvetica','bold');doc.text(rightCol[i][0]+':',W/2,y);doc.setFont('helvetica','normal');doc.text(rightCol[i][1],W/2+22,y)}
+    y+=6;
+  }
+  y+=4;doc.setDrawColor(232,206,170);doc.line(M,y,W-M,y);y+=8;
+
+  // Items header
+  doc.setFillColor(255,240,216);doc.rect(M,y-3,W-M*2,8,'F');
+  doc.setFont('helvetica','bold');doc.setTextColor(42,18,0);doc.setFontSize(8.5);
+  doc.text('DESCRIPCIÓN',M+2,y+2);
+  doc.text('CANT.',W-70,y+2,{align:'right'});
+  doc.text('P.UNIT.',W-48,y+2,{align:'right'});
+  doc.text('TOTAL',W-M,y+2,{align:'right'});
+  y+=10;
+  doc.setFont('helvetica','normal');doc.setFontSize(9);
+  d.items.forEach((item,idx)=>{
+    if(idx%2===0){doc.setFillColor(255,251,244);doc.rect(M,y-3,W-M*2,7,'F')}
+    doc.setTextColor(42,18,0);
+    doc.text(item.name+(item.sub?` (${item.sub})`:''),M+2,y+1);
+    doc.text(String(item.qty),W-70,y+1,{align:'right'});
+    doc.text('Q '+item.price,W-48,y+1,{align:'right'});
+    doc.text('Q '+item.price*item.qty,W-M,y+1,{align:'right'});
+    y+=7;
   });
-});
+  y+=4;doc.setDrawColor(232,206,170);doc.line(M,y,W-M,y);y+=6;
+
+  // Totals
+  doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(100,60,20);
+  doc.text('Subtotal:',W-50,y);doc.text('Q '+d.subtotal,W-M,y,{align:'right'});y+=6;
+  if(d.delivery){doc.text('Delivery:',W-50,y);doc.text('Q '+d.delivery,W-M,y,{align:'right'});y+=6}
+  doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(200,16,46);
+  doc.text('TOTAL:',W-50,y);doc.text('Q '+d.total,W-M,y,{align:'right'});y+=10;
+
+  // Payment & delivery
+  doc.setFontSize(8.5);doc.setFont('helvetica','normal');doc.setTextColor(100,60,20);
+  const tipoLabel={'local':'Comer en local','takeout':'Para llevar','delivery':'Delivery a domicilio'}[d.tipo]||d.tipo;
+  const pagLabel={'cash':'Efectivo','card':'Tarjeta','paypal':'PayPal','zelle':'Zelle / Transferencia'}[d.payMethod]||d.payMethod;
+  doc.text(`Tipo de entrega: ${tipoLabel}`,M,y);y+=6;
+  doc.text(`Método de pago: ${pagLabel}`,M,y);y+=6;
+  if(d.notas){doc.text(`Notas: ${d.notas}`,M,y);y+=6}
+  y+=4;doc.setDrawColor(232,206,170);doc.line(M,y,W-M,y);y+=8;
+
+  // Footer
+  doc.setFontSize(8);doc.setTextColor(160,96,48);
+  doc.text('Este documento es un comprobante de su pedido. No es una factura fiscal emitida por SAT.',W/2,y,{align:'center'});
+  doc.text('¡Gracias por preferir Smash & Fire!',W/2,y+6,{align:'center'});
+
+  doc.save(`Smash-Fire-Orden-${d.id.replace('#','')}.pdf`);
+  showToast('📄 Factura descargada');
+}
+
+const s=document.createElement('style');s.textContent='@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}';document.head.appendChild(s);
 </script>
 </body>
 </html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Políticas Laborales - Smash & Fire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #d32f2f;
+        }
+        .header h1 {
+            color: #d32f2f;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 12px;
+            color: #666;
+        }
+        .document-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 30px 0 20px 0;
+            text-transform: uppercase;
+            color: #333;
+        }
+        .document-subtitle {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        .table-of-contents {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #d32f2f;
+        }
+        .toc-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #d32f2f;
+        }
+        .toc-content {
+            margin-left: 20px;
+        }
+        .toc-content ol {
+            margin: 5px 0;
+        }
+        .toc-content li {
+            margin: 5px 0;
+            font-size: 13px;
+        }
+        .pagebreak {
+            page-break-after: always;
+            margin-top: 40px;
+            padding-top: 40px;
+        }
+        .section {
+            margin: 20px 0;
+            text-align: justify;
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin: 25px 0 15px 0;
+            color: #d32f2f;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .subsection-title {
+            font-weight: bold;
+            font-size: 13px;
+            margin: 15px 0 10px 20px;
+            color: #333;
+        }
+        .content-text {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .article {
+            margin: 15px 0;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+        }
+        .article-number {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        .policy-box {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #d32f2f;
+        }
+        .policy-box strong {
+            color: #d32f2f;
+        }
+        ul {
+            margin-left: 40px;
+            margin-top: 10px;
+        }
+        ul li {
+            margin: 8px 0;
+        }
+        table {
+            width: 100%;
+            margin: 15px 0;
+            border-collapse: collapse;
+        }
+        table td, table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        table th {
+            background-color: #d32f2f;
+            color: white;
+            font-weight: bold;
+        }
+        .signature-section {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .signature-box {
+            width: 45%;
+        }
+        .signature-line {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding-top: 10px;
+            font-size: 12px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+            color: #666;
+        }
+        .page-number {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 11px;
+            color: #999;
+        }
+        .approval-box {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #4caf50;
+            border-left: 4px solid #4caf50;
+        }
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 30px;
+                max-width: 100%;
+            }
+            .pagebreak {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SMASH & FIRE</h1>
+            <p>Restaurante de Hamburguesas Premium</p>
+            <p>Guatemala, Centro América</p>
+        </div>
+
+        <div class="document-title">Manual de Políticas Laborales</div>
+        <div class="document-subtitle">Derechos, Deberes y Protocolos del Personal</div>
+
+        <div class="approval-box">
+            <strong>Documento Oficial de la Empresa</strong><br>
+            Vigencia: 6 de marzo de 2026<br>
+            Revisión: Anual<br>
+            Responsable: Gerencia General
+        </div>
+
+        <div class="table-of-contents">
+            <div class="toc-title">TABLA DE CONTENIDOS</div>
+            <div class="toc-content">
+                <ol>
+                    <li>Introducción y Propósito</li>
+                    <li>Descripción de la Empresa</li>
+                    <li>Igualdad de Oportunidades</li>
+                    <li>Admisión y Contratación</li>
+                    <li>Políticas de Asistencia</li>
+                    <li>Derechos y Beneficios Laborales</li>
+                    <li>Políticas de Conducta</li>
+                    <li>Protección de Datos</li>
+                    <li>Salud y Seguridad Ocupacional</li>
+                    <li>Procedimientos Disciplinarios</li>
+                    <li>Terminación de Empleo</li>
+                    <li>Quejas y Reclamos</li>
+                    <li>Confidencialidad</li>
+                    <li>Firmas Autorizadas</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- PÁGINA 1 -->
+        <div class="section">
+            <div class="section-title">1. INTRODUCCIÓN Y PROPÓSITO</div>
+            <div class="content-text">
+                <p>El presente Manual de Políticas Laborales es un documento oficial de SMASH & FIRE que establece las normas, derechos, obligaciones y procedimientos que rigen la relación laboral entre la empresa y sus colaboradores.</p>
+                <p style="margin-top: 15px;">Este manual tiene como propósito:</p>
+                <ul>
+                    <li>Establecer el marco normativo de la relación laboral</li>
+                    <li>Garantizar el cumplimiento de leyes laborales de Guatemala</li>
+                    <li>Promover un ambiente de trabajo seguro y respetuoso</li>
+                    <li>Definir derechos y obligaciones de ambas partes</li>
+                    <li>Facilitar la resolución justa de conflictos</li>
+                    <li>Fomentar el profesionalismo y la excelencia</li>
+                </ul>
+                <p style="margin-top: 15px;">Todos los colaboradores deben leer y comprender este manual antes de iniciar labores. La ignorancia del contenido no exime del cumplimiento de las políticas aquí establecidas.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">2. DESCRIPCIÓN DE LA EMPRESA</div>
+            <div class="content-text">
+                <p><strong>Nombre Legal:</strong> SMASH & FIRE, Sociedad Anónima</p>
+                <p><strong>Giro de Negocio:</strong> Restaurante de servicio de alimentos y bebidas</p>
+                <p><strong>Ubicación Principal:</strong> Guatemala, Centro América</p>
+                <p><strong>Estructura Actual:</strong> 1 sucursal en operación en Guatemala</p>
+                <p><strong>Planes de Expansión:</strong> Expansión prevista a Estados Unidos</p>
+                <p style="margin-top: 15px;">La empresa se compromete a mantener los más altos estándares de calidad, servicio y responsabilidad social con empleados y clientes.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">3. IGUALDAD DE OPORTUNIDADES</div>
+            <div class="content-text">
+                <p>SMASH & FIRE se compromete a proporcionar iguales oportunidades de empleo a todas las personas, sin discriminación por razón de:</p>
+                <ul>
+                    <li>Raza, color u origen nacional</li>
+                    <li>Sexo, identidad de género u orientación sexual</li>
+                    <li>Religión o creencias</li>
+                    <li>Edad</li>
+                    <li>Discapacidad</li>
+                    <li>Estado civil o familiar</li>
+                    <li>Opinión política o sindical</li>
+                </ul>
+                <p style="margin-top: 15px;">Cualquier acto de discriminación será tratado como falta grave y sujeto a medidas disciplinarias incluyendo despido inmediato.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">4. ADMISIÓN Y CONTRATACIÓN</div>
+            <div class="subsection-title">4.1 Requisitos Generales</div>
+            <div class="content-text">
+                <ul>
+                    <li>Tener 18 años cumplidos (mínimo legal)</li>
+                    <li>Cédula de identidad válida</li>
+                    <li>Certificados de estudios según el puesto</li>
+                    <li>Referencias verificables</li>
+                    <li>Prueba de antecedentes penales (según puesto)</li>
+                    <li>Examen médico ocupacional (cuando corresponda)</li>
+                    <li>Prueba de capacidad física y mental para el puesto</li>
+                </ul>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">4.2 Proceso de Selección</div>
+            <div class="content-text">
+                <p>Todo candidato debe cumplir con:</p>
+                <ul>
+                    <li>Entrevista formal con Recursos Humanos</li>
+                    <li>Pruebas técnicas o prácticas según el puesto</li>
+                    <li>Verificación de referencias</li>
+                    <li>Aprobación de Gerencia General</li>
+                    <li>Firma de contrato de trabajo</li>
+                    <li>Inducción obligatoria a la empresa</li>
+                </ul>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">4.3 Período de Prueba</div>
+            <div class="content-text">
+                <p>Todo nuevo colaborador se somete a un período de prueba de 30 días durante el cual la empresa evalúa su desempeño, capacidad técnica y adaptación a la cultura corporativa. Durante este período, la terminación puede efectuarse con 24 horas de notificación.</p>
+            </div>
+        </div>
+
+        <div class="pagebreak"></div>
+
+        <!-- PÁGINA 2 -->
+        <div class="section">
+            <div class="section-title">5. POLÍTICAS DE ASISTENCIA</div>
+            <div class="subsection-title">5.1 Horario de Trabajo</div>
+            <div class="content-text">
+                <ul>
+                    <li>Horario estándar: 8 horas diarias, conforme contrato individual</li>
+                    <li>Entrada: Puntualidad obligatoria (tolerancia máxima 5 minutos)</li>
+                    <li>Registro: Control de asistencia mediante sistema digital</li>
+                    <li>Descansos: Descanso de 30 minutos no remunerado por cada jornada de 8 horas</li>
+                </ul>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">5.2 Inasistencia y Retrasos</div>
+            <div class="content-text">
+                <table>
+                    <tr>
+                        <th>Tipo de Incidencia</th>
+                        <th>Acción Requerida</th>
+                        <th>Consecuencia</th>
+                    </tr>
+                    <tr>
+                        <td>Retraso hasta 15 minutos</td>
+                        <td>Notificar a supervisor</td>
+                        <td>Amonestación verbal</td>
+                    </tr>
+                    <tr>
+                        <td>Retraso 15-30 minutos</td>
+                        <td>Notificar con prueba</td>
+                        <td>Amonestación escrita</td>
+                    </tr>
+                    <tr>
+                        <td>Retraso mayor a 30 minutos</td>
+                        <td>Justificación a RH</td>
+                        <td>Descuento de salario proporcionado</td>
+                    </tr>
+                    <tr>
+                        <td>Ausencia sin aviso</td>
+                        <td>Debe contactar antes de 2 horas</td>
+                        <td>Amonestación escrita</td>
+                    </tr>
+                    <tr>
+                        <td>Ausencia 3 días consecutivos</td>
+                        <td>Justificación médica requerida</td>
+                        <td>Potencial despido por abandono</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">5.3 Licencias y Permisos</div>
+            <div class="content-text">
+                <p><strong>Licencias Remuneradas:</strong></p>
+                <ul>
+                    <li>Enfermedad (con constancia médica): 5 días año</li>
+                    <li>Luto por familiar directo: Hasta 3 días</li>
+                    <li>Cita médica: Máximo 2 horas sin descuento</li>
+                    <li>Deberes ciudadanos: Con comprobante oficial</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Solicitud de Permisos:</strong></p>
+                <ul>
+                    <li>Solicitar con mínimo 5 días de anticipación</li>
+                    <li>Presentar por escrito a supervisor directo</li>
+                    <li>Aprobación de Recursos Humanos requerida</li>
+                    <li>Permisos especiales sujetos a aprobación discrecional</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">6. DERECHOS Y BENEFICIOS LABORALES</div>
+            <div class="subsection-title">6.1 Remuneración y Salario</div>
+            <div class="content-text">
+                <ul>
+                    <li>Salario mínimo conforme Código de Trabajo</li>
+                    <li>Pago quincenal o mensual según contrato</li>
+                    <li>Depósito bancario automático preferente</li>
+                    <li>Comprobante de salario en cada pago</li>
+                </ul>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">6.2 Beneficios Legales Costarricenses</div>
+            <div class="content-text">
+                <p>De conformidad con la Constitución Política de Guatemala:</p>
+                <ul>
+                    <li><strong>Aguinaldo (Decreto 76-78):</strong> Equivalente a un mes de salario pagadero en diciembre</li>
+                    <li><strong>Bono Catorce (Decreto 42-92):</strong> Equivalente a un mes de salario pagadero en julio</li>
+                    <li><strong>Vacaciones:</strong> 15 días hábiles anuales después del primer año (Artículo 130 Código de Trabajo)</li>
+                    <li><strong>Indemnización:</strong> Conforme Artículos 82-83 Código de Trabajo</li>
+                    <li><strong>Aportaciones IGSS:</strong> Empresa aporta 3.67%, trabajador 2.83%</li>
+                </ul>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">6.3 Beneficios Discrecionales</div>
+            <div class="content-text">
+                <ul>
+                    <li>Capacitación y desarrollo profesional</li>
+                    <li>Comidas durante jornada laboral</li>
+                    <li>Acceso a programa de bienestar</li>
+                    <li>Bonificación por desempeño (según evaluación)</li>
+                    <li>Programas de promoción interna</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">7. POLÍTICAS DE CONDUCTA</div>
+            <div class="subsection-title">7.1 Código de Conducta</div>
+            <div class="content-text">
+                <p>Se espera de todos los colaboradores actitud profesional, respeto, integridad y cortesía en todas sus interacciones. Conductas que se valoran:</p>
+                <ul>
+                    <li>Respeto mutuo entre colegas</li>
+                    <li>Cumplimiento de protocolos y procesos</li>
+                    <li>Atención de calidad al cliente</li>
+                    <li>Responsabilidad con tareas asignadas</li>
+                    <li>Colaboración en equipo</li>
+                    <li>Comunicación clara y honesta</li>
+                </ul>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">7.2 Conductas Prohibidas</div>
+            <div class="policy-box">
+                <strong>Faltas Graves (pueden resultar en despido inmediato):</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Presentarse bajo influencia de alcohol, drogas o estupefacientes</li>
+                    <li>Conducta violenta, amenazante o acosadora</li>
+                    <li>Robo, fraude o defraudación</li>
+                    <li>Documentos falsos o información fraudulenta</li>
+                    <li>Insubordinación grave contra órdenes legales</li>
+                    <li>Violación de protocolos de seguridad alimentaria</li>
+                    <li>Contacto inapropiado sexual o hostigamiento</li>
+                    <li>Revelación de información confidencial</li>
+                    <li>Sabotaje o daño intencional a bienes</li>
+                    <li>Conducta criminal o actos ilícitos</li>
+                </ul>
+            </div>
+
+            <div class="policy-box" style="background-color: #fff3e0; border-left-color: #ff9800;">
+                <strong>Faltas Leves (sujetas a medidas disciplinarias progresivas):</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Falta de uniforme o apariencia inadecuada</li>
+                    <li>Incumplimiento de instrucciones</li>
+                    <li>Uso inapropiado de redes sociales en horario laboral</li>
+                    <li>Conversaciones personales excesivas</li>
+                    <li>Falta de mantenimiento de equipo</li>
+                    <li>Errores negligentes en tareas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pagebreak"></div>
+
+        <!-- PÁGINA 3 -->
+        <div class="section">
+            <div class="section-title">8. PROTECCIÓN DE DATOS PERSONALES</div>
+            <div class="content-text">
+                <p>SMASH & FIRE trata datos personales de colaboradores conforme a leyes de protección de datos aplicables. Los datos recolectados serán utilizados únicamente para propósitos de nómina, IGSS, beneficios y comunicaciones laborales necesarias.</p>
+                <p style="margin-top: 15px;">El acceso a datos personales es restringido a personal autorizado de Recursos Humanos y Gerencia. Se garantiza confidencialidad y protección contra uso indebido.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">9. SALUD Y SEGURIDAD OCUPACIONAL</div>
+            <div class="subsection-title">9.1 Responsabilidad de la Empresa</div>
+            <div class="content-text">
+                <ul>
+                    <li>Proporcionar lugar de trabajo seguro</li>
+                    <li>Equipo de protección personal cuando sea necesario</li>
+                    <li>Capacitación en seguridad al ingreso y anualmente</li>
+                    <li>Investigación de accidentes laborales</li>
+                    <li>Cumplimiento de regulaciones de seguridad</li>
+                    <li>Apoyo médico en caso de lesiones</li>
+                </ul>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">9.2 Responsabilidad del Trabajador</div>
+            <div class="content-text">
+                <ul>
+                    <li>Usar correctamente equipo de protección</li>
+                    <li>Reportar condiciones inseguras inmediatamente</li>
+                    <li>Seguir procedimientos de seguridad establecidos</li>
+                    <li>Notificar de lesiones o accidentes</li>
+                    <li>Participar en capacitaciones de seguridad</li>
+                    <li>No interferir con sistemas de seguridad</li>
+                </ul>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">9.3 Higiene Alimentaria</div>
+            <div class="content-text">
+                <ul>
+                    <li>Lavado de manos frecuente (cada 30 minutos)</li>
+                    <li>Uso de uniforme y cobertor de cabello</li>
+                    <li>No trabajar con enfermedades transmisibles</li>
+                    <li>Inspección de temperatura de alimentos</li>
+                    <li>Cumplimiento de POES (Procedimientos Operacionales Estándares)</li>
+                    <li>Capacitación anual en BPM (Buenas Prácticas de Manufactura)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">10. PROCEDIMIENTOS DISCIPLINARIOS</div>
+            <div class="subsection-title">10.1 Medidas Disciplinarias Progresivas</div>
+            <div class="content-text">
+                <p>Conforme a la ley y garantizando debido proceso:</p>
+                <table>
+                    <tr>
+                        <th>Nivel</th>
+                        <th>Acción</th>
+                        <th>Procedimiento</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Amonestación Verbal</td>
+                        <td>Supervisor comunica incidencia, registro en archivo</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Amonestación Escrita</td>
+                        <td>Documento entregado, firmado, copia a colaborador</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Suspensión</td>
+                        <td>Máximo 5 días sin salario, notificación escrita</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Despido Disciplinario</td>
+                        <td>Notificación escrita, pago de prestaciones según ley</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">10.2 Derecho de Defensa</div>
+            <div class="content-text">
+                <ul>
+                    <li>Notificación previa de cargo</li>
+                    <li>Oportunidad de presentar descargos</li>
+                    <li>Entrevista con Recursos Humanos</li>
+                    <li>Decisión escrita y motivada</li>
+                    <li>Copia de documentos disciplinarios</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">11. TERMINACIÓN DE EMPLEO</div>
+            <div class="subsection-title">11.1 Formas de Terminación</div>
+            <div class="content-text">
+                <ul>
+                    <li><strong>Renuncia:</strong> 8 días de preaviso (Artículo 80 Código de Trabajo)</li>
+                    <li><strong>Mutuo Consentimiento:</strong> Acuerdo por escrito de ambas partes</li>
+                    <li><strong>Causa Justa Patronal:</strong> Según Artículos 82-83 Código de Trabajo</li>
+                    <li><strong>Causa Justa Obrera:</strong> Según Artículos 82-83 Código de Trabajo</li>
+                    <li><strong>Abandono:</strong> Ausencia injustificada 3 días consecutivos</li>
+                    <li><strong>Incapacidad:</strong> Pérdida de capacidad física o mental para laborar</li>
+                </ul>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">11.2 Liquidación de Prestaciones</div>
+            <div class="content-text">
+                <p>En terminación por cualquier causa, se pagan:</p>
+                <ul>
+                    <li>Salario hasta fecha de terminación</li>
+                    <li>Vacaciones no disfrutadas</li>
+                    <li>Aguinaldo y Bono Catorce proporcionales</li>
+                    <li>Indemnización conforme ley (según causa)</li>
+                    <li>Documentos laborales (finiquito y certificado de trabajo)</li>
+                </ul>
+                <p style="margin-top: 15px;">Pago debe efectuarse dentro de 48 horas de la terminación.</p>
+            </div>
+        </div>
+
+        <div class="pagebreak"></div>
+
+        <!-- PÁGINA 4 -->
+        <div class="section">
+            <div class="section-title">12. QUEJAS Y RECLAMOS</div>
+            <div class="subsection-title">12.1 Procedimiento de Quejas</div>
+            <div class="content-text">
+                <p>Cualquier colaborador que tengan quejas o reclamos puede presentarlas mediante:</p>
+                <ul>
+                    <li>Comunicación directa con supervisor inmediato</li>
+                    <li>Presentación escrita a Recursos Humanos</li>
+                    <li>Reunión formal con Gerencia General si es necesario</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Plazo:</strong> Las quejas deben presentarse dentro de 5 días hábiles de ocurrida la incidencia.</p>
+                <p style="margin-top: 15px;"><strong>Protección:</strong> No habrá represalias contra quienes presenten quejas de buena fe.</p>
+            </div>
+
+            <div class="subsection-title" style="margin-top: 20px;">12.2 Resolución de Conflictos</div>
+            <div class="content-text">
+                <ol>
+                    <li>Diálogo directo entre partes y supervisor</li>
+                    <li>Intervención de Recursos Humanos si no se resuelve</li>
+                    <li>Mediación por Gerencia General</li>
+                    <li>Recurso ante Ministerio de Trabajo si lo requiere</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">13. CONFIDENCIALIDAD Y SECRETO COMERCIAL</div>
+            <div class="content-text">
+                <p>Todo colaborador se compromete a guardar confidencialidad absoluta sobre:</p>
+                <ul>
+                    <li>Recetas y fórmulas secretas de SMASH & FIRE</li>
+                    <li>Procedimientos operacionales propietarios</li>
+                    <li>Información financiera y de clientes</li>
+                    <li>Planes de expansion y estrategia comercial</li>
+                    <li>Datos personales de otros colaboradores</li>
+                    <li>Cualquier información marcada como confidencial</li>
+                </ul>
+                <p style="margin-top: 15px;">Esta obligación continúa después de la terminación del empleo. Violación de confidencialidad es causa de demanda civil y penal.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">14. VIGENCIA Y MODIFICACIONES</div>
+            <div class="content-text">
+                <p>Este Manual entra en vigencia a partir del 6 de marzo de 2026 y será modificado únicamente por decisión de Gerencia General. Las modificaciones serán comunicadas por escrito a todo el personal con mínimo 15 días de anticipación.</p>
+                <p style="margin-top: 15px;">Acuerdos individuales que contravengan este manual prevalecerán sólo si son más beneficiosos para el trabajador, conforme principio de favorabilidad laboral.</p>
+            </div>
+        </div>
+
+        <div class="signature-section" style="margin-top: 50px;">
+            <div class="signature-box">
+                <div class="signature-line">
+                    APROBADO POR<br>
+                    ________________________<br>
+                    <span style="font-size: 10px;">Gerente General<br>
+                    SMASH & FIRE<br>
+                    Fecha: ___/__/____</span>
+                </div>
+            </div>
+            <div class="signature-box">
+                <div class="signature-line">
+                    REVISADO POR<br>
+                    ________________________<br>
+                    <span style="font-size: 10px;">Recursos Humanos<br>
+                    Fecha: ___/__/____</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Este manual cumple con la Constitución Política de la República de Guatemala,<br>
+            Código de Trabajo (Decreto 1441) y demás leyes laborales aplicables.</p>
+            <p style="margin-top: 15px;">Revisión anual obligatoria | Próxima revisión programada: Marzo 2027</p>
+        </div>
+
+        <div class="page-number">
+            Páginas 1-4 de 4<br>
+            Fecha de generación: 6 de marzo de 2026
+        </div>
+    </div>
+</body>
+</html>
