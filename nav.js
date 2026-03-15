@@ -5,25 +5,14 @@ const i18n = {
   es: {
     nav_home:'Inicio', nav_photos:'Fotos', nav_history:'Historia',
     nav_terms:'Términos', nav_founders:'Fundadores', nav_jobs:'Empleo',
-    nav_marketing:'Marketing', nav_menu:'Ver Menú',
+    nav_marketing:'Marketing', nav_menu:'Menú',
     footer_nav:'Navegación', footer_contact:'Contacto', footer_hours:'Horarios',
-    footer_copy:'© 2025 Smash & Fire. Todos los derechos reservados.',
+    footer_copy:'© 2026 Smash & Fire. Todos los derechos reservados.',
     footer_terms:'Términos', footer_privacy:'Privacidad',
     hours_weekday:'Lun – Jue: 11:00 – 22:00',
     hours_friday:'Viernes: 11:00 – 23:00',
     hours_weekend:'Sáb – Dom: 11:00 – 23:00',
   },
-  en: {
-    nav_home:'Home', nav_photos:'Photos', nav_history:'Our Story',
-    nav_terms:'Terms', nav_founders:'Founders', nav_jobs:'Jobs',
-    nav_marketing:'Marketing', nav_menu:'See Menu',
-    footer_nav:'Navigation', footer_contact:'Contact', footer_hours:'Hours',
-    footer_copy:'© 2025 Smash & Fire. All rights reserved.',
-    footer_terms:'Terms', footer_privacy:'Privacy',
-    hours_weekday:'Mon – Thu: 11:00 AM – 10:00 PM',
-    hours_friday:'Friday: 11:00 AM – 11:00 PM',
-    hours_weekend:'Sat – Sun: 11:00 AM – 11:00 PM',
-  }
 };
 
 let currentLang = localStorage.getItem('sf_lang') || 'es';
@@ -47,21 +36,35 @@ window.addEventListener('scroll', () => {
   nav && nav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-// ─── MOBILE TOGGLE ─────────────────────────────────────────────
-const toggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-if (toggle && navLinks) {
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    navLinks.classList.toggle('open');
+// ─── DROPDOWN TOGGLE (replaces full-screen modal) ──────────────
+(function() {
+  const toggle = document.querySelector('.nav-toggle');
+  const dropdown = document.querySelector('.nav-dropdown');
+  if (!toggle || !dropdown) return;
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = dropdown.classList.contains('open');
+    dropdown.classList.toggle('open', !isOpen);
+    toggle.classList.toggle('open', !isOpen);
   });
-  navLinks.querySelectorAll('a').forEach(a => {
+
+  // Close when clicking a link
+  dropdown.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
+      dropdown.classList.remove('open');
       toggle.classList.remove('open');
-      navLinks.classList.remove('open');
     });
   });
-}
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target)) {
+      dropdown.classList.remove('open');
+      toggle.classList.remove('open');
+    }
+  });
+})();
 
 // ─── LANG TOGGLE ───────────────────────────────────────────────
 document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -74,7 +77,7 @@ applyLang(currentLang);
   const segs = location.pathname.replace(/\/$/, '').split('/');
   const current = segs[segs.length - 1] || 'index.html';
   const folder  = segs[segs.length - 2] || '';
-  document.querySelectorAll('.nav-links a').forEach(a => {
+  document.querySelectorAll('.nav-links a, .nav-dropdown a').forEach(a => {
     const href = a.getAttribute('href');
     if (!href) return;
     const hSegs = href.replace(/\/$/, '').split('/');
@@ -121,4 +124,15 @@ applyLang(currentLang);
     });
   }, { threshold: 0.5 });
   counters.forEach(c => io.observe(c));
+})();
+
+// ─── WHATSAPP FAB ──────────────────────────────────────────────
+(function() {
+  const fab = document.querySelector('.wa-fab');
+  if (!fab) return;
+  fab.addEventListener('click', () => {
+    const phone = '50249473557';
+    const msg = encodeURIComponent('¡Hola! Quiero hacer un pedido en Smash & Fire 🍔🔥');
+    window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+  });
 })();
