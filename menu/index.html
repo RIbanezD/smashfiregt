@@ -423,7 +423,7 @@
           <div class="checkout-section-label">Datos para facturación</div>
           <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.8rem">Ingresa tu NIT o deja el campo vacío para usar CF.</p>
           <div class="nit-row">
-            <div class="form-field"><label>NIT o DPI <span class="field-required">*</span></label><input type="text" id="bNIT" placeholder="CF" value="CF"/><div style="font-size:0.68rem;color:var(--text-muted);margin-top:3px">Solo números. Usa CF si no tienes NIT.</div></div>
+            <div class="form-field"><label><br/>NIT o DPI <span class="field-required">*</span></label><input type="text" id="bNIT" placeholder="CF" value="CF"/><div style="font-size:0.68rem;color:var(--text-muted);margin-top:3px">Solo números. Usa CF si no tienes NIT.</div></div>
             <div class="form-field"><label>Nombre para facturar</label><input type="text" id="bNombre" placeholder="Consumidor Final"/></div>
             <div class="form-field"><label>Dirección para facturar</label><input type="text" id="bDireccion" placeholder="Ciudad"/></div>
           </div>
@@ -434,12 +434,12 @@
       </div>
     </div>
     <div class="order-success" id="orderSuccess">
-      <div class="success-icon">✅</div>
+      <div class="success-icon"><img src="../assets/imgs/success.svg" style="height: 5rem;"></div>
       <h2>¡Pedido Confirmado!</h2>
       <div class="order-id" id="successOrderId">#SF-00000</div>
       <p>Tu pedido está siendo preparado. Te avisaremos cuando esté listo.</p>
       <div class="success-actions">
-        <button class="invoice-btn" onclick="downloadInvoicePDF()">📄 Descargar Factura PDF</button>
+        <button class="invoice-btn" onclick="downloadInvoicePDF()">Descargar Factura PDF</button>
         <button class="btn btn-outline" onclick="closeCheckout();clearCart()">Volver al Menú</button>
       </div>
     </div>
