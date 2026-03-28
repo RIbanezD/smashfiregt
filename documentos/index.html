@@ -103,6 +103,63 @@
 .preview-meta{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1.2rem}
 .preview-actions{display:flex;gap:0.7rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
 
+/* ── DEPARTAMENTOS ── */
+.depts-section{background:var(--cream);padding:90px -150px 100px}
+.depts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+@media(max-width:767px){.depts-grid{grid-template-columns:1fr}}
+.dept-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s var(--ease-expo);box-shadow:0 2px 12px var(--shadow)}
+.dept-card:hover{border-color:var(--red);transform:translateY(-5px);box-shadow:0 14px 44px var(--shadow-lg)}
+.dept-card-top{background:var(--dark);padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;position:relative;overflow:hidden}
+.dept-card-top::after{content:'';position:absolute;right:-10px;bottom:-10px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.05)}
+.dept-icon{font-size:2rem;flex-shrink:0;line-height:1}
+.dept-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.dept-name-sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-top:2px}
+.dept-body{padding:1.3rem 1.5rem}
+.dept-section{margin-bottom:1rem}
+.dept-section:last-child{margin-bottom:0}
+.dept-section-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem;display:flex;align-items:center;gap:6px}
+.dept-section-label::before{content:'';width:14px;height:2px;background:var(--red);border-radius:2px}
+.dept-body p,.dept-body li{font-size:0.84rem;color:var(--text-muted);line-height:1.65}
+.dept-body ul{list-style:none;padding:0}
+.dept-body ul li{padding-left:1.2rem;position:relative;margin-bottom:0.25rem}
+.dept-body ul li::before{content:'→';position:absolute;left:0;color:var(--red);font-weight:700;font-size:0.75rem}
+.dept-importance{background:var(--surface);border-radius:8px;padding:0.75rem 1rem;margin-top:0.8rem;border-left:3px solid var(--yellow)}
+.dept-importance p{color:var(--text);font-size:0.8rem;line-height:1.6;font-style:italic}
+ 
+/* ── DESCRIPCION PUESTOS ── */
+.puestos-section{background:var(--surface);padding:90px 0 100px}
+.puestos-intro{color:var(--text-muted);font-size:0.95rem;line-height:1.75;max-width:560px;margin-top:0.8rem}
+.puestos-accordion{margin-top:3rem;display:flex;flex-direction:column;gap:1rem}
+.puesto-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color 0.25s,box-shadow 0.25s}
+.puesto-card.open{border-color:rgba(200,16,46,0.5);box-shadow:0 6px 24px var(--shadow-lg)}
+.puesto-header{background:var(--dark);display:flex;align-items:center;gap:1.2rem;padding:1.3rem 1.5rem;cursor:pointer;user-select:none;transition:background 0.2s}
+.puesto-header:hover{border-color:var(--red);color:var(--red)}
+.puesto-header-icon{width:52px;height:52px;border-radius:12px;background:var(--dark);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;transition:background 0.25s}
+.puesto-card.open .puesto-header-icon{background:var(--red)}
+.puesto-header-info{flex:1}
+.puesto-title{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.puesto-dept{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-top:2px}
+.puesto-salary-badge{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;color:var(--white);background:var(--dark);border-radius:8px;padding:4px 12px;flex-shrink:0}
+.puesto-toggle{font-size:0.8rem;color:var(--text-muted);transition:transform 0.3s;flex-shrink:0}
+.puesto-card.open .puesto-toggle{transform:rotate(180deg)}
+.puesto-body{max-height:0;overflow:hidden;transition:max-height 0.5s var(--ease-expo)}
+.puesto-card.open .puesto-body{max-height:900px}
+.puesto-body-inner{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border);padding-top:1.2rem}
+ 
+.puesto-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:600px){.puesto-grid{grid-template-columns:1fr}}
+.puesto-block{background:var(--surface);border-radius:10px;padding:1rem 1.2rem}
+.puesto-block-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:0.6rem;display:flex;align-items:center;gap:6px}
+.puesto-block-title::before{content:'';width:14px;height:2px;background:var(--red);border-radius:2px}
+.puesto-block p{font-size:0.84rem;color:var(--text-muted);line-height:1.65}
+.puesto-block ul{list-style:none;padding:0}
+.puesto-block ul li{font-size:0.84rem;color:var(--text-muted);line-height:1.7;padding-left:1.1rem;position:relative}
+.puesto-block ul li::before{content:'✓';position:absolute;left:0;color:var(--red);font-weight:700;font-size:0.7rem}
+.puesto-meta-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1rem}
+.puesto-meta-chip{display:inline-flex;align-items:center;gap:5px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted)}
+.puesto-meta-chip span{font-size:1rem;line-height:1}
+.puesto-full-width{grid-column:1/-1}
+
 /* ── STATS BAR ── */
 .docs-stats{display:flex;gap:2rem;background:var(--dark);border-radius:14px;padding:1.5rem 2.2rem;
   margin-bottom:3.5rem;flex-wrap:wrap}
@@ -150,6 +207,186 @@
     <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Cumplimiento</div></div>
   </div>
 
+  <!-- ════════════════════════════════════
+     DEPARTAMENTOS
+════════════════════════════════════ -->
+<div class="depts-section">
+  <div class="container">
+    <span class="section-label reveal">Estructura interna</span>
+    <h2 class="section-title reveal delay-1">DEPARTAMENTOS<br>DE LA EMPRESA</h2>
+    <p class="reveal delay-2" style="color:var(--text-muted);max-width:560px;margin-top:0.7rem;line-height:1.75">
+      Smash &amp; Fire, S.A. opera a través de siete departamentos interconectados que garantizan la calidad, el cumplimiento legal y la experiencia del cliente.
+    </p>
+ 
+    <div class="depts-grid">
+ 
+      <!-- 1. Gerencia General -->
+      <div class="dept-card reveal delay-1">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Gerencia General</div><div class="dept-name-sub">Dirección Estratégica</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Dirigir, planificar y supervisar todas las operaciones de la empresa, asegurando el cumplimiento de la visión institucional y la rentabilidad del negocio.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Toma de decisiones estratégicas</li>
+              <li>Aprobación de presupuestos e inversiones</li>
+              <li>Representación legal ante terceros</li>
+              <li>Revisión de reportes financieros mensuales</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>Es el núcleo que articula todos los departamentos. Sin una gerencia sólida, la empresa pierde dirección y coherencia operativa.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 2. RRHH -->
+      <div class="dept-card reveal delay-2">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Recursos Humanos</div><div class="dept-name-sub">Talento &amp; Bienestar</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Gestionar el ciclo completo del colaborador: reclutamiento, contratación, capacitación, evaluación y bienestar laboral conforme al Código de Trabajo de Guatemala.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Proceso de selección y contratación</li>
+              <li>Administración de planilla e IGSS</li>
+              <li>Capacitaciones periódicas al personal</li>
+              <li>Resolución de conflictos laborales</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>Un RRHH bien gestionado reduce la rotación de personal, eleva la productividad y garantiza el cumplimiento de la normativa laboral guatemalteca.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 3. Marketing -->
+      <div class="dept-card reveal delay-3">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Marketing y Ventas</div><div class="dept-name-sub">Presencia &amp; Crecimiento</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Posicionar la marca Smash &amp; Fire, atraer nuevos clientes y fidelizar a los existentes a través de estrategias digitales, promocionales y de experiencia.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Gestión de redes sociales (Instagram, TikTok, Facebook)</li>
+              <li>Diseño y ejecución de promociones</li>
+              <li>Producción de contenido visual y audiovisual</li>
+              <li>Análisis de métricas de engagement y ventas</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>En el mercado gastronómico guatemalteco, la visibilidad digital es determinante para la adquisición de nuevos clientes y la retención de los actuales.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 4. Producción / Operaciones -->
+      <div class="dept-card reveal">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Producción</div><div class="dept-name-sub">Operaciones &amp; Cocina</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Preparar todos los productos del menú bajo estándares HACCP, asegurando consistencia, calidad e inocuidad alimentaria en cada orden.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Preparación y ejecución del menú diario</li>
+              <li>Control de temperaturas y cadena de frío</li>
+              <li>Gestión de inventario de insumos</li>
+              <li>Apertura y cierre de cocina (checklist 47 puntos)</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>Es el corazón del negocio. La calidad y velocidad de producción impactan directamente en la satisfacción del cliente y en la reputación de la marca.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 5. Finanzas -->
+      <div class="dept-card reveal delay-1">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Finanzas</div><div class="dept-name-sub">Contabilidad &amp; Tesorería</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Administrar los recursos financieros de la empresa, garantizar el cumplimiento tributario ante la SAT y elaborar los estados financieros mensuales y anuales.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Registro contable diario (libro mayor)</li>
+              <li>Presentación de declaraciones ante SAT</li>
+              <li>Control de caja, arqueos y depósitos bancarios</li>
+              <li>Elaboración de presupuestos y flujo de caja</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>El control financiero riguroso previene fraudes, optimiza la rentabilidad y garantiza que la empresa cumpla con sus obligaciones fiscales guatemaltecas.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 6. Servicio al Cliente -->
+      <div class="dept-card reveal delay-2">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Servicio al Cliente</div><div class="dept-name-sub">Experiencia &amp; Atención</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Garantizar que cada visita al local o pedido en línea supere las expectativas del cliente, desde la bienvenida hasta la despedida.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Atención de mesas con ciclo de servicio completo</li>
+              <li>Procesamiento de pedidos y pagos en caja</li>
+              <li>Manejo de quejas y reposición de pedidos</li>
+              <li>Gestión de pedidos delivery y para llevar</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>La experiencia del cliente es el mayor diferenciador en restaurantes. Un servicio excepcional genera reseñas positivas y clientes recurrentes.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 7. Área Jurídica -->
+      <div class="dept-card reveal delay-3">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Área Jurídica</div><div class="dept-name-sub">Cumplimiento Legal</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Velar por el cumplimiento de todas las obligaciones legales de Smash &amp; Fire ante el Estado guatemalteco, incluyendo permisos, patentes, contratos y registros tributarios.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Renovación anual de patentes de comercio</li>
+              <li>Mantenimiento de licencias MSPAS y municipales</li>
+              <li>Elaboración y revisión de contratos laborales</li>
+              <li>Asesoría en cumplimiento del Código de Comercio</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>Operar sin los permisos vigentes expone a la empresa a multas, cierres temporales y daño reputacional. El área jurídica protege la continuidad operativa.</p></div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+<br>
+<br>
+ 
   <!-- CATEGORÍA: CONSTITUCIÓN & LEGAL -->
   <div class="docs-category reveal">
     <div class="cat-header">
@@ -396,8 +633,112 @@
     </div>
   </div>
 
+  <!-- CATEGORÍA: aspectos legales -->
+  <div class="docs-category reveal">
+    <div class="cat-header">
+      <div class="cat-title">Aspectos Legales</div>
+      <div class="cat-line"></div>
+    </div>
+    <div class="docs-grid">
+      <!-- Patente de Comercio de Empresa -->
+      <div class="doc-card">
+        <div class="doc-card-top legal-top">
+          <span class="doc-cat-label">Registro Mercantil</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Patente de Comercio de Empresa</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Autorización otorgada por el Registro Mercantil de Guatemala que habilita a Smash &amp; Fire a operar como empresa comercial en el país.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">Registro Mercantil</span><span class="doc-meta-tag">Anual</span></div>
+          <div class="doc-actions">
+            <button class="doc-btn-preview" onclick="openPreview('patente_empresa')">Vista Previa</button>
+            <button class="doc-btn-dl" onclick="downloadDocPDF('patente_empresa')">⬇ DESCARGAR PDF</button></div>
+        </div>
+      </div>
+ 
+      <!-- Patente de Comercio de Sociedad -->
+      <div class="doc-card">
+        <div class="doc-card-top legal-top">
+          <span class="doc-cat-label">Registro Mercantil · Obligatorio</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Patente de Comercio de Sociedad</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Registro de la figura jurídica Smash &amp; Fire, S.A. ante el Registro Mercantil. Certifica la constitución legal de la sociedad anónima.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">Registro Mercantil</span><span class="doc-meta-tag">Permanente</span></div>
+          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('patente_sociedad')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('patente_sociedad')">⬇ DESCARGAR PDF</button></div>
+        </div>
+      </div>
+ 
+      <!-- Inscripción SAT -->
+      <div class="doc-card">
+        <div class="doc-card-top legal-top">
+          <span class="doc-cat-label">SAT · Tributario</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Inscripción en SAT (NIT)</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Número de Identificación Tributaria (NIT) asignado por la Superintendencia de Administración Tributaria para el cumplimiento de obligaciones fiscales.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">NIT: 7654321-8</span><span class="doc-meta-tag">SAT</span></div>
+          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('sat_nit')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('sat_nit')">⬇ DESCARGAR PDF</button></div>
+        </div>
+      </div>
+ 
+      <!-- Régimen Fiscal -->
+      <div class="doc-card">
+        <div class="doc-card-top legal-top">
+          <span class="doc-cat-label">SAT · Régimen Fiscal</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Régimen Fiscal</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Smash &amp; Fire opera bajo el Régimen General del ISR. Incluye declaración mensual del IVA y declaración anual del Impuesto sobre la Renta.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">Régimen General</span><span class="doc-meta-tag">IVA + ISR</span></div>
+          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('regimen_fiscal')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('regimen_fiscal')">⬇ DESCARGAR PDF</button></div>
+        </div>
+      </div>
+ 
+      <!-- Licencia Sanitaria -->
+      <div class="doc-card">
+        <div class="doc-card-top legal-top">
+          <span class="doc-cat-label">MSPAS · Licencia</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Licencia Sanitaria</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Autorización del Ministerio de Salud Pública y Asistencia Social (MSPAS) para operar como establecimiento de alimentos y bebidas en Guatemala.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">MSPAS</span><span class="doc-meta-tag">Anual</span></div>
+          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('licencia_sanitaria')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('licencia_sanitaria')">⬇ DESCARGAR PDF</button></div>
+        </div>
+      </div>
+ 
+      <!-- Tarjeta de Pulmones -->
+      <div class="doc-card">
+        <div class="doc-card-top legal-top">
+          <span class="doc-cat-label">MSPAS · Personal</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Tarjeta de Pulmones</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Certificado de salud obligatorio para todo el personal que manipula alimentos. Incluye radiografía de tórax y exámenes básicos vigentes.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">MSPAS</span><span class="doc-meta-tag">Cada 6 meses</span></div>
+          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('tarjeta_pulmones')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('tarjeta_pulmones')">⬇ DESCARGAR PDF</button></div>
+        </div>
+      </div>
+ 
+      <!-- Estados Financieros -->
+      <div class="doc-card">
+        <div class="doc-card-top legal-top">
+          <span class="doc-cat-label">Finanzas · Área Contable</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Estados Financieros</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Balance General y Estado de Resultados de Smash &amp; Fire, S.A. Refleja la situación financiera de la empresa con cifras proyectadas del período 2026.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">2026</span><span class="doc-meta-tag">Contable</span></div>
+          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('estados_financieros')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('estados_financieros')">⬇ DESCARGAR PDF</button></div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+
 </div><!-- /container -->
 </section>
+
 
 <!-- FOOTER -->
 <footer>
@@ -673,6 +1014,13 @@ function showToast(msg,type='ok'){
   const t=document.createElement('div');
   t.style.cssText=`position:fixed;bottom:20px;right:20px;z-index:9999;background:${type==='warn'?'#F5B800':'#1A0800'};color:${type==='warn'?'#1A0800':'#fff'};padding:10px 18px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:1px;box-shadow:0 8px 24px rgba(0,0,0,0.2)`;
   t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2500)
+}
+
+function togglePuesto(id) {
+  const card = document.getElementById(id);
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.puesto-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
 }
 </script>
 </body>
