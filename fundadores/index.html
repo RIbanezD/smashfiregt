@@ -134,6 +134,64 @@
 .orgchart-frame canvas{max-width:100%;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
 .orgchart-loading{color:rgba(255,247,238,0.5);font-size:0.9rem;padding:3rem}
 .orgchart-dl{margin-top:1.5rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+
+
+   /* ── DEPARTAMENTOS ── */
+.depts-section{background:var(--cream);padding:90px 0 100px}
+.depts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+@media(max-width:767px){.depts-grid{grid-template-columns:1fr}}
+.dept-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s var(--ease-expo);box-shadow:0 2px 12px var(--shadow)}
+.dept-card:hover{border-color:var(--red);transform:translateY(-5px);box-shadow:0 14px 44px var(--shadow-lg)}
+.dept-card-top{background:var(--dark);padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;position:relative;overflow:hidden}
+.dept-card-top::after{content:'';position:absolute;right:-10px;bottom:-10px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.05)}
+.dept-icon{font-size:2rem;flex-shrink:0;line-height:1}
+.dept-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.dept-name-sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-top:2px}
+.dept-body{padding:1.3rem 1.5rem}
+.dept-section{margin-bottom:1rem}
+.dept-section:last-child{margin-bottom:0}
+.dept-section-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem;display:flex;align-items:center;gap:6px}
+.dept-section-label::before{content:'';width:14px;height:2px;background:var(--red);border-radius:2px}
+.dept-body p,.dept-body li{font-size:0.84rem;color:var(--text-muted);line-height:1.65}
+.dept-body ul{list-style:none;padding:0}
+.dept-body ul li{padding-left:1.2rem;position:relative;margin-bottom:0.25rem}
+.dept-body ul li::before{content:'→';position:absolute;left:0;color:var(--red);font-weight:700;font-size:0.75rem}
+.dept-importance{background:var(--surface);border-radius:8px;padding:0.75rem 1rem;margin-top:0.8rem;border-left:3px solid var(--yellow)}
+.dept-importance p{color:var(--text);font-size:0.8rem;line-height:1.6;font-style:italic}
+ 
+   /* ── DESCRIPCION PUESTOS ── */
+.puestos-section{background:var(--surface);padding:90px 0 100px}
+.puestos-intro{color:var(--text-muted);font-size:0.95rem;line-height:1.75;max-width:560px;margin-top:0.8rem}
+.puestos-accordion{margin-top:3rem;display:flex;flex-direction:column;gap:1rem}
+.puesto-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color 0.25s,box-shadow 0.25s}
+.puesto-card.open{border-color:rgba(200,16,46,0.5);box-shadow:0 6px 24px var(--shadow-lg)}
+.puesto-header{background:var(--dark);display:flex;align-items:center;gap:1.2rem;padding:1.3rem 1.5rem;cursor:pointer;user-select:none;transition:background 0.2s}
+.puesto-header:hover{border-color:var(--red);color:var(--red)}
+.puesto-header-icon{width:52px;height:52px;border-radius:12px;background:var(--dark);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;transition:background 0.25s}
+.puesto-card.open .puesto-header-icon{background:var(--red)}
+.puesto-header-info{flex:1}
+.puesto-title{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.puesto-dept{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-top:2px}
+.puesto-salary-badge{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;color:var(--white);background:var(--dark);border-radius:8px;padding:4px 12px;flex-shrink:0}
+.puesto-toggle{font-size:0.8rem;color:var(--text-muted);transition:transform 0.3s;flex-shrink:0}
+.puesto-card.open .puesto-toggle{transform:rotate(180deg)}
+.puesto-body{max-height:0;overflow:hidden;transition:max-height 0.5s var(--ease-expo)}
+.puesto-card.open .puesto-body{max-height:900px}
+.puesto-body-inner{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border);padding-top:1.2rem}
+ 
+.puesto-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:600px){.puesto-grid{grid-template-columns:1fr}}
+.puesto-block{background:var(--surface);border-radius:10px;padding:1rem 1.2rem}
+.puesto-block-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:0.6rem;display:flex;align-items:center;gap:6px}
+.puesto-block-title::before{content:'';width:14px;height:2px;background:var(--red);border-radius:2px}
+.puesto-block p{font-size:0.84rem;color:var(--text-muted);line-height:1.65}
+.puesto-block ul{list-style:none;padding:0}
+.puesto-block ul li{font-size:0.84rem;color:var(--text-muted);line-height:1.7;padding-left:1.1rem;position:relative}
+.puesto-block ul li::before{content:'✓';position:absolute;left:0;color:var(--red);font-weight:700;font-size:0.7rem}
+.puesto-meta-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1rem}
+.puesto-meta-chip{display:inline-flex;align-items:center;gap:5px;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted)}
+.puesto-meta-chip span{font-size:1rem;line-height:1}
+.puesto-full-width{grid-column:1/-1}
 </style>
 <link rel="icon" href="../assets/imgs/icon.ico"/>
 </head>
@@ -167,7 +225,7 @@
     <div class="ceo-card">
       <div class="ceo-avatar-wrap reveal-left">
         <div class="ceo-avatar-ring">
-          <img src="../assets/team/Estrellita.jpeg" alt="Estrellita Telles">
+          <img src="../assets/team/estrellita.jpeg" alt="Estrellita Telles">
           <!-- Reemplaza el emoji con: <img src="../assets/team/estrellita.jpg" alt="Estrellita Telles"> -->
         </div>
         <div class="ceo-role-badge">CEO &amp; Fundadora</div>
@@ -293,7 +351,7 @@
 
     <div class="staff-grid">
       <div class="staff-card reveal delay-1">
-        <div class="staff-avatar"><img src="../assets/team/Ruben.png" alt="Ruben Ibañez"><!-- <img src="../assets/team/ruben-ibanez.jpg" alt="Ruben Ibañez"> --></div>
+        <div class="staff-avatar"><img src="../assets/team/ruben.png" alt="Ruben Ibañez"><!-- <img src="../assets/team/ruben-ibanez.jpg" alt="Ruben Ibañez"> --></div>
         <div class="staff-name">Ruben Ibañez</div>
         <div class="staff-role">Sous-Chef</div>
         <div class="staff-dep">Reporte a: Chef José Milian</div>
@@ -325,6 +383,372 @@
       <div class="orgchart-dl" id="orgDl" style="display:none">
         <a href="../assets/organigrama.pdf" download class="btn btn-outline" style="color:rgba(255,247,238,0.8);border-color:rgba(255,247,238,0.3)">⬇ Descargar PDF original</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     DEPARTAMENTOS
+════════════════════════════════════ -->
+<section class="depts-section">
+  <div class="container">
+    <span class="section-label reveal">Estructura interna</span>
+    <h2 class="section-title reveal delay-1">DEPARTAMENTOS<br>DE LA EMPRESA</h2>
+    <p class="reveal delay-2" style="color:var(--text-muted);max-width:560px;margin-top:0.7rem;line-height:1.75">
+      Smash &amp; Fire, S.A. opera a través de siete departamentos interconectados que garantizan la calidad, el cumplimiento legal y la experiencia del cliente.
+    </p>
+ 
+    <div class="depts-grid">
+ 
+      <!-- 1. Gerencia General -->
+      <div class="dept-card reveal delay-1">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Gerencia General</div><div class="dept-name-sub">Dirección Estratégica</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Dirigir, planificar y supervisar todas las operaciones de la empresa, asegurando el cumplimiento de la visión institucional y la rentabilidad del negocio.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Toma de decisiones estratégicas</li>
+              <li>Aprobación de presupuestos e inversiones</li>
+              <li>Representación legal ante terceros</li>
+              <li>Revisión de reportes financieros mensuales</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>Es el núcleo que articula todos los departamentos. Sin una gerencia sólida, la empresa pierde dirección y coherencia operativa.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 2. RRHH -->
+      <div class="dept-card reveal delay-2">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Recursos Humanos</div><div class="dept-name-sub">Talento &amp; Bienestar</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Gestionar el ciclo completo del colaborador: reclutamiento, contratación, capacitación, evaluación y bienestar laboral conforme al Código de Trabajo de Guatemala.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Proceso de selección y contratación</li>
+              <li>Administración de planilla e IGSS</li>
+              <li>Capacitaciones periódicas al personal</li>
+              <li>Resolución de conflictos laborales</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>Un RRHH bien gestionado reduce la rotación de personal, eleva la productividad y garantiza el cumplimiento de la normativa laboral guatemalteca.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 3. Marketing -->
+      <div class="dept-card reveal delay-3">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Marketing y Ventas</div><div class="dept-name-sub">Presencia &amp; Crecimiento</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Posicionar la marca Smash &amp; Fire, atraer nuevos clientes y fidelizar a los existentes a través de estrategias digitales, promocionales y de experiencia.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Gestión de redes sociales (Instagram, TikTok, Facebook)</li>
+              <li>Diseño y ejecución de promociones</li>
+              <li>Producción de contenido visual y audiovisual</li>
+              <li>Análisis de métricas de engagement y ventas</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>En el mercado gastronómico guatemalteco, la visibilidad digital es determinante para la adquisición de nuevos clientes y la retención de los actuales.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 4. Producción / Operaciones -->
+      <div class="dept-card reveal">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Producción</div><div class="dept-name-sub">Operaciones &amp; Cocina</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Preparar todos los productos del menú bajo estándares HACCP, asegurando consistencia, calidad e inocuidad alimentaria en cada orden.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Preparación y ejecución del menú diario</li>
+              <li>Control de temperaturas y cadena de frío</li>
+              <li>Gestión de inventario de insumos</li>
+              <li>Apertura y cierre de cocina (checklist 47 puntos)</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>Es el corazón del negocio. La calidad y velocidad de producción impactan directamente en la satisfacción del cliente y en la reputación de la marca.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 5. Finanzas -->
+      <div class="dept-card reveal delay-1">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Finanzas</div><div class="dept-name-sub">Contabilidad &amp; Tesorería</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Administrar los recursos financieros de la empresa, garantizar el cumplimiento tributario ante la SAT y elaborar los estados financieros mensuales y anuales.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Registro contable diario (libro mayor)</li>
+              <li>Presentación de declaraciones ante SAT</li>
+              <li>Control de caja, arqueos y depósitos bancarios</li>
+              <li>Elaboración de presupuestos y flujo de caja</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>El control financiero riguroso previene fraudes, optimiza la rentabilidad y garantiza que la empresa cumpla con sus obligaciones fiscales guatemaltecas.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 6. Servicio al Cliente -->
+      <div class="dept-card reveal delay-2">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Servicio al Cliente</div><div class="dept-name-sub">Experiencia &amp; Atención</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Garantizar que cada visita al local o pedido en línea supere las expectativas del cliente, desde la bienvenida hasta la despedida.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Atención de mesas con ciclo de servicio completo</li>
+              <li>Procesamiento de pedidos y pagos en caja</li>
+              <li>Manejo de quejas y reposición de pedidos</li>
+              <li>Gestión de pedidos delivery y para llevar</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>La experiencia del cliente es el mayor diferenciador en restaurantes. Un servicio excepcional genera reseñas positivas y clientes recurrentes.</p></div>
+        </div>
+      </div>
+ 
+      <!-- 7. Área Jurídica -->
+      <div class="dept-card reveal delay-3">
+        <div class="dept-card-top">
+          <div><div class="dept-name">Área Jurídica</div><div class="dept-name-sub">Cumplimiento Legal</div></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-section">
+            <div class="dept-section-label">Función Principal</div>
+            <p>Velar por el cumplimiento de todas las obligaciones legales de Smash &amp; Fire ante el Estado guatemalteco, incluyendo permisos, patentes, contratos y registros tributarios.</p>
+          </div>
+          <div class="dept-section">
+            <div class="dept-section-label">Actividades</div>
+            <ul>
+              <li>Renovación anual de patentes de comercio</li>
+              <li>Mantenimiento de licencias MSPAS y municipales</li>
+              <li>Elaboración y revisión de contratos laborales</li>
+              <li>Asesoría en cumplimiento del Código de Comercio</li>
+            </ul>
+          </div>
+          <div class="dept-importance"><p>Operar sin los permisos vigentes expone a la empresa a multas, cierres temporales y daño reputacional. El área jurídica protege la continuidad operativa.</p></div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<!-- ════════════════════════════════════
+     DESCRIPCIÓN DE PUESTOS  ← NEW
+════════════════════════════════════ -->
+<section class="puestos-section">
+  <div class="container">
+    <span class="section-label reveal">Estructura de personal</span>
+    <h2 class="section-title reveal delay-1">DESCRIPCIÓN<br>DE PUESTOS</h2>
+    <p class="puestos-intro reveal delay-2">Perfiles formales de los puestos operativos de Smash &amp; Fire, S.A. Haz clic en cada puesto para ver el detalle completo.</p>
+ 
+    <div class="puestos-accordion">
+ 
+      <!-- ─ Chef Ejecutivo ─ -->
+      <div class="puesto-card reveal delay-1" id="puesto-chef">
+        <div class="puesto-header" onclick="togglePuesto('puesto-chef')">
+          <div class="puesto-header-info">
+            <div class="puesto-title">Chef Ejecutivo</div>
+            <div class="puesto-dept">Producción / Operaciones · Reporta a: Gerente General</div>
+          </div>
+          <div class="puesto-salary-badge">Q 6,000–8,500</div>
+          <div class="puesto-toggle">▼</div>
+        </div>
+        <div class="puesto-body">
+          <div class="puesto-body-inner">
+            <div class="puesto-grid">
+              <div class="puesto-block">
+                <div class="puesto-block-title">Funciones Específicas</div>
+                <ul>
+                  <li>Diseñar y actualizar el menú operacional</li>
+                  <li>Supervisar la preparación de alimentos según SOPs</li>
+                  <li>Ejecutar la técnica smash a 300°C con precisión</li>
+                  <li>Controlar temperaturas de inocuidad (≥ 71°C en carnes)</li>
+                  <li>Capacitar y evaluar al personal de cocina</li>
+                  <li>Verificar la calidad de insumos al momento de recepción</li>
+                </ul>
+              </div>
+              <div class="puesto-block">
+                <div class="puesto-block-title">Responsabilidades</div>
+                <ul>
+                  <li>Garantizar la consistencia de cada platillo</li>
+                  <li>Cumplir con normas HACCP y Codex Alimentarius</li>
+                  <li>Gestionar el inventario de cocina y minimizar mermas</li>
+                  <li>Coordinar checklist de apertura y cierre</li>
+                  <li>Reportar incidentes sanitarios de inmediato</li>
+                </ul>
+              </div>
+              <div class="puesto-block">
+                <div class="puesto-block-title">Perfil Requerido</div>
+                <ul>
+                  <li>Título en Gastronomía o Artes Culinarias (INTECAP o superior)</li>
+                  <li>Mínimo 5 años en cocina profesional</li>
+                  <li>Experiencia comprobada en cocina de alta rotación</li>
+                  <li>Certificación en BPM o HACCP (deseable)</li>
+                  <li>Liderazgo de equipos de 4+ personas</li>
+                </ul>
+              </div>
+              <div class="puesto-block">
+                <div class="puesto-block-title">Habilidades</div>
+                <ul>
+                  <li>Trabajo bajo presión y rapidez de ejecución</li>
+                  <li>Control de costos y reducción de desperdicios</li>
+                  <li>Comunicación asertiva con el equipo</li>
+                  <li>Creatividad para innovación de recetas</li>
+                  <li>Organización y multitasking</li>
+                </ul>
+              </div>
+              <div class="puesto-block puesto-full-width">
+                <div class="puesto-block-title">Datos del Puesto</div>
+                <div class="puesto-meta-row">
+                  <div class="puesto-meta-chip"> Salario: Q 6,000–8,500/mes</div>
+                  <div class="puesto-meta-chip"> Género: Indistinto</div>
+                  <div class="puesto-meta-chip"> Edad: 25–45 años</div>
+                  <div class="puesto-meta-chip"> Zona 10, Guatemala City</div>
+                  <div class="puesto-meta-chip"> Jornada: Completa (mixta)</div>
+                  <div class="puesto-meta-chip"> Disponibilidad: Inmediata</div>
+                  <div class="puesto-meta-chip"> + Todos los beneficios de ley</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- ─ Gerente General ─ -->
+      <div class="puesto-card reveal delay-2" id="puesto-gerente">
+        <div class="puesto-header" onclick="togglePuesto('puesto-gerente')">
+          <div class="puesto-header-info">
+            <div class="puesto-title">Gerente General</div>
+            <div class="puesto-dept">Administración · Reporta a: Junta de Socios</div>
+          </div>
+          <div class="puesto-salary-badge">Q 10,000–15,000</div>
+          <div class="puesto-toggle">▼</div>
+        </div>
+        <div class="puesto-body">
+          <div class="puesto-body-inner">
+            <div class="puesto-grid">
+              <div class="puesto-block">
+                <div class="puesto-block-title">Funciones Específicas</div>
+                <ul>
+                  <li>Dirigir las operaciones diarias del restaurante</li>
+                  <li>Ejecutar la estrategia aprobada por la Junta Directiva</li>
+                  <li>Supervisar todos los jefes de departamento</li>
+                  <li>Representar legalmente a Smash &amp; Fire, S.A.</li>
+                  <li>Aprobar contratos, compras y alianzas</li>
+                </ul>
+              </div>
+              <div class="puesto-block">
+                <div class="puesto-block-title">Perfil Requerido</div>
+                <ul>
+                  <li>Licenciatura en Administración de Empresas o afín</li>
+                  <li>Mínimo 5 años como gerente general o similar</li>
+                  <li>Conocimiento de leyes laborales guatemaltecas</li>
+                  <li>Manejo de indicadores financieros básicos</li>
+                  <li>Inglés conversacional (deseable)</li>
+                </ul>
+              </div>
+              <div class="puesto-block puesto-full-width">
+                <div class="puesto-block-title">Datos del Puesto</div>
+                <div class="puesto-meta-row">
+                  <div class="puesto-meta-chip"> Salario: Q 10,000–15,000/mes</div>
+                  <div class="puesto-meta-chip"> Género: Indistinto</div>
+                  <div class="puesto-meta-chip"> Edad: 28–50 años</div>
+                  <div class="puesto-meta-chip"> Jornada: Completa</div>
+                  <div class="puesto-meta-chip"> + Todos los beneficios de ley</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- ─ Mesero / Cajera ─ -->
+      <div class="puesto-card reveal delay-3" id="puesto-mesero">
+        <div class="puesto-header" onclick="togglePuesto('puesto-mesero')">
+          <div class="puesto-header-info">
+            <div class="puesto-title">Mesero / Cajera</div>
+            <div class="puesto-dept">Servicio al Cliente · Reporta a: Jefe de Meseros</div>
+          </div>
+          <div class="puesto-salary-badge">Q 3,200–3,800</div>
+          <div class="puesto-toggle">▼</div>
+        </div>
+        <div class="puesto-body">
+          <div class="puesto-body-inner">
+            <div class="puesto-grid">
+              <div class="puesto-block">
+                <div class="puesto-block-title">Funciones Específicas</div>
+                <ul>
+                  <li>Atender mesas conforme el ciclo de servicio</li>
+                  <li>Tomar y transmitir órdenes con precisión</li>
+                  <li>Procesar pagos en efectivo y tarjeta</li>
+                  <li>Mantener limpieza del área de sala</li>
+                  <li>Gestionar quejas y ofrecer soluciones</li>
+                </ul>
+              </div>
+              <div class="puesto-block">
+                <div class="puesto-block-title">Perfil Requerido</div>
+                <ul>
+                  <li>Educación secundaria completa</li>
+                  <li>Experiencia de 1 año en servicio (deseable)</li>
+                  <li>Excelente presentación personal</li>
+                  <li>Mayor de 18 años</li>
+                  <li>Disponibilidad para fines de semana</li>
+                </ul>
+              </div>
+              <div class="puesto-block puesto-full-width">
+                <div class="puesto-block-title">Datos del Puesto</div>
+                <div class="puesto-meta-row">
+                  <div class="puesto-meta-chip"> Salario: Q 3,200–3,800/mes</div>
+                  <div class="puesto-meta-chip"> Género: Indistinto</div>
+                  <div class="puesto-meta-chip"> Edad: 18–35 años</div>
+                  <div class="puesto-meta-chip"> Turnos rotativos</div>
+                  <div class="puesto-meta-chip"> Almuerzo incluido</div>
+                  <div class="puesto-meta-chip"> Uniforme proporcionado</div>
+                  <div class="puesto-meta-chip"> + Todos los beneficios de ley</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+    </div><!-- /accordion -->
+ 
+    <div style="text-align:center;margin-top:3rem" class="reveal">
+      <a href="../empleo/index.html" class="btn btn-outline">Ver plazas disponibles →</a>
     </div>
   </div>
 </section>
@@ -403,6 +827,14 @@ document.querySelectorAll('.mgmt-card').forEach(c=>skillObs.observe(c));
     loading.innerHTML='<span style="color:rgba(255,247,238,0.35);font-size:0.82rem">Sube <code style="color:var(--yellow)">assets/organigrama.pdf</code> al repositorio para visualizarlo aquí.</span>';
   }
 })();
+
+// ── PUESTO ACCORDION ──
+function togglePuesto(id) {
+  const card = document.getElementById(id);
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.puesto-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
 </script>
 </body>
 </html>
