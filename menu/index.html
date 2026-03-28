@@ -22,7 +22,6 @@
 .menu-item{background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:0.7rem;overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s}
 .menu-item:hover{border-color:rgba(200,16,46,0.35);box-shadow:0 4px 16px var(--shadow)}
 .menu-item-header{display:flex;align-items:center;gap:1rem;padding:0.9rem 1.1rem;cursor:pointer;user-select:none}
-.item-emoji{font-size:2.2rem;width:48px;text-align:center;flex-shrink:0}
 .item-thumb{width:68px;height:68px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--surface);border:2px solid var(--border);transition:border-color 0.25s,transform 0.25s}
 .item-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .menu-item:hover .item-thumb{border-color:var(--red);transform:scale(1.05)}
@@ -34,6 +33,8 @@
 .item-desc-short{font-size:0.8rem;color:var(--text-muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
 .item-right{display:flex;align-items:center;gap:0.7rem;flex-shrink:0}
 .item-price{font-family:'Oswald',sans-serif;font-size:1.25rem;font-weight:700;color:var(--red)}
+.item-price.flash{animation:priceFlash 0.35s ease}
+@keyframes priceFlash{0%{transform:scale(1.25);color:var(--yellow)}100%{transform:scale(1)}}
 .expand-icon{color:var(--text-muted);transition:transform 0.3s;font-size:0.75rem}
 .menu-item.open .expand-icon{transform:rotate(180deg)}
 .menu-item-body{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.16,1,0.3,1);border-top:0 solid var(--border)}
@@ -44,6 +45,11 @@
 .item-options{margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:0.4rem}
 .opt-btn{border:1px solid var(--border);background:var(--cream);border-radius:6px;padding:4px 11px;font-size:0.8rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all 0.15s}
 .opt-btn.selected{border-color:var(--red);background:rgba(200,16,46,0.08);color:var(--red);font-weight:700}
+.opt-btn.remove-btn.selected{border-color:var(--dark2);background:rgba(28,28,28,0.06);color:var(--dark);text-decoration:line-through}
+.opt-btn:hover{border-color:var(--red);color:var(--red)}
+.price-live{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:1.5px;color:var(--text-muted);margin:0.6rem 0 0.2rem;display:flex;align-items:center;gap:8px}
+.price-live .live-total{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;color:var(--red)}
+.price-live .live-extra{font-size:0.7rem;color:var(--yellow);background:rgba(255,193,7,0.15);padding:1px 6px;border-radius:4px;font-weight:700}
 .qty-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:0.5rem}
 .qty-ctrl{display:flex;align-items:center;border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .qty-btn{width:34px;height:34px;border:none;background:var(--surface);cursor:pointer;font-size:1.1rem;font-weight:700;color:var(--text-muted);transition:all 0.15s;display:flex;align-items:center;justify-content:center}
@@ -60,7 +66,6 @@
 .cart-empty p{font-size:0.83rem;line-height:1.5}
 .cart-line{display:flex;align-items:flex-start;gap:0.6rem;padding:0.6rem 0;border-bottom:1px solid var(--border)}
 .cart-line:last-child{border-bottom:none}
-.cart-item-emoji{font-size:1.4rem;flex-shrink:0}
 .cart-item-info{flex:1;min-width:0}
 .cart-item-name{font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text)}
 .cart-item-sub{font-size:0.72rem;color:var(--text-muted)}
@@ -77,15 +82,6 @@
 .promo-banner::before{content:'🍔';position:absolute;right:-10px;bottom:-15px;font-size:8rem;opacity:0.12;pointer-events:none}
 .promo-banner h3{font-family:'Oswald',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--white)}
 .promo-banner p{color:rgba(255,255,255,0.85);max-width:340px;margin-top:0.3rem;font-size:0.9rem}
-/* age modal */
-.age-modal-overlay{display:none;position:fixed;inset:0;z-index:3000;background:rgba(26,8,0,0.85);backdrop-filter:blur(8px);align-items:center;justify-content:center}
-.age-modal-overlay.open{display:flex}
-.age-modal{background:var(--white);border-radius:16px;padding:2.2rem;max-width:400px;width:90%;text-align:center;box-shadow:0 24px 60px rgba(26,8,0,0.4)}
-.age-modal h2{font-family:'Oswald',sans-serif;font-size:1.5rem;letter-spacing:2px;text-transform:uppercase;margin-top:0.8rem;color:var(--text)}
-.age-modal p{color:var(--text-muted);margin:0.8rem 0 1.3rem;font-size:0.9rem;line-height:1.6}
-.age-modal-icon{font-size:3rem}
-.age-actions{display:flex;gap:0.7rem}
-.age-actions .btn{flex:1;justify-content:center;font-size:0.85rem}
 /* checkout modal */
 .checkout-modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(26,8,0,0.75);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:1rem}
 .checkout-modal.open{display:flex}
@@ -138,6 +134,11 @@
 .success-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-top:1rem}
 /* checkout section label */
 .checkout-section-label{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--white);background:var(--red);padding:2px 8px;border-radius:3px;margin-bottom:0.75rem}
+.wa-order-btn{display:inline-flex;align-items:center;gap:0.6rem;background:#25D366;color:white;padding:0.75rem 1.4rem;border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+.wa-order-btn:hover{background:#1da950;transform:translateY(-1px)}
+.wa-order-btn svg{width:18px;height:18px;fill:white;flex-shrink:0}
+.invoice-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--yellow);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1.5px;font-size:0.9rem;padding:0.7rem 1.4rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;text-transform:uppercase}
+.invoice-btn:hover{background:#e0a900;transform:translateY(-1px)}
 </style>
 <link rel="icon" href="../assets/imgs/icon.ico"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -153,7 +154,7 @@
     <li><a href="../fundadores/index.html" data-i18n="nav_founders">Fundadores</a></li>
     <li><a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a></li>
     <li><a href="../documentos/index.html">Documentos</a></li>
-    <li><a href="../menu/index.html" class="nav-cta-link active" data-i18n="nav_menu">Ver Menú</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link active" data-i18n="nav_menu">Menú</a></li>
   </ul>
 </nav>
 
@@ -184,9 +185,10 @@
   </div>
 
   <div class="menu-wrapper">
-    <div><!-- ITEMS COLUMN -->
+    <div><!-- HAMBURGUESAS CLASICAS -->
       <h2 class="menu-section-title reveal" data-cat="burgers">Hamburguesas Clásicas</h2>
       <div data-cat="burgers">
+        <!-- CLASSIC SMASH -->
         <div class="menu-item reveal delay-1" data-id="classic" data-price="55" data-name="The Classic Smash">
           <div class="menu-item-header" onclick="toggleItem(this)">
             <div class="item-thumb"><img src="../assets/imgs/classic_smash.jpg" alt="The Classic Smash" loading="lazy"></div>
@@ -204,12 +206,30 @@
               <button class="opt-btn selected" onclick="selectOpt(this,'cook')">Término Medio</button>
               <button class="opt-btn" onclick="selectOpt(this,'cook')">Bien Cocido</button>
             </div>
+            <span class="opt-label">Extras:</span>
+            <div class="item-options">
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Queso extra (+Q8)</button>
+              <button class="opt-btn" data-extra-price="12" onclick="toggleExtra(this)">Doble carne (+Q12)</button>
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Tocino (+Q8)</button>
+              <button class="opt-btn" data-extra-price="5" onclick="toggleExtra(this)">Jalapeños (+Q5)</button>
+              <button class="opt-btn" data-extra-price="10" onclick="toggleExtra(this)">Huevo frito (+Q10)</button>
+              <button class="opt-btn" data-extra-price="12" onclick="toggleExtra(this)">Aguacate (+Q12)</button>
+            </div>
+            <span class="opt-label">Sin ingrediente:</span>
+            <div class="item-options">
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin cebolla</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin salsa</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin pepinillos</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin queso</button>
+            </div>
+            <div class="price-live"><span>Total:</span><span class="live-total">Q 55</span></div>
             <div class="qty-row">
               <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
               <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
             </div>
           </div></div>
         </div>
+        <!-- BACON FIRE -->
         <div class="menu-item reveal delay-2" data-id="bacon" data-price="65" data-name="Bacon Fire">
           <div class="menu-item-header" onclick="toggleItem(this)">
             <div class="item-thumb"><img src="../assets/imgs/bacon.webp" alt="Bacon Fire" loading="lazy"></div>
@@ -228,12 +248,27 @@
               <button class="opt-btn" onclick="selectOpt(this,'spice')">Picante</button>
               <button class="opt-btn" onclick="selectOpt(this,'spice')">Extremo</button>
             </div>
+            <span class="opt-label">Extras:</span>
+            <div class="item-options">
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Tocino extra (+Q8)</button>
+              <button class="opt-btn" data-extra-price="12" onclick="toggleExtra(this)">Doble carne (+Q12)</button>
+              <button class="opt-btn" data-extra-price="5" onclick="toggleExtra(this)">Jalapeños extra (+Q5)</button>
+              <button class="opt-btn" data-extra-price="12" onclick="toggleExtra(this)">Aguacate (+Q12)</button>
+            </div>
+            <span class="opt-label">Sin ingrediente:</span>
+            <div class="item-options">
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin jalapeños</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin mayonesa chipotle</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin queso</button>
+            </div>
+            <div class="price-live"><span>Total:</span><span class="live-total">Q 65</span></div>
             <div class="qty-row">
               <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
               <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
             </div>
           </div></div>
         </div>
+        <!-- DOUBLE CLASSIC -->
         <div class="menu-item reveal delay-3" data-id="double" data-price="75" data-name="Double Smash">
           <div class="menu-item-header" onclick="toggleItem(this)">
             <div class="item-thumb"><img src="../assets/imgs/cheese.jpg" alt="Double Smash" loading="lazy"></div>
@@ -253,6 +288,19 @@
               <button class="opt-btn" onclick="selectOpt(this,'cheese')">Pepper Jack</button>
               <button class="opt-btn" onclick="selectOpt(this,'cheese')">Suizo</button>
             </div>
+            <span class="opt-label">Extras:</span>
+            <div class="item-options">
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Queso extra (+Q8)</button>
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Tocino (+Q8)</button>
+              <button class="opt-btn" data-extra-price="12" onclick="toggleExtra(this)">Aguacate (+Q12)</button>
+            </div>
+            <span class="opt-label">Sin ingrediente:</span>
+            <div class="item-options">
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin cebolla</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin mostaza</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin queso</button>
+            </div>
+            <div class="price-live"><span>Total:</span><span class="live-total">Q 75</span></div>
             <div class="qty-row">
               <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
               <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
@@ -260,43 +308,179 @@
           </div></div>
         </div>
       </div>
+      <!-- HAMBURGUESAS SIGNATURE -->
       <h2 class="menu-section-title reveal" data-cat="burgers">Hamburguesas Signature</h2>
       <div data-cat="burgers">
+        <!-- LA CHAPINA -->
         <div class="menu-item reveal" data-id="chapina" data-price="75" data-name="La Chapina">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/chapina.jpg" alt="La Chapina" loading="lazy"></div><div class="item-info"><div class="item-name">La Chapina</div><div class="item-desc-short">Doble smash, guacamol fresco, queso Chancol, tortilla frita crujiente...</div></div><div class="item-right"><div class="item-price">Q 75</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/chapina.jpg" alt="La Chapina" loading="lazy"></div><p class="item-desc-full">Doble carne smash, guacamol fresco, queso Chancol y lazcas de tortilla frita crujiente. Guatemala en cada bocado.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)">
+            <div class="item-thumb"><img src="../assets/imgs/chapina.jpg" alt="La Chapina" loading="lazy"></div>
+            <div class="item-info">
+              <div class="item-name">La Chapina</div>
+              <div class="item-desc-short">Doble smash, guacamol fresco, queso Chancol, tortilla frita crujiente...</div>
+            </div>
+              <div class="item-right"><div class="item-price">Q 75</div><div class="expand-icon">▼</div></div>
+            </div>
+          <div class="menu-item-body"><div class="menu-item-body-inner">
+            <div class="item-photo-wrap"><img src="../assets/imgs/chapina.jpg" alt="La Chapina" loading="lazy"></div>
+            <p class="item-desc-full">Doble carne smash, guacamol fresco, queso Chancol y lazcas de tortilla frita crujiente. Guatemala en cada bocado.</p>
+            <span class="opt-label">Extras:</span>
+            <div class="item-options">
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Queso extra (+Q8)</button>
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Tocino (+Q8)</button>
+              <button class="opt-btn" data-extra-price="12" onclick="toggleExtra(this)">Aguacate (+Q12)</button>
+            </div>
+            <span class="opt-label">Sin ingrediente:</span>
+            <div class="item-options">
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin guacamol</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin tortilla frita</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin queso</button>
+            </div>
+            <div class="price-live"><span>Total:</span><span class="live-total">Q 75</span></div>
+            <div class="qty-row">
+              <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
+              <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
+            </div>
+          </div></div>
         </div>
+        <!-- FRIJOLITO SMASH -->
         <div class="menu-item reveal delay-1" data-id="frijolito" data-price="68" data-name="Frijolito Smash">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/beans.jpg" alt="Frijolito Smash" loading="lazy"></div><div class="item-info"><div class="item-name">Frijolito Smash <span class="badge badge-green" style="font-size:0.58rem">Nuevo</span></div><div class="item-desc-short">Salsa de queso fresco, pimiento rojo ahumado, frijoles volteados, crema de Xela...</div></div><div class="item-right"><div class="item-price">Q 68</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/beans.jpg" alt="Frijolito Smash" loading="lazy"></div><p class="item-desc-full">Carne smash con salsa de queso fresco y pimiento rojo ahumado, acompañada de frijoles volteados y crema de Xela. Sabor chapín auténtico.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)">
+            <div class="item-thumb"><img src="../assets/imgs/beans.jpg" alt="Frijolito Smash" loading="lazy"></div>
+            <div class="item-info">
+              <div class="item-name">Frijolito Smash <span class="badge badge-green" style="font-size:0.58rem">Nuevo</span></div>
+              <div class="item-desc-short">Salsa de queso fresco, pimiento rojo ahumado, frijoles volteados, crema de Xela...</div>
+            </div>
+            <div class="item-right"><div class="item-price">Q 68</div><div class="expand-icon">▼</div></div>
+          </div>
+          <div class="menu-item-body"><div class="menu-item-body-inner">
+            <div class="item-photo-wrap"><img src="../assets/imgs/beans.jpg" alt="Frijolito Smash" loading="lazy"></div>
+            <p class="item-desc-full">Carne smash con salsa de queso fresco y pimiento rojo ahumado, acompañada de frijoles volteados y crema de Xela. Sabor chapín auténtico.</p>
+            <span class="opt-label">Extras:</span>
+            <div class="item-options">
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Queso extra (+Q8)</button>
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Tocino (+Q8)</button>
+              <button class="opt-btn" data-extra-price="12" onclick="toggleExtra(this)">Aguacate (+Q12)</button>
+            </div>
+            <span class="opt-label">Sin ingrediente:</span>
+            <div class="item-options">
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin pimientos</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin frijoles</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin crema</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin queso</button>
+            </div>
+            <div class="price-live"><span>Total:</span><span class="live-total">Q 68</span></div>
+            <div class="qty-row">
+              <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
+              <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
+            </div>
+          </div></div>
         </div>
+        <!-- ANTIGUA GT -->
         <div class="menu-item reveal delay-2" data-id="antigua" data-price="70" data-name="Antigua GT">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/chapina.jpg" alt="Antigua GT" loading="lazy"></div><div class="item-info"><div class="item-name">Antigua GT <span class="badge badge-green" style="font-size:0.58rem">Nuevo</span></div><div class="item-desc-short">Aguacate aplastado, chirmolito casero, queso de cabra...</div></div><div class="item-right"><div class="item-price">Q 70</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/chapina.jpg" alt="Antigua GT" loading="lazy"></div><p class="item-desc-full">Carne smash con aguacate aplastado fresco, bañado en chirmolito casero y queso de cabra. Inspirada en los sabores coloniales.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)">
+            <div class="item-thumb"><img src="../assets/imgs/chapina.jpg" alt="Antigua GT" loading="lazy"></div>
+            <div class="item-info">
+              <div class="item-name">Antigua GT <span class="badge badge-green" style="font-size:0.58rem">Nuevo</span></div>
+              <div class="item-desc-short">Aguacate aplastado, chirmolito casero, queso de cabra...</div>
+            </div>
+            <div class="item-right"><div class="item-price">Q 70</div><div class="expand-icon">▼</div></div>
+          </div>
+          <div class="menu-item-body"><div class="menu-item-body-inner">
+            <div class="item-photo-wrap"><img src="../assets/imgs/chapina.jpg" alt="Antigua GT" loading="lazy"></div>
+            <p class="item-desc-full">Carne smash con aguacate aplastado fresco, bañado en chirmolito casero y queso de cabra. Inspirada en los sabores coloniales.</p>
+            <span class="opt-label">Extras:</span>
+            <div class="item-options">
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Queso extra (+Q8)</button>
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Tocino (+Q8)</button>
+              <button class="opt-btn" data-extra-price="12" onclick="toggleExtra(this)">Aguacate (+Q12)</button>
+            </div>
+            <span class="opt-label">Sin ingrediente:</span>
+            <div class="item-options">
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin aguacate</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin chirmolito</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin queso</button>
+            </div>
+            <div class="price-live"><span>Total:</span><span class="live-total">Q 70</span></div>
+            <div class="qty-row">
+              <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
+              <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
+            </div>
+          </div></div>
         </div>
+        <!-- LA CARRETONA -->
         <div class="menu-item reveal delay-3" data-id="carretona" data-price="72" data-name="La Carretona">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/carretona.jpg" alt="La Carretona" loading="lazy"></div><div class="item-info"><div class="item-name">La Carretona</div><div class="item-desc-short">Longaniza huehueteca, repollo sazonado, salsas especiales...</div></div><div class="item-right"><div class="item-price">Q 72</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/carretona.jpg" alt="La Carretona" loading="lazy"></div><p class="item-desc-full">Carne smash con longaniza huehueteca, repollo sazonado y salsas especiales. Preguntar por disponibilidad.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)">
+            <div class="item-thumb"><img src="../assets/imgs/carretona.jpg" alt="La Carretona" loading="lazy"></div>
+            <div class="item-info">
+              <div class="item-name">La Carretona</div>
+              <div class="item-desc-short">Longaniza huehueteca, repollo sazonado, salsas especiales...</div>
+            </div>
+            <div class="item-right"><div class="item-price">Q 72</div><div class="expand-icon">▼</div></div>
+          </div>
+          <div class="menu-item-body"><div class="menu-item-body-inner">
+            <div class="item-photo-wrap"><img src="../assets/imgs/carretona.jpg" alt="La Carretona" loading="lazy"></div>
+            <p class="item-desc-full">Carne smash y queso americano con longaniza huehueteca, repollo sazonado y salsas especiales. Preguntar por disponibilidad.</p>
+            <span class="opt-label">Extras:</span>
+            <div class="item-options">
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Queso extra (+Q8)</button>
+              <button class="opt-btn" data-extra-price="8" onclick="toggleExtra(this)">Tocino (+Q8)</button>
+              <button class="opt-btn" data-extra-price="12" onclick="toggleExtra(this)">Aguacate (+Q12)</button>
+              <button class="opt-btn" data-extra-price="14" onclick="toggleExtra(this)">Longaniza (+Q14)</button>
+            </div>
+            <span class="opt-label">Sin ingrediente:</span>
+            <div class="item-options">
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin longaniza</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin repollo</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin salsa</button>
+              <button class="opt-btn remove-btn" onclick="toggleRemove(this)">Sin queso</button>
+            </div>
+            <div class="price-live"><span>Total:</span><span class="live-total">Q 72</span></div>
+            <div class="qty-row">
+              <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
+              <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
+            </div>
+          </div></div>
         </div>
       </div>
+      <!-- BANNER PROMOCION -->
       <div class="promo-banner reveal"><div><h3>COMBO SMASH</h3><p>Cualquier hamburguesa + papas + refresco. ¡Ahorra Q15!</p></div><button class="btn btn-yellow" onclick="showToast('¡Pronto disponible!','warn')">Armar Combo →</button></div>
+      <!-- ACOMPAÑAMIENTOS -->
       <h2 class="menu-section-title reveal" data-cat="sides">Acompañamientos</h2>
       <div data-cat="sides">
         <div class="menu-item reveal" data-id="papas-c" data-price="22" data-name="Papas Clásicas" >
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/fries.jpg" alt="Papas Clásicas" loading="lazy"></div><div class="item-info"><div class="item-name">Papas Clásicas</div><div class="item-desc-short">Doradas con sal de mar y tomillo, crujientes por fuera...</div></div><div class="item-right"><div class="item-price">Q 22</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/fries.jpg" alt="Papas Clásicas" loading="lazy"></div><p class="item-desc-full">Papas fritas doradas con sal de mar y tomillo seco. Crujientes por fuera, suaves por dentro.</p><span class="opt-label">Tamaño:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'size')">Regular</button><button class="opt-btn" onclick="selectOpt(this,'size')">Grande (+Q8)</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/fries.jpg" alt="Papas Clásicas" loading="lazy"></div>
+          <div class="item-info">
+            <div class="item-name">Papas Clásicas</div>
+            <div class="item-desc-short">Doradas con sal de mar y tomillo, crujientes por fuera...</div>
+          </div>
+          <div class="item-right"><div class="item-price">Q 22</div><div class="expand-icon">▼</div></div>
         </div>
-        <div class="menu-item reveal delay-1" data-id="aros" data-price="28" data-name="Aros de Cebolla">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/onions.jpg" alt="Aros de Cebolla" loading="lazy"></div><div class="item-info"><div class="item-name">Aros de Cebolla</div><div class="item-desc-short">Tempura crujiente, salsa ranch artesanal de la casa...</div></div><div class="item-right"><div class="item-price">Q 28</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/onions.jpg" alt="Aros de Cebolla" loading="lazy"></div><p class="item-desc-full">Aros de cebolla dulce en tempura crujiente con salsa ranch artesanal de la casa.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner">
+            <div class="item-photo-wrap"><img src="../assets/imgs/fries.jpg" alt="Papas Clásicas" loading="lazy"></div>
+            <p class="item-desc-full">Papas fritas doradas con sal de mar y tomillo seco. Crujientes por fuera, suaves por dentro.</p>
+            <span class="opt-label">Tamaño</span>
+            <div class="item-options">
+              <button class="opt-btn" data-extra-price="0" onclick="selectOpt(this)">Medianas</button>
+              <button class="opt-btn" data-extra-price="3" onclick="selectOpt(this)">Grandes (+Q3)</button>
+            </div>
+            <div class="qty-row">
+              <div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div>
+              <button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button>
+            </div>
+          </div></div>
+        </div>
+        <div class="menu-item reveal delay-1" data-id="aros" data-price="24" data-name="Aros de Cebolla">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/onions.jpg" alt="Aros de Cebolla" loading="lazy"></div><div class="item-info"><div class="item-name">Aros de Cebolla</div><div class="item-desc-short">Tempura crujiente, salsa ranch artesanal de la casa...</div></div><div class="item-right"><div class="item-price">Q 24</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/onions.jpg" alt="Aros de Cebolla" loading="lazy"></div><p class="item-desc-full">Aros de cebolla dulce en tempura crujiente con salsa ranch artesanal de la casa.</p><span class="opt-label">Tamaño</span><div class="item-options"><button class="opt-btn" data-extra-price="0" onclick="selectOpt(this)">Medianas</button><button class="opt-btn" data-extra-price="5" onclick="selectOpt(this)">Grandes (+Q5)</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-2" data-id="loaded" data-price="38" data-name="Papas Loaded">
           <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/loaded.jpg" alt="Papas Loaded" loading="lazy"></div><div class="item-info"><div class="item-name">Papas Loaded</div><div class="item-desc-short">Cheddar fundido, tocino crujiente, crema ácida, cebollín fresco...</div></div><div class="item-right"><div class="item-price">Q 38</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/loaded.jpg" alt="Papas Loaded" loading="lazy"></div><p class="item-desc-full">Papas con queso cheddar derretido, tocino picado crujiente, crema ácida y cebollín fresco.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/loaded.jpg" alt="Papas Loaded" loading="lazy"></div><p class="item-desc-full">Papas con queso cheddar derretido, tocino picado crujiente, crema ácida y cebollín fresco.</p><span class="opt-label">Tamaño</span><div class="item-options"><button class="opt-btn" data-extra-price="0" onclick="selectOpt(this)">Mediana</button><button class="opt-btn" data-extra-price="2" onclick="selectOpt(this)">Grande (+Q2)</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-3" data-id="yuca" data-price="25" data-name="Yuca Frita">
           <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/yuca.jpg" alt="Yuca Frita" loading="lazy"></div><div class="item-info"><div class="item-name">Yuca Frita <span class="badge badge-green" style="font-size:0.58rem">Nuevo</span></div><div class="item-desc-short">Yuca guatemalteca, ajo, cilantro, salsa de la casa...</div></div><div class="item-right"><div class="item-price">Q 25</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/yuca.jpg" alt="Yuca Frita" loading="lazy"></div><p class="item-desc-full">Yuca guatemalteca frita a la perfección, sazonada con ajo y cilantro, servida con nuestra salsa especial. Alternativa deliciosa a las papas.</p><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/yuca.jpg" alt="Yuca Frita" loading="lazy"></div><p class="item-desc-full">Yuca guatemalteca frita a la perfección, sazonada con ajo y cilantro, servida con nuestra salsa especial. Alternativa deliciosa a las papas.</p><span class="opt-label">Tamaño</span><div class="item-options"><button class="opt-btn" data-extra-price="0" onclick="selectOpt(this)">Medianas</button><button class="opt-btn" data-extra-price="4" onclick="selectOpt(this)">Grandes (+Q4)</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal" data-id="elote" data-price="20" data-name="Elote Asado">
           <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/elote.jpg" alt="Elote Asado" loading="lazy"></div><div class="item-info"><div class="item-name">Elote Asado</div><div class="item-desc-short">Elote tierno a las brasas, mantequilla, chile cobanero, limón...</div></div><div class="item-right"><div class="item-price">Q 20</div><div class="expand-icon">▼</div></div></div>
@@ -311,25 +495,27 @@
           <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/nuggets.jpg" alt="Nuggets de Pollo" loading="lazy"></div><p class="item-desc-full">6 piezas de pollo empanizadas al momento, doradas y crujientes, servidas con salsa BBQ artesanal.</p><span class="opt-label">Salsa dip:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'dip')">BBQ Artesanal</button><button class="opt-btn" onclick="selectOpt(this,'dip')">Ranch</button><button class="opt-btn" onclick="selectOpt(this,'dip')">Chipotle</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
       </div>
+      <!-- BEBIDAS FRIAS -->
       <h2 class="menu-section-title reveal" data-cat="drinks">Bebidas Frías</h2>
       <div data-cat="drinks">
         <div class="menu-item reveal" data-id="refresco" data-price="15" data-name="Refresco">
           <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/bebidas_frias.jpg" alt="Refrescos" loading="lazy"></div><div class="item-info"><div class="item-name">Bebidas</div><div class="item-desc-short">Coca-Cola, Sprite, Fanta, agua mineral. Tamaño grande con hielo...</div></div><div class="item-right"><div class="item-price">Q 15</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/bebidas_frias.jpg" alt="Refrescos" loading="lazy"></div><p class="item-desc-full">Coca-Cola, Sprite, Fanta o agua mineral. Tamaño grande con hielo.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'soda')">Coca-Cola</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Sprite</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Fanta</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Agua Mineral</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/bebidas_frias.jpg" alt="Refrescos" loading="lazy"></div><p class="item-desc-full">Coca-Cola, Sprite, Fanta o agua mineral. Tamaño grande con hielo.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'soda')">Coca-Cola</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Sprite</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Fanta</button><button class="opt-btn" onclick="selectOpt(this,'soda')">Agua Mineral</button></div><span class="opt-label">Tamaño</span><div class="item-options"><button class="opt-btn" data-extra-price="0" onclick="selectOpt(this)">Mediana</button><button class="opt-btn" data-extra-price="6" onclick="selectOpt(this)">Grande (+Q6)</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
         <div class="menu-item reveal delay-1" data-id="malteada" data-price="30" data-name="Malteada Artesanal">
           <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/milkshake.jpg" alt="Malteada Artesanal" loading="lazy"></div><div class="item-info"><div class="item-name">Milkshake</div><div class="item-desc-short">Preparada al momento, helado premium, leche entera...</div></div><div class="item-right"><div class="item-price">Q 30</div><div class="expand-icon">▼</div></div></div>
           <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/milkshake.jpg" alt="Malteada Artesanal" loading="lazy"></div><p class="item-desc-full">Preparadas al momento con helado de alta calidad y leche entera. Cremosas y absolutamente deliciosas.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'shake')">Vainilla</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Chocolate</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Fresa</button><button class="opt-btn" onclick="selectOpt(this,'shake')">Oreo</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
       </div>
+      <!-- BEBIDAS CALIENTES -->
       <h2 class="menu-section-title reveal" data-cat="drinks">Bebidas Calientes</h2>
       <div data-cat="drinks">
-        <div class="menu-item reveal" data-id="cafe" data-price="15" data-name="Café" >
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/cafe.jpg" alt="Café" loading="lazy"></div><div class="item-info"><div class="item-name">Café</div><div class="item-desc-short">Café recién hecho, con leche o sin leche. Tamaño grande...</div></div><div class="item-right"><div class="item-price">Q 15</div><div class="expand-icon">▼</div></div></div>
-          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/cafe.jpg" alt="Café" loading="lazy"></div><p class="item-desc-full">Café recién hecho, con leche o sin leche. Tamaño grande.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'coffee')">Con Leche</button><button class="opt-btn" onclick="selectOpt(this,'coffee')">Sin Leche</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
+        <div class="menu-item reveal" data-id="cafe" data-price="12" data-name="Café" >
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/cafe.jpg" alt="Café" loading="lazy"></div><div class="item-info"><div class="item-name">Café</div><div class="item-desc-short">Café recién hecho, con leche o sin leche. Tamaño grande...</div></div><div class="item-right"><div class="item-price">Q 12</div><div class="expand-icon">▼</div></div></div>
+          <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/cafe.jpg" alt="Café" loading="lazy"></div><p class="item-desc-full">Café recién hecho, con leche o sin leche. Tamaño grande.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'coffee')">Con Leche</button><button class="opt-btn" onclick="selectOpt(this,'coffee')">Sin Leche</button><button class="opt-btn" data-extra-price="3" onclick="selectOpt(this)">Capuchino (+Q3)</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
-        <div class="menu-item reveal delay-1" data-id="cocoa" data-price="18" data-name="Cocoa">
-          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/cocoa.webp" alt="Cocoa" loading="lazy"></div><div class="item-info"><div class="item-name">Cocoa</div><div class="item-desc-short">Chocolate caliente, con leche o sin leche. Tamaño grande...</div></div><div class="item-right"><div class="item-price">Q 18</div><div class="expand-icon">▼</div></div></div>
+        <div class="menu-item reveal delay-1" data-id="cocoa" data-price="16" data-name="Cocoa">
+          <div class="menu-item-header" onclick="toggleItem(this)"><div class="item-thumb"><img src="../assets/imgs/cocoa.webp" alt="Cocoa" loading="lazy"></div><div class="item-info"><div class="item-name">Cocoa</div><div class="item-desc-short">Chocolate caliente, con leche o sin leche. Tamaño grande...</div></div><div class="item-right"><div class="item-price">Q 16</div><div class="expand-icon">▼</div></div></div>
           <div class="menu-item-body"><div class="menu-item-body-inner"><div class="item-photo-wrap"><img src="../assets/imgs/cocoa.webp" alt="Cocoa" loading="lazy"></div><p class="item-desc-full">Chocolate caliente, con leche o sin leche. Tamaño grande.</p><span class="opt-label">Sabor:</span><div class="item-options"><button class="opt-btn selected" onclick="selectOpt(this,'cocoa')">Con Leche</button><button class="opt-btn" onclick="selectOpt(this,'cocoa')">Sin Leche</button></div><div class="qty-row"><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-num">1</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div><button class="btn btn-sm" onclick="addToCart(this)">Agregar →</button></div></div></div>
         </div>
       </div>
@@ -341,7 +527,13 @@
       <div class="cart-body" id="cartBody"><div class="cart-empty"><div class="empty-icon"><img src="../assets/imgs/cart.svg" style="height: 3rem;"></div><p>Tu carrito está vacío.<br>¡Agrega algo delicioso!</p></div></div>
       <div class="cart-footer" id="cartFooter" style="display:none">
         <div class="cart-total-row"><span class="cart-total-label">Total</span><span class="cart-total-val" id="cartTotal">Q 0</span></div>
-        <button class="btn checkout-btn" onclick="openCheckout()">Pagar →</button>
+        <!-- WhatsApp quick order  -->
+        <button class="wa-order-btn" style="width:100%;justify-content:center;margin-bottom:0.5rem" onclick="quickOrderWhatsApp()">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedir por WhatsApp
+        </button>
+        <button class="btn checkout-btn" onclick="openCheckout()">Pagar con Factura →</button>
+        <!-- <div class="todo-note"><em>TODO: Integración con sistema de pedidos en línea.</em></div> -->
       </div>
     </div>
   </div>
@@ -369,19 +561,6 @@
   </div>
 </footer>
 
-<!-- AGE MODAL -->
-<div class="age-modal-overlay" id="ageModal">
-  <div class="age-modal">
-    <div class="age-modal-icon">🔞</div>
-    <h2>Verificación de Edad</h2>
-    <p>Esta bebida contiene alcohol. El consumo está <strong>prohibido para menores de 18 años</strong>.<br><br>El límite es <strong>2 bebidas alcohólicas por persona</strong> por visita.<br><br>¿Confirmas que eres mayor de 18 años?</p>
-    <div class="age-actions">
-      <button class="btn btn-dark btn-sm" onclick="closeAgeModal()">No, soy menor</button>
-      <button class="btn btn-sm" onclick="confirmAge()">Sí, soy mayor</button>
-    </div>
-  </div>
-</div>
-
 <!-- CHECKOUT MODAL -->
 <div class="checkout-modal" id="checkoutModal">
   <div class="checkout-box">
@@ -404,7 +583,7 @@
           <h4>Método de Pago</h4>
           <div class="payment-methods">
             <div class="pay-opt active" id="pay-cash" onclick="selectPayment('cash')"><img src="../assets/imgs/efectivo.svg" style="height: 2rem;" alt="Efectivo"><div class="pay-info"><h5>Efectivo</h5><p>Paga al retirar</p></div></div>
-            <div class="pay-opt" id="pay-card" onclick="selectPayment('card')"><img src="../assets/imgs/tarjeta.svg" style="height: 2rem;" alt="Tarjeta"><div class="pay-info"><h5>Tarjeta</h5><p>Visa, Mastercard, Amex</p></div></div>
+            <div class="pay-opt" id="pay-card" onclick="selectPayment('card')"><img src="../assets/imgs/tarjeta.svg" style="height: 2rem;" alt="Tarjeta"><div class="pay-info"><h5>Tarjeta</h5><p>Visa, Mastercard</p></div></div>
           </div>
         </div>
         <!-- CONTACT DATA -->
@@ -424,14 +603,14 @@
           <div class="checkout-section-label">Datos para facturación</div>
           <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.8rem">Ingresa tu NIT o deja el campo vacío para usar CF.</p>
           <div class="nit-row">
-            <div class="form-field"><label><br/>NIT o DPI <span class="field-required">*</span></label><input type="text" id="bNIT" placeholder="CF" value="CF"/><div style="font-size:0.68rem;color:var(--text-muted);margin-top:3px">Solo números. Usa CF si no tienes NIT.</div></div>
+            <div class="form-field"><label><br/>NIT o DPI <span class="field-required">*</span></label><input type="text" id="bNIT" placeholder="CF" value="CF"/><div style="font-size:0.68rem;color:var(--text-muted);margin-top:3px">Solo números</div></div>
             <div class="form-field"><label>Nombre para facturar</label><input type="text" id="bNombre" placeholder="Consumidor Final"/></div>
             <div class="form-field"><label>Dirección para facturar</label><input type="text" id="bDireccion" placeholder="Ciudad"/></div>
           </div>
         </div>
         <div class="section-divider"></div>
         <div class="form-field"><label>Notas especiales</label><textarea id="cNotas" placeholder="Alergias, preferencias..." rows="2" style="resize:none"></textarea></div>
-        <button class="btn place-order-btn" onclick="placeOrder()">✔ Confirmar y Pagar</button>
+        <button class="btn place-order-btn" onclick="placeOrder()">Confirmar y Pagar</button>
       </div>
     </div>
     <div class="order-success" id="orderSuccess">
@@ -440,6 +619,10 @@
       <div class="order-id" id="successOrderId">#SF-00000</div>
       <p>Tu pedido está siendo preparado. Te avisaremos cuando esté listo.</p>
       <div class="success-actions">
+        <button class="wa-order-btn" onclick="sendOrderWhatsApp()">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar pedido por WhatsApp
+        </button>
         <button class="invoice-btn" onclick="downloadInvoicePDF()">Descargar Factura PDF</button>
         <button class="btn btn-outline" onclick="closeCheckout();clearCart()">Volver al Menú</button>
       </div>
@@ -462,52 +645,150 @@ let cart=[],orderType='local',checkoutDelivery='local',payMethod='cash',pendingA
 let lastOrderData={};
 
 function toggleItem(h){const i=h.closest('.menu-item');const was=i.classList.contains('open');document.querySelectorAll('.menu-item.open').forEach(e=>e.classList.remove('open'));if(!was)i.classList.add('open')}
-function selectOpt(b,g){b.closest('.item-options').querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')}
+function selectOpt(b,g){b.closest('.item-options').querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');refreshPriceLive(b.closest('.menu-item'))}
 function changeQty(b,d){const n=b.closest('.qty-ctrl').querySelector('.qty-num');let v=parseInt(n.textContent)+d;n.textContent=Math.max(1,Math.min(9,v))}
 document.querySelectorAll('.filt').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filt').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;document.querySelectorAll('[data-cat]').forEach(el=>el.style.display=(f==='all'||el.dataset.cat===f)?'':'none')}));
 function setOrderType(t){orderType=t;['local','takeout','delivery'].forEach(x=>document.getElementById('otype-'+x).classList.toggle('active',x===t))}
+
 function addToCart(b){
   const i=b.closest('.menu-item');
   const qty=parseInt(i.querySelector('.qty-num').textContent);
-  const opts=[...i.querySelectorAll('.opt-btn.selected')].map(x=>x.textContent.trim()).join(', ');
-  for(let j=0;j<qty;j++) cart.push({id:i.dataset.id+'_'+Date.now()+'_'+j,name:i.dataset.name,emoji:i.dataset.emoji,price:parseInt(i.dataset.price),sub:opts});
-  renderCart();showToast(i.dataset.name+' x'+qty+' agregado')
+  const unitPrice = getItemPrice(i);
+  const extras = [...i.querySelectorAll('.opt-btn[data-extra-price].selected')]
+    .map(b => b.textContent.trim().replace(/\(\+Q\d+\)/, '').trim()).join(', ');
+  const singles = [...i.querySelectorAll('.opt-btn:not([data-extra-price]):not(.remove-btn).selected')]
+    .map(b => b.textContent.trim()).join(', ');
+  const removes = [...i.querySelectorAll('.opt-btn.remove-btn.selected')]
+    .map(b => b.textContent.trim()).join(', ');
+  const opts = [singles, extras ? 'Extra: ' + extras : '', removes ? 'Sin: ' + removes : ''].filter(Boolean).join(' | ');
+
+  for(let j=0;j<qty;j++) cart.push({id:i.dataset.id+'_'+Date.now()+'_'+j,name:i.dataset.name,price:unitPrice,sub:opts});
+  renderCart();
+  showToast(i.dataset.name+' x'+qty+' agregado')
 }
-function addToCartAlcohol(b){pendingAlcBtn=b;document.getElementById('ageModal').classList.add('open')}
-function closeAgeModal(){document.getElementById('ageModal').classList.remove('open');pendingAlcBtn=null}
-function confirmAge(){
-  document.getElementById('ageModal').classList.remove('open');
-  if(!pendingAlcBtn)return;
-  const alcIds=['cerveza','vino'];
-  const alcCount=cart.filter(x=>alcIds.some(a=>x.id.startsWith(a))).length;
-  if(alcCount>=2){showToast('⚠️ Límite de 2 bebidas alcohólicas por persona','warn');pendingAlcBtn=null;return}
-  addToCart(pendingAlcBtn);pendingAlcBtn=null
+
+function getItemPrice(item) {
+  if (!item.dataset.basePrice) item.dataset.basePrice = item.dataset.price;
+  const base = parseInt(item.dataset.price);
+  let extra = 0;
+  // Single-select with data-extra-price (e.g. Grande)
+  item.querySelectorAll('.opt-btn.selected[data-extra-price]').forEach(b => {
+    extra += parseInt(b.dataset.extraPrice);
+  });
+  return base + extra;
 }
+
+function refreshPriceLive(item) {
+  const unitPrice = getItemPrice(item);
+  const qty = parseInt(item.querySelector('.qty-num').textContent);
+  const total = unitPrice * qty;
+  const extra = unitPrice - parseInt(item.dataset.price);
+  const base = parseInt(item.dataset.basePrice);
+
+  // Update header price
+  const headerEl = item.querySelector('.item-price');
+  if (headerEl) {
+    if (headerEl.textContent !== 'Q ' + unitPrice) {
+      headerEl.classList.remove('flash');
+      void headerEl.offsetWidth;
+      headerEl.classList.add('flash');
+    }
+    headerEl.textContent = 'Q ' + unitPrice;
+  }
+
+  // Update inline live display
+  const liveEl = item.querySelector('.live-total');
+  if (liveEl) {
+    liveEl.textContent = 'Q ' + total;
+    let extraBadge = item.querySelector('.live-extra');
+    if (extra > 0) {
+      if (!extraBadge) {
+        extraBadge = document.createElement('span');
+        extraBadge.className = 'live-extra';
+        liveEl.parentNode.appendChild(extraBadge);
+      }
+      extraBadge.textContent = '+Q' + extra + ' extras';
+    } else if (extraBadge) {
+      extraBadge.remove();
+    }
+  }
+}
+
 function removeFromCart(id){cart=cart.filter(x=>x.id!==id);renderCart()}
-function renderCart(){
-  const body=document.getElementById('cartBody');const footer=document.getElementById('cartFooter');
-  document.getElementById('cartCount').textContent=cart.length;
-  if(!cart.length){body.innerHTML='<div class="cart-empty"><div class="empty-icon">🛒</div><p>Tu carrito está vacío.<br>¡Agrega algo delicioso!</p></div>';footer.style.display='none';return}
-  const grouped={};
-  cart.forEach(i=>{const k=i.name+'|'+i.sub;if(!grouped[k])grouped[k]={...i,qty:0,ids:[]};grouped[k].qty++;grouped[k].ids.push(i.id)});
-  body.innerHTML=Object.values(grouped).map(g=>`<div class="cart-line"><div class="cart-item-info"><div class="cart-item-name">${g.qty>1?g.qty+'x ':''} ${g.name}</div>${g.sub?`<div class="cart-item-sub">${g.sub}</div>`:''}</div><div class="cart-item-price">Q${g.price*g.qty}</div><button class="cart-remove" onclick="removeFromCart('${g.ids[g.ids.length-1]}')">✕</button></div>`).join('');
-  const total=cart.reduce((s,i)=>s+i.price,0);
-  document.getElementById('cartTotal').textContent='Q '+total;footer.style.display='block'
+
+function toggleExtra(btn) {
+  btn.classList.toggle('selected');
+  const item = btn.closest('.menu-item');
+  refreshPriceLive(item);
 }
+
+function toggleRemove(btn) {
+  btn.classList.toggle('selected'); // no price change, just tracks for order notes
+}
+
+function renderCart(){
+  const body=document.getElementById('cartBody');
+  const footer=document.getElementById('cartFooter');
+  document.getElementById('cartCount').textContent=cart.length;
+  if(!cart.length){
+    body.innerHTML='<div class="cart-empty"><div class="empty-icon"><img src="../assets/imgs/cart.svg" style="height: 3rem;"></div><p>Tu carrito está vacío.<br>¡Agrega algo delicioso!</p></div>';
+    footer.style.display='none';return;
+  }
+  const grouped={};
+  cart.forEach(i=>{
+    const k=i.name + '|' + i.price + '|' + i.sub;
+    if(!grouped[k])grouped[k]={...i,qty:0,ids:[]};
+    grouped[k].qty++;grouped[k].ids.push(i.id)});
+  body.innerHTML=Object.values(grouped).map(g=>`
+  <div class="cart-line">
+    <div class="cart-item-info">
+      <div class="cart-item-name">${g.qty>1?g.qty+'x ':''} ${g.name}</div>
+      ${g.sub?`<div class="cart-item-sub">${g.sub}</div>`:''}
+      </div>
+      <div class="cart-item-price">Q${g.price*g.qty}</div>
+      <button class="cart-remove" onclick="removeFromCart('${g.ids[g.ids.length-1]}')">✕</button>
+      </div>`).join('');
+  const total=cart.reduce((s,i)=>s+i.price,0);
+  document.getElementById('cartTotal').textContent='Q '+total;
+  footer.style.display='block';
+}
+
 function clearCart(){cart=[];renderCart()}
+
 function showToast(msg,type='ok'){
   const t=document.createElement('div');
   t.style.cssText=`position:fixed;bottom:20px;right:20px;z-index:9999;background:${type==='warn'?'#F5B800':'#1A0800'};color:${type==='warn'?'#1A0800':'#fff'};padding:10px 18px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:1px;box-shadow:0 8px 24px rgba(0,0,0,0.2);animation:fadeUp 0.3s ease`;
   t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2800)
 }
-function openCheckout(){if(!cart.length){showToast('¡Tu carrito está vacío!','warn');return}renderOrderSummary();document.getElementById('checkoutModal').classList.add('open');document.getElementById('checkoutFormView').style.display='block';document.getElementById('orderSuccess').style.display='none';selectDelivery(orderType)}
-function closeCheckout(){document.getElementById('checkoutModal').classList.remove('open')}
+
+function openCheckout(){
+  if(!cart.length){showToast('¡Tu carrito está vacío!','warn');return}
+  renderOrderSummary();
+  document.getElementById('checkoutModal').classList.add('open');
+  document.getElementById('checkoutFormView').style.display='block';
+  document.getElementById('orderSuccess').style.display='none';
+  selectDelivery(orderType)}
+
+function closeCheckout(){
+  document.getElementById('checkoutModal').classList.remove('open')
+}
+
 function renderOrderSummary(){
   const g={};cart.forEach(i=>{if(!g[i.name])g[i.name]={...i,qty:0};g[i.name].qty++});
-  const del=checkoutDelivery==='delivery'?20:0;const sub=cart.reduce((s,i)=>s+i.price,0);
+  const del=checkoutDelivery==='delivery'?20:0;
+  const sub=cart.reduce((s,i)=>s+i.price,0);
   document.getElementById('orderSummaryMini').innerHTML=Object.values(g).map(x=>`<div class="osm-row"><span>${x.qty>1?x.qty+'x ':''} ${x.name}</span><span>Q${x.price*x.qty}</span></div>`).join('')+(del?'<div class="osm-row"><span>Delivery</span><span>Q20</span></div>':'')+`<div class="osm-row osm-total"><span>Total</span><span>Q${sub+del}</span></div>`
 }
-function selectDelivery(t){checkoutDelivery=t;['local','takeout','delivery'].forEach(x=>{const el=document.getElementById('co-'+x);if(el)el.classList.toggle('active',x===t)});document.getElementById('addressFields').classList.toggle('show',t==='delivery');document.getElementById('tableField').style.display=t==='local'?'block':'none';renderOrderSummary()}
+
+function selectDelivery(t){
+  checkoutDelivery=t;
+  ['local','takeout','delivery'].forEach(x=>{const el=document.getElementById('co-'+x);
+  if(el)el.classList.toggle('active',x===t)});
+  document.getElementById('addressFields').classList.toggle('show',t==='delivery');
+  document.getElementById('tableField').style.display=t==='local'?'block':'none';
+  renderOrderSummary()
+}
+
 function selectPayment(t){payMethod=t;['cash','card','paypal','zelle'].forEach(x=>{const el=document.getElementById('pay-'+x);if(el)el.classList.toggle('active',x===t)})}
 
 function placeOrder(){
@@ -519,7 +800,7 @@ function placeOrder(){
   if(!nombre){document.getElementById('cNombre').classList.add('invalid');valid=false}else document.getElementById('cNombre').classList.remove('invalid');
   if(!tel){document.getElementById('cTelefono').classList.add('invalid');valid=false}else document.getElementById('cTelefono').classList.remove('invalid');
   if(!correo||!correo.includes('@')){document.getElementById('cCorreo').classList.add('invalid');valid=false}else document.getElementById('cCorreo').classList.remove('invalid');
-  if(!valid){showToast('⚠️ Completa los campos requeridos','warn');return}
+  if(!valid){showToast('Completa los campos requeridos','warn');return}
 
   const del=checkoutDelivery==='delivery'?20:0;
   const sub=cart.reduce((s,i)=>s+i.price,0);
@@ -548,6 +829,59 @@ function placeOrder(){
   document.getElementById('orderSuccess').style.display='block';
 }
 
+/*  WHATSAPP QUICK ORDER */
+function quickOrderWhatsApp() {
+  if (!cart.length) { showToast('¡Tu carrito está vacío!','warn'); return; }
+  const g = {};
+  cart.forEach(i => {
+    const k = i.name + '|' + i.price + '|' + i.sub;
+    if (!g[k]) g[k] = { ...i, qty: 0 };
+    g[k].qty++;
+  });
+  const total = cart.reduce((s,i) => s + i.price, 0);
+  const tipoLabel = {local:'Comer en local',takeout:'Para llevar',delivery:'Delivery'}[orderType] || orderType;
+  let msg = 'PEDIDO SMASH & FIRE\n';
+  msg += '━━━━━━━━━━━━━━━━\n';
+  msg += 'Mi pedido:\n';
+  Object.values(g).forEach(item => {
+    msg += `• ${item.qty > 1 ? item.qty + '× ' : ''}${item.name}`;
+    if (item.sub) msg += ` _(${item.sub})_`;
+    msg += ` — Q${item.price * item.qty}\n`;
+  });
+  msg += '━━━━━━━━━━━━━━━━\n';
+  msg += `Total: Q${total}\n`;
+  msg += `Tipo: ${tipoLabel}\n\n`;
+  msg += '_(Por favor confirmar disponibilidad y tiempo de espera)_';
+  window.open(`https://wa.me/50249473557?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+/* WHATSAPP ORDER (post-checkout) */
+function sendOrderWhatsApp() {
+  const d = lastOrderData;
+  const tipoLabel = {local:'Comer en local',takeout:'Para llevar',delivery:'Delivery a domicilio'}[d.tipo]||d.tipo;
+  const pagoLabel = {cash:'Efectivo',card:'Tarjeta'}[d.payMethod]||d.payMethod;
+
+  let msg = 'PEDIDO SMASH & FIRE\n';
+  msg += '━━━━━━━━━━━━━━━━\n';
+  msg += `N° ${d.id}  |  ${d.fecha} ${d.hora}\n\n`;
+  msg += 'Detalle del pedido:\n';
+  d.items.forEach(item => {
+    msg += `• ${item.qty>1 ? item.qty+'× ' : ''}${item.name}`;
+    if (item.sub) msg += `\n  _(${item.sub})_`;
+    msg += ` — Q${item.price*item.qty}\n`;
+  });
+  msg += '━━━━━━━━━━━━━━━━\n';
+  if (d.delivery) msg += `Delivery: Q${d.delivery}\n`;
+  msg += `TOTAL: Q${d.total}\n\n`;
+  msg += `Entrega: ${tipoLabel}\n`;
+  msg += `Pago: ${pagoLabel}\n`;
+  if (d.addr) msg += `Dirección: ${d.addr}\n`;
+  msg += `\n👤 Cliente: ${d.nombre} — ${d.tel}\n`;
+  if (d.notas) msg += `\nNotas: ${d.notas}\n`;
+
+  window.open(`https://wa.me/50249473557?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
 function downloadInvoicePDF(){
   const {jsPDF}=window.jspdf;
   const d=lastOrderData;
@@ -562,7 +896,7 @@ function downloadInvoicePDF(){
   doc.text('SMASH & FIRE',M,15);
   doc.setFontSize(9);doc.setFont('helvetica','normal');
   doc.text('6a Calle 6-50 Zona 10, Ciudad de Guatemala',M,22);
-  doc.text('hola@smashandfire.gt  |  +502 1234-5678',M,28);
+  doc.text('hola@smashandfire.gt  |  +502 4947-3557',M,28);
   y=44;
 
   // Title
