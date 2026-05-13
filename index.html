@@ -68,6 +68,7 @@
 <link rel="icon" href="assets/imgs/icon.ico"/>
 </head>
 <body>
+
 <nav>
   <a href="index.html" class="nav-logo"><img src="assets/imgs/logo_smash.png" alt="Smash & Fire" style="height:12rem;width:auto;display:block"></a>
   <ul class="nav-links">
@@ -78,9 +79,37 @@
     <li><a href="fundadores/index.html" data-i18n="nav_founders">Fundadores</a></li>
     <li><a href="empleo/index.html" data-i18n="nav_jobs">Empleo</a></li>
     <li><a href="documentos/index.html">Documentos</a></li>
-    <li><a href="menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Ver Menú</a></li>
+    <li><a href="menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Menú</a></li>
   </ul>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+  <div class="nav-modal" id="navModal">
+    <!-- Header -->
+    <div class="nav-modal-header">
+      <img src="assets/imgs/logo_smash.png" alt="Smash & Fire">
+      <button class="nav-modal-close" id="navClose" aria-label="Cerrar menú">X</button>
+    </div>
+    <!-- Links -->
+    <nav class="nav-modal-links">
+      <a href="index.html" class="active" data-i18n="nav_home">Inicio</a>
+      <a href="fotos/index.html" data-i18n="nav_photos">Fotos</a>
+      <a href="historia/index.html" data-i18n="nav_history">Historia</a>
+      <a href="terminos/index.html" data-i18n="nav_terms">Términos</a>
+      <a href="fundadores/index.html" data-i18n="nav_founders">Fundadores</a>
+      <a href="empleo/index.html" data-i18n="nav_jobs">Empleo</a>
+      <a href="documentos/index.html">Documentos</a>
+      <a href="menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Menú</a>
+    </nav>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -101,7 +130,7 @@
         <div><div class="stat-num"><span data-count="98">0</span><sup style="font-size:1rem">%</sup></div><div class="stat-label">Clientes felices</div></div>
       </div>
     </div>
-    <div class="hero-visual"><div class="hero-img-frame"><img src="assets/imgs/main_index.jpg" alt="Smash & Fire burger" loading="eager"></div></div>
+    <div class="hero-visual"><div class="hero-img-frame"><img src="/assets/imgs/main_index.jpg" alt="Smash & Fire burger" loading="eager"></div></div>
   </div>
 </section>
 
@@ -187,7 +216,7 @@
         <a href="empleo/index.html">Empleo</a>
       </div>
       <div class="footer-col"><h4>Contacto</h4><a href="tel:+50249473557">+502 4947-3557</a><p>6a Calle 6-50 Zona 10</p><p>Ciudad de Guatemala</p></div>
-      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 11:00 – 23:00</p></div>
+      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 12:00 – 18:00</p></div>
     </div>
     <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="../terminos/index.html">Términos y Condiciones</a></div></div>
   </div>
@@ -203,5 +232,43 @@
 
 <!-- Scripts -->
 <script src="nav.js"></script>
+<script>
+/* ── NAV OVERLAY TOGGLE ── */
+(function () {
+  const btn     = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  const closeBtn = document.getElementById('navClose');
+ 
+  function openMenu() {
+    overlay.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+ 
+  function closeMenu() {
+    overlay.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+ 
+  btn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+ 
+  // Click on the backdrop (outside the modal panel) closes it
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeMenu();
+  });
+ 
+  // Escape key closes it
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+ 
+  // Any link inside the modal closes it before navigating
+  document.querySelectorAll('.nav-modal-links a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+})();
+</script>
 </body>
 </html>
