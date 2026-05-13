@@ -181,9 +181,37 @@
     <li><a href="../fundadores/index.html" data-i18n="nav_founders">Fundadores</a></li>
     <li><a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a></li>
     <li><a href="../documentos/index.html" class="active">Documentos</a></li>
-    <li><a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Ver Menú</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Menú</a></li>
   </ul>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+  <div class="nav-modal" id="navModal">
+    <!-- Header -->
+    <div class="nav-modal-header">
+      <img src="../assets/imgs/logo_smash.png" alt="Smash & Fire">
+      <button class="nav-modal-close" id="navClose" aria-label="Cerrar menú">X</button>
+    </div>
+    <!-- Links -->
+    <nav class="nav-modal-links">
+      <a href="../index.html" data-i18n="nav_home">Inicio</a>
+      <a href="../fotos/index.html" data-i18n="nav_photos">Fotos</a>
+      <a href="../historia/index.html" data-i18n="nav_history">Historia</a>
+      <a href="../terminos/index.html" data-i18n="nav_terms">Términos</a>
+      <a href="../fundadores/index.html" data-i18n="nav_founders">Fundadores</a>
+      <a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a>
+      <a href="../documentos/index.html" class="active">Documentos</a>
+      <a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Menú</a>
+    </nav>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
@@ -408,34 +436,6 @@
           </div>
         </div>
       </div>
-      <div class="doc-card">
-        <div class="doc-card-top">
-          <span class="doc-cat-label">Legal</span>
-          <div class="doc-card-title-row"><div class="doc-card-title">Licencia de Bebidas Alcohólicas</div></div>
-        </div>
-        <div class="doc-card-body">
-          <p class="doc-desc">Documentación para la licencia de venta de bebidas alcohólicas ante el MSPAS de Guatemala. Incluye requisitos y formularios de solicitud.</p>
-          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag"> Oficial</span></div>
-          <div class="doc-actions">
-            <button class="doc-btn-preview" onclick="openPreview('licencia_alc')">Vista Previa</button>
-            <button class="doc-btn-dl" onclick="downloadDocPDF('licencia_alc')">⬇ Descargar PDF</button>
-          </div>
-        </div>
-      </div>
-      <div class="doc-card">
-        <div class="doc-card-top">
-          <span class="doc-cat-label">Legal</span>
-          <div class="doc-card-title-row"><div class="doc-card-title">Plan de Expansión EE.UU.</div></div>
-        </div>
-        <div class="doc-card-body">
-          <p class="doc-desc">Plan estratégico de internacionalización hacia el mercado estadounidense. Análisis de mercado, estructura legal requerida y hoja de ruta.</p>
-          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag">📌 Estratégico</span></div>
-          <div class="doc-actions">
-            <button class="doc-btn-preview" onclick="openPreview('expansion')">Vista Previa</button>
-            <button class="doc-btn-dl" onclick="downloadDocPDF('expansion')">⬇ Descargar PDF</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -481,7 +481,7 @@
         </div>
         <div class="doc-card-body">
           <p class="doc-desc">Descripción detallada de los 6 puestos operativos: requisitos, responsabilidades, competencias y dependencia jerárquica.</p>
-          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag">📌 Interno</span></div>
+          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag"> Interno</span></div>
           <div class="doc-actions">
             <button class="doc-btn-preview" onclick="openPreview('perfiles')">Vista Previa</button>
             <button class="doc-btn-dl" onclick="downloadDocPDF('perfiles')">⬇ Descargar PDF</button>
@@ -495,24 +495,10 @@
         </div>
         <div class="doc-card-body">
           <p class="doc-desc">Guía de bienvenida y cultura organizacional de Smash &amp; Fire. Valores, código de conducta, beneficios y procesos internos.</p>
-          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag">📌 Interno</span></div>
+          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag"> Interno</span></div>
           <div class="doc-actions">
             <button class="doc-btn-preview" onclick="openPreview('manual_emp')">Vista Previa</button>
             <button class="doc-btn-dl" onclick="downloadDocPDF('manual_emp')">⬇ Descargar PDF</button>
-          </div>
-        </div>
-      </div>
-      <div class="doc-card">
-        <div class="doc-card-top">
-          <span class="doc-cat-label">RR.HH.</span>
-          <div class="doc-card-title-row"><div class="doc-card-title">Organigrama</div></div>
-        </div>
-        <div class="doc-card-body">
-          <p class="doc-desc">Estructura organizacional de Smash &amp; Fire S.A. Jerarquía de puestos, líneas de reporte y responsabilidades por área.</p>
-          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag">📌 Interno</span></div>
-          <div class="doc-actions">
-            <button class="doc-btn-preview" onclick="openPreview('organigrama')">Vista Previa</button>
-            <button class="doc-btn-dl" onclick="downloadOrganigrama()">⬇ Descargar PDF</button>
           </div>
         </div>
       </div>
@@ -547,7 +533,7 @@
         </div>
         <div class="doc-card-body">
           <p class="doc-desc">Estándares de servicio al cliente, manejo de quejas, tiempos de espera y protocolos de atención para una experiencia excepcional.</p>
-          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag">📌 Interno</span></div>
+          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag"> Interno</span></div>
           <div class="doc-actions">
             <button class="doc-btn-preview" onclick="openPreview('atencion')">Vista Previa</button>
             <button class="doc-btn-dl" onclick="downloadDocPDF('atencion')">⬇ Descargar PDF</button>
@@ -578,18 +564,29 @@
           </div>
         </div>
       </div>
+      <!-- Licencia Sanitaria -->
       <div class="doc-card">
-        <div class="doc-card-top">
-          <span class="doc-cat-label">Seguridad</span>
-          <div class="doc-card-title-row"><div class="doc-card-title">Política de Bebidas Alcohólicas</div></div>
+        <div class="doc-card-top legal-top">
+          <span class="doc-cat-label">MSPAS · Licencia</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Licencia Sanitaria</div></div>
         </div>
         <div class="doc-card-body">
-          <p class="doc-desc">Política interna de venta responsable de alcohol: verificación de mayoría de edad, límite de 2 bebidas por persona y protocolos de negativa de servicio.</p>
-          <div class="doc-meta"><span class="doc-meta-tag">2026</span><span class="doc-meta-tag"> Oficial</span></div>
-          <div class="doc-actions">
-            <button class="doc-btn-preview" onclick="openPreview('pol_alc')">Vista Previa</button>
-            <button class="doc-btn-dl" onclick="downloadDocPDF('pol_alc')">⬇ Descargar PDF</button>
-          </div>
+          <p class="doc-desc">Autorización del Ministerio de Salud Pública y Asistencia Social (MSPAS) para operar como establecimiento de alimentos y bebidas en Guatemala.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">MSPAS</span><span class="doc-meta-tag">Anual</span></div>
+          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('licencia_sanitaria')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('licencia_sanitaria')">⬇ DESCARGAR PDF</button></div>
+        </div>
+      </div>
+ 
+      <!-- Tarjeta de Pulmones -->
+      <div class="doc-card">
+        <div class="doc-card-top legal-top">
+          <span class="doc-cat-label">MSPAS · Personal</span>
+          <div class="doc-card-title-row"><div class="doc-card-title">Tarjetas de Salud, Pulmones y Manipulación de Alimentos</div></div>
+        </div>
+        <div class="doc-card-body">
+          <p class="doc-desc">Certificado de salud obligatorio para todo el personal que manipula alimentos. Incluye radiografía de tórax y exámenes básicos vigentes.</p>
+          <div class="doc-meta"><span class="doc-meta-tag">MSPAS</span><span class="doc-meta-tag">Cada 6 meses</span></div>
+          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('tarjeta_pulmones')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('tarjeta_pulmones')">⬇ DESCARGAR PDF</button></div>
         </div>
       </div>
     </div>
@@ -623,7 +620,7 @@
         </div>
         <div class="doc-card-body">
           <p class="doc-desc">Modelo de contrato para acuerdos de colaboración con proveedores, distribuidores y socios comerciales nacionales e internacionales.</p>
-          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag">📌 Plantilla</span></div>
+          <div class="doc-meta"><span class="doc-meta-tag"> 2026</span><span class="doc-meta-tag"> Plantilla</span></div>
           <div class="doc-actions">
             <button class="doc-btn-preview" onclick="openPreview('alianzas')">Vista Previa</button>
             <button class="doc-btn-dl" onclick="downloadDocPDF('alianzas')">⬇ Descargar PDF</button>
@@ -694,32 +691,6 @@
         </div>
       </div>
  
-      <!-- Licencia Sanitaria -->
-      <div class="doc-card">
-        <div class="doc-card-top legal-top">
-          <span class="doc-cat-label">MSPAS · Licencia</span>
-          <div class="doc-card-title-row"><div class="doc-card-title">Licencia Sanitaria</div></div>
-        </div>
-        <div class="doc-card-body">
-          <p class="doc-desc">Autorización del Ministerio de Salud Pública y Asistencia Social (MSPAS) para operar como establecimiento de alimentos y bebidas en Guatemala.</p>
-          <div class="doc-meta"><span class="doc-meta-tag">MSPAS</span><span class="doc-meta-tag">Anual</span></div>
-          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('licencia_sanitaria')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('licencia_sanitaria')">⬇ DESCARGAR PDF</button></div>
-        </div>
-      </div>
- 
-      <!-- Tarjeta de Pulmones -->
-      <div class="doc-card">
-        <div class="doc-card-top legal-top">
-          <span class="doc-cat-label">MSPAS · Personal</span>
-          <div class="doc-card-title-row"><div class="doc-card-title">Tarjeta de Pulmones</div></div>
-        </div>
-        <div class="doc-card-body">
-          <p class="doc-desc">Certificado de salud obligatorio para todo el personal que manipula alimentos. Incluye radiografía de tórax y exámenes básicos vigentes.</p>
-          <div class="doc-meta"><span class="doc-meta-tag">MSPAS</span><span class="doc-meta-tag">Cada 6 meses</span></div>
-          <div class="doc-actions"><button class="doc-btn-preview" onclick="openPreview('tarjeta_pulmones')">Vista Previa</button><button class="doc-btn-dl" onclick="downloadDocPDF('tarjeta_pulmones')">⬇ DESCARGAR PDF</button></div>
-        </div>
-      </div>
- 
       <!-- Estados Financieros -->
       <div class="doc-card">
         <div class="doc-card-top legal-top">
@@ -755,7 +726,7 @@
         <a href="../empleo/index.html">Empleo</a>
       </div>
       <div class="footer-col"><h4>Contacto</h4><a href="tel:+50249473557">+502 4947-3557</a><p>6a Calle 6-50 Zona 10</p><p>Ciudad de Guatemala</p></div>
-      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 11:00 – 23:00</p></div>
+      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 12:00 – 18:00</p></div>
     </div>
     <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="../terminos/index.html">Términos y Condiciones</a></div></div>
   </div>
@@ -788,7 +759,7 @@ const previews={
   escritura:{cat:'Legal',title:'Escritura Constitutiva S.A.',content:`
     <p>Escritura Número <strong>Ochenta y Dos (82)</strong> de la serie de actos y contratos de carácter mercantil, otorgada en la ciudad de Guatemala a los quince días del mes de enero de dos mil veintiuno.</p>
     <p><strong>SOCIOS FUNDADORES:</strong></p>
-    <ul><li>Dania Estrellitas Telles – Gerente General</li><li>Victor Alexander López López – Chef Ejecutivo y Cofundador</li><li>José Estuardo Milian García – Director de Operaciones</li></ul>
+    <ul><li>Ruben Ibañez – CEO</li><li>Jose Milian – Chef Ejecutivo</li><li>Dania Telles – Directora de Operaciones</li></ul>
     <p><strong>RAZÓN SOCIAL:</strong> SMASH & FIRE, SOCIEDAD ANÓNIMA (S.A.)</p>
     <p><strong>CAPITAL SOCIAL:</strong> Q200,000.00 — dividido en 200 acciones nominativas de Q1,000.00 cada una.</p>
     <p><strong>OBJETO SOCIAL:</strong> La empresa tendrá como objeto principal la preparación y venta de alimentos, con especialidad en hamburguesas estilo smash, bebidas, acompañamientos y experiencias gastronómicas.</p>
@@ -1022,6 +993,45 @@ function togglePuesto(id) {
   document.querySelectorAll('.puesto-card').forEach(c => c.classList.remove('open'));
   if (!wasOpen) card.classList.add('open');
 }
+</script>
+
+<script>
+/* ── NAV OVERLAY TOGGLE ── */
+(function () {
+  const btn     = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  const closeBtn = document.getElementById('navClose');
+ 
+  function openMenu() {
+    overlay.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+ 
+  function closeMenu() {
+    overlay.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+ 
+  btn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+ 
+  // Click on the backdrop (outside the modal panel) closes it
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeMenu();
+  });
+ 
+  // Escape key closes it
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+ 
+  // Any link inside the modal closes it before navigating
+  document.querySelectorAll('.nav-modal-links a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+})();
 </script>
 </body>
 </html>
