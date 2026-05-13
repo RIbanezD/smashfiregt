@@ -251,17 +251,43 @@
 <nav>
   <a href="../index.html" class="nav-logo"><img src="../assets/imgs/logo_smash.png" alt="Smash & Fire" style="height:12rem;width:auto;display:block"></a>
   <ul class="nav-links">
-    <li><a href="../index.html">Inicio</a></li>
-    <li><a href="../fotos/index.html">Fotos</a></li>
-    <li><a href="../historia/index.html" class="active">Historia</a></li>
-    <li><a href="../terminos/index.html">Términos</a></li>
-    <li><a href="../fundadores/index.html">Fundadores</a></li>
-    <li><a href="../empleo/index.html">Empleo</a></li>
-    <li><a href="../documentos/index.html">Documentos</a></li>
-    <li><a href="../menu/index.html" class="nav-cta-link">Menú</a></li>
+    <li><a href="../index.html" data-i18n="nav_home">Inicio</a></li>
+    <li><a href="../fotos/index.html" data-i18n="nav_photos">Fotos</a></li>
+    <li><a href="../historia/index.html" class="active" data-i18n="nav_history">Historia</a></li>
+    <li><a href="../terminos/index.html" data-i18n="nav_terms">Términos</a></li>
+    <li><a href="../fundadores/index.html" data-i18n="nav_founders">Fundadores</a></li>
+    <li><a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a></li>
+    <li><a href="../documentos/index.html" data-i18n="nav_docs">Documentos</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Menú</a></li>
   </ul>
-  <button class="nav-toggle"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+  <div class="nav-modal" id="navModal">
+    <!-- Header -->
+    <div class="nav-modal-header">
+      <img src="../assets/imgs/logo_smash.png" alt="Smash & Fire">
+      <button class="nav-modal-close" id="navClose" aria-label="Cerrar menú">X</button>
+    </div>
+    <!-- Links -->
+    <nav class="nav-modal-links">
+      <a href="../index.html" data-i18n="nav_home">Inicio</a>
+      <a href="../fotos/index.html" data-i18n="nav_photos">Fotos</a>
+      <a href="../historia/index.html" class="active" data-i18n="nav_history">Historia</a>
+      <a href="../terminos/index.html" data-i18n="nav_terms">Términos</a>
+      <a href="../fundadores/index.html" data-i18n="nav_founders">Fundadores</a>
+      <a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a>
+      <a href="../documentos/index.html" data-i18n="nav_docs">Documentos</a>
+      <a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Menú</a>
+    </nav>
+  </div>
+</div>
 
 <!-- ══ MANIFESTO ══ -->
 <section class="manifesto">
@@ -327,7 +353,7 @@
     <div class="chapter-text">
       <div class="chapter-num">Capítulo 01 · 2021</div>
       <h2 class="chapter-title">EL DÍA QUE<br><span>ENCENDIMOS</span><br>LA PLANCHA</h2>
-      <p class="chapter-body">Estrellita Telles no abrió un restaurante. Encendió una plancha y no la apagó. La primera hamburguesa salió perfecta. La segunda también. A la décima, ya sabía que esto era algo real.</p>
+      <p class="chapter-body">Ruben no abrió un restaurante. Encendió una plancha y no la apagó. La primera hamburguesa salió perfecta. La segunda también. A la décima, ya sabía que esto era algo real.</p>
       <span class="chapter-tag">El origen</span>
       <br><br><br><br><br><br><br><br>
       <div class="chapter-year">2021</div>
@@ -370,7 +396,7 @@
     <div class="chapter-text">
       <div class="chapter-num">Capítulo 04 · 2022–2025</div>
       <h2 class="chapter-title">50,000<br><span>RAZONES</span><br>PARA SEGUIR</h2>
-      <p class="chapter-body">Ganamos "Mejor Burger Urbana de Guatemala". Nos constituimos S.A. Y en algún punto en el medio, llegamos a la hamburguesa número 50,000. Ese día, la casa invitó.</p>
+      <p class="chapter-body">Ganamos "Mejor Burger Urbana de Guatemala". Y en algún punto en el medio, llegamos a la hamburguesa número 50,000. Ese día, la casa invitó.</p>
       <span class="chapter-tag">El reconocimiento</span>
       <br><br><br><br><br><br><br><br>
       <div class="chapter-year">2025</div>
@@ -383,7 +409,7 @@
   <div class="qi-inner">
     <span class="qi-mark reveal">"</span>
     <p class="qi-quote reveal delay-1">Una burger bien hecha<br>no necesita <em>disculpas.</em><br>Habla sola.</p>
-    <p class="qi-author reveal delay-2">— Estrellita Telles · CEO &amp; Fundadora</p>
+    <p class="qi-author reveal delay-2">— Ruben Ibañez · CEO &amp; Fundador</p>
   </div>
 </div>
 
@@ -417,6 +443,9 @@
         <h3>Respeto</h3>
         <p>Tu tiempo, tu dinero y tu hambre importan. Cada visita tiene que superar la anterior. Siempre.</p>
       </div>
+      <div class="val-card" reveal delay-3">
+        <h3>Autenticidad</h3>
+        <p>Somos honestos con lo que servimos. Creemos en los procesos manuales, las salsas de la casa y el sabor real, sin químicos ni atajos.</p>
     </div>
   </div>
 </section>
@@ -448,7 +477,7 @@
         <a href="../empleo/index.html">Empleo</a>
       </div>
       <div class="footer-col"><h4>Contacto</h4><a href="tel:+50249473557">+502 4947-3557</a><p>6a Calle 6-50 Zona 10</p><p>Ciudad de Guatemala</p></div>
-      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 11:00 – 23:00</p></div>
+      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 12:00 – 18:00</p></div>
     </div>
     <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="../terminos/index.html">Términos y Condiciones</a></div></div>
   </div>
@@ -482,6 +511,45 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(!e.isIntersecting)return;animCount(e.target);obs.unobserve(e.target)});
 },{threshold:0.5});
 document.querySelectorAll('[data-count]').forEach(el=>obs.observe(el));
+</script>
+
+<script>
+/* ── NAV OVERLAY TOGGLE ── */
+(function () {
+  const btn     = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  const closeBtn = document.getElementById('navClose');
+ 
+  function openMenu() {
+    overlay.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+ 
+  function closeMenu() {
+    overlay.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+ 
+  btn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+ 
+  // Click on the backdrop (outside the modal panel) closes it
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeMenu();
+  });
+ 
+  // Escape key closes it
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+ 
+  // Any link inside the modal closes it before navigating
+  document.querySelectorAll('.nav-modal-links a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+})();
 </script>
 </body>
 </html>
