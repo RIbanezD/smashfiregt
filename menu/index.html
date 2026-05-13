@@ -8,6 +8,7 @@
 .menu-wrapper{display:grid;grid-template-columns:1fr 350px;gap:2.5rem;align-items:start;margin-top:2rem}
 @media(max-width:1050px){.menu-wrapper{grid-template-columns:1fr 300px}}
 @media(max-width:860px){.menu-wrapper{grid-template-columns:1fr}}
+@media(max-width:860px){.cart-sidebar{position:static!important}}
 .filter-bar{display:flex;gap:0.4rem;flex-wrap:wrap;margin:2rem 0 1.5rem;border-bottom:2px solid var(--border);padding-bottom:0}
 .filt{background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);padding:0.65rem 1.1rem;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.2s}
 .filt:hover{color:var(--text)}.filt.active{color:var(--red);border-bottom-color:var(--red)}
@@ -200,12 +201,6 @@
 
 <section style="background:var(--cream);padding:40px 0 100px">
 <div class="container">
-  <div class="order-type-bar reveal">
-    <h4>¿Cómo recibirás tu pedido?</h4>
-    <button class="otype-btn active" id="otype-local" onclick="setOrderType('local')">Comer Aquí</button>
-    <button class="otype-btn" id="otype-takeout" onclick="setOrderType('takeout')">Para Llevar</button>
-    <button class="otype-btn" id="otype-delivery" onclick="setOrderType('delivery')">Delivery</button>
-  </div>
   <div class="filter-bar">
     <button class="filt active" data-filter="all">Todo</button>
     <button class="filt" data-filter="burgers">Hamburguesas</button>
@@ -561,8 +556,7 @@
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Pedir por WhatsApp
         </button>
-        <button class="btn checkout-btn" onclick="openCheckout()">Pagar con Factura →</button>
-        <!-- <div class="todo-note"><em>TODO: Integración con sistema de pedidos en línea.</em></div> -->
+        <button class="btn checkout-btn" onclick="openCheckout()">Proceder a pagar →</button>
       </div>
     </div>
   </div>
@@ -792,11 +786,13 @@ function showToast(msg,type='ok'){
 
 function openCheckout(){
   if(!cart.length){showToast('¡Tu carrito está vacío!','warn');return}
-  renderOrderSummary();
   document.getElementById('checkoutModal').classList.add('open');
   document.getElementById('checkoutFormView').style.display='block';
   document.getElementById('orderSuccess').style.display='none';
-  selectDelivery(orderType)}
+  // Sync checkoutDelivery with current orderType then render
+  checkoutDelivery = orderType;
+  selectDelivery(checkoutDelivery);
+}
 
 function closeCheckout(){
   document.getElementById('checkoutModal').classList.remove('open')
@@ -814,8 +810,9 @@ function selectDelivery(t){
   ['local','takeout','delivery'].forEach(x=>{const el=document.getElementById('co-'+x);
   if(el)el.classList.toggle('active',x===t)});
   document.getElementById('addressFields').classList.toggle('show',t==='delivery');
-  document.getElementById('tableField').style.display=t==='local'?'block':'none';
-  renderOrderSummary()
+  const tableField=document.getElementById('tableField');
+  if(tableField)tableField.style.display=t==='local'?'block':'none';
+  renderOrderSummary();
 }
 
 function selectPayment(t){payMethod=t;['cash','card','paypal','zelle'].forEach(x=>{const el=document.getElementById('pay-'+x);if(el)el.classList.toggle('active',x===t)})}
@@ -867,7 +864,9 @@ function quickOrderWhatsApp() {
     if (!g[k]) g[k] = { ...i, qty: 0 };
     g[k].qty++;
   });
-  const total = cart.reduce((s,i) => s + i.price, 0);
+  const subtotal = cart.reduce((s,i) => s + i.price, 0);
+  const deliveryCost = orderType === 'delivery' ? 20 : 0;
+  const total = subtotal + deliveryCost;
   const tipoLabel = {local:'Comer en local',takeout:'Para llevar',delivery:'Delivery'}[orderType] || orderType;
   let msg = 'PEDIDO SMASH & FIRE\n';
   msg += '━━━━━━━━━━━━━━━━\n';
@@ -878,6 +877,7 @@ function quickOrderWhatsApp() {
     msg += ` — Q${item.price * item.qty}\n`;
   });
   msg += '━━━━━━━━━━━━━━━━\n';
+  if (deliveryCost) msg += `Delivery: Q${deliveryCost}\n`;
   msg += `Total: Q${total}\n`;
   msg += `Tipo: ${tipoLabel}\n\n`;
   msg += '_(Por favor confirmar disponibilidad y tiempo de espera)_';
