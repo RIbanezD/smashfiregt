@@ -205,10 +205,37 @@
     <li><a href="../terminos/index.html" data-i18n="nav_terms">Términos</a></li>
     <li><a href="../fundadores/index.html" class="active" data-i18n="nav_founders">Fundadores</a></li>
     <li><a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a></li>
-    <li><a href="../documentos/index.html">Documentos</a></li>
-    <li><a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Ver Menú</a></li>
+    <li><a href="../documentos/index.html" data-i18n="nav_docs">Documentos</a></li>
+    <li><a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Menú</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+  <div class="nav-modal" id="navModal">
+    <!-- Header -->
+    <div class="nav-modal-header">
+      <img src="../assets/imgs/logo_smash.png" alt="Smash & Fire">
+      <button class="nav-modal-close" id="navClose" aria-label="Cerrar menú">X</button>
+    </div>
+    <!-- Links -->
+    <nav class="nav-modal-links">
+      <a href="../index.html" data-i18n="nav_home">Inicio</a>
+      <a href="../fotos/index.html" data-i18n="nav_photos">Fotos</a>
+      <a href="../historia/index.html" data-i18n="nav_history">Historia</a>
+      <a href="../terminos/index.html" data-i18n="nav_terms">Términos</a>
+      <a href="../fundadores/index.html" class="active" data-i18n="nav_founders">Fundadores</a>
+      <a href="../empleo/index.html" data-i18n="nav_jobs">Empleo</a>
+      <a href="../documentos/index.html" data-i18n="nav_docs">Documentos</a>
+      <a href="../menu/index.html" class="nav-cta-link" data-i18n="nav_menu">Menú</a>
+    </nav>
+  </div>
+</div>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
@@ -225,19 +252,19 @@
     <div class="ceo-card">
       <div class="ceo-avatar-wrap reveal-left">
         <div class="ceo-avatar-ring">
-          <img src="../assets/team/Estrellita.jpeg" alt="Estrellita Telles">
+          <img src="../assets/team/ruben.png" alt="Rubén Ibáñez">
         </div>
-        <div class="ceo-role-badge">CEO &amp; Fundadora</div>
+        <div class="ceo-role-badge">CEO &amp; Fundador</div>
       </div>
       <div class="ceo-info reveal-right">
         <div class="ceo-eyebrow">Dirección General</div>
-        <h2 class="ceo-name">Estrellita<br>Telles</h2>
+        <h2 class="ceo-name">Rubén<br>Ibáñez</h2>
         <div class="ceo-title">Chief Executive Officer</div>
-        <p class="ceo-bio">Emprendedora guatemalteca con visión y olfato para los negocios gastronómicos. Estrellita construyó la marca, la estrategia de crecimiento y el modelo de operaciones que llevó a Smash &amp; Fire de una idea a un restaurante consolidado en Zona 10.</p>
+        <p class="ceo-bio">Emprendedor guatemalteco con visión y olfato para los negocios gastronómicos. Rubén construyó la marca, la estrategia de crecimiento y el modelo de operaciones que llevó a Smash &amp; Fire de una idea a un restaurante consolidado en Zona 10.</p>
         <p class="ceo-bio" style="margin-top:0">Lidera el equipo con exigencia y calidez, asegurando que cada hamburguesa que sale de la cocina cargue el estándar que prometimos desde el primer día.</p>
         <div class="ceo-quote">
           <p>"El éxito se mide en clientes que regresan, no en visitas únicas."</p>
-          <cite>— Estrellita Telles, CEO</cite>
+          <cite>— Rubén Ibáñez, CEO</cite>
         </div>
       </div>
     </div>
@@ -253,15 +280,14 @@
 
     <div class="mgmt-grid">
 
-      <!-- CHEF -->
+      <!-- PRODUCCION/OPERACOINES -->
       <div class="mgmt-card reveal delay-1">
         <div class="mgmt-thumb">
-          <img src="../assets/team/jose_milian.jpeg" alt="José Milian">
-          <!-- <img src="../assets/team/jose-milian.jpg" alt="José Milian"> -->
+          <img src="../assets/team/jose.png" alt="José Milian" style="width:100%;height:auto;margin-top: 20%;">
           <div class="mgmt-thumb-overlay"></div>
         </div>
         <div class="mgmt-body">
-          <span class="mgmt-role">Cocina · Chef Principal</span>
+          <span class="mgmt-role">Jefe de Producción y Operaciones</span>
           <div class="mgmt-name">José Milian</div>
           <p class="mgmt-desc">Cerebro culinario de Smash &amp; Fire. José perfeccionó la técnica smash durante años y es el guardián del sabor y la consistencia de cada receta en la cocina.</p>
           <div class="skill-list">
@@ -281,56 +307,54 @@
         </div>
       </div>
 
-      <!-- ADMINISTRADORA -->
+      <!-- MARKETING -->
       <div class="mgmt-card reveal delay-2">
         <div class="mgmt-thumb">
-          <img src="../assets/team/linda_cifuentes.jpeg" alt="Linda Cifuentes">
-          <!-- <img src="../assets/team/linda-cifuentes.jpg" alt="Linda Cifuentes"> -->
+          <img src="../assets/team/linda.png" alt="Linda Cifuentes" style="width:100%;height:auto;">
           <div class="mgmt-thumb-overlay"></div>
         </div>
         <div class="mgmt-body">
-          <span class="mgmt-role">Administración</span>
+          <span class="mgmt-role">Jefe de Marketing</span>
           <div class="mgmt-name">Linda Cifuentes</div>
-          <p class="mgmt-desc">Administradora del negocio, responsable de los procesos financieros, control interno, caja y coordinación administrativa. La columna vertebral operativa de Smash &amp; Fire.</p>
+          <p class="mgmt-desc">Es el motor creativo y comercial. Encargada de posicionar la marca y atraer clientes a las sucursales o plataformas digitales. Haciendo que Smash &amp; Fire crezca.</p>
           <div class="skill-list">
             <div>
-              <div class="skill-row-label"><span>Control Financiero</span><span>97%</span></div>
+              <div class="skill-row-label"><span>Creatividad</span><span>97%</span></div>
               <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.97"></div></div>
             </div>
             <div>
-              <div class="skill-row-label"><span>Administración</span><span>94%</span></div>
+              <div class="skill-row-label"><span>Análisis de Mercado</span><span>94%</span></div>
               <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.94"></div></div>
             </div>
             <div>
-              <div class="skill-row-label"><span>Atención al Cliente</span><span>91%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.91"></div></div>
+              <div class="skill-row-label"><span>Marketing digital</span><span>93%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.93"></div></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- JEFE DE MESEROS -->
+      <!-- LEGAL -->
       <div class="mgmt-card reveal delay-3">
         <div class="mgmt-thumb">
-          <img src="../assets/team/Darwin.jpeg" alt="Darwin Pérez">
-          <!-- <img src="../assets/team/darwin-perez.jpg" alt="Darwin Pérez"> -->
+          <img src="../assets/team/darwin.png" alt="Darwin Pérez" >
           <div class="mgmt-thumb-overlay"></div>
         </div>
         <div class="mgmt-body">
-          <span class="mgmt-role">Servicio · Jefe de Meseros</span>
+          <span class="mgmt-role">Legal · Asesor Jurídico</span>
           <div class="mgmt-name">Darwin Pérez</div>
-          <p class="mgmt-desc">Líder del equipo de sala. Darwin coordina al personal de servicio, cuida los tiempos de atención y asegura que cada cliente viva la experiencia Smash &amp; Fire desde que entra hasta que se va.</p>
+          <p class="mgmt-desc">Es el guardián de la empresa y asegura que el negocio opere dentro del marco legal para evitar multas o cierres mientras protege la integridad legal de Smash &amp; Fire.</p>
           <div class="skill-list">
             <div>
-              <div class="skill-row-label"><span>Liderazgo de Equipo</span><span>96%</span></div>
+              <div class="skill-row-label"><span>Analisis y Resolución de Problemas</span><span>96%</span></div>
               <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.96"></div></div>
             </div>
             <div>
-              <div class="skill-row-label"><span>Experiencia del Cliente</span><span>94%</span></div>
+              <div class="skill-row-label"><span>Negociación y Mediación</span><span>94%</span></div>
               <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.94"></div></div>
             </div>
             <div>
-              <div class="skill-row-label"><span>Gestión de Sala</span><span>89%</span></div>
+              <div class="skill-row-label"><span>Gestión de Riesgos</span><span>89%</span></div>
               <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.89"></div></div>
             </div>
           </div>
@@ -339,36 +363,69 @@
 
     </div>
   </div>
-</section>
 
-<!-- STAFF -->
-<section class="staff-section">
   <div class="container">
-    <span class="section-label reveal">Equipo completo</span>
-    <h2 class="section-title reveal delay-1">LOS QUE HACEN<br>EL FUEGO POSIBLE</h2>
-    <p class="reveal delay-2" style="color:var(--text-muted);max-width:460px;margin-top:0.5rem">Cada uno en su posición, con la misma pasión por el detalle.</p>
 
-    <div class="staff-grid">
-      <div class="staff-card reveal delay-1">
-        <div class="staff-avatar">
-        <img src="../assets/team/Ruben.png" alt="Ruben Ibañez"></div>
-        <div class="staff-name">Ruben Ibañez</div>
-        <div class="staff-role">Sous-Chef</div>
-        <div class="staff-dep">Reporte a: Chef José Milian</div>
+    <div class="mgmt-grid">
+
+      <!-- Atencion al Cliente -->
+      <div class="mgmt-card reveal delay-1">
+        <div class="mgmt-thumb">
+          <img src="../assets/team/victor.png" alt="Victor Lopez" style="width:100%;height:auto;margin-top: 20%;">
+          <div class="mgmt-thumb-overlay"></div>
+        </div>
+        <div class="mgmt-body">
+          <span class="mgmt-role">Jefe de Atención al Cliente</span>
+          <div class="mgmt-name">Victor Lopez</div>
+          <p class="mgmt-desc">Responsable de garantizar que cada cliente tenga una experiencia satisfactoria y quiera regresar. Crea relaciones duraderas con los clientes a través de un servicio excepcional.</p>
+          <div class="skill-list">
+            <div>
+              <div class="skill-row-label"><span>Comunicación</span><span>98%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.98"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-label"><span>Liderazgo</span><span>95%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.95"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-label"><span>Resolución de Conflictos</span><span>95%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.95"></div></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="staff-card reveal delay-2">
-        <div class="staff-avatar">
-        <img src="../assets/team/victor_lopez.jpeg" alt="Victor Lopez"></div>
-        <div class="staff-name">Victor Lopez</div>
-        <div class="staff-role">Mesero</div>
-        <div class="staff-dep">Reporte a: Darwin Pérez</div>
+
+      <!-- Finanzas -->
+      <div class="mgmt-card reveal delay-2">
+        <div class="mgmt-thumb">
+          <img src="../assets/team/estrella.png" alt="Estrellita Telles" style="width:100%;height:auto;transform: scale(0.7);margin-top: 50%;">
+          <div class="mgmt-thumb-overlay"></div>
+        </div>
+        <div class="mgmt-body">
+          <span class="mgmt-role">Jefe de Finanzas y Contabilidad</span>
+          <div class="mgmt-name">Estrellita Telles</div>
+          <p class="mgmt-desc">Administradora del negocio, responsable de los procesos financieros, control interno, caja y coordinación administrativa. La columna vertebral operativa de Smash &amp; Fire.</p>
+          <div class="skill-list">
+            <div>
+              <div class="skill-row-label"><span>Control Financiero</span><span>97%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.97"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-label"><span>Analisis de Riesgos</span><span>94%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.94"></div></div>
+            </div>
+            <div>
+              <div class="skill-row-label"><span>Presupuestos y Pronósticos</span><span>91%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-w="0.91"></div></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <p class="reveal" style="text-align:center;margin-top:2.5rem;color:var(--text-muted);font-size:0.88rem">
+  </div>
+  <p class="reveal" style="text-align:center;margin-top:2.5rem;color:var(--text-muted);font-size:0.88rem">
       ¿Quieres unirte? <a href="../empleo/index.html" style="color:var(--red);font-weight:700;text-decoration:none">Ver plazas disponibles →</a>
     </p>
-  </div>
 </section>
 
 <!-- ORGANIGRAMA -->
@@ -385,8 +442,9 @@
     </div>
   </div>
 </section>
+
 <!-- ════════════════════════════════════
-     DESCRIPCIÓN DE PUESTOS 
+     DESCRIPCIÓN DE PUESTOS
 ════════════════════════════════════ -->
 <section class="puestos-section">
   <div class="container">
@@ -588,7 +646,7 @@
         <a href="../empleo/index.html">Empleo</a>
       </div>
       <div class="footer-col"><h4>Contacto</h4><a href="tel:+50249473557">+502 4947-3557</a><p>6a Calle 6-50 Zona 10</p><p>Ciudad de Guatemala</p></div>
-      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 11:00 – 23:00</p></div>
+      <div class="footer-col"><h4>Horarios</h4><p>Lun – Jue: 11:00 – 22:00</p><p>Viernes: 11:00 – 23:00</p><p>Sáb – Dom: 12:00 – 18:00</p></div>
     </div>
     <div class="footer-bottom"><p>© 2026 Smash &amp; Fire. Todos los derechos reservados.</p><div><a href="../terminos/index.html">Términos y Condiciones</a></div></div>
   </div>
@@ -655,6 +713,45 @@ function togglePuesto(id) {
   document.querySelectorAll('.puesto-card').forEach(c => c.classList.remove('open'));
   if (!wasOpen) card.classList.add('open');
 }
+</script>
+
+<script>
+/* ── NAV OVERLAY TOGGLE ── */
+(function () {
+  const btn     = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  const closeBtn = document.getElementById('navClose');
+ 
+  function openMenu() {
+    overlay.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+ 
+  function closeMenu() {
+    overlay.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+ 
+  btn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+ 
+  // Click on the backdrop (outside the modal panel) closes it
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeMenu();
+  });
+ 
+  // Escape key closes it
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+ 
+  // Any link inside the modal closes it before navigating
+  document.querySelectorAll('.nav-modal-links a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+})();
 </script>
 </body>
 </html>
